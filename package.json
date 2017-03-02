@@ -1,0 +1,23 @@
+{
+  "name": "angular2-handsontable",
+  "version": "0.0.2",
+  "description": "Official Angular 2 directive for Handsontable",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/handsontable/angular2-handsontable.git"
+  },
+  "keywords": [
+    "angular",
+    "angular2",
+    "handsontable",
+    "table",
+    "spreadsheet",
+    "datatable",
+    "data"
+  ],
+  "author": "Handsoncode <hello@handsontable.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/handsontable/angular2-handsontable/issues"
+  }
+}
