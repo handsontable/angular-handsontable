@@ -9,7 +9,7 @@ import {
 
 @Component({
   selector: 'HotColumn',
-  template: ``,
+  template: `<div class="column">Column</div>`,
 })
 
 export class HotColumnComponent implements OnChanges {
@@ -32,5 +32,8 @@ export class HotColumnComponent implements OnChanges {
       }
 
       this.onAfterChange();
+    }
+
+    ngOnDestroy() {
     }
 }

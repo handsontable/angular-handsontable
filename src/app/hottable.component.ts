@@ -23,7 +23,7 @@ import { mergeSettings, prepareChanges } from './hottable.helpers';
 
 @Component({
   selector: 'HotTable',
-  template: ``,
+  template: `<button (click)="getChildren()">GetChildren</button>`,
   encapsulation: ViewEncapsulation.None,
   styleUrls: [ '../../node_modules/handsontable/dist/handsontable.css' ],
   providers: [ HandsontableRegisterer ],
@@ -303,17 +303,18 @@ export class HotTableComponent implements OnInit, AfterContentInit {
   ngAfterContentInit() {
     const options = mergeSettings(this);
     const columnsArr = this.columnsComponents.toArray();
-    console.log(options['data']);
-
+    
     if (columnsArr.length > 0) {
       options['columns'] = columnsArr;
-      
-      columnsArr.forEach((column) => {
-        column.onAfterChange = () => {
-          this.onAfterColumnsChange(); 
-        }
-      });
     }
+
+    this.columnsComponents.changes.subscribe(() => {
+      this.columnsComponents.forEach((column) => {
+        column.onAfterChange = () => this.onAfterColumnsChange()
+      });
+
+      this.onAfterColumnsChange();
+    });
 
     this.hotInstance = new Handsontable(this.container, options);
 
@@ -343,5 +344,9 @@ export class HotTableComponent implements OnInit, AfterContentInit {
     };
 
     this.hotInstance.updateSettings(newOptions, false);
+  }
+
+  getChildren() {
+    console.log(this.columnsComponents);
   }
 }

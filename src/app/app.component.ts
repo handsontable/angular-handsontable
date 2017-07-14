@@ -11,8 +11,10 @@ import { HandsontableRegisterer } from './hottable.service';
 
 export class AppComponent {
   title: string = 'app';
+  colWidth: number = 60;
   headers: boolean = true;
   dataset: any[] = Handsontable.helper.createSpreadsheetData(10, 10);
+  columnsArr: object[] = [{}, {}, {}]
 
   constructor(private handsontableRegisterer: HandsontableRegisterer) { }
 
@@ -20,11 +22,15 @@ export class AppComponent {
     console.log(this.handsontableRegisterer.getInstance(id));
   }
 
-  toggleHeaders(): void {
-    this.headers = !this.headers;
+  addColumn(): void {
+    this.columnsArr.push({});
   }
 
-  loadData(): void {
-    this.dataset = Handsontable.helper.createSpreadsheetData(10, 10);
+  reduceColumn(): void {
+    this.columnsArr.pop();
+  }
+
+  changeWidth(event) {
+    this.colWidth = parseInt(event.target.value, 10);
   }
 }
