@@ -12,7 +12,7 @@ import { HandsontableRegisterer } from './hottable.service';
 export class AppComponent {
   title: string = 'app';
   headers: boolean = true;
-  dataset: any[] = Handsontable.helper.createSpreadsheetObjectData(10, 10);
+  dataset: any[] = Handsontable.helper.createSpreadsheetData(10, 10);
 
   constructor(private handsontableRegisterer: HandsontableRegisterer) { }
 

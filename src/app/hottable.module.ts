@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 
-import { HandsontableComponent } from './hottable.component';
+import { HotTableComponent } from './hottable.component';
+import { HotColumnComponent } from './hotcolumn.component';
 
 @NgModule({
-  imports: [ BrowserModule ],
-  declarations: [ HandsontableComponent ],
-  exports: [ HandsontableComponent ],
+  declarations: [ HotTableComponent, HotColumnComponent ],
+  exports: [ HotTableComponent, HotColumnComponent ],
 })
 
-export class HandsontableModule { }
+export class HotTableModule { }

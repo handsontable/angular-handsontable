@@ -6,8 +6,12 @@
   <button (click)="getInstance('testhot1')">Get instance</button>
   <button (click)="toggleHeaders()">Toggle headers</button>
   <button (click)="loadData()">Load data</button>
+  <input type="text" (input)="title = $event.target.value" placeholder="column2 header"/>
 </div>
 
 <HotTable hotId="testhot1" [data]="dataset" [settings]="appSettings1" [rowHeaders]="headers" [colHeaders]="headers">
-  <!-- <HotColumn data="id" type="numeric" [width]="150"></HotColumn> -->
+  <HotColumn data="0" type="numeric" [width]="150"></HotColumn> 
+  <HotColumn data="3" type="date" [title]="title" [width]="90"></HotColumn> 
+  <HotColumn data="5" type="numeric" [width]="150"></HotColumn> 
+  <HotColumn data="1" type="numeric" [width]="150"></HotColumn> 
 </HotTable>

@@ -1,31 +1,39 @@
 import {
   Component,
+  ContentChildren,
   ElementRef,
   EventEmitter,
   Input,
   NgZone,
+  AfterContentInit,
   OnChanges,
   OnDestroy,
   OnInit,
   Output,
+  QueryList,
   SimpleChanges,
+  ViewChildren,
   ViewEncapsulation,
 } from '@angular/core';
-import { mergeSettings, prepareChanges } from './hottable.helpers';
 import Handsontable from 'handsontable';
+
 import { HandsontableRegisterer } from './hottable.service';
+import { HotColumnComponent } from './hotcolumn.component';
+import { mergeSettings, prepareChanges } from './hottable.helpers';
 
 @Component({
   selector: 'HotTable',
   template: ``,
   encapsulation: ViewEncapsulation.None,
   styleUrls: [ '../../node_modules/handsontable/dist/handsontable.css' ],
-  providers: [ HandsontableRegisterer ]
+  providers: [ HandsontableRegisterer ],
 })
 
-export class HandsontableComponent implements OnInit {
+export class HotTableComponent implements OnInit, AfterContentInit {
   private hotInstance: Handsontable;
   private container: HTMLElement;
+
+  @ContentChildren(HotColumnComponent) columnsComponents: QueryList<HotColumnComponent>;
 
   @Input() settings: object;
   @Input() hotId: any;
@@ -283,7 +291,6 @@ export class HandsontableComponent implements OnInit {
   constructor(private el: ElementRef, private _ngZone: NgZone, private handsontableRegisterer: HandsontableRegisterer) { }
 
   ngOnInit() {
-    const options = mergeSettings(this);
     this.container = document.createElement('div');
 
     if (this.hotId) {
@@ -291,6 +298,22 @@ export class HandsontableComponent implements OnInit {
     }
 
     this.el.nativeElement.appendChild(this.container);
+  }
+
+  ngAfterContentInit() {
+    const options = mergeSettings(this);
+    const columnsArr = this.columnsComponents.toArray();
+    console.log(options['data']);
+
+    if (columnsArr.length > 0) {
+      options['columns'] = columnsArr;
+      
+      columnsArr.forEach((column) => {
+        column.onAfterChange = () => {
+          this.onAfterColumnsChange(); 
+        }
+      });
+    }
 
     this.hotInstance = new Handsontable(this.container, options);
 
@@ -304,13 +327,21 @@ export class HandsontableComponent implements OnInit {
     
     let newOptions = prepareChanges(changes);
 
-    console.log(newOptions);
-
     this.hotInstance.updateSettings(newOptions, false);
   }
 
   ngOnDestroy() {
     this.hotInstance.destroy();
     this.handsontableRegisterer.removeInstance(this.hotId);
+  }
+
+  onAfterColumnsChange() {
+    const columnsArr = this.columnsComponents.toArray();
+
+    let newOptions = {
+      columns: columnsArr
+    };
+
+    this.hotInstance.updateSettings(newOptions, false);
   }
 }
