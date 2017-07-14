@@ -11,15 +11,15 @@ import {
   SimpleChanges,
   ViewEncapsulation,
 } from '@angular/core';
-import { mergeSettings, prepareChanges } from './handsontable.helpers';
+import { mergeSettings, prepareChanges } from './hottable.helpers';
 import Handsontable from 'handsontable';
-import { HandsontableRegisterer } from './handsontable.service';
+import { HandsontableRegisterer } from './hottable.service';
 
 @Component({
   selector: 'HotTable',
   template: ``,
   encapsulation: ViewEncapsulation.None,
-  styleUrls: [ `../../node_modules/handsontable/dist/handsontable.css` ],
+  styleUrls: [ '../../node_modules/handsontable/dist/handsontable.css' ],
   providers: [ HandsontableRegisterer ]
 })
 

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import Handsontable from 'handsontable';
-import { HandsontableRegisterer } from './handsontable.service';
+import { HandsontableRegisterer } from './hottable.service';
 
 @Component({
   selector: 'app-root',
@@ -11,8 +11,8 @@ import { HandsontableRegisterer } from './handsontable.service';
 
 export class AppComponent {
   title: string = 'app';
-  headers: boolean = false;
-  dataset: any[] = [];
+  headers: boolean = true;
+  dataset: any[] = Handsontable.helper.createSpreadsheetObjectData(10, 10);
 
   constructor(private handsontableRegisterer: HandsontableRegisterer) { }
 

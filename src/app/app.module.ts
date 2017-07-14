@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import { HandsontableModule } from './handsontable.module';
+import { HandsontableModule } from './hottable.module';
 
 @NgModule({
   declarations: [
