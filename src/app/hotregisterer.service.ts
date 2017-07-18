@@ -4,7 +4,7 @@ import Handsontable from 'handsontable';
 const instances: object = {};
 
 @Injectable()
-export class HandsontableRegisterer {
+export class HotRegisterer {
     public getInstance(id: any): Handsontable {
         return instances[id];
     }

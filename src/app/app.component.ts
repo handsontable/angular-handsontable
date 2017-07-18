@@ -1,36 +1,42 @@
 import { Component } from '@angular/core';
 import Handsontable from 'handsontable';
-import { HandsontableRegisterer } from './hottable.service';
+import { HotRegisterer } from './hotregisterer.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [ HandsontableRegisterer ],
+  providers: [ HotRegisterer ],
 })
 
 export class AppComponent {
-  title: string = 'app';
-  colWidth: number = 60;
+  colWidths: number = 60;
   headers: boolean = true;
-  dataset: any[] = Handsontable.helper.createSpreadsheetData(10, 10);
-  columnsArr: object[] = [{}, {}, {}]
+  columnsArr: object[] = [{}, {}, {}];
+  settingsObj: object = {
+    data: Handsontable.helper.createSpreadsheetData(10, 10),
+    rowHeights: 50,
+  }
 
-  constructor(private handsontableRegisterer: HandsontableRegisterer) { }
+  constructor(private hotRegisterer: HotRegisterer) { }
 
   getInstance(id: any): void {
-    console.log(this.handsontableRegisterer.getInstance(id));
+    console.log(this.hotRegisterer.getInstance(id));
   }
 
   addColumn(): void {
     this.columnsArr.push({});
   }
 
-  reduceColumn(): void {
+  removeColumn(): void {
     this.columnsArr.pop();
   }
 
-  changeWidth(event) {
-    this.colWidth = parseInt(event.target.value, 10);
+  changeColWidth(value) {
+    this.colWidths = value;
+  }
+
+  toggleHeaders() {
+    this.headers = !this.headers;
   }
 }

@@ -17,16 +17,16 @@ import {
 } from '@angular/core';
 import Handsontable from 'handsontable';
 
-import { HandsontableRegisterer } from './hottable.service';
+import { HotRegisterer } from './hotregisterer.service';
+import { HotHelper } from './hothelper.service';
 import { HotColumnComponent } from './hotcolumn.component';
-import { mergeSettings, prepareChanges } from './hottable.helpers';
 
 @Component({
   selector: 'HotTable',
-  template: `<button (click)="getChildren()">GetChildren</button>`,
+  template: ``,
   encapsulation: ViewEncapsulation.None,
   styleUrls: [ '../../node_modules/handsontable/dist/handsontable.css' ],
-  providers: [ HandsontableRegisterer ],
+  providers: [ HotRegisterer, HotHelper ],
 })
 
 export class HotTableComponent implements OnInit, AfterContentInit {
@@ -288,7 +288,11 @@ export class HotTableComponent implements OnInit, AfterContentInit {
   @Output() public unmodifyCol: EventEmitter<any[]> = new EventEmitter();
   @Output() public unmodifyRow: EventEmitter<any[]> = new EventEmitter();
 
-  constructor(private el: ElementRef, private _ngZone: NgZone, private handsontableRegisterer: HandsontableRegisterer) { }
+  constructor(
+    private el: ElementRef,
+    private _ngZone: NgZone,
+    private _hotRegisterer: HotRegisterer,
+    private _hotHelper: HotHelper) { }
 
   ngOnInit() {
     this.container = document.createElement('div');
@@ -301,7 +305,7 @@ export class HotTableComponent implements OnInit, AfterContentInit {
   }
 
   ngAfterContentInit() {
-    const options = mergeSettings(this);
+    const options = this._hotHelper.mergeSettings(this);
     const columnsArr = this.columnsComponents.toArray();
     
     if (columnsArr.length > 0) {
@@ -318,7 +322,9 @@ export class HotTableComponent implements OnInit, AfterContentInit {
 
     this.hotInstance = new Handsontable(this.container, options);
 
-    this.handsontableRegisterer.registerInstance(this.hotId, this.hotInstance);
+    if (this.hotId) {
+      this._hotRegisterer.registerInstance(this.hotId, this.hotInstance);
+    }
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -326,14 +332,17 @@ export class HotTableComponent implements OnInit, AfterContentInit {
       return;
     }
     
-    let newOptions = prepareChanges(changes);
+    let newOptions = this._hotHelper.prepareChanges(changes);
 
     this.hotInstance.updateSettings(newOptions, false);
   }
 
   ngOnDestroy() {
     this.hotInstance.destroy();
-    this.handsontableRegisterer.removeInstance(this.hotId);
+    
+    if (this.hotId) {
+      this._hotRegisterer.removeInstance(this.hotId);
+    }
   }
 
   onAfterColumnsChange() {
@@ -344,9 +353,5 @@ export class HotTableComponent implements OnInit, AfterContentInit {
     };
 
     this.hotInstance.updateSettings(newOptions, false);
-  }
-
-  getChildren() {
-    console.log(this.columnsComponents);
   }
 }

@@ -1,15 +1,13 @@
 import {
   Component,
-  EventEmitter,
   Input,
   OnChanges,
-  Output,
   SimpleChanges,
 } from '@angular/core';
 
 @Component({
   selector: 'HotColumn',
-  template: `<div class="column">Column</div>`,
+  template: ``,
 })
 
 export class HotColumnComponent implements OnChanges {
@@ -32,8 +30,5 @@ export class HotColumnComponent implements OnChanges {
       }
 
       this.onAfterChange();
-    }
-
-    ngOnDestroy() {
     }
 }
