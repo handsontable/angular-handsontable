@@ -48,6 +48,9 @@ import 'core-js/es7/reflect';
  **/
 // import 'web-animations-js';  // Run `npm install --save web-animations-js`.
 
+/**
+ * Handsontable have to be runned before zone.js
+ */
 import 'handsontable/dist/handsontable';
 
 /***************************************************************************************************

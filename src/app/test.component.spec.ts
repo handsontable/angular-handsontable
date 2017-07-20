@@ -1,6 +1,6 @@
 import { TestBed, ComponentFixture, async } from '@angular/core/testing';
 
-import { AppComponent } from './app.component';
+import { AppComponent } from './test.component';
 import { HotTableModule } from './hottable.module';
 import { HotRegisterer } from './hotregisterer.service';
 
@@ -22,7 +22,7 @@ describe('AppComponent', () => {
   }));
 
   afterEach(()=> {
-    fixture.destroy();
+    //fixture.destroy();
   });
 
   it('should create the app', () => {
@@ -55,6 +55,7 @@ describe('AppComponent', () => {
       expect(compiled.querySelector('.ht_clone_top_left_corner th')).toBeNull();
     });
   });
+
   describe(`HotColumn`, () => {
     it(`should render only three columns of the data`, () => {
       const compiled = fixture.debugElement.nativeElement;
@@ -74,6 +75,17 @@ describe('AppComponent', () => {
       app.removeColumn();
       fixture.detectChanges();
       expect(compiled.querySelectorAll('.ht_master col').length).toBe(3);
+    });
+  });
+
+  describe(`HotRegisterer`, () => {
+    it(`should increase number of columns`, () => {
+      const app = fixture.debugElement.componentInstance;
+      const compiled = fixture.debugElement.nativeElement;
+      const instance = app.getInstance('testhot1');
+
+      expect(instance).toBeDefined();
+      expect(instance.countCols()).toBe(3);
     });
   });
 });

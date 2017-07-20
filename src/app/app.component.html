@@ -1,7 +1,0 @@
- <!-- <button (click)="addColumn()">addColumn</button>
-<button (click)="removeColumn()">removeColumn</button>
-<input (input)="changeColWidth($event.target.value)" type="text"> 
-<input type="checkbox" (change)="toggleHeaders()" ng-checked="headers" checked>  -->
-<HotTable hotId="testhot1" [settings]="settingsObj" [rowHeaders]="headers" [colHeaders]="headers">
-  <HotColumn *ngFor="let column of columnsArr; let i = index" [width]="colWidth"></HotColumn>
-</HotTable>

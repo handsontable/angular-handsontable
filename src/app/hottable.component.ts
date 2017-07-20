@@ -29,7 +29,7 @@ import { HotColumnComponent } from './hotcolumn.component';
   providers: [ HotRegisterer, HotHelper ],
 })
 
-export class HotTableComponent implements OnInit, AfterContentInit {
+export class HotTableComponent implements AfterContentInit, OnChanges, OnInit {
   private hotInstance: Handsontable;
   private container: HTMLElement;
 

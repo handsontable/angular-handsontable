@@ -1,0 +1,3 @@
+<HotTable hotId="testhot1" [settings]="settingsObj" [colWidths]="colWidths" [rowHeaders]="headers" [colHeaders]="headers">
+  <HotColumn *ngFor="let column of columnsArr; let i = index" [type]="column.type" [source]="column.source"></HotColumn>
+</HotTable>

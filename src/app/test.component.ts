@@ -1,18 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, OnChanges } from '@angular/core';
 import Handsontable from 'handsontable';
 import { HotRegisterer } from './hotregisterer.service';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  templateUrl: './test.component.html',
   providers: [ HotRegisterer ],
 })
 
 export class AppComponent {
   colWidths: number = 60;
   headers: boolean = true;
-  columnsArr: object[] = [{}, {}, {}];
+  columnsArr: object[] = [
+    {},
+    {
+      type: 'dropdown',
+      source: ['BMW', 'Chrysler', 'Nissan', 'Suzuki', 'Toyota', 'Volvo']
+    },
+    {}
+  ];
   settingsObj: object = {
     data: Handsontable.helper.createSpreadsheetData(10, 10),
     rowHeights: 50,
@@ -20,8 +26,8 @@ export class AppComponent {
 
   constructor(private hotRegisterer: HotRegisterer) { }
 
-  getInstance(id: any): void {
-    console.log(this.hotRegisterer.getInstance(id));
+  getInstance(id: any): Handsontable {
+    return this.hotRegisterer.getInstance(id);
   }
 
   addColumn(): void {
