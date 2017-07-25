@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 
 @Component({
-  selector: 'HotColumn',
+  selector: 'hot-column',
   template: ``,
 })
 

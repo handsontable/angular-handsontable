@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './test.component';
-import { HotTableModule } from './hottable.module';
+import { HotTableModule } from './hot-table.module';
 
 @NgModule({
   declarations: [

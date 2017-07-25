@@ -1,6 +1,6 @@
 import { Component, OnChanges } from '@angular/core';
 import Handsontable from 'handsontable';
-import { HotRegisterer } from './hotregisterer.service';
+import { HotRegisterer } from '../src/hot-registerer.service';
 
 @Component({
   selector: 'app-root',

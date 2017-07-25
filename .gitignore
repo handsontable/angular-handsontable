@@ -25,13 +25,22 @@
 !.vscode/extensions.json
 
 # misc
+*.js
+!./config/*
+!karma.conf.js
+!webpack.config.js
+*.map
+*.d.ts
+!make.js
 /.sass-cache
+/bundles
 /connect.lock
 /coverage
 /libpeerconnection.log
 npm-debug.log
 testem.log
 /typings
+*.metadata.json
 
 # e2e
 /e2e/*.js

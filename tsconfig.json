@@ -1,20 +1,32 @@
 {
-  "compileOnSave": false,
   "compilerOptions": {
-    "outDir": "./dist/out-tsc",
-    "baseUrl": "src",
-    "sourceMap": true,
-    "declaration": false,
-    "moduleResolution": "node",
+    "noImplicitAny": false,
+    "module": "es2015",
+    "target": "es5",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "target": "es5",
-    "typeRoots": [
-      "node_modules/@types"
+    "declaration": true,
+    "moduleResolution": "node",
+    "types": [
+      "hammerjs",
+      "jasmine",
+      "node"
     ],
-    "lib": [
-      "es2016",
-      "dom"
-    ]
+    "lib": ["es2015", "dom"]
+  },
+  "files": [
+    "index.ts",
+    "./src/hot-table.component.ts",
+    "./src/hot-column.component.ts",
+    "./src/hot-registerer.service.ts",
+    "./src/hot-settings.utils.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "bundles"
+  ],
+  "angularCompilerOptions": {
+    "strictMetadataEmit": true,
+    "skipTemplateCodegen": true
   }
 }

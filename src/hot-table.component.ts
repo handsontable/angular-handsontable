@@ -17,19 +17,19 @@ import {
 } from '@angular/core';
 import Handsontable from 'handsontable';
 
-import { HotRegisterer } from './hotregisterer.service';
-import { HotHelper } from './hothelper.service';
-import { HotColumnComponent } from './hotcolumn.component';
+import { HotRegisterer } from './hot-registerer.service';
+import { HotHelper } from './hot-settings.utils';
+import { HotColumnComponent } from './hot-column.component';
 
 @Component({
-  selector: 'HotTable',
+  selector: 'hot-table',
   template: ``,
   encapsulation: ViewEncapsulation.None,
   styleUrls: [ '../../node_modules/handsontable/dist/handsontable.css' ],
   providers: [ HotRegisterer, HotHelper ],
 })
 
-export class HotTableComponent implements AfterContentInit, OnChanges, OnInit {
+export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy, OnInit {
   private hotInstance: Handsontable;
   private container: HTMLElement;
 
@@ -307,14 +307,14 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnInit {
   ngAfterContentInit() {
     const options = this._hotHelper.mergeSettings(this);
     const columnsArr = this.columnsComponents.toArray();
-    
+
     if (columnsArr.length > 0) {
       options['columns'] = columnsArr;
     }
 
     this.columnsComponents.changes.subscribe(() => {
       this.columnsComponents.forEach((column) => {
-        column.onAfterChange = () => this.onAfterColumnsChange()
+        column.onAfterChange = () => this.onAfterColumnsChange();
       });
 
       this.onAfterColumnsChange();
@@ -331,7 +331,7 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnInit {
     if (this.hotInstance === void 0) {
       return;
     }
-    
+
     let newOptions = this._hotHelper.prepareChanges(changes);
 
     this.hotInstance.updateSettings(newOptions, false);
@@ -339,7 +339,7 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnInit {
 
   ngOnDestroy() {
     this.hotInstance.destroy();
-    
+
     if (this.hotId) {
       this._hotRegisterer.removeInstance(this.hotId);
     }

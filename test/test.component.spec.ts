@@ -1,8 +1,8 @@
 import { TestBed, ComponentFixture, async } from '@angular/core/testing';
 
 import { AppComponent } from './test.component';
-import { HotTableModule } from './hottable.module';
-import { HotRegisterer } from './hotregisterer.service';
+import { HotTableModule } from '../src/hot-table.module';
+import { HotRegisterer } from '../src/hot-registerer.service';
 
 describe('AppComponent', () => {
   let fixture: ComponentFixture<HotTableModule>;
