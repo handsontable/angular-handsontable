@@ -7,3 +7,12 @@ node_js:
 
 before_script:
   - "export TZ=Europe/Warsaw"
+
+group:
+  - "stable"
+
+dist:
+  - "precise"
+
+os:
+  - "linux"
