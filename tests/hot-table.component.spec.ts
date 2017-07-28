@@ -1,9 +1,10 @@
-import { Component, DebugElement, NgModule } from '@angular/core';
+import { DebugElement } from '@angular/core';
 import { TestBed, ComponentFixture } from '@angular/core/testing';
 
 import { HotRegisterer } from '../src/hot-registerer.service';
 import { HotTableComponent } from '../src/hot-table.component';
 import { HotColumnComponent } from '../src/hot-column.component';
+import { TestModule, TestComponent } from './test.component';
 
 describe('HotTable', () => {
   let comp: TestComponent;
@@ -23,7 +24,7 @@ describe('HotTable', () => {
   });
 
   afterEach(()=> {
-      // fixture.destroy();
+      fixture.destroy();
   });
 
   it('should create the app', () => {
@@ -31,31 +32,31 @@ describe('HotTable', () => {
     expect(app).toBeTruthy();
   });
 
-  // describe(`HotTable`, () => {
-  //   it(`should render 'HotTable'`, () => {
-  //     const compiled = fixture.debugElement.nativeElement;
-  //     expect(compiled.querySelectorAll('hottable').length).toBe(1);
-  //   });
+  describe(`HotTable`, () => {
+    it(`should render 'HotTable'`, () => {
+      const compiled = fixture.debugElement.nativeElement;
+      expect(compiled.querySelectorAll('hot-table').length).toBe(1);
+    });
     
-  //   it(`should render 'HotTable' with the headers defined as bindings`, () => {
-  //     const compiled = fixture.debugElement.nativeElement;
-  //     expect(compiled.querySelector('.ht_clone_top_left_corner')).not.toBeNull();
-  //   });
+    // it(`should render 'HotTable' with the headers defined as bindings`, () => {
+    //   const compiled = fixture.debugElement.nativeElement;
+    //   expect(compiled.querySelector('.ht_clone_top_left_corner')).not.toBeNull();
+    // });
 
-  //   it(`should render row with height defined in settings object`, () => {
-  //     const compiled = fixture.debugElement.nativeElement;
-  //     // first row is higher than rest because of additional top border
-  //     expect(compiled.querySelector('.ht_master tbody tr:nth-child(2)').offsetHeight).toBe(50);
-  //   });
+    // it(`should render row with height defined in settings object`, () => {
+    //   const compiled = fixture.debugElement.nativeElement;
+    //   // first row is higher than rest because of additional top border
+    //   expect(compiled.querySelector('.ht_master tbody tr:nth-child(2)').offsetHeight).toBe(50);
+    // });
 
-  //   it(`should be possible to toggle headers visibility`, () => {
-  //     const app = fixture.debugElement.componentInstance;
-  //     const compiled = fixture.debugElement.nativeElement;
-  //     app.toggleHeaders();
-  //     fixture.detectChanges();
-  //     expect(compiled.querySelector('.ht_clone_top_left_corner th')).toBeNull();
-  //   });
-  // });
+    // it(`should be possible to toggle headers visibility`, () => {
+    //   const app = fixture.debugElement.componentInstance;
+    //   const compiled = fixture.debugElement.nativeElement;
+    //   app.toggleHeaders();
+    //   fixture.detectChanges();
+    //   expect(compiled.querySelector('.ht_clone_top_left_corner th')).toBeNull();
+    // });
+  });
   // describe(`HotColumn`, () => {
   //   it(`should render only three columns of the data`, () => {
   //     const compiled = fixture.debugElement.nativeElement;
@@ -78,16 +79,3 @@ describe('HotTable', () => {
   //   });
   // });
 });
-
-////////// Fakes ///////////
-@NgModule({
-  declarations: [ HotTableComponent, HotColumnComponent ],
-  exports: [ HotTableComponent, HotColumnComponent ],
-})
-class TestModule { }
-
-@Component({
-  selector: 'test-component',
-  template: `<hot-table></hot-table>`,
-})
-class TestComponent { }

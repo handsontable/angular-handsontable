@@ -27,7 +27,7 @@
     "build": "cross-env NODE_ENV=production webpack",
     "clean": "rimraf commonjs es coverage",
     "prepublish": "npm run clean && npm run build",
-    "test": "karma start",
+    "test": "tsc && karma start",
     "test:watch": "tsc && karma start --no-single-run --auto-watch",
     "watch": "cross-env NODE_ENV=watch webpack --watch"
   },
