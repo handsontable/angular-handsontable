@@ -1,32 +1,18 @@
 {
   "compilerOptions": {
-    "noImplicitAny": false,
-    "module": "es2015",
+    "outDir": "dist",
     "target": "es5",
+    "module": "es2015",
+    "moduleResolution": "node",
+    "sourceMap": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "declaration": true,
-    "moduleResolution": "node",
-    "types": [
-      "hammerjs",
-      "jasmine",
-      "node"
-    ],
-    "lib": ["es2015", "dom"]
+    "lib": ["es2015", "dom"],
+    "noImplicitAny": false,
+    "suppressImplicitAnyIndexErrors": true
   },
-  "files": [
-    "index.ts",
-    "./src/hot-table.component.ts",
-    "./src/hot-column.component.ts",
-    "./src/hot-registerer.service.ts",
-    "./src/hot-settings.utils.ts"
-  ],
+  "compileOnSave": false,
   "exclude": [
-    "node_modules",
-    "bundles"
-  ],
-  "angularCompilerOptions": {
-    "strictMetadataEmit": true,
-    "skipTemplateCodegen": true
-  }
+    "node_modules"
+  ]
 }
