@@ -25,7 +25,7 @@ import { HotColumnComponent } from './hot-column.component';
   selector: 'hot-table',
   template: ``,
   encapsulation: ViewEncapsulation.None,
-  // styleUrls: [ '../node_modules/handsontable/dist/handsontable.css' ],
+  styleUrls: [ '../node_modules/handsontable/dist/handsontable.css' ],
   providers: [ HotRegisterer, HotHelper ],
 })
 

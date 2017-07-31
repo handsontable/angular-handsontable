@@ -1,10 +1,11 @@
 import { DebugElement } from '@angular/core';
-import { TestBed, ComponentFixture } from '@angular/core/testing';
+import { async, TestBed, ComponentFixture } from '@angular/core/testing';
 
+import { TestComponent } from './test.component';
+import { HotTableModule } from './hot-table.module';
 import { HotRegisterer } from '../src/hot-registerer.service';
-import { HotTableComponent } from '../src/hot-table.component';
-import { HotColumnComponent } from '../src/hot-column.component';
-import { TestModule, TestComponent } from './test.component';
+
+import Handsontable from 'handsontable';
 
 describe('HotTable', () => {
   let comp: TestComponent;
@@ -14,68 +15,135 @@ describe('HotTable', () => {
   let testContainerEl: HTMLElement;
 
   beforeEach(() => {
-      TestBed.configureTestingModule({
-          declarations: [ TestComponent ],
-          imports: [ TestModule ]
-      }).compileComponents();
-
-      fixture = TestBed.createComponent<TestComponent>(TestComponent);
-      fixture.detectChanges();
+    TestBed.configureTestingModule({
+        declarations: [ TestComponent ],
+        imports: [ HotTableModule ]
+    });
   });
 
   afterEach(()=> {
-      fixture.destroy();
+    // fixture.destroy();
   });
 
-  it('should create the app', () => {
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
-  });
+  it('should create the app', async(() => {
+    TestBed.compileComponents().then(() => {
+      fixture = TestBed.createComponent(TestComponent);
+      const app = fixture.componentInstance;
+
+      fixture.detectChanges();
+      expect(app).toBeTruthy();
+    });
+  }));
 
   describe(`HotTable`, () => {
-    it(`should render 'HotTable'`, () => {
-      const compiled = fixture.debugElement.nativeElement;
-      expect(compiled.querySelectorAll('hot-table').length).toBe(1);
-    });
-    
-    // it(`should render 'HotTable' with the headers defined as bindings`, () => {
-    //   const compiled = fixture.debugElement.nativeElement;
-    //   expect(compiled.querySelector('.ht_clone_top_left_corner')).not.toBeNull();
-    // });
+    it(`should render 'HotTable'`, async(() => {
+      TestBed.compileComponents().then(() => {
+        fixture = TestBed.createComponent(TestComponent);
+        const element = fixture.nativeElement;
 
-    // it(`should render row with height defined in settings object`, () => {
-    //   const compiled = fixture.debugElement.nativeElement;
-    //   // first row is higher than rest because of additional top border
-    //   expect(compiled.querySelector('.ht_master tbody tr:nth-child(2)').offsetHeight).toBe(50);
-    // });
+        fixture.detectChanges();
 
-    // it(`should be possible to toggle headers visibility`, () => {
-    //   const app = fixture.debugElement.componentInstance;
-    //   const compiled = fixture.debugElement.nativeElement;
-    //   app.toggleHeaders();
-    //   fixture.detectChanges();
-    //   expect(compiled.querySelector('.ht_clone_top_left_corner th')).toBeNull();
-    // });
+        expect(element.querySelectorAll('hot-table').length).toBe(1);
+      });
+    }));
+
+    it(`should render 'HotTable' with the headers defined as bindings`, async(() => {
+      TestBed.overrideComponent(TestComponent, {
+        set: {
+          template: '<hot-table [rowHeaders]="headers" [colHeaders]="headers"></hot-table>'
+        }
+      });
+      TestBed.compileComponents().then(() => {
+        fixture = TestBed.createComponent(TestComponent);
+        const element = fixture.nativeElement;
+
+        fixture.detectChanges();
+
+        expect(element.querySelector('.ht_clone_top_left_corner')).not.toBeNull();
+      });
+    }));
+
+    it(`should render row with height defined in settings object`, async(() => {
+      TestBed.overrideComponent(TestComponent, {
+        set: {
+          template: '<hot-table [settings]="settingsObj"></hot-table>'
+        }
+      });
+      TestBed.compileComponents().then(() => {
+        fixture = TestBed.createComponent(TestComponent);
+        const element = fixture.nativeElement;
+
+        fixture.detectChanges();
+
+        // first row is higher than rest because of additional top border
+        expect(element.querySelector('.ht_master tbody tr:nth-child(2)').offsetHeight).toBe(50);
+      });
+    }));
+
+    it(`should be possible to toggle headers visibility`, async(() => {
+      TestBed.overrideComponent(TestComponent, {
+        set: {
+          template: '<hot-table [rowHeaders]="headers" [colHeaders]="headers"></hot-table>'
+        }
+      });
+      TestBed.compileComponents().then(() => {
+        fixture = TestBed.createComponent(TestComponent);
+        const app = fixture.componentInstance;
+        const element = fixture.nativeElement;
+
+        fixture.detectChanges();
+
+        expect(element.querySelector('.ht_clone_top_left_corner')).not.toBeNull();
+
+        app.toggleHeaders();
+        fixture.detectChanges();
+
+        expect(element.querySelector('.ht_clone_top_left_corner')).not.toBeNull();
+      });
+    }));
   });
-  // describe(`HotColumn`, () => {
-  //   it(`should render only three columns of the data`, () => {
-  //     const compiled = fixture.debugElement.nativeElement;
-  //     // the rowHeaders column is the 4th one
-  //     expect(compiled.querySelectorAll('.ht_master col').length).toBe(4); 
-  //   });
-  //   it(`should increase number of columns`, () => {
-  //     const app = fixture.debugElement.componentInstance;
-  //     const compiled = fixture.debugElement.nativeElement;
-  //     app.addColumn();
-  //     fixture.detectChanges();
-  //     expect(compiled.querySelectorAll('.ht_master col').length).toBe(5);
-  //   });
-  //   it(`should decrease number of columns`, () => {
-  //     const app = fixture.debugElement.componentInstance;
-  //     const compiled = fixture.debugElement.nativeElement;
-  //     app.removeColumn();
-  //     fixture.detectChanges();
-  //     expect(compiled.querySelectorAll('.ht_master col').length).toBe(3);
-  //   });
-  // });
+  xdescribe(`HotColumn`, () => {
+    it(`should render only three columns of the data`, async(() => {
+      TestBed.overrideComponent(TestComponent, {
+        set: {
+          template: `
+            <hot-table>
+              <hot-column></hot-column>
+              <hot-column></hot-column>
+              <hot-column></hot-column>
+            </hot-table>
+          `
+        }
+      });
+      TestBed.compileComponents().then(() => {
+        fixture = TestBed.createComponent(TestComponent);
+        const element = fixture.nativeElement;
+
+        expect(element.querySelectorAll('.ht_master col').length).toBe(3);
+      });
+    }));
+    it(`should dynamically number of columns`, async(() => {
+      TestBed.overrideComponent(TestComponent, {
+        set: {
+          template: `
+            <hot-table>
+              <hot-column *ngFor="let column of columnsArr; let i = index"></hot-column>
+            </hot-table>
+          `
+        }
+      });
+      TestBed.compileComponents().then(() => {
+        fixture = TestBed.createComponent(TestComponent);
+        const element = fixture.nativeElement;
+        const app = fixture.componentInstance;
+
+        fixture.detectChanges();
+        expect(element.querySelectorAll('.ht_master col').length).toBe(3);
+
+        app.addColumn();
+        fixture.detectChanges();
+        expect(element.querySelectorAll('.ht_master col').length).toBe(4);
+      });
+    }));
+  });
 });
