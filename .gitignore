@@ -19,7 +19,7 @@
 *.sublime-workspace
 
 # IDE - VSCode
-.vscode/*
+.vscode/
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
@@ -27,7 +27,7 @@
 
 # misc
 *.js
-!./config/*
+!config/*
 !karma.conf.js
 !webpack.config.js
 *.map
