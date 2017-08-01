@@ -36,7 +36,7 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy
   @ContentChildren(HotColumnComponent) columnsComponents: QueryList<HotColumnComponent>;
 
   @Input() settings: object;
-  @Input() hotId: any;
+  @Input() hotId: string;
 
   @Input() allowEmpty: boolean;
   @Input() allowHtml: boolean;
