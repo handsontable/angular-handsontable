@@ -24,9 +24,10 @@
     "url": "https://github.com/handsontable/angular2-handsontable/issues"
   },
   "scripts": {
+    "cp:style": "cp ./node_modules/handsontable/dist/handsontable.css ./src/",
     "build": "cross-env NODE_ENV=production webpack",
-    "clean": "rimraf commonjs es coverage",
-    "prepublish": "npm run clean && npm run build",
+    "clean": "rimraf dist bundles",
+    "prepublish": "npm run clean && npm run cp:style && npm run build",
     "test": "tsc && karma start",
     "test:watch": "tsc && karma start --no-single-run --auto-watch",
     "watch": "cross-env NODE_ENV=watch webpack --watch"
