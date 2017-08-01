@@ -2,7 +2,7 @@ import { DebugElement } from '@angular/core';
 import { async, TestBed, ComponentFixture } from '@angular/core/testing';
 
 import { TestComponent } from './test.component';
-import { HotTableModule } from './hot-table.module';
+import { TestModule } from './test.module';
 import { HotRegisterer } from '../src/hot-registerer.service';
 
 import Handsontable from 'handsontable';
@@ -17,12 +17,12 @@ describe('HotTable', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
         declarations: [ TestComponent ],
-        imports: [ HotTableModule ]
+        imports: [ TestModule ]
     });
   });
 
   afterEach(()=> {
-    // fixture.destroy();
+    fixture.destroy();
   });
 
   it('should create the app', async(() => {
@@ -35,7 +35,7 @@ describe('HotTable', () => {
     });
   }));
 
-  describe(`HotTable`, () => {
+  describe(`hot-table`, () => {
     it(`should render 'HotTable'`, async(() => {
       TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
@@ -102,7 +102,8 @@ describe('HotTable', () => {
       });
     }));
   });
-  xdescribe(`HotColumn`, () => {
+
+  describe(`hot-column`, () => {
     it(`should render only three columns of the data`, async(() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
@@ -119,10 +120,12 @@ describe('HotTable', () => {
         fixture = TestBed.createComponent(TestComponent);
         const element = fixture.nativeElement;
 
+        fixture.detectChanges();
+
         expect(element.querySelectorAll('.ht_master col').length).toBe(3);
       });
     }));
-    it(`should dynamically number of columns`, async(() => {
+    it(`should dynamically change number of columns`, async(() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `
