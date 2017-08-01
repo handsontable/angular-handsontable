@@ -7,11 +7,11 @@ module.exports = function (config) {
     frameworks: ['jasmine'],
 
     files: [
-      {pattern: './.config/karma-test-shim.js', watched: false}
+      {pattern: './config/karma-test-shim.js', watched: false}
     ],
 
     preprocessors: {
-      './.config/karma-test-shim.js': ['webpack', 'sourcemap']
+      './config/karma-test-shim.js': ['webpack', 'sourcemap']
     },
 
     webpack: webpackConfig,
