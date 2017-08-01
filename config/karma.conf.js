@@ -4,6 +4,13 @@ module.exports = function (config) {
   var _config = {
     basePath: '',
 
+    customLaunchers: {
+        Chrome_travis_ci: {
+            base: 'Chrome',
+            flags: ['--no-sandbox']
+        }
+    },
+
     frameworks: ['jasmine'],
 
     files: [
@@ -32,6 +39,10 @@ module.exports = function (config) {
     browsers: ['Chrome'],
     singleRun: true
   };
+
+  if(process.env.TRAVIS){
+      _config.browsers = ['Chrome_travis_ci'];
+  }
 
   config.set(_config);
 };
