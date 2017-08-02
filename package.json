@@ -1,10 +1,10 @@
 {
-  "name": "angular2-handsontable",
+  "name": "angular-handsontable",
   "version": "0.0.2",
   "description": "Official Angular 2 directive for Handsontable",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/handsontable/angular2-handsontable.git"
+    "url": "git+https://github.com/handsontable/angular-handsontable.git"
   },
   "keywords": [
     "angular",
@@ -21,7 +21,7 @@
   "author": "Handsoncode <hello@handsontable.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/handsontable/angular2-handsontable/issues"
+    "url": "https://github.com/handsontable/angular-handsontable/issues"
   },
   "scripts": {
     "cp:style": "cp ./node_modules/handsontable/dist/handsontable.css ./src/",
@@ -36,7 +36,7 @@
     "@angular/core": "^2.4.7 || ^4.0.0"
   },
   "dependencies": {
-    "handsontable": "0.33.0"
+    "handsontable": "^0.34.0"
   },
   "devDependencies": {
     "@angular/common": "~4.2.0",
