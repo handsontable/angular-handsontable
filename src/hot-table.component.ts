@@ -278,7 +278,7 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy
   @Output() public modifyRowHeader: EventEmitter<any[]> = new EventEmitter();
   @Output() public modifyRowHeaderWidth: EventEmitter<any[]> = new EventEmitter();
   @Output() public modifyRowHeight: EventEmitter<any[]> = new EventEmitter();
-  @Output() public modifyRowSourceData: EventEmitter<any[]> = new EventEmitter();
+  @Output() public modifyRowData: EventEmitter<any[]> = new EventEmitter();
   @Output() public modifyTransformEnd: EventEmitter<any[]> = new EventEmitter();
   @Output() public modifyTransformStart: EventEmitter<any[]> = new EventEmitter();
   @Output() public persistentStateLoad: EventEmitter<any[]> = new EventEmitter();
@@ -320,7 +320,9 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy
       this.onAfterColumnsChange();
     });
 
-    this.hotInstance = new Handsontable(this.container, options);
+    this._ngZone.runOutsideAngular(() => {
+      this.hotInstance = new Handsontable(this.container, options);
+    });
 
     if (this.hotId) {
       this._hotRegisterer.registerInstance(this.hotId, this.hotInstance);
