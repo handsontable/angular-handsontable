@@ -305,11 +305,17 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy
   }
 
   ngAfterContentInit() {
-    const options = this._hotHelper.mergeSettings(this);
+    let options = this._hotHelper.mergeSettings(this);
     const columnsArr = this.columnsComponents.toArray();
 
     if (columnsArr.length > 0) {
-      options['columns'] = columnsArr;
+      let columns = [];
+
+      columnsArr.forEach((column) => {
+        columns.push(this._hotHelper.mergeSettings(column));
+      });
+
+      options['columns'] = columns;
     }
 
     this.columnsComponents.changes.subscribe(() => {
@@ -350,10 +356,18 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy
   onAfterColumnsChange() {
     const columnsArr = this.columnsComponents.toArray();
 
-    let newOptions = {
-      columns: columnsArr
-    };
+    if (columnsArr.length > 0) {
+      let columns = [];
 
-    this.hotInstance.updateSettings(newOptions, false);
+      columnsArr.forEach((column) => {
+        columns.push(this._hotHelper.mergeSettings(column));
+      });
+
+      let newOptions = {
+        columns: columns
+      };
+
+      this.hotInstance.updateSettings(newOptions, false);
+    }
   }
 }

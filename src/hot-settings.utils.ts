@@ -15,7 +15,7 @@ const AVAILABLE_OPTIONS = ['data', 'dataSchema', 'width', 'height', 'startRows',
 'contextMenu', 'contextMenuCopyPaste', 'copyPaste', 'undo', 'columnSorting', 'manualColumnMove',
 'manualColumnResize', 'manualRowMove', 'manualRowResize', 'mergeCells',
 'viewportRowRenderingOffset', 'viewportColumnRenderingOffset', 'validator',
-'disableVisualSelection', 'sortIndicator', 'manualColumnFreeze', 'trimWhitespace', 'settings',
+'disableVisualSelection', 'sortIndicator', 'manualColumnFreeze', 'trimWhitespace',
 'source', 'title', 'checkedTemplate', 'uncheckedTemplate', 'label', 'format', 'language',
 'selectOptions', 'autoColumnSize', 'autoRowSize', 'dateFormat', 'correctFormat', 'defaultDate',
 'strict', 'allowHtml', 'renderAllRows', 'preventOverflow', 'bindRowsWithHeaders',
@@ -58,40 +58,40 @@ const AVAILABLE_HOOKS = ['afterCellMetaReset', 'afterChange', 'afterChangesObser
 
 @Injectable()
 export class HotHelper {
-    public mergeSettings(component: object): object {
-        let mergedSettings: object = component['settings'] || {};
+  public mergeSettings(component: object): object {
+    let mergedSettings: object = component['settings'] || {};
 
-        AVAILABLE_OPTIONS.forEach((key) => {
-            let option = component[key];
+    AVAILABLE_OPTIONS.forEach((key) => {
+      let option = component[key];
 
-            if (option !== void 0) {
-            mergedSettings[key] = option;
-            }
-        });
+      if (option !== void 0) {
+        mergedSettings[key] = option;
+      }
+    });
 
-        AVAILABLE_HOOKS.forEach((key) => {
-            let hook = component[key];
+    AVAILABLE_HOOKS.forEach((key) => {
+      let hook = component[key];
 
-            if (hook && hook.observers.length > 0) {
-                mergedSettings[key] = (p1,  p2,  p3,  p4,  p5,  p6) => {
-                    component[key].emit([p1,  p2,  p3,  p4,  p5,  p6]);
-                };
-            }
-        });
+      if (hook && hook.observers.length > 0) {
+        mergedSettings[key] = (p1,  p2,  p3,  p4,  p5,  p6) => {
+          component[key].emit([p1,  p2,  p3,  p4,  p5,  p6]);
+        };
+      }
+    });
 
-        return mergedSettings;
-    }
+    return mergedSettings;
+  }
 
-    prepareChanges(changes: SimpleChanges): object {
-        let result: object = {};
-        const parameters: string[] = Object.keys(changes);
+  prepareChanges(changes: SimpleChanges): object {
+    let result: object = {};
+    const parameters: string[] = Object.keys(changes);
 
-        parameters.forEach((param) => {
-            if (changes.hasOwnProperty(param)) {
-            result[param] = changes[param].currentValue;
-            }
-        });
+    parameters.forEach((param) => {
+      if (changes.hasOwnProperty(param)) {
+        result[param] = changes[param].currentValue;
+      }
+    });
 
-        return result;
-    }
+    return result;
+  }
 }
