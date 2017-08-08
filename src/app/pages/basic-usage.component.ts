@@ -1,6 +1,13 @@
 import { Component } from '@angular/core';
 
 @Component({
-  template: '<h2>BasicUsageComponent</h2>'
+  template: `
+    <div class="docs-header">
+      <h1>BasicUsageComponent</h1>
+    </div>
+    <div class="docs-content">
+      <p>BasicUsageComponent paragraph</p>
+    </div>
+  `
 })
 export class BasicUsageComponent {}
