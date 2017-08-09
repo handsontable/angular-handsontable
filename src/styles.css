@@ -6,20 +6,19 @@ html, body, material-app, md-sidenav-container, router-outlet {
   height: 100%;
   font-family: 'Roboto', sans-serif;
 }
-
 app-root {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
 }
 [md-button] {
   text-transform: uppercase;
@@ -84,17 +83,39 @@ app-root {
     color: #1976d2;
   }
 app-component-sidenav {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-flex: 1;
-    -ms-flex: 1 1 auto;
-    flex: 1 1 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
 }
 md-sidenav {
-    width: 250px;
-    box-shadow: 3px 0 6px rgba(0,0,0,.24);
+  width: 250px;
+  box-shadow: 3px 0 6px rgba(0,0,0,.24);
 }
+.mat-sidenav-content {
+  position: relative;
+  transform: translate3d(0,0,0);
+  display: block;
+  height: 100%;
+  overflow: auto;
+}
+#content {
+  min-height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+  #content router-outlet+* {
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+  }
 .docs-header {
   display: block;
   background: #1976d2;
@@ -109,4 +130,25 @@ md-sidenav {
 
 .docs-content {
   padding: 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.flex-grid {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  
+  -webkit-flex-flow: row wrap;
+  justify-content: space-around;
+}
+.docs-card {
+  width: 300px;
+}
+
+.docs-footer {
+  background: #1976d2;
+  color: #fff;
 }

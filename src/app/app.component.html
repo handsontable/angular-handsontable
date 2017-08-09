@@ -15,26 +15,22 @@
         <li><a md-button routerLink="/contact" routerLinkActive="active">Contact</a></li>
         <li><a md-button routerLink="/other-wrappers" routerLinkActive="active">Other wrappers</a></li>
       </ul>
+
       <h3 class="nav-cat">Examples</h3>
       <ul>
-        <li><a md-button routerLink="/example/settings" routerLinkActive="active">By `settings` object</a></li>
-        <li><a md-button routerLink="/example/declarative" routerLinkActive="active">In declarative way</a></li>
-        <li><a md-button routerLink="/example/static-columns" routerLinkActive="active">Static columns</a></li>
-        <li><a md-button routerLink="/example/dynamic-columns" routerLinkActive="active">Dynamic columns</a></li>
-        <li><a md-button routerLink="/example/getting-instance" routerLinkActive="active">Access to Handsontable instance</a></li>
-        <li><a md-button routerLink="/example/hook-support" routerLinkActive="active">Hook support</a></li>
+        <li><a md-button routerLink="/examples/settings" routerLinkActive="active">By `settings` object</a></li>
+        <li><a md-button routerLink="/examples/declarative" routerLinkActive="active">In declarative way</a></li>
+        <li><a md-button routerLink="/examples/static-columns" routerLinkActive="active">Static columns</a></li>
+        <li><a md-button routerLink="/examples/dynamic-columns" routerLinkActive="active">Dynamic columns</a></li>
+        <li><a md-button routerLink="/examples/getting-instance" routerLinkActive="active">Access to Handsontable instance</a></li>
+        <li><a md-button routerLink="/examples/hook-support" routerLinkActive="active">Hook support</a></li>
       </ul>
     </nav>
   </md-sidenav>
   <div id="content">
     <router-outlet></router-outlet>
-    <footer id="other-wrappers" class="app-footer">
-      <ul>
-        <li>react-handsontable (react.js)</li>
-        <li>hot-table (polymer)</li>
-        <li>ngHandsontable (angular1.x)</li>
-        <li>vue-handsontable-official (vue.js)</li>
-      </ul>
+    <footer id="other-wrappers" class="docs-footer">
+      
     </footer>
   </div>
 </md-sidenav-container>
