@@ -1,8 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 
-import { DocsMaterialModule } from './docs-material.module'
+import { CodeModule } from './code.module';
+import { DocsMaterialModule } from './docs-material.module';
 
 import { QuickStartComponent }  from './pages/quick-start.component';
 import { InstallationComponent }  from './pages/installation.component';
@@ -29,30 +31,32 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
-    declarations: [
-        QuickStartComponent,
-        InstallationComponent,
-        BasicUsageComponent,
-        KnownLimitationsComponent,
-        ExamplesComponent,
-        LicenseComponent,
-        ContactComponent,
-        OtherWrappersComponent,
-        PageNotFoundComponent
-    ],
-    imports: [
-        BrowserModule,
-        DocsMaterialModule,
-        RouterModule.forRoot(
-            appRoutes,
-            {
-                // enableTracing: true, // <-- debugging purposes only
-            }
-        )
-    ],
-    exports: [
-        RouterModule
-    ],
-    providers: [ ]
+  declarations: [
+    QuickStartComponent,
+    InstallationComponent,
+    BasicUsageComponent,
+    KnownLimitationsComponent,
+    ExamplesComponent,
+    LicenseComponent,
+    ContactComponent,
+    OtherWrappersComponent,
+    PageNotFoundComponent
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    DocsMaterialModule,
+    CodeModule,
+    RouterModule.forRoot(
+      appRoutes,
+      {
+        // enableTracing: true, // <-- debugging purposes only
+      }
+    )
+  ],
+  exports: [
+    RouterModule
+  ],
+  providers: [ ]
 })
 export class AppRoutingModule { }

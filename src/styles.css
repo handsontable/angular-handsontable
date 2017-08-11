@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,500');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
 
 html, body, material-app, md-sidenav-container, router-outlet {
   margin: 0;
@@ -6,6 +7,11 @@ html, body, material-app, md-sidenav-container, router-outlet {
   height: 100%;
   font-family: 'Roboto', sans-serif;
 }
+
+code {
+  font-family: 'Roboto Mono', monospace;
+}
+
 app-root {
   position: absolute;
   top: 0;
@@ -20,9 +26,11 @@ app-root {
   -ms-flex-direction: column;
   flex-direction: column;
 }
+
 [md-button] {
   text-transform: uppercase;
 }
+
 .flex-spacer {
   -webkit-box-flex: 1;
   -ms-flex-positive: 1;
@@ -39,8 +47,7 @@ app-root {
   -ms-flex-align: center;
   align-items: center;
   padding: 0.5rem 1rem;
-  background-color: #1976d2;
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#440202', endColorstr='#d6201f',GradientType=1 );
+  background: #1976d2;
   color: #fff;
   position: relative;
   z-index: 10;
@@ -52,6 +59,7 @@ app-root {
     vertical-align: middle;
     margin: 10px 0;
   }
+
 .docs-nav { }
   .docs-nav ul {
     list-style: none;
@@ -82,6 +90,7 @@ app-root {
   .docs-nav .mat-button.active {
     color: #1976d2;
   }
+
 app-component-sidenav {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -90,10 +99,12 @@ app-component-sidenav {
   -ms-flex: 1 1 auto;
   flex: 1 1 auto;
 }
+
 md-sidenav {
   width: 250px;
   box-shadow: 3px 0 6px rgba(0,0,0,.24);
 }
+
 .mat-sidenav-content {
   position: relative;
   transform: translate3d(0,0,0);
@@ -101,6 +112,7 @@ md-sidenav {
   height: 100%;
   overflow: auto;
 }
+
 #content {
   min-height: 100%;
   display: -webkit-box;
@@ -116,6 +128,7 @@ md-sidenav {
     -ms-flex-positive: 1;
     flex-grow: 1;
   }
+
 .docs-header {
   display: block;
   background: #1976d2;
@@ -130,9 +143,34 @@ md-sidenav {
 
 .docs-content {
   padding: 2rem;
-  max-width: 1100px;
+  max-width: 940px;
   margin: 0 auto;
+  line-height: 1.75rem;
 }
+  .docs-content h1 {
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-top: 3rem;
+  }
+  .docs-content h1:first-child {
+    margin-top: 0;
+  }
+  .docs-content :not(pre) > code {
+    background: #eee;
+    padding: 5px 7px;
+    border-radius: 3px;
+  }
+  .docs-content pre {
+    background: #eee;
+    border-radius: 3px;
+  }
+  .docs-content a {
+    color: #1976d2;
+    text-decoration: none;
+  }
+  .docs-content a:hover {
+    color: #13518e;
+  }
 
 .flex-grid {
   display: -webkit-box;
@@ -141,14 +179,42 @@ md-sidenav {
   display: -webkit-flex;
   display: flex;
   
-  -webkit-flex-flow: row wrap;
-  justify-content: space-around;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
-.docs-card {
-  width: 300px;
-}
+  .flex-grid .docs-card {
+    width: 300px;
+    margin-right: 3rem;
+    margin-bottom: 3rem;
+    -webkit-align-self: stretch;
+    align-self: stretch;
+  }
 
 .docs-footer {
   background: #1976d2;
   color: #fff;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-flow: row wrap;
+  flex-flow: row wrap;
+  padding: 1rem 2rem;
+}
+  .docs-footer-links {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .docs-footer-copyright {
+    font-size: 0.75rem;
+  }
+
+docs-gist {
+  display: block;
 }

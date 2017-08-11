@@ -29,8 +29,14 @@
   </md-sidenav>
   <div id="content">
     <router-outlet></router-outlet>
-    <footer id="other-wrappers" class="docs-footer">
-      
+    <footer class="docs-footer">
+      <ul class="docs-footer-links">
+        <li><a md-button href="https://docs.handsontable.com">Learn Handsontable</a></li>
+      </ul>
+      <div class="flex-spacer"></div>
+      <div class="docs-footer-copyright">
+        <p>Handsoncode &copy; {{getYear()}}</p>
+      </div>
     </footer>
   </div>
 </md-sidenav-container>

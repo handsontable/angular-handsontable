@@ -24,9 +24,9 @@ import { Component } from '@angular/core';
 })
 export class OtherWrappersComponent {
   wrappers = [
-    { title: 'React.js', subtitle: 'react-handsontable', img: '', url: { download: '', github: '' } },
-    { title: 'Polymer', subtitle: 'hot-table', img: '', url: { download: '', github: '' } },
-    { title: 'Angular 1.x', subtitle: 'ngHandsontable', img: '', url: { download: '', github: '' } },
-    { title: 'Vue.js', subtitle: 'vue-handsontable-official', img: '', url: { download: '', github: '' } },
+    { title: 'React.js', subtitle: 'react-handsontable', img: '', url: { download: 'https://github.com/handsontable/react-handsontable/wiki/Installation-guide', github: 'https://github.com/handsontable/react-handsontable' } },
+    { title: 'Polymer', subtitle: 'hot-table', img: '', url: { download: 'http://handsontable.github.io/hot-table/', github: 'https://github.com/handsontable/hot-table' } },
+    { title: 'Angular 1.x', subtitle: 'ngHandsontable', img: '', url: { download: 'http://handsontable.github.io/ngHandsontable/', github: 'https://github.com/handsontable/ngHandsontable' } },
+    { title: 'Vue.js', subtitle: 'vue-handsontable-official', img: '', url: { download: 'https://github.com/handsontable/vue-handsontable-official/wiki/Installation-guide', github: 'https://github.com/handsontable/vue-handsontable-official' } },
   ]
 }
