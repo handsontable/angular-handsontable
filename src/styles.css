@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:400,500');
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,400,500');
 @import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
 
 html, body, material-app, md-sidenav-container, router-outlet {
@@ -132,7 +132,7 @@ md-sidenav {
 .docs-header {
   display: block;
   background: #1976d2;
-  padding: 3rem 2rem;
+  padding: 3rem;
 }
   .docs-header h1 {
     margin: 0;
@@ -142,26 +142,31 @@ md-sidenav {
   }
 
 .docs-content {
-  padding: 2rem;
+  padding: 2rem 3rem;
   max-width: 940px;
   margin: 0 auto;
   line-height: 1.75rem;
 }
-  .docs-content h1 {
+  .docs-content h2 {
     font-size: 1.5rem;
     font-weight: 400;
     margin-top: 3rem;
   }
-  .docs-content h1:first-child {
+  .docs-content h2:first-child {
     margin-top: 0;
   }
+  .docs-content pre[class*="language-"] {
+    margin: 0 0 1rem;
+  }
+  .docs-content code[class*="language-"], .docs-content pre[class*="language-"] {
+    color: #76FF03;    
+  }
   .docs-content :not(pre) > code {
-    background: #eee;
+    background: #EEEEEE;
     padding: 5px 7px;
     border-radius: 3px;
   }
   .docs-content pre {
-    background: #eee;
     border-radius: 3px;
   }
   .docs-content a {
@@ -170,6 +175,58 @@ md-sidenav {
   }
   .docs-content a:hover {
     color: #13518e;
+  }
+  .docs-content ol {
+    counter-reset: section;
+    list-style-type: none;
+    padding-left: 3rem;
+  }
+  .docs-content li {
+    position: relative;
+    margin-bottom: 2rem;
+    min-height: 1px;
+  }
+  .docs-content li::before {
+    position: absolute;
+    top: 0;
+    right: 100%;
+    counter-increment: section;
+    content: counters(section, ".") " ";
+    background: #1976d2;
+    color: #fff;
+    width: 2rem;
+    height: 2rem;
+    line-height: 2rem;
+    font-size: 1rem;
+    font-weight: 100;
+    vertical-align: middle;
+    text-align: center;
+    border-radius: 2rem;
+    transform: translate(-1rem, -5%);
+    z-index: 1;
+  }
+  .docs-content li::after {
+    content: ' ';
+    width: 1px;
+    height: calc(100% - 2rem);
+    position: absolute;
+    right: 100%;
+    bottom: -1rem;
+    background: #BDBDBD;
+    transform: translate(-2rem, 0);
+    z-index: 0;
+  }
+  .docs-content li:last-child::after {
+    height: calc(100% - 3rem);
+    bottom: 0;
+  }
+  .docs-content li > *:last-child {
+    margin-bottom: 0;
+  }
+  .docs-content figure {
+    display: inline-block;
+    padding: 2rem;
+    margin: 0 0 1rem;
   }
 
 .flex-grid {
@@ -215,6 +272,12 @@ md-sidenav {
     font-size: 0.75rem;
   }
 
-docs-gist {
-  display: block;
+.infobox {
+  padding: 1rem 2rem;
+  border-left: 5px solid;
+  margin-bottom: 1rem;
 }
+  .infobox-warning {
+    background: #FFFDE7;
+    border-left-color: #F9A825;
+  }
