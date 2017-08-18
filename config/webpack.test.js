@@ -12,24 +12,27 @@ module.exports = {
   module: {
     rules: [
       {
-          test: /\.ts$/,
-          exclude: [
-              helpers.root('node_modules/rxjs'),
-              helpers.root('node_modules/@angular')
-          ],
-          loaders: [
-              {
-                  loader: 'awesome-typescript-loader',
-                  options: {
-                      configFileName: helpers.root('tsconfig.json')
-                  }
-              },
-              'angular2-template-loader',
-          ]
+        test: /\.ts$/,
+        exclude: [
+          helpers.root('node_modules/rxjs'),
+          helpers.root('node_modules/@angular')
+        ],
+        loaders: [
+          {
+            loader: 'awesome-typescript-loader',
+            options: {
+              configFileName: helpers.root('tsconfig.json')
+            }
+          },
+          'angular2-template-loader',
+        ]
       },
       {
-          test: /\.css$/,
-          loaders: 'raw-loader'
+        test: /\.scss$/,
+        use: [
+          "raw-loader",
+          "sass-loader",
+        ]
       }
     ]
   },
