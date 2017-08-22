@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   template: `
     <div class="docs-header">
-      <h1>OtherWrappersComponent</h1>
+      <h1>Other wrappers</h1>
     </div>
     <div class="docs-content">
       <div class="flex-grid">
@@ -24,9 +24,9 @@ import { Component } from '@angular/core';
 })
 export class OtherWrappersComponent {
   wrappers = [
-    { title: 'React.js', subtitle: 'react-handsontable', img: '', url: { download: 'https://github.com/handsontable/react-handsontable/wiki/Installation-guide', github: 'https://github.com/handsontable/react-handsontable' } },
-    { title: 'Polymer', subtitle: 'hot-table', img: '', url: { download: 'http://handsontable.github.io/hot-table/', github: 'https://github.com/handsontable/hot-table' } },
-    { title: 'Angular 1.x', subtitle: 'ngHandsontable', img: '', url: { download: 'http://handsontable.github.io/ngHandsontable/', github: 'https://github.com/handsontable/ngHandsontable' } },
-    { title: 'Vue.js', subtitle: 'vue-handsontable-official', img: '', url: { download: 'https://github.com/handsontable/vue-handsontable-official/wiki/Installation-guide', github: 'https://github.com/handsontable/vue-handsontable-official' } },
+    { title: 'React.js', subtitle: 'react-handsontable', img: '/assets/other-wrappers/React.png', url: { download: 'https://github.com/handsontable/react-handsontable/wiki/Installation-guide', github: 'https://github.com/handsontable/react-handsontable' } },
+    { title: 'Polymer', subtitle: 'hot-table', img: '/assets/other-wrappers/Polymer.png', url: { download: 'http://handsontable.github.io/hot-table/', github: 'https://github.com/handsontable/hot-table' } },
+    { title: 'Angular 1.x', subtitle: 'ngHandsontable', img: '/assets/other-wrappers/Angular.png', url: { download: 'http://handsontable.github.io/ngHandsontable/', github: 'https://github.com/handsontable/ngHandsontable' } },
+    { title: 'Vue.js', subtitle: 'vue-handsontable-official', img: '/assets/other-wrappers/Vue.png', url: { download: 'https://github.com/handsontable/vue-handsontable-official/wiki/Installation-guide', github: 'https://github.com/handsontable/vue-handsontable-official' } },
   ]
 }

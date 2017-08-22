@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
       <h1>QuickStart</h1>
     </div>
     <div class="docs-content">
-      <ol>
+      <ol class="steps">
         <li>
           <h2>Przygotowanie projektu</h2>
           <p>Aby przygotować nowy projekt należy postępować według kroków opisanych w sekcji
@@ -22,7 +22,7 @@ import { Component } from '@angular/core';
         <li>
           <h2>Załadowanie Handsontable przed Zone.js</h2>
           <div class="infobox infobox-warning">
-            <p>Niestety występuje problem z nadpisywaniem natywnego <code>Window.Promise</code> przez Handsontable i Zone.js</p>
+            <p>Niestety występuje problem z nadpisywaniem natywnego <code>window.Promise</code> przez Handsontable i Zone.js</p>
             <p>Jeśli Handsontable nie zostanie załadowane przed zone.js, to przy próbie uruchomienia aplikacji w przeglądarce otrzymamy jedynie błąd w konsoli przeglądarki.</p>
           </div>
           <docs-code start='49' [input]='example3'></docs-code>
@@ -51,14 +51,14 @@ import { Component } from '@angular/core';
 })
 export class QuickStartComponent {
   example3: string = [
-    `...`,
+    ``,
     `import 'handsontable/dist/handsontable';`,
     ``,
     `/*********************************************************`,
     `* Zone JS is required by Angular itself.`,
     `*/`,
     `import 'zone.js/dist/zone';  // Included with Angular CLI.`,
-    `...`,
+    ` `,
   ].join('\n');
 
   example4: string = [

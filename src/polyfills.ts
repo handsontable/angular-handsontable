@@ -48,6 +48,7 @@ import 'core-js/es7/reflect';
 // import 'web-animations-js';  // Run `npm install --save web-animations-js`.
 
 import 'hammerjs';
+import 'handsontable';
 
 /***************************************************************************************************
  * Zone JS is required by Angular itself.

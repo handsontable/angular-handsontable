@@ -3,10 +3,12 @@ import { Component } from '@angular/core';
 @Component({
   template: `
     <div class="docs-header">
-      <h1>KnownLimitationsComponent</h1>
+      <h1>Known limitations</h1>
     </div>
     <div class="docs-content">
-      <p>KnownLimitationsComponent paragraph</p>
+      <ul>
+      
+      </ul>
     </div>
   `
 })

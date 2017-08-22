@@ -1,5 +1,20 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:100,400,500');
 @import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
+@import '~octicons/build/octicons.css';
+
+/**
+* Handsontable styles
+*/
+@import '~handsontable/dist/handsontable.css';
+
+hot-table {
+    width: 100%;
+    overflow: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}
 
 html, body, material-app, md-sidenav-container, router-outlet {
   margin: 0;
@@ -8,7 +23,7 @@ html, body, material-app, md-sidenav-container, router-outlet {
   font-family: 'Roboto', sans-serif;
 }
 
-code {
+code, code[class*="language-"], pre[class*="language-"] {
   font-family: 'Roboto Mono', monospace;
 }
 
@@ -29,6 +44,12 @@ app-root {
 
 [md-button] {
   text-transform: uppercase;
+}
+.mat-select .mat-select-trigger {
+  height: auto;
+}
+.mat-select .mat-select-placeholder {
+  padding: .4375em 0;
 }
 
 .flex-spacer {
@@ -155,12 +176,7 @@ md-sidenav {
   .docs-content h2:first-child {
     margin-top: 0;
   }
-  .docs-content pre[class*="language-"] {
-    margin: 0 0 1rem;
-  }
-  .docs-content code[class*="language-"], .docs-content pre[class*="language-"] {
-    color: #76FF03;    
-  }
+  
   .docs-content :not(pre) > code {
     background: #EEEEEE;
     padding: 5px 7px;
@@ -176,17 +192,17 @@ md-sidenav {
   .docs-content a:hover {
     color: #13518e;
   }
-  .docs-content ol {
+  .docs-content ol.steps {
     counter-reset: section;
     list-style-type: none;
     padding-left: 3rem;
   }
-  .docs-content li {
+  .docs-content .steps li {
     position: relative;
     margin-bottom: 2rem;
     min-height: 1px;
   }
-  .docs-content li::before {
+  .docs-content .steps li::before {
     position: absolute;
     top: 0;
     right: 100%;
@@ -205,7 +221,7 @@ md-sidenav {
     transform: translate(-1rem, -5%);
     z-index: 1;
   }
-  .docs-content li::after {
+  .docs-content .steps li::after {
     content: ' ';
     width: 1px;
     height: calc(100% - 2rem);
@@ -216,11 +232,11 @@ md-sidenav {
     transform: translate(-2rem, 0);
     z-index: 0;
   }
-  .docs-content li:last-child::after {
+  .docs-content .steps li:last-child::after {
     height: calc(100% - 3rem);
     bottom: 0;
   }
-  .docs-content li > *:last-child {
+  .docs-content .steps li > *:last-child {
     margin-bottom: 0;
   }
   .docs-content figure {
@@ -235,17 +251,27 @@ md-sidenav {
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
-  
+
   -webkit-flex-wrap: wrap;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
   .flex-grid .docs-card {
-    width: 300px;
+    width: calc(50% - 1.5rem);
     margin-right: 3rem;
     margin-bottom: 3rem;
     -webkit-align-self: stretch;
     align-self: stretch;
+  }
+  .flex-grid .docs-card:nth-child(2n) {
+    margin-right: 0;
+  }
+
+  @media(max-width: 959px) {
+    .flex-grid .docs-card {
+      width: 100%;
+      margin-right: 0;
+    }
   }
 
 .docs-footer {
@@ -277,7 +303,49 @@ md-sidenav {
   border-left: 5px solid;
   margin-bottom: 1rem;
 }
+  .infobox-error {
+    background: #FFEBEE;
+    border-left-color: #C62828;
+  }
+  .infobox-info {
+    background: #E3F2FD;
+    border-left-color: #1565C0;
+  }
   .infobox-warning {
     background: #FFFDE7;
     border-left-color: #F9A825;
+  }
+  .infobox-success {
+    background: #E8F5E9;
+    border-left-color: #2E7D32;
+  }
+
+.label {
+  vertical-align: baseline !important;
+  display: inline-block;
+  background: #000;
+  color: #fff;
+  line-height: 1rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 2rem;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+  .label-inverted {
+    background: none;
+    color: currentColor;
+  }
+  .label-error {
+    background: #C62828;
+  }
+  .label-info {
+    background: #1565C0;
+  }
+  .label-warning {
+    background: #F9A825;
+  }
+  .label-success {
+    background: #2E7D32;
   }

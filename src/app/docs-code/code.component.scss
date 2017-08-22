@@ -1,0 +1,90 @@
+@import '~prismjs/themes/prism.css';
+@import '~prismjs/plugins/line-numbers/prism-line-numbers.css';
+
+docs-code {
+  position: relative;
+  display: block;
+  margin-bottom: 2rem;
+
+  .title {
+    color: #fff;
+    background: #1976d2;
+    padding: 0.5rem 1rem;
+    line-height: 2rem;
+    border-radius: 3px 3px 0 0;
+  }
+  pre, pre[class*="language-"] {
+    margin: 0;
+  }
+  .title ~ pre {
+    border-radius: 0 0 3px 3px;
+  }
+  :not(pre) > code[class*="language-"], pre[class*="language-"] {
+    background: #eee;
+  }
+
+  &[lang="bash"] {
+    color: #fff;
+
+    pre {
+      background: #212121;
+    }
+    code {
+      color: #64DD17;
+      text-shadow: none;
+    }
+  }
+  
+
+  textarea {
+    position: absolute;
+    top: 0;
+    z-index: -10;
+    width: 1px;
+    height: 1px;
+  }
+  .title + .btn-copy {
+    color: #fff;
+  }
+  .btn-copy {
+    position: absolute;
+    top: 1.5rem;
+    right: 0.5rem;
+    transform: translate(0, -50%);
+    width: 2rem;
+    height: 2rem;
+    line-height: 2rem;
+    background: none;
+    border: 0 none;
+    cursor: pointer;
+    z-index: 10;
+    min-width: 45px;
+
+    &:focus,
+    &:active {
+      outline: 0 none;
+      box-shadow: none;
+    }
+
+    .octicon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      transition: 0.3s opacity;
+    }
+    .octicon-check{
+      opacity: 0;
+    }
+
+    &.success {
+      .octicon-clippy {
+        opacity: 0;
+      }
+      .octicon-check {
+        opacity: 1;
+      }
+    }
+  }
+    
+}

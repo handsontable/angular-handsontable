@@ -3,13 +3,12 @@ import { Component } from '@angular/core';
 @Component({
   template: `
     <div class="docs-header">
-      <h1>LicenseComponent</h1>
+      <h1>License</h1>
     </div>
     <div class="docs-content">
       <p>(The MIT License)</p>
 
-      <p>Copyright (c) 2012-2014 Marcin Warpechowski<br/>
-      Copyright (c) 2015 Handsoncode sp. z o.o. &lt;hello@handsoncode.net&gt;</p>
+      <p>Copyright (c) 2015 - Handsoncode sp. z o.o. &lt;hello@handsoncode.net&gt;</p>
 
       <p>Permission is hereby granted, free of charge, to any person obtaining
       a copy of this software and associated documentation files (the
