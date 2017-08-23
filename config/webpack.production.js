@@ -15,7 +15,7 @@ module.exports = {
       publicPath: '/',
       filename: 'index.umd.js',
       libraryTarget: 'umd',
-      library: 'angular2-handsontable'
+      library: 'angular-handsontable'
   },
 
   // require those dependencies but don't bundle them

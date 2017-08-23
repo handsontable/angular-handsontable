@@ -2,7 +2,6 @@ import {
   Component,
   Input,
   OnChanges,
-  OnInit,
   SimpleChanges,
 } from '@angular/core';
 
@@ -11,7 +10,7 @@ import {
   template: ``,
 })
 
-export class HotColumnComponent implements OnChanges, OnInit {
+export class HotColumnComponent implements OnChanges {
   private firstRun = true;
   onAfterChange: any;
 
@@ -146,10 +145,6 @@ export class HotColumnComponent implements OnChanges, OnInit {
         delete this[keys[i]];
       }
     }
-  }
-
-  ngOnInit() {
-    //console.log(this)
   }
 
   ngOnChanges(changes: SimpleChanges) {
