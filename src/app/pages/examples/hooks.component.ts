@@ -85,6 +85,7 @@ export class ExHooksComponent {
     [
       `import { BrowserModule } from '@angular/platform-browser';`,
       `import { NgModule } from '@angular/core';`,
+      `import { FormsModule } from '@angular/forms';`,
       `import { AppComponent } from './app.component';`,
       `import { HotTableModule } from 'angular-handsontable';`,
       ``,
@@ -94,6 +95,7 @@ export class ExHooksComponent {
       `  ],`,
       `  imports: [`,
       `    BrowserModule,`,
+      `    FormsModule,`,
       `    HotTableModule`,
       `  ],`,
       `  providers: [],`,

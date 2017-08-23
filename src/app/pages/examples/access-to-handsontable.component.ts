@@ -71,6 +71,7 @@ export class ExAccessToHandsontableComponent {
     [
       `import { BrowserModule } from '@angular/platform-browser';`,
       `import { NgModule } from '@angular/core';`,
+      `import { FormsModule } from '@angular/forms';`,
       `import { AppComponent } from './app.component';`,
       `import { HotTableModule } from 'angular-handsontable';`,
       ``,
@@ -80,6 +81,7 @@ export class ExAccessToHandsontableComponent {
       `  ],`,
       `  imports: [`,
       `    BrowserModule,`,
+      `    FormsModule,`,
       `    HotTableModule`,
       `  ],`,
       `  providers: [],`,
