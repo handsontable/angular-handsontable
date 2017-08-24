@@ -1,6 +1,6 @@
 import { Injectable,  SimpleChanges } from '@angular/core';
 
-const AVAILABLE_OPTIONS = ['data', 'dataSchema', 'width', 'height', 'startRows', 'startCols',
+const AVAILABLE_OPTIONS: string[] = ['data', 'dataSchema', 'width', 'height', 'startRows', 'startCols',
 'rowHeaders', 'colHeaders', 'colWidths', 'rowHeights', 'columns', 'cells', 'cell', 'comments',
 'customBorders', 'minRows', 'minCols', 'maxRows', 'maxCols', 'minSpareRows', 'minSpareCols',
 'allowInsertRow', 'allowInsertColumn', 'allowRemoveRow', 'allowRemoveColumn', 'multiSelect',
@@ -24,7 +24,7 @@ const AVAILABLE_OPTIONS = ['data', 'dataSchema', 'width', 'height', 'startRows',
 'columnHeaderHeight', 'observeChanges', 'sortFunction', 'sortByRelevance', 'filter',
 'filteringCaseSensitive'];
 
-const AVAILABLE_HOOKS = ['afterCellMetaReset', 'afterChange', 'afterChangesObserved',
+const AVAILABLE_HOOKS: string[] = ['afterCellMetaReset', 'afterChange', 'afterChangesObserved',
 'afterContextMenuDefaultOptions', 'beforeContextMenuSetItems', 'afterDropdownMenuDefaultOptions',
 'beforeDropdownMenuSetItems', 'afterContextMenuHide', 'afterContextMenuShow', 'afterCopyLimit',
 'beforeCreateCol', 'afterCreateCol', 'beforeCreateRow', 'afterCreateRow', 'afterDeselect',
@@ -58,8 +58,22 @@ const AVAILABLE_HOOKS = ['afterCellMetaReset', 'afterChange', 'afterChangesObser
 
 @Injectable()
 export class HotHelper {
-  public mergeSettings(component: object): object {
-    let mergedSettings: object = component['settings'] || {};
+  public mergeSettings(component): object {
+    let mergedSettings: object = {};
+
+    if (component['settings'] !== void 0) {
+      Object.keys(component['settings']).forEach((key) => {
+        if (AVAILABLE_HOOKS.includes(key)) {
+          mergedSettings[key] = (p1, p2, p3, p4, p5, p6) => {
+            return component._ngZone.run(() => {
+              return component['settings'][key](p1, p2, p3, p4, p5, p6);
+            })
+          };
+        } else {
+          mergedSettings[key] = component['settings'][key];
+        }
+      });
+    }
 
     AVAILABLE_OPTIONS.forEach((key) => {
       let option = component[key];
@@ -74,7 +88,9 @@ export class HotHelper {
 
       if (hook && hook.observers.length > 0) {
         mergedSettings[key] = (p1,  p2,  p3,  p4,  p5,  p6) => {
-          component[key].emit([p1,  p2,  p3,  p4,  p5,  p6]);
+          component._ngZone.run(() => {
+            component[key].emit([p1,  p2,  p3,  p4,  p5,  p6]);
+          });
         };
       }
     });
