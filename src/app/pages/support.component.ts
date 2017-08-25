@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   template: `
     <div class="docs-header">
-      <h1>Contact</h1>
+      <h1>Support</h1>
     </div>
     <div class="docs-content">
       <h2>Feedback</h2>
@@ -53,4 +53,4 @@ import { Component } from '@angular/core';
     </div>
   `
 })
-export class ContactComponent {}
+export class SupportComponent {}

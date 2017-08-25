@@ -1,6 +1,11 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/mergeMap';
+
+import { Component, ViewEncapsulation, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { HttpClient } from '@angular/common/http';
-import { Router, NavigationStart } from '@angular/router';
+import { Router, NavigationStart, NavigationEnd, ActivatedRoute } from '@angular/router';
 
 import * as octicons from 'octicons';
 
@@ -37,7 +42,7 @@ import * as octicons from 'octicons';
               API Reference <span class="label label-inverted">${octicons['link-external'].toSVG()}</span></a></li>
             <li><a md-button routerLink="/license" routerLinkActive="active">License</a></li>
             <li><a md-button routerLink="/limitations" routerLinkActive="active">Known limitations</a></li>
-            <li><a md-button routerLink="/contact" routerLinkActive="active">Support</a></li>
+            <li><a md-button routerLink="/support" routerLinkActive="active">Support</a></li>
             <li><a md-button routerLink="/more-wrappers" routerLinkActive="active">More wrappers</a></li>
           </ul>
         </nav>
@@ -55,16 +60,33 @@ import * as octicons from 'octicons';
     </md-sidenav-container>
   `
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   private isUrlInitialized: boolean = false;
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private titleService: Title ) {
     router.events.subscribe((val: NavigationStart) => {
       if (!this.isUrlInitialized) {
         this.menuExamples = val.url.includes('examples');
         this.isUrlInitialized = true;
       }
     });
+  }
+
+  ngOnInit() {
+    this.router.events
+      .filter((event) => event instanceof NavigationEnd)
+      .map(() => this.activatedRoute)
+      .map((route) => {
+        while (route.firstChild) route = route.firstChild;
+        return route;
+      })
+      .filter((route) => route.outlet === 'primary')
+      .mergeMap((route) => route.data)
+      .subscribe((event) => this.titleService.setTitle(`Handsontable for Angular${event['title'] || ''}`));
   }
 
   menuExamples: boolean = false;
