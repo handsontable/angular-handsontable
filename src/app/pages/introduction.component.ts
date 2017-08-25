@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   template: `
     <div class="docs-header">
-      <h1>Installation</h1>
+      <h1>Introduction</h1>
     </div>
     <div class="docs-content">
       <p>Wrapper dla Handsontable jest opublikowany pod nazwą <code>angular-handsontable</code></p>
@@ -21,4 +21,4 @@ import { Component } from '@angular/core';
     </div>
   `
 })
-export class InstallationComponent {}
+export class IntroductionComponent {}

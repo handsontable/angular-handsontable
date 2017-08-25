@@ -45,6 +45,9 @@ app-root {
 [md-button] {
   text-transform: uppercase;
 }
+[md-button].btn-block {
+  width: 100%;
+}
 .mat-select .mat-select-trigger {
   height: auto;
 }
@@ -111,6 +114,19 @@ app-root {
   .docs-nav .mat-button.active {
     color: #1976d2;
   }
+  .docs-nav--sub {
+    display: none;
+  }
+    .active + .docs-nav--sub {
+      display: block;
+    }
+    .docs-nav--sub li {
+      border: 0 none;
+    }
+    .docs-nav--sub .mat-button {
+      text-transform: none;
+      padding-left: 2rem;
+    }
 
 app-component-sidenav {
   display: -webkit-box;
@@ -164,7 +180,6 @@ md-sidenav {
 
 .docs-content {
   padding: 2rem 3rem;
-  max-width: 940px;
   margin: 0 auto;
   line-height: 1.75rem;
 }
@@ -275,8 +290,8 @@ md-sidenav {
   }
 
 .docs-footer {
-  background: #1976d2;
-  color: #fff;
+  background: #E0E0E0;
+  color: #212121;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
@@ -289,13 +304,12 @@ md-sidenav {
   flex-flow: row wrap;
   padding: 1rem 2rem;
 }
-  .docs-footer-links {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
   .docs-footer-copyright {
     font-size: 0.75rem;
+  }
+  .docs-footer-copyright a {
+    color: #1976d2;
+    text-decoration: none;
   }
 
 .infobox {

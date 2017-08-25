@@ -1,6 +1,6 @@
 import { Component, ElementRef, NgZone, ViewChild } from '@angular/core';
 import Handsontable from 'handsontable';
-import { HotRegisterer } from 'angular-handsontable/src/hot-registerer.service';
+import { HotRegisterer } from 'angular-handsontable';
 
 @Component({
   template: `
@@ -73,12 +73,13 @@ export class ExHooksComponent {
     hot.setDataAtCell(y, x, $event.target.value);
   }
 
-  syncSelection = function() {
-    this._ngZone.run(() => {
-      const hot = this._hotRegisterer.getInstance(this.instance);
-      [this.coordY, this.coordX] = hot.getSelected();
-      this.newValue = hot.getDataAtCell(this.coordY, this.coordX);
-    });
+  syncSelection() {
+    const hot = this._hotRegisterer.getInstance(this.instance);
+    [this.coordY, this.coordX] = hot.getSelected();
+    const x = parseInt(this.coordX, 10);
+    const y = parseInt(this.coordY, 10);
+
+    this.newValue = hot.getDataAtCell(y, x);
   }
 
   examples: string[] = [
@@ -105,7 +106,7 @@ export class ExHooksComponent {
     ].join('\n'),
     [
       `import { Component } from '@angular/core';`,
-      `import { HotRegisterer } from 'angular-handsontable/src/hot-registerer.service';`,
+      `import { HotRegisterer } from 'angular-handsontable';`,
       ``,
       `@Component({`,
       `  selector: 'app-root',`,
@@ -152,6 +153,15 @@ export class ExHooksComponent {
       ``,
       `    hot.setDataAtCell(y, x, $event.target.value);`,
       `  }`,
+      ``,
+      `  syncSelection() {`,
+      `    const hot = this._hotRegisterer.getInstance(this.instance);`,
+      `    [this.coordY, this.coordX] = hot.getSelected();`,
+      `    const x = parseInt(this.coordX, 10);`,
+      `    const y = parseInt(this.coordY, 10);`,
+      ``,
+      `    this.newValue = hot.getDataAtCell(y, x);`,
+      ` }`,
       `}`,
     ].join('\n'),
     [

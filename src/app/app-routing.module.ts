@@ -9,7 +9,7 @@ import { DocsMaterialModule } from './docs-material.module';
 import { HotTableModule } from 'angular-handsontable';
 
 import { QuickStartComponent }  from './pages/quick-start.component';
-import { InstallationComponent }  from './pages/installation.component';
+import { IntroductionComponent }  from './pages/introduction.component';
 import { KnownLimitationsComponent }  from './pages/known-limitations.component';
 import { LicenseComponent }  from './pages/license.component';
 import { ContactComponent }  from './pages/contact.component';
@@ -26,12 +26,12 @@ import { ExRemoteDataComponent }  from './pages/examples/remote-data.component';
 import { PageNotFoundComponent }    from './pages/not-found.component';
 
 const appRoutes: Routes = [
+  { path: '', component: IntroductionComponent },
   { path: 'quickstart', component: QuickStartComponent },
-  { path: 'installation', component: InstallationComponent },
   { path: 'limitations', component: KnownLimitationsComponent },
   { path: 'license', component: LicenseComponent },
   { path: 'contact', component: ContactComponent },
-  { path: 'other-wrappers', component: OtherWrappersComponent },
+  { path: 'more-wrappers', component: OtherWrappersComponent },
 
   { path: 'examples',   redirectTo: '/examples/settings-object', pathMatch: 'full' },
   { path: 'examples/settings-object', component: ExSettingsObjectComponent },
@@ -42,14 +42,13 @@ const appRoutes: Routes = [
   { path: 'examples/hooks', component: ExHooksComponent },
   { path: 'examples/remote-data', component: ExRemoteDataComponent },
 
-  { path: '',   redirectTo: '/quickstart', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({
   declarations: [
     QuickStartComponent,
-    InstallationComponent,
+    IntroductionComponent,
     KnownLimitationsComponent,
     LicenseComponent,
     ContactComponent,

@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { HotRegisterer } from 'angular-handsontable/src/hot-registerer.service';
+import { HotRegisterer } from 'angular-handsontable';
 
 @Component({
   template: `
@@ -91,7 +91,7 @@ export class ExAccessToHandsontableComponent {
     ].join('\n'),
     [
       `import { Component } from '@angular/core';`,
-      `import { HotRegisterer } from 'angular-handsontable/src/hot-registerer.service';`,
+      `import { HotRegisterer } from 'angular-handsontable';`,
       ``,
       `@Component({`,
       `  selector: 'app-root',`,
