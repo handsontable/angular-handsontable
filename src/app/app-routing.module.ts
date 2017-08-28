@@ -13,7 +13,7 @@ import { IntroductionComponent } from './pages/introduction.component';
 import { KnownLimitationsComponent } from './pages/known-limitations.component';
 import { LicenseComponent } from './pages/license.component';
 import { SupportComponent } from './pages/support.component';
-import { OtherWrappersComponent } from './pages/other-wrappers.component';
+import { MoreWrappersComponent } from './pages/more-wrappers.component';
 
 import { ExSettingsObjectComponent } from './pages/examples/settings-object.component';
 import { ExDeclarativeWayComponent } from './pages/examples/declarative-way.component';
@@ -26,12 +26,12 @@ import { ExRemoteDataComponent } from './pages/examples/remote-data.component';
 import { PageNotFoundComponent } from './pages/not-found.component';
 
 const appRoutes: Routes = [
-  { path: '', component: IntroductionComponent, data: {title: ' - Introduction'} },
+  { path: '', pathMatch: 'full', component: IntroductionComponent, data: {title: ' - Introduction'} },
   { path: 'quickstart', component: QuickStartComponent, data: {title: ' - QuickStart'} },
   { path: 'limitations', component: KnownLimitationsComponent, data: {title: ' - Known limitations'} },
   { path: 'license', component: LicenseComponent, data: {title: ' - License'} },
   { path: 'support', component: SupportComponent, data: {title: ' - Support'} },
-  { path: 'more-wrappers', component: OtherWrappersComponent, data: {title: ' - More wrappers'} },
+  { path: 'more-wrappers', component: MoreWrappersComponent, data: {title: ' - More wrappers'} },
 
   { path: 'examples',   redirectTo: '/examples/settings-object', pathMatch: 'full' },
   { path: 'examples/settings-object', component: ExSettingsObjectComponent, data: {title: ' - Examples - Settings object'} },
@@ -52,7 +52,7 @@ const appRoutes: Routes = [
     KnownLimitationsComponent,
     LicenseComponent,
     SupportComponent,
-    OtherWrappersComponent,
+    MoreWrappersComponent,
 
     ExSettingsObjectComponent,
     ExDeclarativeWayComponent,

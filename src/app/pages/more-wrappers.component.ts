@@ -2,10 +2,8 @@ import { Component } from '@angular/core';
 
 @Component({
   template: `
-    <div class="docs-header">
-      <h1>More wrappers</h1>
-    </div>
     <div class="docs-content">
+      <h1>More wrappers</h1>
       <div class="flex-grid">
         <md-card class="docs-card" *ngFor="let wrapper of wrappers; let i = index;">
           <md-card-header>
@@ -22,7 +20,7 @@ import { Component } from '@angular/core';
     </div>
   `
 })
-export class OtherWrappersComponent {
+export class MoreWrappersComponent {
   wrappers = [
     { title: 'React.js', subtitle: 'react-handsontable', img: '/assets/other-wrappers/React.png', url: { download: 'https://github.com/handsontable/react-handsontable/wiki/Installation-guide', github: 'https://github.com/handsontable/react-handsontable' } },
     { title: 'Polymer', subtitle: 'hot-table', img: '/assets/other-wrappers/Polymer.png', url: { download: 'http://handsontable.github.io/hot-table/', github: 'https://github.com/handsontable/hot-table' } },

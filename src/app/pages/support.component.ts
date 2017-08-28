@@ -2,20 +2,9 @@ import { Component } from '@angular/core';
 
 @Component({
   template: `
-    <div class="docs-header">
-      <h1>Support</h1>
-    </div>
     <div class="docs-content">
-      <h2>Feedback</h2>
-      <p>Jeśli chciałbyś podzielić się z nami swoją opinią na temat wrappera, możesz skontaktować
-      się z nami za pomocą <a href="https://handsontable.com/contact.html">formularza kontaktowego</a>
-      lub pisząc bezpośrednio na adres <a href="mailto:hello@handsontable.com">hello@handsontable.com</a>.</p>
-
-      <h2>Dla zgłaszających błędy</h2>
-      <div class="infobox infobox-error">
-        <p>Upewnij się, że znaleziony przez Ciebie problem nie został już zgłoszony na issue boardzie projektu.<br/>
-        Duplikaty zgłoszeń będą zamykane.</p>
-      </div>
+      <h1>Support</h1>
+      <h2 id="report-bug">Dla zgłaszających błędy</h2>
       <p>Jeśli problem nie został jeszcze zgłoszony, możesz śmiało go
       <a href="https://github.com/handsontable/angular-handsontable/issues/new"
         title="Add new issue to the angular-handsontable issue board.">dodać</a>.
@@ -23,11 +12,11 @@ import { Component } from '@angular/core';
       Postaraj się wypełnić wszystkie pola jak najdokładniej potrafisz.</p>
       <div class="infobox infobox-info">
         <p>Zachęcamy również do rozwiązywania znalezionych problemów.<br/>
-        Zostań współtwórcą naszego oprogramowania, szczegóły znajdziesz w <a href="/contact#contributors"
+        Zostań kontrybutorem naszego oprogramowania, szczegóły znajdziesz w <a href="/contact#contributors"
         title="Become a angular-handsontable contributor.">części poświęconej kontrybutorom</a>.</p>
       </div>
 
-      <h2>Dla zgłaszających udoskonalenia</h2>
+      <h2 id="feature-request">Dla zgłaszających udoskonalenia</h2>
       <p>Miło nam, że chcesz pomagać w rozwoju naszego oprogramowania. Jesteśmy otwarci na pomysły
       społeczności. Jeśli chcesz podzielić się z nami swoim pomysłem, możesz to zrobić
       <a href="https://github.com/handsontable/angular-handsontable/issues/new?&title=${encodeURIComponent('Feature request:')}&body=${encodeURIComponent('<!-- description -->')}">tutaj</a>.</p>

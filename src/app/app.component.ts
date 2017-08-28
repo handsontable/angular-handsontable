@@ -2,7 +2,7 @@ import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 
-import { Component, ViewEncapsulation, OnInit } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { HttpClient } from '@angular/common/http';
 import { Router, NavigationStart, NavigationEnd, ActivatedRoute } from '@angular/router';
@@ -23,10 +23,10 @@ import * as octicons from 'octicons';
       <md-sidenav mode="side" opened="true">
         <nav class="docs-nav">
           <ul>
-          <li><a md-button routerLink="/" routerLinkActive="">Introduction</a></li>
+            <li><a md-button [routerLinkActiveOptions]="{ exact: true }" routerLink="/" routerLinkActive="active">Introduction</a></li>
             <li><a md-button routerLink="/quickstart" routerLinkActive="active">QuickStart</a></li>
             <li>
-              <button md-button class="btn-block" [ngClass]="{'active': menuExamples}" (click)=toggleMenuExample()>
+              <button md-button class="btn-block" [ngClass]="{'open': menuExamples}" (click)=toggleMenuExample()>
               Examples <span class="label label-inverted">${octicons['kebab-vertical'].toSVG()}</span></button>
               <ul class="docs-nav--sub">
                 <li><a md-button routerLink="/examples/settings-object" routerLinkActive="active">By settings object</a></li>
@@ -47,7 +47,7 @@ import * as octicons from 'octicons';
           </ul>
         </nav>
       </md-sidenav>
-      <div id="content">
+      <div #content id="content">
         <router-outlet></router-outlet>
         <footer class="docs-footer">
           <div class="flex-spacer"></div>
@@ -61,18 +61,22 @@ import * as octicons from 'octicons';
   `
 })
 export class AppComponent implements OnInit {
+  @ViewChild('content') content: ElementRef;
   private isUrlInitialized: boolean = false;
+  private hash = location.hash;
 
   constructor(
     private http: HttpClient,
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private titleService: Title ) {
-    router.events.subscribe((val: NavigationStart) => {
-      if (!this.isUrlInitialized) {
-        this.menuExamples = val.url.includes('examples');
-        this.isUrlInitialized = true;
-      }
+    router.events
+    .filter((event) => event instanceof NavigationStart)
+    .subscribe((event: NavigationStart) => {
+      // if (!this.isUrlInitialized) {
+        this.menuExamples = event.url.includes('examples');
+        // this.isUrlInitialized = true;
+      // }
     });
   }
 
@@ -86,7 +90,13 @@ export class AppComponent implements OnInit {
       })
       .filter((route) => route.outlet === 'primary')
       .mergeMap((route) => route.data)
-      .subscribe((event) => this.titleService.setTitle(`Handsontable for Angular${event['title'] || ''}`));
+      .subscribe((event) => {
+        this.titleService.setTitle(`Handsontable for Angular${event['title'] || ''}`);
+
+        if (this.hash.length < 1) {
+          this.content.nativeElement.parentElement.scrollTop = 0;
+        }
+      });
   }
 
   menuExamples: boolean = false;

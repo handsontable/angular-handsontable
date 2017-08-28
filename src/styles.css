@@ -117,7 +117,7 @@ app-root {
   .docs-nav--sub {
     display: none;
   }
-    .active + .docs-nav--sub {
+    .open + .docs-nav--sub {
       display: block;
     }
     .docs-nav--sub li {
@@ -183,6 +183,9 @@ md-sidenav {
   margin: 0 auto;
   line-height: 1.75rem;
 }
+  .docs-content h1 {
+    font-weight: 400;
+  }
   .docs-content h2 {
     font-size: 1.5rem;
     font-weight: 400;
@@ -191,7 +194,12 @@ md-sidenav {
   .docs-content h2:first-child {
     margin-top: 0;
   }
-  
+  .docs-content p:first-child {
+    margin-top: 0;
+  }
+  .docs-content p:last-child {
+    margin-bottom: 0;
+  }
   .docs-content :not(pre) > code {
     background: #EEEEEE;
     padding: 5px 7px;
@@ -314,8 +322,9 @@ md-sidenav {
 
 .infobox {
   padding: 1rem 2rem;
-  border-left: 5px solid;
+  border-left: 5px solid #424242;
   margin-bottom: 1rem;
+  background: #EEE;
 }
   .infobox-error {
     background: #FFEBEE;

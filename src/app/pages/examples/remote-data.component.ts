@@ -3,10 +3,8 @@ import { HttpClient } from '@angular/common/http';
 
 @Component({
   template: `
-    <div class="docs-header">
-      <h1>Remote data</h1>
-    </div>
     <div class="docs-content">
+      <h1><code>angular-handsontable</code> with external source data</h1>
       <docs-code lang="typescript" title="/src/app/app.module.ts" start='1' [input]="examples[0]"></docs-code>
       <docs-code lang="typescript" title="/src/app/app.component.ts" start='1' [input]="examples[1]"></docs-code>
       <docs-code lang="html" title="/src/app/app.component.html" start='1' [input]="examples[2]"></docs-code>
@@ -66,7 +64,6 @@ export class ExRemoteDataComponent {
       }
     },
   };
-  urlSufix: string = 'Invoices';
   isLoading: boolean = false;
 
   constructor(private _http: HttpClient) {}
@@ -74,10 +71,9 @@ export class ExRemoteDataComponent {
   loadData() {
     this.isLoading = true;
 
-    this._http.get(`http://services.odata.org/V3/Northwind/Northwind.svc/${this.urlSufix}`)
+    this._http.get(`http://services.odata.org/V3/Northwind/Northwind.svc/Invoices`)
       .subscribe((res: Response) => {
         this.data = res['value'];
-        this.urlSufix = res['odata.nextLink'] || 'Invoices';
       });
   }
 
@@ -168,9 +164,7 @@ export class ExRemoteDataComponent {
     ].join('\n'),
     [
       `<button (click)="loadData()">Load data</button>`,
-      `<p [hidden]="!isLoading">`,
-      `  <md-progress-bar mode="indeterminate"></md-progress-bar>`,
-      `</p>`,
+      `<p [hidden]="!isLoading">Loading...</p>`,
       `<hot-table`,
       `  height="500"`,
       `  fixedColumnsLeft="1"`,

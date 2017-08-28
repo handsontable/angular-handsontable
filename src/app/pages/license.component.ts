@@ -2,10 +2,8 @@ import { Component } from '@angular/core';
 
 @Component({
   template: `
-    <div class="docs-header">
-      <h1>License</h1>
-    </div>
     <div class="docs-content">
+      <h1>License</h1>
       <p>(The MIT License)</p>
 
       <p>Copyright (c) 2015 - Handsoncode sp. z o.o. &lt;hello@handsoncode.net&gt;</p>

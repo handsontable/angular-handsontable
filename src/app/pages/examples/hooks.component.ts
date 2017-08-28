@@ -4,10 +4,8 @@ import { HotRegisterer } from 'angular-handsontable';
 
 @Component({
   template: `
-    <div class="docs-header">
-      <h1>Hooks support</h1>
-    </div>
     <div class="docs-content">
+      <h1>Communication between hooks and component</h1>
       <docs-code lang="typescript" title="/src/app/app.module.ts" start='1' [input]="examples[0]"></docs-code>
       <docs-code lang="typescript" title="/src/app/app.component.ts" start='1' [input]="examples[1]"></docs-code>
       <docs-code lang="html" title="/src/app/app.component.html" start='1' [input]="examples[2]"></docs-code>

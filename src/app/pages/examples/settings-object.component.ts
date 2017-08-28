@@ -3,10 +3,8 @@ import Handsontable from 'handsontable';
 
 @Component({
   template: `
-    <div class="docs-header">
-      <h1>By settings object</h1>
-    </div>
     <div class="docs-content">
+      <h1>Initialization by settings object</h1>
       <docs-code lang="typescript" title="/src/app/app.module.ts" start='1' [input]="examples[0]"></docs-code>
       <docs-code lang="typescript" title="/src/app/app.component.ts" start='1' [input]="examples[1]"></docs-code>
       <docs-code lang="html" title="/src/app/app.component.html" start='1' [input]="examples[2]"></docs-code>
