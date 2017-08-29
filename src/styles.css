@@ -202,6 +202,7 @@ md-sidenav {
   }
   .docs-content :not(pre) > code {
     background: #EEEEEE;
+    background: rgba(0, 0, 0, 0.05);
     padding: 5px 7px;
     border-radius: 3px;
   }

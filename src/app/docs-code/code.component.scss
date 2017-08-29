@@ -13,6 +13,9 @@ docs-code {
     line-height: 2rem;
     border-radius: 3px 3px 0 0;
   }
+  code[class*="language-"], pre[class*="language-"] {
+    font-family: 'Roboto Mono', monospace;
+  }
   pre, pre[class*="language-"] {
     margin: 0;
   }
