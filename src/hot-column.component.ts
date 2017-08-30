@@ -1,9 +1,11 @@
 import {
   Component,
   Input,
+  Injector,
   OnChanges,
   SimpleChanges,
 } from '@angular/core';
+import { HotTableComponent } from './hot-table.component';
 
 @Component({
   selector: 'hot-column',
@@ -12,7 +14,7 @@ import {
 
 export class HotColumnComponent implements OnChanges {
   private firstRun = true;
-  onAfterChange: any;
+  private parentComponent: HotTableComponent;
 
   @Input() allowHtml: boolean;
   @Input() allowInsertColumn: boolean;
@@ -134,27 +136,24 @@ export class HotColumnComponent implements OnChanges {
   @Input() width: number| (() => number);
   @Input() wordWrap: boolean;
 
-  constructor() { }
+  constructor(private inj: Injector) {
+    this.parentComponent = this.inj.get(HotTableComponent);
+  }
 
-  clearUndefinedInput() {
-    let keys = Object.keys(this);
-    let keysLen = keys.length;
-
-    for (let i = 0; i < keysLen; i++) {
-      if (this[keys[i]] === void 0) {
-        delete this[keys[i]];
-      }
-    }
+  ngOnInit() {
+    this.firstRun = false;
+    this.parentComponent.addColumn(this);
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    this.clearUndefinedInput();
-
     if (this.firstRun) {
-      this.firstRun = false;
       return;
     }
 
-    this.onAfterChange();
+    this.parentComponent.onAfterColumnsChange();
+  }
+
+  ngOnDestroy() {
+    this.parentComponent.removeColumn(this);
   }
 }

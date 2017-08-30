@@ -1,6 +1,5 @@
 import {
   Component,
-  ContentChildren,
   ElementRef,
   EventEmitter,
   Input,
@@ -10,9 +9,7 @@ import {
   OnDestroy,
   OnInit,
   Output,
-  QueryList,
   SimpleChanges,
-  ViewChildren,
   ViewEncapsulation,
 } from '@angular/core';
 import Handsontable from 'handsontable';
@@ -31,8 +28,7 @@ import { HotColumnComponent } from './hot-column.component';
 export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy, OnInit {
   private hotInstance: Handsontable;
   private container: HTMLElement;
-
-  @ContentChildren(HotColumnComponent) columnsComponents: QueryList<HotColumnComponent>;
+  private columnsComponents: HotColumnComponent[] = [];
 
   @Input() settings: object;
   @Input() hotId: string;
@@ -305,25 +301,16 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy
 
   ngAfterContentInit() {
     let options = this._hotHelper.mergeSettings(this);
-    const columnsArr = this.columnsComponents.toArray();
 
-    if (columnsArr.length > 0) {
+    if (this.columnsComponents.length > 0) {
       let columns = [];
 
-      columnsArr.forEach((column) => {
+      this.columnsComponents.forEach((column) => {
         columns.push(this._hotHelper.mergeSettings(column));
       });
 
       options['columns'] = columns;
     }
-
-    this.columnsComponents.changes.subscribe(() => {
-      this.columnsComponents.forEach((column) => {
-        column.onAfterChange = () => this.onAfterColumnsChange();
-      });
-
-      this.onAfterColumnsChange();
-    });
 
     this._ngZone.runOutsideAngular(() => {
       this.hotInstance = new Handsontable(this.container, options);
@@ -340,8 +327,8 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy
     }
 
     let newOptions = this._hotHelper.prepareChanges(changes);
-
-    this.hotInstance.updateSettings(newOptions, false);
+    
+    this.updateHotTable(newOptions);
   }
 
   ngOnDestroy() {
@@ -352,13 +339,22 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy
     }
   }
 
-  onAfterColumnsChange() {
-    const columnsArr = this.columnsComponents.toArray();
+  updateHotTable(newSettings: object) {
+    if (!this.hotInstance) {
+      return;
+    }
+    this.hotInstance.updateSettings(newSettings, false);
+  }
 
-    if (columnsArr.length > 0) {
+  onAfterColumnsChange() {
+    if (this.columnsComponents === void 0) {
+      return;
+    }
+
+    if (this.columnsComponents.length > 0) {
       let columns = [];
 
-      columnsArr.forEach((column) => {
+      this.columnsComponents.forEach((column) => {
         columns.push(this._hotHelper.mergeSettings(column));
       });
 
@@ -366,7 +362,31 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy
         columns: columns
       };
 
-      this.hotInstance.updateSettings(newOptions, false);
+      this.updateHotTable(newOptions);
     }
+  }
+
+  onAfterColumnsNumberChange() {
+    let columns = [];
+
+    if (this.columnsComponents.length > 0) {
+      this.columnsComponents.forEach((column) => {
+        columns.push(this._hotHelper.mergeSettings(column));
+      });
+    }
+
+    this.updateHotTable({columns: columns});
+  }
+
+  addColumn(column: HotColumnComponent) {
+    this.columnsComponents.push(column);
+    this.onAfterColumnsNumberChange();
+  }
+
+  removeColumn(column: HotColumnComponent) {
+    const index = this.columnsComponents.indexOf(column);
+
+    this.columnsComponents.splice(index, 1);
+    this.onAfterColumnsNumberChange();
   }
 }

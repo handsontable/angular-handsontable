@@ -63,7 +63,7 @@ export class HotHelper {
 
     if (component['settings'] !== void 0) {
       Object.keys(component['settings']).forEach((key) => {
-        if (AVAILABLE_HOOKS.includes(key)) {
+        if (AVAILABLE_HOOKS.indexOf(key) > -1) {
           mergedSettings[key] = (p1, p2, p3, p4, p5, p6) => {
             return component._ngZone.run(() => {
               return component['settings'][key](p1, p2, p3, p4, p5, p6);
