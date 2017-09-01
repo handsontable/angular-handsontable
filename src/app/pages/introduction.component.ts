@@ -10,8 +10,8 @@ import * as octicons from 'octicons';
         <p><a md-raised-button href="https://github.com/handsontable/angular-handsontable/releases" target="_blank">Release notes</a></p>
       </div>
       <h2>What is a wrapper? </h2>
-      <p>Wrapper is our Angular module that you can import into your project using your preferred package manager.</p>
-      <p>We try to make it possible for the wrapper to be used by the developer regardless of whether he uses angular-cli, webpac or systemJS to build his project.</p>
+      <p>The wrapper is an Angular module that we have made that can be imported into your project using your preferred package manager.</p>
+      <p>We try to make the wrapper compatible with both angular-cli, webpack as well as SystemJS.</p>
       <div class="infobox">
         <p>Useful links:</p>
         <ol>
@@ -21,8 +21,8 @@ import * as octicons from 'octicons';
       </div>
 
       <h2>Why should you use a wrapper?</h2>
-      <p>First of all, because of the saving of your time. We make every effort to make using our software easy and enjoyable,
-      Regardless of developer skill level. We take care of our customers so we continually improve and improve our products.</p>
+      <p>First of all, to save time. We make every effort to make using our software easy and enjoyable,
+      regardless of developer skill level. We take care of our customers by continually improve and improve our products.</p>
       <div class="infobox">
         <p>Useful links:</p>
         <ol>
@@ -32,9 +32,9 @@ import * as octicons from 'octicons';
         </ol>
       </div>
 
-      <h2>Who develops a wrapper?</h2>
-      <p>Handsetable is responsible for the development of the wrapper. However, we are open to the community centered around our project,
-      That's why you too can become a contributor.</p>
+      <h2>Who develops the wrapper?</h2>
+      <p>Handsontable is responsible for the development of the wrapper. However, we are open to the community centered around our project,
+      - that's why you too can become a contributor:</p>
       <div class="infobox">
         <p>Useful links:</p>
         <ol>
@@ -44,7 +44,7 @@ import * as octicons from 'octicons';
       </div>
 
       <h2>Next steps</h2>
-      <p><a md-raised-button routerLink="/quickstart">Create your first component with Handsontable on board.</a></p>
+      <p><a md-raised-button routerLink="/quickstart">Create your first component using Handsontable.</a></p>
       <p><a md-raised-button href="https://handsontable.com" target="_blank">Learn more about Handsontable. ${octicons['link-external'].toSVG()}</a></p>
     </div>
   `
