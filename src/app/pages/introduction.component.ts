@@ -9,22 +9,22 @@ import * as octicons from 'octicons';
         <p>Compatible with Handsontable Community Edition v0.34.0 and Pro v1.13.0</p>
         <p><a md-raised-button href="https://github.com/handsontable/angular-handsontable/releases" target="_blank">Release notes</a></p>
       </div>
-      <h2>Czym jest wrapper?</h2>
-      <p>Wrapper jest przygotowanym przez nas modułem Angular, który możesz zaimportować do swojego projektu, korzystając z preferowanego przez Ciebie managera pakietów.</p>
-      <p>Staramy się, by wrapper mógł być użyty przez developera niezależnie od tego, czy korzysta z angular-cli, webpacka czy SystemJS do budowy swojego projektu.</p>
+      <h2>What is a wrapper? </h2>
+      <p>The wrapper is an Angular module that we have made that can be imported into your project using your preferred package manager.</p>
+      <p>We try to make the wrapper compatible with both angular-cli, webpack as well as SystemJS.</p>
       <div class="infobox">
-        <p>Przydatne linki:</p>
+        <p>Useful links:</p>
         <ol>
-          <li><a routerLink="/quickstart" fragment="prepare-project">Jak przygotować projekt Angular?</a></li>
-          <li><a routerLink="/quickstart" fragment="install-wrapper">Jak zainstalować wrapper angular-handsontable?</a></li>
+          <li><a routerLink="/quickstart" fragment="prepare-project">How to prepare an Angular project</a></li>
+          <li><a routerLink="/quickstart" fragment="install-wrapper">How to install the angular-handsontable wrapper</a></li>
         </ol>
       </div>
 
-      <h2>Dlaczego powinieneś użyć wrapper?</h2>
-      <p>Przede wszystkim, ze względu na oszczędność Twojego czasu. Dokładamy wszelkich starań, aby korzystanie z naszego oprogramowania było łatwe i przyjemne,
-      niezależnie od poziomu umiejętności developera. Dbamy o naszych klientów, więc stale ulepszamy i poprawiamy nasze produkty.</p>
+      <h2>Why should you use a wrapper?</h2>
+      <p>First of all, to save time. We make every effort to make using our software easy and enjoyable,
+      regardless of developer skill level. We take care of our customers by continually improve and improve our products.</p>
       <div class="infobox">
-        <p>Przydatne linki:</p>
+        <p>Useful links:</p>
         <ol>
           <li><a routerLink="/quickstart">Quick start</a></li>
           <li><a href="https://github.com/handsontable/angular-handsontable/issues" target="_blank">Issue board for angular-handsontable ${octicons['link-external'].toSVG()}</a></li>
@@ -32,20 +32,20 @@ import * as octicons from 'octicons';
         </ol>
       </div>
 
-      <h2>Kto rozwija wrapper?</h2>
-      <p>Za rozwój wrappera odpowiedzialny jest głównie zespół Handsontable. Jednakże jesteśmy otwarci na społeczność skupioną wokół naszego projektu,
-      dlatego Ty również możesz zostać kontrybutorem.</p>
+      <h2>Who develops the wrapper?</h2>
+      <p>Handsontable is responsible for the development of the wrapper. However, we are open to the community centered around our project,
+      - that's why you too can become a contributor:</p>
       <div class="infobox">
-        <p>Przydatne linki:</p>
+        <p>Useful links:</p>
         <ol>
-          <li><a href="https://handsontable.com/team.html" target="_blank">Zespół Handsontable ${octicons['link-external'].toSVG()}</a></li>
-          <li><a routerLink="/support" fragment="contributors">Jak zostać kontrybutorem?</a></li>
+          <li><a href="https://handsontable.com/team.html" target="_blank">Handsontable Team ${octicons['link-external'].toSVG()}</a></li>
+          <li><a routerLink="/support" fragment="contributors">How to become a contributor? </a></li>
         </ol>
       </div>
 
-      <h2>Następne kroki</h2>
-      <p><a md-raised-button routerLink="/quickstart">Stwórz swój pierwszy komponent z Handsontable na pokładzie.</a></p>
-      <p><a md-raised-button href="https://handsontable.com" target="_blank">Dowiedz się więcej na temat Handsontable. ${octicons['link-external'].toSVG()}</a></p>
+      <h2>Next steps</h2>
+      <p><a md-raised-button routerLink="/quickstart">Create your first component using Handsontable.</a></p>
+      <p><a md-raised-button href="https://handsontable.com" target="_blank">Learn more about Handsontable. ${octicons['link-external'].toSVG()}</a></p>
     </div>
   `
 })
