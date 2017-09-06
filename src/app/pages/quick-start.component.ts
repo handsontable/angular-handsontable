@@ -23,23 +23,23 @@ import * as octicons from 'octicons';
         <p>This is quite unfortunate, but you need to import Handsontable before Zone.js.</p>
         <p>There is a conflict between those two when accessing <code>window.Promise</code>.</p>
       </div>
-      <docs-code start='49' [input]='example3'></docs-code>
+      <docs-code start='49' title="/src/polyfills.ts" [input]='example3'></docs-code>
 
       <h2 id="add-wrapper-in-module">Step 4. Import a wrapper</h2>
       <p>Add an angular-handsontable wrapper to your application by importing it as a dependency.</p>
       <docs-code input="import { HotTableModule } from 'angular-handsontable';"></docs-code>
       <p>Place that statement below the BrowserModule class like in the following example of file
       <code>app.module.ts</code>:</p>
-      <docs-code start='1' [input]='example4'></docs-code>
+      <docs-code start='1' title="/src/app/app.module.ts"  [input]='example4'></docs-code>
 
       <h2 id="use-wrapper-in-template">Step 5. Add CSS styles</h2>
       <p>You can import predefined Handsontable styles, directly from the npm package.</p>
-      <docs-code start='1' lang="css" [input]="example5"></docs-code>
+      <docs-code start='1' title="/src/styles.css" lang="css" [input]="example5"></docs-code>
 
       <h2 id="use-wrapper-in-template">Step 6. Add an HTML tag</h2>
       <p>Place an HTML tag in the component file <code>src/app/app.component.html</code> to
       initialize Handsontable.</p>
-      <docs-code start='1' lang="html" [input]="example6"></docs-code>
+      <docs-code start='1' title="/src/app/app.component.html" lang="html" [input]="example6"></docs-code>
 
       <h2 id="it-works">The result</h2>
       <hot-table [colHeaders]="true" [rowHeaders]="true"></hot-table>
