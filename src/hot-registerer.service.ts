@@ -5,15 +5,15 @@ const instances = new Map<string, Handsontable>();
 
 @Injectable()
 export class HotRegisterer {
-    public getInstance(id: string): Handsontable {
-        return instances[id];
-    }
+  public getInstance(id: string): Handsontable {
+    return instances.get(id);
+  }
 
-    public registerInstance(id: string, instance: Handsontable): void {
-        instances[id] = instance;
-    }
+  public registerInstance(id: string, instance: Handsontable): void {
+    instances.set(id, instance);
+  }
 
-    public removeInstance(id: string): void {
-        instances[id] = void 0;
-    }
+  public removeInstance(id: string): void {
+    instances.delete(id);
+  }
 }
