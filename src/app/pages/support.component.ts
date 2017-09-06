@@ -21,7 +21,7 @@ import * as octicons from 'octicons';
 
       <h2 id="contributors">Contribute</h2>
       <p>Your contributions to this project are very welcome. If you want to fix a bug or propose
-        a new feature, you can open a new Pull Request, but first make sure it follows these
+        a new feature, you can open a new Pull Request, but first, make sure it follows these
         general rules:</p>
       <ol>
         <li>Sign this <a href="https://goo.gl/forms/yuutGuN0RjsikVpM2" target="_blank">Contributor License Agreement ${octicons['link-external'].toSVG()}</a>

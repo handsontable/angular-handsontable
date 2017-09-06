@@ -8,7 +8,7 @@ import * as octicons from 'octicons';
       <h1>Initialize Handsontable by using bindings.</h1>
 
       <h2>Setup a component</h2>
-      <p>DControl Handsontable by binding properties in the template in a declarative way.
+      <p>Control Handsontable by binding properties in the template in a declarative way.
       <a href="https://docs.handsontable.com/Options.html" target="_blank">Explore the list of
       available options ${octicons['link-external'].toSVG()}</a> and move forward to configuring
       Handsontable.</p>
