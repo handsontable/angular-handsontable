@@ -24,14 +24,15 @@ import * as octicons from 'octicons';
         <nav class="docs-nav">
           <ul>
             <li><a md-button [routerLinkActiveOptions]="{ exact: true }" routerLink="/" routerLinkActive="active">Introduction</a></li>
-            <li><a md-button routerLink="/quickstart" routerLinkActive="active">QuickStart</a></li>
+            <li><a md-button routerLink="/quick-start" routerLinkActive="active">Quick start</a></li>
+            <li><a md-button routerLink="/use-with-pro" routerLinkActive="active">Use with Pro version</a></li>
             <li>
               <button md-button class="btn-block" [ngClass]="{'open': menuExamples}" (click)=toggleMenuExample()>
               Examples <span class="label label-inverted">${octicons['kebab-vertical'].toSVG()}</span></button>
               <ul class="docs-nav--sub">
                 <li><a md-button routerLink="/examples/settings-object" routerLinkActive="active">By settings object</a></li>
-                <li><a md-button routerLink="/examples/declarative-way" routerLinkActive="active">In declarative way</a></li>
-                <li><a md-button routerLink="/examples/static-columns" routerLinkActive="active">Static columns</a></li>
+                <li><a md-button routerLink="/examples/declarative-way" routerLinkActive="active">By using bindings</a></li>
+                <li><a md-button routerLink="/examples/static-columns" routerLinkActive="active">Column custom tag</a></li>
                 <li><a md-button routerLink="/examples/dynamic-columns" routerLinkActive="active">Dynamic columns</a></li>
                 <li><a md-button routerLink="/examples/access-to-handsontable" routerLinkActive="active">Access to Handsontable</a></li>
                 <li><a md-button routerLink="/examples/hooks" routerLinkActive="active">Hook support</a></li>
@@ -41,7 +42,6 @@ import * as octicons from 'octicons';
             <li><a md-button href="https://docs.handsontable.com/pro/latest/Core.html" target="_blank">
               API Reference <span class="label label-inverted">${octicons['link-external'].toSVG()}</span></a></li>
             <li><a md-button routerLink="/license" routerLinkActive="active">License</a></li>
-            <li><a md-button routerLink="/limitations" routerLinkActive="active">Known limitations</a></li>
             <li><a md-button routerLink="/support" routerLinkActive="active">Support</a></li>
             <li><a md-button routerLink="/more-wrappers" routerLinkActive="active">More wrappers</a></li>
           </ul>

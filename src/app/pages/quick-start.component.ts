@@ -4,42 +4,51 @@ import * as octicons from 'octicons';
 @Component({
   template: `
     <div class="docs-content">
-      <h1>QuickStart</h1>
-      <h2 id="prepare-project">Krok 1. Przygotowanie projektu</h2>
-      <p>Postępuj zgodnie z <a href="https://angular.io/guide/quickstart" rel="nofollow">opisem kroków</a> dostępnym na oficjalnej stronie Angular.io.</p>
+      <h1>Quick start</h1>
+      <h2 id="prepare-project">Step 1. Set up the development environment</h2>
+      <p>If you are new to Angular, then the easiest way to set up your project is to read this guide,
+      which is a part of official documentation of Angular. When your app is properly configured,
+      move forward to step 2.</p>
 
-      <h2 id="install-wrapper">Krok 2. Dodanie <code>angular-handsontable</code> do projektu</h2>
-      <p>Do tego celu możesz użyć jednej z poniższych komend.</p>
+      <h2 id="install-wrapper">Step 2. Add angular-handsontable to the project</h2>
+      <p>Although there are many ways to install this wrapper, we recommend using the most popular,
+      which is npm/yarn:</p>
+      <p><strong>npm</strong></p>
       <docs-code lang='bash' input='npm install angular-handsontable'></docs-code>
-      <p>lub</p>
+      <p><strong>yarn</strong></p>
       <docs-code lang='bash' input='yarn add angular-handsontable'></docs-code>
 
-      <h2 id="zonejs-workaround">Krok 3. Załadowanie Handsontable przed Zone.js</h2>
+      <h2 id="zonejs-workaround">Step 3. Import Handsontable before Zone.js</h2>
       <div class="infobox infobox-warning">
-        <p>Niestety występuje problem z nadpisywaniem natywnego <code>window.Promise</code> przez Handsontable i Zone.js</p>
-        <p>Jeśli Handsontable nie zostanie załadowane przed zone.js, to przy próbie uruchomienia aplikacji w przeglądarce otrzymamy jedynie błąd w konsoli przeglądarki.</p>
+        <p>This is quite unfortunate, but you need to import Handsontable before Zone.js.</p>
+        <p>There is a conflict between those two when accessing <code>window.Promise</code>.</p>
       </div>
       <docs-code start='49' [input]='example3'></docs-code>
 
-      <h2 id="add-wrapper-in-module">Krok 4. Dodanie wrappera do głównego modułu aplikacji</h2>
-      <p>Zaimportuj moduł wrappera do główneg modułu aplikacji (domyślnie jest to <code>src/app/app.module.ts</code>)</p>
+      <h2 id="add-wrapper-in-module">Step 4. Import a wrapper</h2>
+      <p>Add an angular-handsontable wrapper to your application by importing it as a dependency.</p>
       <docs-code input="import { HotTableModule } from 'angular-handsontable';"></docs-code>
-      <p>Następnie dodaj zaimportowany moduł do sekcji <code>imports</code> poniżej <code>BrowserModule</code>.</p>
-      <p>Poniższy fragment przedstawia przykładową zawartość <code>app.module.ts</code></p>
+      <p>Place that statement below the BrowserModule class like in the following example of file
+      <code>app.module.ts</code>:</p>
       <docs-code start='1' [input]='example4'></docs-code>
 
-      <h2 id="use-wrapper-in-template">Krok 5. Dodanie elementu do szablonu komponentu</h2>
-      <p>W pliku szablonu komponentu <code>src/app/app.component.html</code> wystarczy umieścić tag wrappera:</p>
-      <docs-code start='1' lang="html" [input]="example5"></docs-code>
+      <h2 id="use-wrapper-in-template">Step 5. Add CSS styles</h2>
+      <p>You can import predefined Handsontable styles, directly from the npm package.</p>
+      <docs-code start='1' lang="css" [input]="example5"></docs-code>
 
-      <h2 id="it-works">Gotowe!</h2>
-      <figure class="mat-elevation-z1">
-        <img src="/assets/quickstart/img_example_5.png" alt=""/>
-      </figure>
+      <h2 id="use-wrapper-in-template">Step 6. Add an HTML tag</h2>
+      <p>Place an HTML tag in the component file <code>src/app/app.component.html</code> to
+      initialize Handsontable.</p>
+      <docs-code start='1' lang="html" [input]="example6"></docs-code>
 
-      <h2>Następne kroki</h2>
-      <p><a md-raised-button routerLink="/examples">Zobacz przygotowane przez nas przykłady.</a></p>
-      <p><a md-raised-button href="https://docs.handsontable.com">Zapoznaj się z dokumentacją Handsontable. ${octicons['link-external'].toSVG()}</a></p>
+      <h2 id="it-works">The result</h2>
+      <hot-table [colHeaders]="true" [rowHeaders]="true"></hot-table>
+
+      <h2>Learn more</h2>
+      <ul>
+        <li><a href="https://docs.handsontable.com/Options.html">Settings in Handsontable
+          ${octicons['link-external'].toSVG()}</a></li>
+      </ul>
     </div>
   `
 })
@@ -75,6 +84,7 @@ export class QuickStartComponent {
     `export class AppModule { }`,
   ].join('\n');
 
-  example5: string = [`<hot-table></hot-table>`].join('\n');
+  example5: string = [`@import '~handsontable/dist/handsontable.full.css';`].join('\n');
+  example6: string = [`<hot-table></hot-table>`].join('\n');
   
 }

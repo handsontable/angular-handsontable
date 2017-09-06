@@ -10,7 +10,7 @@ import { HotTableModule } from 'angular-handsontable';
 
 import { QuickStartComponent } from './pages/quick-start.component';
 import { IntroductionComponent } from './pages/introduction.component';
-import { KnownLimitationsComponent } from './pages/known-limitations.component';
+import { UseWithProComponent } from './pages/use-with-pro.component';
 import { LicenseComponent } from './pages/license.component';
 import { SupportComponent } from './pages/support.component';
 import { MoreWrappersComponent } from './pages/more-wrappers.component';
@@ -27,11 +27,8 @@ import { PageNotFoundComponent } from './pages/not-found.component';
 
 const appRoutes: Routes = [
   { path: '', pathMatch: 'full', component: IntroductionComponent, data: {title: ' - Introduction'} },
-  { path: 'quickstart', component: QuickStartComponent, data: {title: ' - QuickStart'} },
-  { path: 'limitations', component: KnownLimitationsComponent, data: {title: ' - Known limitations'} },
-  { path: 'license', component: LicenseComponent, data: {title: ' - License'} },
-  { path: 'support', component: SupportComponent, data: {title: ' - Support'} },
-  { path: 'more-wrappers', component: MoreWrappersComponent, data: {title: ' - More wrappers'} },
+  { path: 'quick-start', component: QuickStartComponent, data: {title: ' - Quick start'} },
+  { path: 'use-with-pro', component: UseWithProComponent, data: {title: ' - Use the wrapper with Handsontable Pro'} },
 
   { path: 'examples',   redirectTo: '/examples/settings-object', pathMatch: 'full' },
   { path: 'examples/settings-object', component: ExSettingsObjectComponent, data: {title: ' - Examples - Settings object'} },
@@ -42,6 +39,10 @@ const appRoutes: Routes = [
   { path: 'examples/hooks', component: ExHooksComponent, data: {title: ' - Examples - Hooks'} },
   { path: 'examples/remote-data', component: ExRemoteDataComponent, data: {title: ' - Examples - Remote data'} },
 
+  { path: 'license', component: LicenseComponent, data: {title: ' - License'} },
+  { path: 'support', component: SupportComponent, data: {title: ' - Support'} },
+  { path: 'more-wrappers', component: MoreWrappersComponent, data: {title: ' - More wrappers'} },
+
   { path: '**', component: PageNotFoundComponent}
 ];
 
@@ -49,7 +50,7 @@ const appRoutes: Routes = [
   declarations: [
     QuickStartComponent,
     IntroductionComponent,
-    KnownLimitationsComponent,
+    UseWithProComponent,
     LicenseComponent,
     SupportComponent,
     MoreWrappersComponent,

@@ -5,25 +5,24 @@ import * as octicons from 'octicons';
 @Component({
   template: `
     <div class="docs-content">
-      <h1><code>angular-handsontable</code> with external source data</h1>
-      <p><a md-raised-button routerLink="/quickstart">Przygotuj projekt według kroków 1-3 w QuickStart.</a></p>
+      <h1>Bind Handsontable to a remote data source</h1>
       
-      <h2>Module</h2>
-      <p>Oprócz wrappera dodaj do głównego modułu <code>HttpClientModule</code> by obsłużyć asynchroniczne żądania.</p>
+      <h2>Setup a module</h2>
+      <p>Add an <code>HttpClientModule</code> module to the main module to handle the asynchronous requests.</p>
       <docs-code lang="typescript" title="/src/app/app.module.ts" start='1' [input]="examples[0]"></docs-code>
 
-      <h2>Component</h2>
-      <p>Oprócz zdefiniowania zmiennych potrzebnych do interakcji, potrzebujesz również dodać <code>HttpClient</code>.
-        Dzięki niemu jest możliwe jest wysyłanie asynchronicznych żądań do serwera.</p>
+      <h2>Setup a component</h2>
+      <p>Except the code responsible for all the logic behind your app, you need to import
+        an <code>HttpClient</code> class to be able to handle asynchronous requests from/to the server.</p>
       <docs-code lang="typescript" title="/src/app/app.component.ts" start='1' [input]="examples[1]"></docs-code>
 
       <h2>Template</h2>
-      <p>Zdefiniuj niezbędne atrybuty. Każda zmiana atrybutu <code>data</code> będzie ładowała
-      do Handsontable nowy zestaw danych.Zupełnie jak przy ręcznym wykonywaniu
-      <a href="https://docs.handsontable.com/Core.html#loadData" target="_blank"><code>loadData</code>${octicons['link-external'].toSVG()}</a></p>
+      <p>ZDefine the options and their attributes as you like. Every change of the <code>data</code>
+        attribute will result in loading a new set of data to the Handsontable instance (exactly
+        the same as using <code>loadData()</code> manually).</p>
       <docs-code lang="html" title="/src/app/app.component.html" start='1' [input]="examples[2]"></docs-code>
 
-      <h2>Result</h2>
+      <h2>The result</h2>
       <p>
         <button md-raised-button (click)="loadData()">Load data</button>
       </p>
@@ -39,9 +38,7 @@ import * as octicons from 'octicons';
         [colHeaders]="colHeaders"
         [dataSchema]="dataSchema"
         [data]="data"></hot-table>
-      <h2>Następne kroki</h2>
-        <p><a md-raised-button href="https://docs.handsontable.com/Options.html" target="_blank">Opcje dostępne do zdefiniowania w Handsontable.
-          ${octicons['link-external'].toSVG()}</a></p>
+      
     </div>
   `
 })

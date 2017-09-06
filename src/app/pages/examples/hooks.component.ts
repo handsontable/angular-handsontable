@@ -6,47 +6,51 @@ import * as octicons from 'octicons';
 @Component({
   template: `
     <div class="docs-content">
-      <h1>Communication between hooks and component</h1>
-      <p><a md-raised-button routerLink="/quickstart">Przygotuj projekt według kroków 1-3 w QuickStart.</a></p>
+      <h1>Use hooks to bind Handsontable to an outside component</h1>
       
-      <h2>Module</h2>
-      <p>Oprócz wrappera dodaj do głównego modułu <code>FormModule</code> by obsłużyć <code>ngModel</code>.</p>
+      <h2>Set up a module</h2>
+      <p>If you would like to use <code>ngModel</code> directive, you have to define
+      <code>FormModule</code> first. It's necessary to import <code>FormModule</code> after
+      <code>BrowserModule</code>.</p>
       <docs-code lang="typescript" title="/src/app/app.module.ts" start='1' [input]="examples[0]"></docs-code>
       
-      <h2>Component</h2>
-      <p>Oprócz zdefiniowania zmiennych potrzebnych do interakcji, potrzebujesz również dodać <code>HotRegisterer</code>.
-        Dzięki niemu jest możliwe rejestrowanie i odwoływanie się bezpośrednio do instancji Handsontable.</p>
+      <h2>Set up a component</h2>
+      <p>Except the code responsible for all the logic behind your app, you need to add
+        a <code>HotRegisterer</code> service to be able to register and control the Handsontable’s
+        instance.</p>
       <docs-code lang="typescript" title="/src/app/app.component.ts" start='1' [input]="examples[1]"></docs-code>
 
-      <h2>Template</h2>
-      <p>Tak podpięty hook wykona się po odpowiedniej akcji w Handsontable. Jako kontekst zachowuje instancję komponentu Angular.
-        Dla hooków, które zwracają wartości po wykonaniu, dostępny jest także argument <code>$event</code>,
-        który zawiera sześcioelementową tablicę.</p>
+      <h2>Setup a template</h2>
+      <p>When you use hook callback as binding, the context of method is your component. If you
+        expect to get hook params, them all are in <code>$event</code> variable. EventEmitter could
+        return only one variable and because of this, we decided to return <code>$event</code>
+        as an array of params <code>[p1, p2, p3, p4, p5, p6]</code>.</p>
       <div class="infobox infobox-info">
-        <p>Tylko hooki zdefiniowane wewnątrz obiektu <code>settings</code> mogą zwracać wartość <code>false</code></p>
+        <p>Please note that only hooks defined inside the settings object can return <code>false</code>.</p>
       </div>
       <docs-code lang="html" title="/src/app/app.component.html" start='1' [input]="examples[2]"></docs-code>
-      <h2>Result</h2>
+      <h2>The result</h2>
       <p>
         <md-input-container>
-          <input mdInput placeholder="column" type="number" min="0" (input)="selectCell($event)" [(ngModel)]="coordX">
+          <input mdInput placeholder="Column" type="number" min="0" (input)="selectCell($event)" [(ngModel)]="coordX">
         </md-input-container>
         <md-input-container>
-          <input mdInput placeholder="row" type="number" min="0" (input)="selectCell($event)" [(ngModel)]="coordY">
+          <input mdInput placeholder="Row" type="number" min="0" (input)="selectCell($event)" [(ngModel)]="coordY">
         </md-input-container>
         <md-input-container>
-          <input mdInput placeholder="new value" (input)="changeValue($event)" [(ngModel)]="newValue">
+          <input mdInput placeholder="Set new value" (input)="changeValue($event)" [(ngModel)]="newValue">
         </md-input-container>
       </p>
-      <hot-table width="300" height="200" hotId="hotInstance"
+      <hot-table [colHeaders]="true" [rowHeaders]="true" hotId="hotInstance"
         (afterSelectionEnd)="syncSelection()"
         [outsideClickDeselects]="false" 
         [data]="data"></hot-table>
 
-      <h2>Następne kroki</h2>
-        <p><a md-raised-button routerLink="/examples/remote-data">Asynchroniczne ładowanie danych.</a></p>
-        <p><a md-raised-button href="https://docs.handsontable.com/Options.html" target="_blank">Opcje dostępne do zdefiniowania w Handsontable.
-          ${octicons['link-external'].toSVG()}</a></p>
+      <h2>Learn more:</h2>
+      <ul>
+        <li><a href="https://docs.handsontable.com/Hooks.html#events" target="_blank">Handsontable Hooks</a></li>
+      </ul>
+
     </div>
   `
 })
@@ -184,11 +188,11 @@ export class ExHooksComponent {
       `}`,
     ].join('\n'),
     [
-      `<input placeholder="column" type="number" min="0" (input)="selectCell($event)" [(ngModel)]="coordX">`,
-      `<input placeholder="row" type="number" min="0" (input)="selectCell($event)" [(ngModel)]="coordY">`,
-      `<input placeholder="new value" (input)="changeValue($event)" [(ngModel)]="newValue">`,
+      `<input placeholder="Column" type="number" min="0" (input)="selectCell($event)" [(ngModel)]="coordX">`,
+      `<input placeholder="Row" type="number" min="0" (input)="selectCell($event)" [(ngModel)]="coordY">`,
+      `<input placeholder="Set new value" (input)="changeValue($event)" [(ngModel)]="newValue">`,
       ``,
-      `<hot-table width="300" height="200"`,
+      `<hot-table [colHeaders]="true" [rowHeaders]="true"`,
       `  (afterSelectionEnd)="syncSelection()"`,
       `  [outsideClickDeselects]="false"`,
       `  hotId="hotInstance"></hot-table>`,

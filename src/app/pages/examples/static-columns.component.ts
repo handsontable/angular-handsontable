@@ -5,31 +5,26 @@ import * as octicons from 'octicons';
 @Component({
   template: `
     <div class="docs-content">
-      <h1><code>&lt;hot-column&gt;</code> elements defined statically</h1>
-      <p><a md-raised-button routerLink="/quickstart">Przygotuj projekt według kroków 1-4 w QuickStart.</a></p>
+      <h1>Define static columns using tags</h1>
 
-      <h2>Component</h2>
-      <p>Możesz użyć helperów dołączonych do Handsontable. np. do zdefiniowania przykładowego zestawu danych.</p>
+      <h2>Setup a component</h2>
+      <p>You can define column using custom element. Column initialized in this way can has defined
+      with the same bindings as the <code>hot-table</code> element.</p>
       <docs-code lang="typescript" title="/src/app/app.component.ts" start='1' [input]="examples[0]"></docs-code>
 
-      <h2>Template</h2>
-      <p>Wrapper obsługuje dodatkowy komponent <code>hot-column</code> reprezentujący pojedynczą kolumnę.
-        Jest to zwyczajnie inna reprezentacja opcji <a href="https://docs.handsontable.com/Options.html#columns"
-        target="_blank"><code>columns</code> ${octicons['link-external'].toSVG()}</a></p>
+      <h2>Setup a template</h2>
+      <p>Pass appropriate bindings to the selected tags. For instance, if you want to define a
+      column’s width, you can add it inside the main <code>hot-table</code> tag.</p>
       <docs-code lang="html" title="/src/app/app.component.html" start='1' [input]="examples[1]"></docs-code>
 
-      <h2>Result</h2>
-      <hot-table height="250" [data]="data">
-        <hot-column data="3"></hot-column>
+      <h2>The result</h2>
+      <hot-table height="250" [colHeaders]="true" [rowHeaders]="true" [data]="data">
+        <hot-column type="date"></hot-column>
         <hot-column [readOnly]="true"></hot-column>
         <hot-column type="numeric"></hot-column>
         <hot-column width="200"></hot-column>
       </hot-table>
 
-      <h2>Następne kroki</h2>
-      <p><a md-raised-button routerLink="/examples/dynamic-columns">Dynamicznie definiowane kolumny</a></p>
-      <p><a md-raised-button href="https://docs.handsontable.com/Options.html" target="_blank">Opcje dostępne do zdefiniowania w Handsontable.
-        ${octicons['link-external'].toSVG()}</a></p>
     </div>
   `
 })
@@ -52,8 +47,8 @@ export class ExStaticColumnsComponent {
       `}`,
     ].join('\n'),
     [
-      `<hot-table height="250" [data]="data">`,
-      `  <hot-column data="3"></hot-column>`,
+      `<hot-table height="250" [colWidths]="true" [colHeaders]="true" [data]="data">`,
+      `  <hot-column type="date"></hot-column>`,
       `  <hot-column [readOnly]="true"></hot-column>`,
       `  <hot-column type="numeric"></hot-column>`,
       `  <hot-column width="200"></hot-column>`,

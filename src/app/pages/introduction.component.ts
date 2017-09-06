@@ -6,46 +6,54 @@ import * as octicons from 'octicons';
     <div class="docs-content">
       <div class="infobox infobox-info">
         <h2>Latest version <strong>1.0.0-beta1</strong>, released on <strong>00.00.0000</strong></h2>
-        <p>Compatible with Handsontable Community Edition v0.34.0 and Pro v1.13.0</p>
-        <p><a md-raised-button href="https://github.com/handsontable/angular-handsontable/releases" target="_blank">Release notes</a></p>
+        <p>Compatible with Handsontable Community Edition v0.34.1 and Pro v1.13.1</p>
       </div>
-      <h2>Czym jest wrapper?</h2>
-      <p>Wrapper jest przygotowanym przez nas modułem Angular, który możesz zaimportować do swojego projektu, korzystając z preferowanego przez Ciebie managera pakietów.</p>
-      <p>Staramy się, by wrapper mógł być użyty przez developera niezależnie od tego, czy korzysta z angular-cli, webpacka czy SystemJS do budowy swojego projektu.</p>
-      <div class="infobox">
-        <p>Przydatne linki:</p>
-        <ol>
-          <li><a routerLink="/quickstart" fragment="prepare-project">Jak przygotować projekt Angular?</a></li>
-          <li><a routerLink="/quickstart" fragment="install-wrapper">Jak zainstalować wrapper angular-handsontable?</a></li>
-        </ol>
-      </div>
+      <h2>Getting started</h2>
+      <p><a href="https://handsontable.com/" title="JavaScript Spreadsheet Library">Handsontable</a>
+      is a spreadsheet component for web apps. This wrapper for Angular offers the same scope of
+      features as pure version of Handsontable, so it’s a perfect match for all of your Angular-based
+      apps in which a spreadsheet component is required.</p>
+      <p>Follow links below to learn more about the installation process:</p>
+      <ul>
+        <li><a routerLink="/quickstart" fragment="prepare-project">Setting up the environment.</a></li>
+        <li><a routerLink="/quickstart" fragment="install-wrapper">Installing and use.</a></li>
+      </ul>
 
-      <h2>Dlaczego powinieneś użyć wrapper?</h2>
-      <p>Przede wszystkim, ze względu na oszczędność Twojego czasu. Dokładamy wszelkich starań, aby korzystanie z naszego oprogramowania było łatwe i przyjemne,
-      niezależnie od poziomu umiejętności developera. Dbamy o naszych klientów, więc stale ulepszamy i poprawiamy nasze produkty.</p>
-      <div class="infobox">
-        <p>Przydatne linki:</p>
-        <ol>
-          <li><a routerLink="/quickstart">Quick start</a></li>
-          <li><a href="https://github.com/handsontable/angular-handsontable/issues" target="_blank">Issue board for angular-handsontable ${octicons['link-external'].toSVG()}</a></li>
-          <li><a routerLink="/more-wrappers">More wrappers for Handsontable</a></li>
-        </ol>
-      </div>
+      <h2>Why should I use it?</h2>
+      <p>First and foremost, it will cut the development time of your app. By using this wrapper,
+      you don’t have to worry about the compatibility issues, and if you stumble across one, you
+      can easily make a <a href="https://github.com/handsontable/angular-handsontable/compare">pull
+      request</a> with a solution or <a href="https://github.com/handsontable/angular-handsontable/issues/new">
+      report it on GitHub</a>. For less experienced developers, we prepared a series of examples -
+      from basic implementations, to much more advanced setups.</p>
 
-      <h2>Kto rozwija wrapper?</h2>
-      <p>Za rozwój wrappera odpowiedzialny jest głównie zespół Handsontable. Jednakże jesteśmy otwarci na społeczność skupioną wokół naszego projektu,
-      dlatego Ty również możesz zostać kontrybutorem.</p>
-      <div class="infobox">
-        <p>Przydatne linki:</p>
-        <ol>
-          <li><a href="https://handsontable.com/team.html" target="_blank">Zespół Handsontable ${octicons['link-external'].toSVG()}</a></li>
-          <li><a routerLink="/support" fragment="contributors">Jak zostać kontrybutorem?</a></li>
-        </ol>
-      </div>
+      <h2>Examples</h2>
+      <ul>
+        <li><a routerLink="/examples/settings-object">Initialization with a settings object</a></li>
+        <li><a routerLink="/examples/declarative-way">Initialize Handsontable by using bindings</a></li>
+        <li><a routerLink="/examples/static-columns">Define static columns using tags</a></li>
+        <li><a routerLink="/examples/dynamic-columns">Define dynamic columns using a *ngFor loop</a></li>
+        <li><a routerLink="/examples/access-to-handsontable">Access the Handsontable instance</a></li>
+        <li><a routerLink="/examples/hooks">Use hooks to bind Handsontable with the an outside component</a></li>
+        <li><a routerLink="/examples/remote-data">Bind Handsontable with a remote data source</a></li>
+      </ul>
 
-      <h2>Następne kroki</h2>
-      <p><a md-raised-button routerLink="/quickstart">Stwórz swój pierwszy komponent z Handsontable na pokładzie.</a></p>
-      <p><a md-raised-button href="https://handsontable.com" target="_blank">Dowiedz się więcej na temat Handsontable. ${octicons['link-external'].toSVG()}</a></p>
+      <h2>Contributing</h2>
+      <p>Everyone is welcome to contribute to this open source project. If you feel that something needs to be tweaked or fixed, let us know.</p>
+      <ul>
+        <li><a routerLink="/support">Become a contributor</a></li>
+        <li><a href="https://github.com/handsontable/angular-handsontable/issues/new">Report an issue</a></li>
+      </ul>
+
+      <h2>Copyright and license</h2>
+      <ul>
+        <li>Handsontable Community Edition is released under the <a routerLink="/license">MIT license</a>. Copyrights belong to Handsoncode sp. z o.o.</li>
+        <li>angular-handsontable is released under the <a routerLink="/license">MIT license</a>. Copyrights belong to Handsoncode sp. z o.o.</li>
+        <li>Documentation licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</li>
+      </ul>
+
+      <h2>Next step</h2>
+      <p><a md-raised-button routerLink="/quick-start">Install angular-handsontable</a></p>
     </div>
   `
 })

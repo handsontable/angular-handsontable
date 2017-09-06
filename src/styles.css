@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:100,400,500');
 @import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
 @import '~octicons/build/octicons.css';
-
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
 /**
 * Handsontable styles
 */
-@import '~handsontable/dist/handsontable.css';
+@import '~handsontable/dist/handsontable.full.css';
 
 hot-table {
     width: 100%;
