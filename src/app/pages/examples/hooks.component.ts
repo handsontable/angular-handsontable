@@ -15,14 +15,14 @@ import * as octicons from 'octicons';
       <docs-code lang="typescript" title="/src/app/app.module.ts" start='1' [input]="examples[0]"></docs-code>
       
       <h2>Set up a component</h2>
-      <p>Except the code responsible for all the logic behind your app, you need to add
+      <p>Except for the code responsible for all the logic behind your app, you need to add
         a <code>HotRegisterer</code> service to be able to register and control the Handsontable’s
         instance.</p>
       <docs-code lang="typescript" title="/src/app/app.component.ts" start='1' [input]="examples[1]"></docs-code>
 
       <h2>Setup a template</h2>
-      <p>When you use hook callback as binding, the context of method is your component. If you
-        expect to get hook params, them all are in <code>$event</code> variable. EventEmitter could
+      <p>When you use hook callback as binding, the context of the method is your component. If you
+        expect to get hook params, they all are in <code>$event</code> variable. EventEmitter could
         return only one variable and because of this, we decided to return <code>$event</code>
         as an array of params <code>[p1, p2, p3, p4, p5, p6]</code>.</p>
       <div class="infobox infobox-info">

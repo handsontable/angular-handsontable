@@ -11,7 +11,7 @@ import * as octicons from 'octicons';
       <h2>Getting started</h2>
       <p><a href="https://handsontable.com/" target="_blank" title="JavaScript Spreadsheet Library">
       Handsontable ${octicons['link-external'].toSVG()}</a> is a spreadsheet component for web apps.
-      This wrapper for Angular offers the same scope of features as pure version of Handsontable,
+      This wrapper for Angular offers the same scope of features as a pure version of Handsontable,
       so it’s a perfect match for all of your Angular-based apps in which a spreadsheet component
       is required.</p>
       <p>Follow links below to learn more about the installation process:</p>
@@ -27,16 +27,16 @@ import * as octicons from 'octicons';
       request ${octicons['link-external'].toSVG()}</a> with a solution or
       <a href="https://github.com/handsontable/angular-handsontable/issues/new" target="_blank">
       report it on GitHub ${octicons['link-external'].toSVG()}</a>. For less experienced developers,
-      we prepared a series of examples - from basic implementations, to much more advanced setups.</p>
+      we prepared a series of examples - from basic implementations to much more advanced setups.</p>
 
       <h2>Examples</h2>
       <ul>
-        <li><a routerLink="/examples/settings-object">Initialization with a settings object</a></li>
+        <li><a routerLink="/examples/settings-object">Initialization using a settings object</a></li>
         <li><a routerLink="/examples/declarative-way">Initialize Handsontable by using bindings</a></li>
         <li><a routerLink="/examples/static-columns">Define static columns using tags</a></li>
         <li><a routerLink="/examples/dynamic-columns">Define dynamic columns using a *ngFor loop</a></li>
         <li><a routerLink="/examples/access-to-handsontable">Access the Handsontable instance</a></li>
-        <li><a routerLink="/examples/hooks">Use hooks to bind Handsontable with the an outside component</a></li>
+        <li><a routerLink="/examples/hooks">Use hooks to bind Handsontable with an outside component</a></li>
         <li><a routerLink="/examples/remote-data">Bind Handsontable with a remote data source</a></li>
       </ul>
 

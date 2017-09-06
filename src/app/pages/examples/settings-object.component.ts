@@ -5,7 +5,7 @@ import * as octicons from 'octicons';
 @Component({
   template: `
     <div class="docs-content">
-      <h1>Initialization with a settings object</h1>
+      <h1>Initialization using a settings object</h1>
 
       <h2>Setup a component</h2>
       <p>You can control the spreadsheet by passing various options defining its style, behavior,
@@ -15,13 +15,13 @@ import * as octicons from 'octicons';
       <docs-code lang="typescript" title="/src/app/app.component.ts" start='1' [input]="examples[0]"></docs-code>
       <div class="infobox infobox-info">
         <p>Please note that the changes in a settings object are not automatically observed and
-        propagatedto the spreadsheet. If you use a dynamic option then you should implement this
+        propagated to the spreadsheet. If you use a dynamic option then you should implement this
         component by using bindings.</p>
       </div>
 
       <h2>Setup a template</h2>
       <p>To display Handsontable, you need to add a <code>hot-table</code> element in your template file. To set
-      the options for Handsontable, pass an <code>[settings]="settings"</code> attribute to the
+      the options for Handsontable, pass a <code>[settings]="settings"</code> attribute to the
       newly created element.</p>
       <docs-code lang="html" title="/src/app/app.component.html" start='1' [input]="examples[1]"></docs-code>
 

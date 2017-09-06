@@ -14,7 +14,7 @@ import * as octicons from 'octicons';
       <docs-code lang="typescript" title="/src/app/app.module.ts" start='1' [input]="examples[0]"></docs-code>
       
       <h2>Set up a component</h2>
-      <p>Except the code responsible for all the logic behind your app, you need to add
+      <p>Except for the code responsible for all the logic behind your app, you need to add
       a <code>HotRegisterer</code> service to be able to register and control the Handsontable’s instance.</p>
       <docs-code lang="typescript" title="/src/app/app.component.ts" start='1' [input]="examples[1]"></docs-code>
       

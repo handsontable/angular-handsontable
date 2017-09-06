@@ -12,7 +12,7 @@ import * as octicons from 'octicons';
 
       <h2>Setup a template</h2>
       <p>You can bind controls in an HTML template to properties of the component by using
-      a directivecalled <code>*ngFor</code>. In the example below, we use it to dynamically change
+      a directive called <code>*ngFor</code>. In the example below, we use it to dynamically change
       the number of columns displayed in a spreadsheet.</p>
       <docs-code lang="html" title="/src/app/app.component.html" start='1' [input]="examples[1]"></docs-code>
 

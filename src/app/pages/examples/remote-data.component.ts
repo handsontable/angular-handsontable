@@ -12,12 +12,12 @@ import * as octicons from 'octicons';
       <docs-code lang="typescript" title="/src/app/app.module.ts" start='1' [input]="examples[0]"></docs-code>
 
       <h2>Setup a component</h2>
-      <p>Except the code responsible for all the logic behind your app, you need to import
+      <p>Except for the code responsible for all the logic behind your app, you need to import
         an <code>HttpClient</code> class to be able to handle asynchronous requests from/to the server.</p>
       <docs-code lang="typescript" title="/src/app/app.component.ts" start='1' [input]="examples[1]"></docs-code>
 
       <h2>Template</h2>
-      <p>ZDefine the options and their attributes as you like. Every change of the <code>data</code>
+      <p>Define the options and their attributes as you like. Every change of the <code>data</code>
         attribute will result in loading a new set of data to the Handsontable instance (exactly
         the same as using <code>loadData()</code> manually).</p>
       <docs-code lang="html" title="/src/app/app.component.html" start='1' [input]="examples[2]"></docs-code>
