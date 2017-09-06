@@ -6,7 +6,7 @@ import { Component, ViewEncapsulation, OnInit, ViewChild, ElementRef } from '@an
 import { Title } from '@angular/platform-browser';
 import { HttpClient } from '@angular/common/http';
 import { Router, NavigationStart, NavigationEnd, ActivatedRoute } from '@angular/router';
-
+import { MdSidenav } from '@angular/material';
 import * as octicons from 'octicons';
 
 @Component({
@@ -14,13 +14,14 @@ import * as octicons from 'octicons';
   encapsulation: ViewEncapsulation.None,
   template: `
     <nav class="docs-topbar mat-elevation-z6">
-      <a md-button routerLink="/" routerLinkActive="" title="Handsontable for Angular">Handsontable for Angular</a>
+      <a md-button class="logo" routerLink="/" routerLinkActive="" title="Handsontable for Angular">Handsontable for Angular</a>
+      <button md-button class="three-bars" (click)="sidenav.toggle()">${octicons['three-bars'].toSVG()}</button>
       <div class="flex-spacer"></div>
-      <a md-button href="https://github.com/handsontable/angular-handsontable" title="Find us on GitHub" target="_blank">
+      <a md-button class="icon-gh" href="https://github.com/handsontable/angular-handsontable" title="Find us on GitHub" target="_blank">
       ${octicons['mark-github'].toSVG({width: 21, height: 21, style: 'vertical-align: -6px; margin-right: 5px;'})} <span>Github ${octicons['link-external'].toSVG()}</span></a>
     </nav>
-    <md-sidenav-container>
-      <md-sidenav mode="side" opened="true">
+    <md-sidenav-container (window:resize)="onResize($event)">
+      <md-sidenav #sidenav [mode]="mode" [opened]="openNav">
         <nav class="docs-nav">
           <ul>
             <li><a md-button [routerLinkActiveOptions]="{ exact: true }" routerLink="/" routerLinkActive="active">Introduction</a></li>
@@ -62,8 +63,12 @@ import * as octicons from 'octicons';
 })
 export class AppComponent implements OnInit {
   @ViewChild('content') content: ElementRef;
+  @ViewChild('sidenav') sidenav: MdSidenav;
   private isUrlInitialized: boolean = false;
   private hash = location.hash;
+  private menuExamples: boolean = false;
+  private openNav: boolean = true;
+  private mode: string = 'side';
 
   constructor(
     private http: HttpClient,
@@ -73,10 +78,7 @@ export class AppComponent implements OnInit {
     router.events
     .filter((event) => event instanceof NavigationStart)
     .subscribe((event: NavigationStart) => {
-      // if (!this.isUrlInitialized) {
-        this.menuExamples = event.url.includes('examples');
-        // this.isUrlInitialized = true;
-      // }
+      this.menuExamples = event.url.includes('examples');
     });
   }
 
@@ -96,10 +98,14 @@ export class AppComponent implements OnInit {
         if (this.hash.length < 1) {
           this.content.nativeElement.parentElement.scrollTop = 0;
         }
-      });
-  }
 
-  menuExamples: boolean = false;
+        if (window.innerWidth <= 767) {
+          this.sidenav.close();
+        }
+      });
+
+      this.setMode(window.innerWidth);
+  }
 
   getYear() {
     const date = new Date();
@@ -108,5 +114,19 @@ export class AppComponent implements OnInit {
 
   toggleMenuExample() {
     this.menuExamples = !this.menuExamples;
+  }
+
+  setMode(size) {
+    this.mode = size <= 767 ? 'over' : 'side';
+
+    if (size > 767 && !this.openNav) {
+      this.sidenav.open();
+
+    } else if (size <= 767 && this.openNav) {
+      this.sidenav.close();
+    }
+  }
+  onResize(event) {
+    this.setMode(event.target.innerWidth);
   }
 }
