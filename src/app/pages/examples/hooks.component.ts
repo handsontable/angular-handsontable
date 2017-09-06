@@ -42,13 +42,14 @@ import * as octicons from 'octicons';
         </md-input-container>
       </p>
       <hot-table [colHeaders]="true" [rowHeaders]="true" hotId="hotInstance"
-        (afterSelectionEnd)="syncSelection()"
+        (afterSelectionEnd)="syncSelection($event)"
         [outsideClickDeselects]="false" 
         [data]="data"></hot-table>
 
       <h2>Learn more:</h2>
       <ul>
-        <li><a href="https://docs.handsontable.com/Hooks.html#events" target="_blank">Handsontable Hooks</a></li>
+        <li><a href="https://docs.handsontable.com/Hooks.html#events" target="_blank">Handsontable Hooks
+          ${octicons['link-external'].toSVG()}</a></li>
       </ul>
 
     </div>
@@ -193,7 +194,7 @@ export class ExHooksComponent {
       `<input placeholder="Set new value" (input)="changeValue($event)" [(ngModel)]="newValue">`,
       ``,
       `<hot-table [colHeaders]="true" [rowHeaders]="true"`,
-      `  (afterSelectionEnd)="syncSelection()"`,
+      `  (afterSelectionEnd)="syncSelection($event)"`,
       `  [outsideClickDeselects]="false"`,
       `  hotId="hotInstance"></hot-table>`,
     ].join('\n'),

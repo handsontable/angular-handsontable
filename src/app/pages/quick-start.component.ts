@@ -46,7 +46,7 @@ import * as octicons from 'octicons';
 
       <h2>Learn more</h2>
       <ul>
-        <li><a href="https://docs.handsontable.com/Options.html">Settings in Handsontable
+        <li><a href="https://docs.handsontable.com/Options.html" target="_blank">Settings in Handsontable
           ${octicons['link-external'].toSVG()}</a></li>
       </ul>
     </div>

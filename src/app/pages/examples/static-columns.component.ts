@@ -5,7 +5,7 @@ import * as octicons from 'octicons';
 @Component({
   template: `
     <div class="docs-content">
-      <h1>Define static columns using tags</h1>
+      <h1>Define static columns using component</h1>
 
       <h2>Setup a component</h2>
       <p>You can define column using custom element. Column initialized in this way can has defined
@@ -14,7 +14,7 @@ import * as octicons from 'octicons';
 
       <h2>Setup a template</h2>
       <p>Pass appropriate bindings to the selected tags. For instance, if you want to define a
-      column’s width, you can add it inside the main <code>hot-table</code> tag.</p>
+      column’s width, you can add it inside the main <code>hot-table</code> element.</p>
       <docs-code lang="html" title="/src/app/app.component.html" start='1' [input]="examples[1]"></docs-code>
 
       <h2>The result</h2>

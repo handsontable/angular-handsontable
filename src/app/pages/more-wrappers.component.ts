@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import * as octicons from 'octicons';
 
 @Component({
   template: `
@@ -12,8 +13,8 @@ import { Component } from '@angular/core';
           </md-card-header>
           <img md-card-image [src]="wrapper.img">
           <md-card-actions>
-            <a [href]="wrapper.url.download" md-button>Download</a>
-            <a [href]="wrapper.url.github" md-button>View on GitHub</a>
+            <a [href]="wrapper.url.download" target="_blank" md-button>Download  ${octicons['link-external'].toSVG()}</a>
+            <a [href]="wrapper.url.github" target="_blank" md-button>View on GitHub  ${octicons['link-external'].toSVG()}</a>
           </md-card-actions>
         </md-card>
       </div>

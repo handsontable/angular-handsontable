@@ -14,15 +14,15 @@ import * as octicons from 'octicons';
       of options ${octicons['link-external'].toSVG()}</a>.</p>
       <docs-code lang="typescript" title="/src/app/app.component.ts" start='1' [input]="examples[0]"></docs-code>
       <div class="infobox infobox-info">
-        <p>Please note that the changes in the Settings Object are not automatically observed and
+        <p>Please note that the changes in a settings object are not automatically observed and
         propagatedto the spreadsheet. If you use a dynamic option then you should implement this
         component by using bindings.</p>
       </div>
 
       <h2>Setup a template</h2>
-      <p>To display Handsontable, you need to add a ‘hot-table’ tag in your template file. To set
+      <p>To display Handsontable, you need to add a <code>hot-table</code> element in your template file. To set
       the options for Handsontable, pass an <code>[settings]="settings"</code> attribute to the
-      newly created tag.</p>
+      newly created element.</p>
       <docs-code lang="html" title="/src/app/app.component.html" start='1' [input]="examples[1]"></docs-code>
 
       <h2>The result</h2>

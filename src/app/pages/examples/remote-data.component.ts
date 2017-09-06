@@ -87,7 +87,7 @@ export class ExRemoteDataComponent {
   loadData() {
     this.isLoading = true;
 
-    this._http.get(`http://services.odata.org/V3/Northwind/Northwind.svc/Invoices`)
+    this._http.get(`//services.odata.org/V3/Northwind/Northwind.svc/Invoices`)
       .subscribe((res: Response) => {
         this.data = res['value'];
       });
@@ -169,7 +169,7 @@ export class ExRemoteDataComponent {
       `  loadData() {`,
       `    this.isLoading = true;`,
       ``,
-      '    this._http.get(`http://services.odata.org/V3/Northwind/Northwind.svc/Invoices`)',
+      '    this._http.get(`//services.odata.org/V3/Northwind/Northwind.svc/Invoices`)',
       `      .subscribe((res: Response) => {`,
       `        this.data = res['value'];`,
       `      });`,

@@ -14,10 +14,10 @@ import * as octicons from 'octicons';
   encapsulation: ViewEncapsulation.None,
   template: `
     <nav class="docs-topbar mat-elevation-z6">
-      <a md-button routerLink="/" routerLinkActive="" title="Handsontable for Angular"><img class="logo" src="assets/Handsontable_logo_200x40.svg" alt=""/> for Angular</a>
+      <a md-button routerLink="/" routerLinkActive="" title="Handsontable for Angular">Handsontable for Angular</a>
       <div class="flex-spacer"></div>
-      <a md-button href="https://github.com/handsontable/angular-handsontable" title="Find us on GitHub">
-      ${octicons['mark-github'].toSVG({width: 21, height: 21, style: 'vertical-align: -6px; margin-right: 5px;'})} <span>Github</span></a>
+      <a md-button href="https://github.com/handsontable/angular-handsontable" title="Find us on GitHub" target="_blank">
+      ${octicons['mark-github'].toSVG({width: 21, height: 21, style: 'vertical-align: -6px; margin-right: 5px;'})} <span>Github ${octicons['link-external'].toSVG()}</span></a>
     </nav>
     <md-sidenav-container>
       <md-sidenav mode="side" opened="true">
@@ -32,14 +32,14 @@ import * as octicons from 'octicons';
               <ul class="docs-nav--sub">
                 <li><a md-button routerLink="/examples/settings-object" routerLinkActive="active">By settings object</a></li>
                 <li><a md-button routerLink="/examples/declarative-way" routerLinkActive="active">By using bindings</a></li>
-                <li><a md-button routerLink="/examples/static-columns" routerLinkActive="active">Column custom tag</a></li>
+                <li><a md-button routerLink="/examples/static-columns" routerLinkActive="active">Column component</a></li>
                 <li><a md-button routerLink="/examples/dynamic-columns" routerLinkActive="active">Dynamic columns</a></li>
                 <li><a md-button routerLink="/examples/access-to-handsontable" routerLinkActive="active">Access to Handsontable</a></li>
                 <li><a md-button routerLink="/examples/hooks" routerLinkActive="active">Hook support</a></li>
                 <li><a md-button routerLink="/examples/remote-data" routerLinkActive="active">Remote data</a></li>
               </ul>
             </li>
-            <li><a md-button href="https://docs.handsontable.com/pro/latest/Core.html" target="_blank">
+            <li><a md-button href="https://docs.handsontable.com/Core.html" target="_blank">
               API Reference <span class="label label-inverted">${octicons['link-external'].toSVG()}</span></a></li>
             <li><a md-button routerLink="/license" routerLinkActive="active">License</a></li>
             <li><a md-button routerLink="/support" routerLinkActive="active">Support</a></li>

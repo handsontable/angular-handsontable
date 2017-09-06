@@ -9,23 +9,25 @@ import * as octicons from 'octicons';
         <p>Compatible with Handsontable Community Edition v0.34.1 and Pro v1.13.1</p>
       </div>
       <h2>Getting started</h2>
-      <p><a href="https://handsontable.com/" title="JavaScript Spreadsheet Library">Handsontable</a>
-      is a spreadsheet component for web apps. This wrapper for Angular offers the same scope of
-      features as pure version of Handsontable, so it’s a perfect match for all of your Angular-based
-      apps in which a spreadsheet component is required.</p>
+      <p><a href="https://handsontable.com/" target="_blank" title="JavaScript Spreadsheet Library">
+      Handsontable ${octicons['link-external'].toSVG()}</a> is a spreadsheet component for web apps.
+      This wrapper for Angular offers the same scope of features as pure version of Handsontable,
+      so it’s a perfect match for all of your Angular-based apps in which a spreadsheet component
+      is required.</p>
       <p>Follow links below to learn more about the installation process:</p>
       <ul>
-        <li><a routerLink="/quick-start" fragment="prepare-project">Setting up the environment.</a></li>
-        <li><a routerLink="/quick-start" fragment="install-wrapper">Installing and use.</a></li>
+        <li><a routerLink="/quick-start" fragment="prepare-project">Setting up the environment</a></li>
+        <li><a routerLink="/quick-start" fragment="install-wrapper">Installing and use</a></li>
       </ul>
 
       <h2>Why should I use it?</h2>
       <p>First and foremost, it will cut the development time of your app. By using this wrapper,
       you don’t have to worry about the compatibility issues, and if you stumble across one, you
-      can easily make a <a href="https://github.com/handsontable/angular-handsontable/compare">pull
-      request</a> with a solution or <a href="https://github.com/handsontable/angular-handsontable/issues/new">
-      report it on GitHub</a>. For less experienced developers, we prepared a series of examples -
-      from basic implementations, to much more advanced setups.</p>
+      can easily make a <a href="https://github.com/handsontable/angular-handsontable/compare" target="_blank">pull
+      request ${octicons['link-external'].toSVG()}</a> with a solution or
+      <a href="https://github.com/handsontable/angular-handsontable/issues/new" target="_blank">
+      report it on GitHub ${octicons['link-external'].toSVG()}</a>. For less experienced developers,
+      we prepared a series of examples - from basic implementations, to much more advanced setups.</p>
 
       <h2>Examples</h2>
       <ul>
@@ -42,18 +44,20 @@ import * as octicons from 'octicons';
       <p>Everyone is welcome to contribute to this open source project. If you feel that something needs to be tweaked or fixed, let us know.</p>
       <ul>
         <li><a routerLink="/support">Become a contributor</a></li>
-        <li><a href="https://github.com/handsontable/angular-handsontable/issues/new">Report an issue</a></li>
+        <li><a href="https://github.com/handsontable/angular-handsontable/issues/new" target="_blank">Report an issue ${octicons['link-external'].toSVG()}</a></li>
       </ul>
 
       <h2>Copyright and license</h2>
       <ul>
         <li>Handsontable Community Edition is released under the <a routerLink="/license">MIT license</a>. Copyrights belong to Handsoncode sp. z o.o.</li>
         <li>angular-handsontable is released under the <a routerLink="/license">MIT license</a>. Copyrights belong to Handsoncode sp. z o.o.</li>
-        <li>Documentation licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</li>
+        <li>Documentation licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0 ${octicons['link-external'].toSVG()}</a>.</li>
       </ul>
 
       <h2>Next step</h2>
-      <p><a md-raised-button routerLink="/quick-start">Install angular-handsontable</a></p>
+      <ul>
+        <li><a routerLink="/quick-start">Install angular-handsontable</a></li>
+      </ul>
     </div>
   `
 })
