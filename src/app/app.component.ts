@@ -14,7 +14,7 @@ import * as octicons from 'octicons';
   encapsulation: ViewEncapsulation.None,
   template: `
     <nav class="docs-topbar mat-elevation-z6">
-      <a md-button routerLink="/" routerLinkActive="" title="Handsontable for Angular"><img class="logo" src="/assets/Handsontable_logo_200x40.svg" alt=""/> for Angular</a>
+      <a md-button routerLink="/" routerLinkActive="" title="Handsontable for Angular"><img class="logo" src="assets/Handsontable_logo_200x40.svg" alt=""/> for Angular</a>
       <div class="flex-spacer"></div>
       <a md-button href="https://github.com/handsontable/angular-handsontable" title="Find us on GitHub">
       ${octicons['mark-github'].toSVG({width: 21, height: 21, style: 'vertical-align: -6px; margin-right: 5px;'})} <span>Github</span></a>

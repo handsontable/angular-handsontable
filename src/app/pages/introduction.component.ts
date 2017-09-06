@@ -15,8 +15,8 @@ import * as octicons from 'octicons';
       apps in which a spreadsheet component is required.</p>
       <p>Follow links below to learn more about the installation process:</p>
       <ul>
-        <li><a routerLink="/quickstart" fragment="prepare-project">Setting up the environment.</a></li>
-        <li><a routerLink="/quickstart" fragment="install-wrapper">Installing and use.</a></li>
+        <li><a routerLink="/quick-start" fragment="prepare-project">Setting up the environment.</a></li>
+        <li><a routerLink="/quick-start" fragment="install-wrapper">Installing and use.</a></li>
       </ul>
 
       <h2>Why should I use it?</h2>
