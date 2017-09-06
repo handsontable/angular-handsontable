@@ -22,7 +22,7 @@ import * as octicons from 'octicons';
 export class UseWithProComponent {
   example: string = [
     `"paths": {`,
-    `  "handsontable": ["../node_modules/handsontable-pro"]`,
+    `  "handsontable": ["../node_modules/handsontable-pro/dist/handsontable.js"]`,
     `}`,
   ].join('\n');
 
