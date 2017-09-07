@@ -26,6 +26,7 @@
 
 # misc
 *.js
+!dist/**/*.js
 !config/*
 !bundles/*
 !karma.conf.js
