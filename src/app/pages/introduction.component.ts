@@ -5,8 +5,15 @@ import * as octicons from 'octicons';
   template: `
     <div class="docs-content">
       <div class="infobox infobox-info">
-        <h2>Latest version <strong>1.0.0-beta1</strong>, released on <strong>00.00.0000</strong></h2>
+        <h2>Latest version <strong>1.0.0-beta1</strong>, released on <strong>2017-09-07</strong></h2>
         <p>Compatible with Handsontable Community Edition v0.34.1 and Pro v1.13.1</p>
+        <p>Requirements:</p>
+        <ul>
+          <li><code>node</code> v6.9.0+</li>
+          <li><code>npm</code> v3.0.0+</li>
+          <li><code>typescript</code> v2.2.0+</li>
+          <li><code>@angular/cli</code> v1.3.2</li>
+        </ul>
       </div>
       <h2>Getting started</h2>
       <p><a href="https://handsontable.com/" target="_blank" title="JavaScript Spreadsheet Library">
