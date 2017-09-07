@@ -15,7 +15,9 @@
     "datatable",
     "data"
   ],
-  "main": "bundles/index.umd.js",
+  "main": "dist/index.js",
+  "js:next": "dist/index.js",
+  "browser": "bundles/index.umd.js",
   "module": "index.js",
   "typings": "index.d.ts",
   "author": "Handsoncode <hello@handsontable.com>",
@@ -24,10 +26,10 @@
     "url": "https://github.com/handsontable/angular-handsontable/issues"
   },
   "scripts": {
-    "build": "cross-env NODE_ENV=production webpack",
+    "build": "cross-env NODE_ENV=production webpack && tsc",
     "clean": "rimraf dist bundles",
     "prepublish": "npm run clean && npm run build",
-    "test": "tsc && karma start",
+    "test": "npm run build && karma start",
     "test:watch": "tsc && karma start --no-single-run --auto-watch",
     "watch": "cross-env NODE_ENV=watch webpack --watch",
     "release": "generate-release"

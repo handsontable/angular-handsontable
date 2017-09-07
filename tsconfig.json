@@ -11,5 +11,8 @@
     "noImplicitAny": false,
     "suppressImplicitAnyIndexErrors": true
   },
-  "compileOnSave": false
+  "compileOnSave": false,
+  "exclude": [
+    "tests/*"
+  ]
 }

@@ -1,2 +1,7 @@
-./dist
+./config
+./tests
 .vscode
+.github
+.DS_Store
+
+node_modules/
