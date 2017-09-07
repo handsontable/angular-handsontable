@@ -1,6 +1,6 @@
 {
   "name": "angular-handsontable",
-  "version": "0.0.2",
+  "version": "1.0.0-beta1",
   "description": "Official Angular 2 directive for Handsontable",
   "repository": {
     "type": "git",
