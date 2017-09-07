@@ -1,10 +1,6 @@
 {
   "name": "angular-handsontable",
-<<<<<<< HEAD
   "version": "0.0.2",
-=======
-  "version": "1.0.0-beta1",
->>>>>>> release/1.0.0-beta1
   "description": "Official Angular 2 directive for Handsontable",
   "repository": {
     "type": "git",
@@ -29,8 +25,6 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/handsontable/angular-handsontable/issues"
-<<<<<<< HEAD
-=======
   },
   "scripts": {
     "build:dist": "npm run clean:dist && ngc -p ./tsconfig.json",
@@ -88,6 +82,5 @@
     "typescript": "^2.4.2",
     "webpack": "^2.6.1",
     "zone.js": "0.8.12"
->>>>>>> release/1.0.0-beta1
   }
 }
