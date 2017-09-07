@@ -29,7 +29,8 @@
     "prepublish": "npm run clean && npm run build",
     "test": "tsc && karma start",
     "test:watch": "tsc && karma start --no-single-run --auto-watch",
-    "watch": "cross-env NODE_ENV=watch webpack --watch"
+    "watch": "cross-env NODE_ENV=watch webpack --watch",
+    "release": "generate-release"
   },
   "peerDependencies": {
     "@angular/core": "^2.4.7 || ^4.0.0"
@@ -54,6 +55,7 @@
     "cross-env": "^5.0.1",
     "extract-text-webpack-plugin": "3.0.0",
     "file-loader": "^0.9.0",
+    "generate-release": "^0.13.1",
     "html-loader": "^0.4.3",
     "html-webpack-plugin": "^2.16.1",
     "jasmine-core": "^2.4.1",
