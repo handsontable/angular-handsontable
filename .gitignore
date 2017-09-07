@@ -34,7 +34,6 @@
 *.d.ts
 !make.js
 /.sass-cache
-/bundles
 /connect.lock
 /coverage
 /libpeerconnection.log
