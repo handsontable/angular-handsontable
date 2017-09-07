@@ -55,7 +55,7 @@ import * as octicons from 'octicons';
 export class QuickStartComponent {
   example3: string = [
     ``,
-    `import 'handsontable/dist/handsontable';`,
+    `import 'handsontable';`,
     ``,
     `/*********************************************************`,
     `* Zone JS is required by Angular itself.`,
