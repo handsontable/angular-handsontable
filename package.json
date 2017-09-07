@@ -1,10 +1,10 @@
 {
-  "name": "angular2-handsontable",
+  "name": "angular-handsontable",
   "version": "0.0.2",
   "description": "Official Angular 2 directive for Handsontable",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/handsontable/angular2-handsontable.git"
+    "url": "git+https://github.com/handsontable/angular-handsontable.git"
   },
   "keywords": [
     "angular",
@@ -15,9 +15,64 @@
     "datatable",
     "data"
   ],
+  "main": "bundles/index.umd.js",
+  "module": "index.js",
+  "typings": "index.d.ts",
   "author": "Handsoncode <hello@handsontable.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/handsontable/angular2-handsontable/issues"
+    "url": "https://github.com/handsontable/angular-handsontable/issues"
+  },
+  "scripts": {
+    "build": "cross-env NODE_ENV=production webpack",
+    "clean": "rimraf dist bundles",
+    "prepublish": "npm run clean && npm run build",
+    "test": "tsc && karma start",
+    "test:watch": "tsc && karma start --no-single-run --auto-watch",
+    "watch": "cross-env NODE_ENV=watch webpack --watch",
+    "release": "generate-release"
+  },
+  "peerDependencies": {
+    "@angular/core": "^2.4.7 || ^4.0.0"
+  },
+  "dependencies": {
+    "handsontable": "0.34.1"
+  },
+  "devDependencies": {
+    "@angular/common": "~4.2.0",
+    "@angular/compiler": "~4.2.0",
+    "@angular/core": "~4.2.0",
+    "@angular/forms": "~4.2.0",
+    "@angular/http": "~4.2.0",
+    "@angular/platform-browser": "~4.2.0",
+    "@angular/platform-browser-dynamic": "~4.2.0",
+    "@angular/router": "~4.2.0",
+    "@types/jasmine": "2.5.36",
+    "@types/node": "^6.0.45",
+    "angular2-template-loader": "^0.6.0",
+    "awesome-typescript-loader": "^3.2.2",
+    "core-js": "^2.4.1",
+    "cross-env": "^5.0.1",
+    "extract-text-webpack-plugin": "3.0.0",
+    "file-loader": "^0.9.0",
+    "generate-release": "^0.13.1",
+    "html-loader": "^0.4.3",
+    "html-webpack-plugin": "^2.16.1",
+    "jasmine-core": "^2.4.1",
+    "karma": "^1.2.0",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-coverage-istanbul-reporter": "^1.3.0",
+    "karma-firefox-launcher": "^1.0.1",
+    "karma-jasmine": "^1.0.2",
+    "karma-jasmine-html-reporter": "^0.2.2",
+    "karma-sourcemap-loader": "^0.3.7",
+    "karma-webpack": "^2.0.1",
+    "null-loader": "^0.1.1",
+    "raw-loader": "^0.5.1",
+    "rimraf": "^2.5.2",
+    "rxjs": "^5.4.2",
+    "typescript": "^2.4.2",
+    "webpack": "^2.6.1",
+    "zone.js": "0.8.12"
   }
 }
