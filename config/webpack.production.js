@@ -33,7 +33,7 @@ module.exports = {
           {
             loader: 'awesome-typescript-loader',
             options: {
-                configFileName: helpers.root('tsconfig.json')
+                configFileName: helpers.root('tsconfig.bundles.json')
             }
           },
           'angular2-template-loader',

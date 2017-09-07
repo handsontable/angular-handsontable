@@ -1,25 +1,21 @@
 {
   "compilerOptions": {
     "declaration": true,
-    "outDir": "dist",
+    "outDir": "tmp",
     "target": "es5",
     "module": "es2015",
     "moduleResolution": "node",
-    "stripInternal": true,
+    "sourceMap": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "types": [],
+    "typeRoots": [
+      "node_modules/@types"
+    ],
     "lib": ["es2016", "dom"],
     "noImplicitAny": false,
-    "skipLibCheck": true,
     "suppressImplicitAnyIndexErrors": true
   },
   "compileOnSave": false,
-  "angularCompilerOptions": {
-    "annotateForClosureCompiler": true,
-    "strictMetadataEmit": true,
-    "skipTemplateCodegen": true
-  },
   "exclude": [
     "tests/*"
   ]

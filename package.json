@@ -19,15 +19,19 @@
   "js:next": "dist/index.js",
   "browser": "bundles/index.umd.js",
   "module": "dist/index.js",
-  "typings": "index.d.ts",
+  "typings": "./dist/index.d.ts",
   "author": "Handsoncode <hello@handsontable.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/handsontable/angular-handsontable/issues"
   },
   "scripts": {
-    "build": "cross-env NODE_ENV=production webpack && tsc",
-    "clean": "rimraf dist bundles",
+    "build:dist": "npm run clean:dist && ngc -p ./tsconfig.json",
+    "build:bundles": "npm run clean:bundles && cross-env NODE_ENV=production webpack",
+    "build": "npm run build:bundles && npm run build:dist",
+    "clean:dist": "rimraf dist",
+    "clean:bundles": "rimraf bundles",
+    "clean": "npm run clean:dist && npm run clean:bundles",
     "prepublish": "npm run clean && npm run build",
     "test": "npm run build && karma start",
     "test:watch": "tsc && karma start --no-single-run --auto-watch",
@@ -43,6 +47,7 @@
   "devDependencies": {
     "@angular/common": "~4.2.0",
     "@angular/compiler": "~4.2.0",
+    "@angular/compiler-cli": "~4.2.0",
     "@angular/core": "~4.2.0",
     "@angular/forms": "~4.2.0",
     "@angular/http": "~4.2.0",
