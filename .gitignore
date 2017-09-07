@@ -28,6 +28,7 @@
 # misc
 *.js
 !config/*
+!bundles/*
 !karma.conf.js
 !webpack.config.js
 *.map
