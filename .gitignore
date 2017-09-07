@@ -33,6 +33,7 @@
 !webpack.config.js
 *.map
 *.d.ts
+!dist/*.d.ts
 !dist/**/*.d.ts
 !make.js
 /.sass-cache
