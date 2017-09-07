@@ -1,0 +1,8 @@
+./config
+./tests
+./tmp
+.vscode
+.github
+.DS_Store
+
+node_modules/
