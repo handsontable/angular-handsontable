@@ -1,6 +1,6 @@
 import { Component, ElementRef, NgZone } from '@angular/core';
 import Handsontable from 'handsontable';
-import { HotRegisterer } from 'angular-handsontable';
+import { HotRegisterer } from 'angular-handsontable/index';
 import * as octicons from 'octicons';
 
 @Component({

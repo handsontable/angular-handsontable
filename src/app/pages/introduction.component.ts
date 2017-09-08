@@ -12,7 +12,7 @@ import * as octicons from 'octicons';
           <li><code>node</code> v6.9.0+</li>
           <li><code>npm</code> v3.0.0+</li>
           <li><code>typescript</code> v2.2.0+</li>
-          <li><code>@angular/cli</code> v1.3.2</li>
+          <li><code>@angular/cli</code> v1.1.0+</li>
         </ul>
       </div>
       <h2>Getting started</h2>

@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { HotRegisterer } from 'angular-handsontable';
+import { HotRegisterer } from 'angular-handsontable/index';
 import * as octicons from 'octicons';
 
 @Component({

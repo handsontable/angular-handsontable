@@ -6,7 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { CodeModule } from './docs-code/code.module';
 import { DocsMaterialModule } from './docs-material.module';
-import { HotTableModule } from 'angular-handsontable';
+import { HotTableModule } from 'angular-handsontable/index';
 
 import { QuickStartComponent } from './pages/quick-start.component';
 import { IntroductionComponent } from './pages/introduction.component';
