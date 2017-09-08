@@ -30,49 +30,30 @@ import * as octicons from 'octicons';
         <md-progress-bar mode="indeterminate"></md-progress-bar>
       </p>
       <hot-table
-        height="300"
+        height="295"
         fixedColumnsLeft="1"
         startRows="15"
+        colWidths="100"
         [settings]="settings"
         [rowHeaders]="true"
-        [colHeaders]="colHeaders"
-        [dataSchema]="dataSchema"
+        [colHeaders]="true"
+        [columns]="columns"
         [data]="data"></hot-table>
-      
     </div>
   `
 })
 export class ExRemoteDataComponent {
   data: any[];
-  dataSchema: object = {
-    "ShipName": null,
-    "ShipAddress": null,
-    "ShipCity": null,
-    "ShipRegion": null,
-    "ShipPostalCode": null,
-    "ShipCountry": null,
-    "CustomerID": null,
-    "CustomerName": null,
-    "Address": null,
-    "City": null,
-    "Region": null,
-    "PostalCode": null,
-    "Country": null,
-    "Salesperson": null,
-    "OrderID": null,
-    "OrderDate": null,
-    "RequiredDate": null,
-    "ShippedDate": null,
-    "ShipperName": null,
-    "ProductID": null,
-    "ProductName": null,
-    "UnitPrice": null,
-    "Quantity": null,
-    "Discount": null,
-    "ExtendedPrice": null,
-    "Freight": null
-  };
-  colHeaders: string[] = Object.keys(this.dataSchema);
+  columns: object[] = [
+    {data: 'id', title: 'Id'},
+    {data: 'airdate', title: 'AirDate'},
+    {data: 'airtime', title: 'AirTime'},
+    {data: 'name', title: 'Name', width: 200},
+    {data: 'number', title: 'Number'},
+    {data: 'runtime', title: 'Runtime'},
+    {data: 'season', title: 'Season'},
+    {data: 'summary', title: 'Summary', renderer: 'html', width: 800},
+  ];
   settings: object = {
     afterLoadData: (firstLoad) => {
       if(!firstLoad) {
@@ -87,9 +68,9 @@ export class ExRemoteDataComponent {
   loadData() {
     this.isLoading = true;
 
-    this._http.get(`//services.odata.org/V3/Northwind/Northwind.svc/Invoices`)
+    this._http.get(`//api.tvmaze.com/singlesearch/shows?q=mr-robot&embed=episodes`)
       .subscribe((res: Response) => {
-        this.data = res['value'];
+        this.data = res['_embedded']['episodes'];
       });
   }
 
@@ -126,35 +107,16 @@ export class ExRemoteDataComponent {
       `})`,
       `export class AppComponent {`,
       `  data: any[];`,
-      `  dataSchema: object = {`,
-      `    "ShipName": null,`,
-      `    "ShipAddress": null,`,
-      `    "ShipCity": null,`,
-      `    "ShipRegion": null,`,
-      `    "ShipPostalCode": null,`,
-      `    "ShipCountry": null,`,
-      `    "CustomerID": null,`,
-      `    "CustomerName": null,`,
-      `    "Address": null,`,
-      `    "City": null,`,
-      `    "Region": null,`,
-      `    "PostalCode": null,`,
-      `    "Country": null,`,
-      `    "Salesperson": null,`,
-      `    "OrderID": null,`,
-      `    "OrderDate": null,`,
-      `    "RequiredDate": null,`,
-      `    "ShippedDate": null,`,
-      `    "ShipperName": null,`,
-      `    "ProductID": null,`,
-      `    "ProductName": null,`,
-      `    "UnitPrice": null,`,
-      `    "Quantity": null,`,
-      `    "Discount": null,`,
-      `    "ExtendedPrice": null,`,
-      `    "Freight": null`,
-      `  };`,
-      `  colHeaders: string[] = Object.keys(this.dataSchema);`,
+      `  columns: object[] = [`,
+      `    {data: 'id', title: 'Id'},`,
+      `    {data: 'airdate', title: 'AirDate'},`,
+      `    {data: 'airtime', title: 'AirTime'},`,
+      `    {data: 'name', title: 'Name', width: 200},`,
+      `    {data: 'number', title: 'Number'},`,
+      `    {data: 'runtime', title: 'Runtime'},`,
+      `    {data: 'season', title: 'Season'},`,
+      `    {data: 'summary', title: 'Summary', renderer: 'html', width: 800},`,
+      `  ];`,
       `  settings: object = {`,
       `    afterLoadData: (firstLoad) => {`,
       `      if(!firstLoad) {`,
@@ -169,9 +131,9 @@ export class ExRemoteDataComponent {
       `  loadData() {`,
       `    this.isLoading = true;`,
       ``,
-      '    this._http.get(`//services.odata.org/V3/Northwind/Northwind.svc/Invoices`)',
+      '    this._http.get(`//api.tvmaze.com/singlesearch/shows?q=mr-robot&embed=episodes`)',
       `      .subscribe((res: Response) => {`,
-      `        this.data = res['value'];`,
+      `        this.data = res['_embedded']['episodes'];`,
       `      });`,
       `  }`,
       `}`,
@@ -180,12 +142,14 @@ export class ExRemoteDataComponent {
       `<button (click)="loadData()">Load data</button>`,
       `<p [hidden]="!isLoading">Loading...</p>`,
       `<hot-table`,
-      `  height="500"`,
+      `  height="295"`,
       `  fixedColumnsLeft="1"`,
+      `  startRows="15"`,
+      `  colWidths="100"`,
       `  [settings]="settings"`,
       `  [rowHeaders]="true"`,
-      `  [colHeaders]="colHeaders"`,
-      `  [dataSchema]="dataSchema"`,
+      `  [colHeaders]="true"`,
+      `  [columns]="columns"`,
       `  [data]="data"></hot-table>`,
     ].join('\n'),
   ];
