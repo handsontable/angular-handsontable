@@ -6,10 +6,11 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:prod": "ng build --base-href \"/angular-handsontable/\" --output-hashing=all --sourcemaps=false --extract-css=true --named-chunks=false --env=prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "deploy": "npm run build -- --base-href \"/angular-handsontable/\" && angular-cli-ghpages --message \"Deploy\""
+    "deploy": "npm run build:prod && angular-cli-ghpages --message \"Deploy\""
   },
   "private": true,
   "dependencies": {
@@ -27,7 +28,7 @@
   "devDependencies": {
     "@angular/animations": "^4.3.3",
     "@angular/cdk": "^2.0.0-beta.8",
-    "@angular/cli": "1.2.0",
+    "@angular/cli": "^1.4.1",
     "@angular/compiler-cli": "^4.0.0",
     "@angular/language-service": "^4.0.0",
     "@angular/material": "^2.0.0-beta.8",

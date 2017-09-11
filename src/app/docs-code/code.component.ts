@@ -8,7 +8,7 @@ import { Component,
 import Prism from 'prismjs';
 import {MdSnackBar, MdButton} from '@angular/material';
 
-import { clippy, check } from 'octicons';
+import * as octicons from 'octicons';
 
 import 'prismjs/plugins/line-numbers/prism-line-numbers.js';
 import 'prismjs/components/prism-typescript.js';
@@ -18,8 +18,8 @@ import 'prismjs/components/prism-typescript.js';
   selector: 'docs-code',
   template: `
     <div *ngIf="title" class="title">{{title}}</div>
-    <button md-button #button (click)='copyInput()' class="btn-copy">${clippy.toSVG()}${check.toSVG()}</button>
-    <pre #pre><code #code><ng-content></ng-content></code></pre>
+    <button md-button #button (click)='copyInput()' class="btn-copy">${octicons['clippy'].toSVG()}${octicons['check'].toSVG()}</button>
+    <pre #pre><code #code></code></pre>
   `,
   styleUrls: ['./code.component.scss'],
 })
