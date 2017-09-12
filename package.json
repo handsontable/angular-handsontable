@@ -1,6 +1,6 @@
 {
   "name": "angular-handsontable",
-  "version": "1.0.0-beta1",
+  "version": "1.0.0-beta2",
   "description": "Official Angular 2 directive for Handsontable",
   "repository": {
     "type": "git",
@@ -43,7 +43,7 @@
     "@angular/core": "^2.4.7 || ^4.0.0"
   },
   "dependencies": {
-    "handsontable": "0.34.1"
+    "handsontable": "0.34.3"
   },
   "devDependencies": {
     "@angular/common": "~4.2.0",
