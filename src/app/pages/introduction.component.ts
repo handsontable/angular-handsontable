@@ -5,8 +5,8 @@ import * as octicons from 'octicons';
   template: `
     <div class="docs-content">
       <div class="infobox infobox-info">
-        <h2>Latest version <strong>1.0.0-beta1</strong>, released on <strong>September 7th, 2017</strong></h2>
-        <p>Compatible with Handsontable Community Edition v0.34.1 and Pro v1.13.1</p>
+        <h2>Latest version <strong>1.0.0-beta3</strong>, released on <strong>September 26th, 2017</strong></h2>
+        <p>Compatible with Handsontable Community Edition v0.34.4 and Pro v1.14.2</p>
         <p>Requirements:</p>
         <ul>
           <li><code>node</code> v6.9.0+</li>

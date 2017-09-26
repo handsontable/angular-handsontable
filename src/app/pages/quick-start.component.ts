@@ -6,7 +6,8 @@ import * as octicons from 'octicons';
     <div class="docs-content">
       <h1>Quick start</h1>
       <h2 id="prepare-project">Step 1. Set up the development environment</h2>
-      <p>If you are new to Angular, then the easiest way to set up your project is to read this guide,
+      <p>If you are new to Angular, then the easiest way to set up your project is to read
+      <a href="https://angular.io/guide/quickstart" rel="nofollow">this guide ${octicons['link-external'].toSVG()}</a>,
       which is a part of official documentation of Angular. When your app is properly configured,
       move forward to step 2.</p>
 
