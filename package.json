@@ -43,7 +43,7 @@
     "@angular/core": "^2.4.7 || ^4.0.0"
   },
   "dependencies": {
-    "handsontable": "0.34.3"
+    "handsontable": "0.34.4"
   },
   "devDependencies": {
     "@angular/common": "~4.2.0",
