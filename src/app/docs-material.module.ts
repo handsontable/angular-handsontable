@@ -6,7 +6,6 @@ import {
   MdCardModule,
   MdCheckboxModule,
   MdChipsModule,
-  // MdCoreModule,
   MdDatepickerModule,
   MdDialogModule,
   MdExpansionModule,
@@ -32,18 +31,15 @@ import {
   MdToolbarModule,
   MdTooltipModule,
 } from '@angular/material';
-// import {CdkTableModule} from '@angular/cdk';
 
 @NgModule({
   exports: [
-    // CdkTableModule,
     MdAutocompleteModule,
     MdButtonModule,
     MdButtonToggleModule,
     MdCardModule,
     MdCheckboxModule,
     MdChipsModule,
-    // MdCoreModule,
     MdDatepickerModule,
     MdDialogModule,
     MdExpansionModule,
