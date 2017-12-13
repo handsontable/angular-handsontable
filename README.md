@@ -1,5 +1,7 @@
 # angular-handsontable  [![Build Status](https://travis-ci.org/handsontable/angular-handsontable.png?branch=master)](https://travis-ci.org/handsontable/angular-handsontable)
-Official Angular 2+ module for Handsontable [Handsontable](https://github.com/handsontable/handsontable).
+Official Angular 2-4 module for Handsontable [Handsontable](https://github.com/handsontable/handsontable).
+
+-> `Handsontable Pro` might not work with `angular-cli` newer than `1.1.0`
 
 ## Table of contents
 1. [Documentation](https://handsontable.github.io/angular-handsontable/)
