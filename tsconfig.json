@@ -1,26 +1,11 @@
 {
   "compilerOptions": {
-    "declaration": true,
-    "outDir": "dist",
-    "target": "es5",
-    "module": "es2015",
-    "moduleResolution": "node",
-    "stripInternal": true,
-    "emitDecoratorMetadata": true,
+    "baseUrl": "./src",
     "experimentalDecorators": true,
-    "types": [],
-    "lib": ["es2016", "dom"],
-    "noImplicitAny": false,
+    "moduleResolution": "node",
+    "rootDir": "./src",
+    "lib": ["es2015", "dom"],
     "skipLibCheck": true,
-    "suppressImplicitAnyIndexErrors": true
-  },
-  "compileOnSave": false,
-  "angularCompilerOptions": {
-    "annotateForClosureCompiler": true,
-    "strictMetadataEmit": true,
-    "skipTemplateCodegen": true
-  },
-  "exclude": [
-    "tests/*"
-  ]
+    "types": []
+  }
 }
