@@ -4,8 +4,13 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "rootDir": "./src",
-    "lib": ["es2015", "dom"],
+    "lib": [
+      "es2015",
+      "dom"
+    ],
     "skipLibCheck": true,
-    "types": []
+    "types": [
+      "jasmine"
+    ]
   }
 }

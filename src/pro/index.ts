@@ -19,12 +19,11 @@ export * from './hot-registerer.service';
   ],
   providers: [ HotRegisterer ],
 })
-
 export class HotTableModule {
   static forRoot(): ModuleWithProviders {
     return {
-        ngModule: HotTableModule,
-        providers: [ HotRegisterer ]
+      ngModule: HotTableModule,
+      providers: [ HotRegisterer ]
     };
   }
 }

@@ -5,22 +5,28 @@
     "target": "es5",
     "baseUrl": ".",
     "stripInternal": true,
+    "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "moduleResolution": "node",
-    "outDir": "../build",
+    "outDir": "../../build/pro",
     "rootDir": ".",
-    "lib": ["es2015", "dom"],
+    "lib": [
+      "es2016",
+      "dom"
+    ],
+    "noImplicitAny": false,
     "skipLibCheck": true,
+    "suppressImplicitAnyIndexErrors": true,
     "types": []
   },
-  "files": [
-    "./index.ts"
-  ],
   "angularCompilerOptions": {
     "annotateForClosureCompiler": true,
     "strictMetadataEmit": true,
     "skipTemplateCodegen": true,
     "flatModuleOutFile": "angular-handsontable.js",
     "flatModuleId": "angular-handsontable"
-  }
+  },
+  "files": [
+    "./index.ts"
+  ]
 }

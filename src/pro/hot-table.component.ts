@@ -1,18 +1,18 @@
 import {
   Component,
   ElementRef,
-  EventEmitter,
-  Input,
   NgZone,
   AfterContentInit,
   OnChanges,
   OnDestroy,
   OnInit,
-  Output,
   SimpleChanges,
   ViewEncapsulation,
+  EventEmitter,
+  Input,
+  Output,
 } from '@angular/core';
-import * as Handsontable from 'handsontable';
+import * as Handsontable from 'handsontable-pro';
 
 import { HotRegisterer } from './hot-registerer.service';
 import { HotHelper } from './hot-settings.utils';
@@ -20,7 +20,7 @@ import { HotColumnComponent } from './hot-column.component';
 
 @Component({
   selector: 'hot-table',
-  template: ``,
+  template: '',
   encapsulation: ViewEncapsulation.None,
   providers: [ HotRegisterer, HotHelper ],
 })
@@ -45,25 +45,20 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy
   @Input() autoRowSize: boolean | object;
   @Input() autoWrapCol: boolean;
   @Input() autoWrapRow: boolean;
-  @Input() bindRowsWithHeaders: boolean | string;
   @Input() cell: any[];
   @Input() cells: (row: number, column: number, prop: object) => object;
   @Input() checkedTemplate: boolean | string;
   @Input() className: string | string[];
   @Input() colHeaders: boolean | string[] | ((column: number) => string);
-  @Input() collapsibleColumns: boolean | object[];
   @Input() columnHeaderHeight: number | number[];
   @Input() columns: object[] | ((column: number) => object);
   @Input() columnSorting: boolean | object;
-  @Input() columnSummary: object;
   @Input() colWidths: number | number[] | string | ((column: number) => number);
   @Input() commentedCellClassName: string;
   @Input() comments: boolean | object[];
   @Input() contextMenu: boolean | object | object[];
   @Input() copyable: boolean;
-  @Input() copyColsLimit: number;
-  @Input() copyPaste: boolean;
-  @Input() copyRowsLimit: number;
+  @Input() copyPaste: boolean | object;
   @Input() correctFormat: boolean;
   @Input() currentColClassName: string;
   @Input() currentHeaderClassName: string;
@@ -75,25 +70,17 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy
   @Input() debug: boolean;
   @Input() defaultDate: string;
   @Input() disableVisualSelection: boolean | string | string[];
-  @Input() dropdownMenu: boolean | object | object[];
   @Input() editor: boolean | string | (() => void);
   @Input() enterBeginsEditing: boolean;
   @Input() enterMoves: object | (() => void);
   @Input() fillHandle: boolean | string | object;
   @Input() filter: boolean;
   @Input() filteringCaseSensitive: boolean;
-  @Input() filters: boolean;
   @Input() fixedColumnsLeft: number;
-  @Input() fixedRowsBottom: number;
   @Input() fixedRowsTop: number;
   @Input() format: string;
-  @Input() formulas: boolean;
   @Input() fragmentSelection: boolean | string;
-  @Input() ganttChart: object;
-  @Input() headerTooltips: boolean | object;
   @Input() height: number | (() => number);
-  @Input() hiddenColumns: boolean | object;
-  @Input() hiddenRows: boolean | object;
   @Input() invalidCellClassName: string;
   @Input() label: object;
   @Input() language: string;
@@ -110,8 +97,8 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy
   @Input() minSpareCols: number;
   @Input() minSpareRows: number;
   @Input() multiSelect: boolean;
-  @Input() nestedHeaders: any[];
   @Input() noWordWrapClassName: string;
+  @Input() numericFormat: any;
   @Input() observeChanges: boolean;
   @Input() observeDOMVisibility: boolean;
   @Input() outsideClickDeselects: boolean | ((event: Event) => boolean);
@@ -142,7 +129,6 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy
   @Input() tabMoves: object;
   @Input() title: string;
   @Input() trimDropdown: boolean;
-  @Input() trimRows: boolean | number[];
   @Input() trimWhitespace: boolean;
   @Input() type: string;
   @Input() uncheckedTemplate: boolean | string;
@@ -154,7 +140,6 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy
   @Input() width: number| (() => number);
   @Input() wordWrap: boolean;
 
-  @Output() afterAddChild: EventEmitter<any[]> = new EventEmitter();
   @Output() afterBeginEditing: EventEmitter<any[]> = new EventEmitter();
   @Output() afterCellMetaReset: EventEmitter<any[]> = new EventEmitter();
   @Output() afterChange: EventEmitter<any[]> = new EventEmitter();
@@ -172,18 +157,15 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy
   @Output() afterCut: EventEmitter<any[]> = new EventEmitter();
   @Output() afterDeselect: EventEmitter<any[]> = new EventEmitter();
   @Output() afterDestroy: EventEmitter<any[]> = new EventEmitter();
-  @Output() afterDetachChild: EventEmitter<any[]> = new EventEmitter();
   @Output() afterDocumentKeyDown: EventEmitter<any[]> = new EventEmitter();
-  @Output() afterDropdownMenuDefaultOptions: EventEmitter<any[]> = new EventEmitter();
-  @Output() afterDropdownMenuHide: EventEmitter<any[]> = new EventEmitter();
-  @Output() afterDropdownMenuShow: EventEmitter<any[]> = new EventEmitter();
-  @Output() afterFilter: EventEmitter<any[]> = new EventEmitter();
   @Output() afterGetCellMeta: EventEmitter<any[]> = new EventEmitter();
   @Output() afterGetColHeader: EventEmitter<any[]> = new EventEmitter();
   @Output() afterGetColumnHeaderRenderers: EventEmitter<any[]> = new EventEmitter();
   @Output() afterGetRowHeader: EventEmitter<any[]> = new EventEmitter();
   @Output() afterGetRowHeaderRenderers: EventEmitter<any[]> = new EventEmitter();
   @Output() afterInit: EventEmitter<any[]> = new EventEmitter();
+  @Output() afterLanguageChange: EventEmitter<any[]> = new EventEmitter();
+  @Output() afterListen: EventEmitter<any[]> = new EventEmitter();
   @Output() afterLoadData: EventEmitter<any[]> = new EventEmitter();
   @Output() afterModifyTransformEnd: EventEmitter<any[]> = new EventEmitter();
   @Output() afterModifyTransformStart: EventEmitter<any[]> = new EventEmitter();
@@ -191,10 +173,12 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy
   @Output() afterOnCellCornerDblClick: EventEmitter<any[]> = new EventEmitter();
   @Output() afterOnCellCornerMouseDown: EventEmitter<any[]> = new EventEmitter();
   @Output() afterOnCellMouseDown: EventEmitter<any[]> = new EventEmitter();
-  @Output() afterOnCellMouseOver: EventEmitter<any[]> = new EventEmitter();
   @Output() afterOnCellMouseOut: EventEmitter<any[]> = new EventEmitter();
+  @Output() afterOnCellMouseOver: EventEmitter<any[]> = new EventEmitter();
+  @Output() afterPaste: EventEmitter<any[]> = new EventEmitter();
   @Output() afterPluginsInitialized: EventEmitter<any[]> = new EventEmitter();
   @Output() afterRedo: EventEmitter<any[]> = new EventEmitter();
+  @Output() afterRemoveCellMeta: EventEmitter<any[]> = new EventEmitter();
   @Output() afterRemoveCol: EventEmitter<any[]> = new EventEmitter();
   @Output() afterRemoveRow: EventEmitter<any[]> = new EventEmitter();
   @Output() afterRender: EventEmitter<any[]> = new EventEmitter();
@@ -210,14 +194,12 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy
   @Output() afterSetCellMeta: EventEmitter<any[]> = new EventEmitter();
   @Output() afterSetDataAtCell: EventEmitter<any[]> = new EventEmitter();
   @Output() afterSetDataAtRowProp: EventEmitter<any[]> = new EventEmitter();
-  @Output() afterTrimRow: EventEmitter<any[]> = new EventEmitter();
   @Output() afterUndo: EventEmitter<any[]> = new EventEmitter();
-  @Output() afterUntrimRow: EventEmitter<any[]> = new EventEmitter();
+  @Output() afterUnlisten: EventEmitter<any[]> = new EventEmitter();
   @Output() afterUpdateSettings: EventEmitter<any[]> = new EventEmitter();
   @Output() afterValidate: EventEmitter<any[]> = new EventEmitter();
   @Output() afterViewportColumnCalculatorOverride: EventEmitter<any[]> = new EventEmitter();
   @Output() afterViewportRowCalculatorOverride: EventEmitter<any[]> = new EventEmitter();
-  @Output() beforeAddChild: EventEmitter<any[]> = new EventEmitter();
   @Output() beforeAutofill: EventEmitter<any[]> = new EventEmitter();
   @Output() beforeAutofillInsidePopulate: EventEmitter<any[]> = new EventEmitter();
   @Output() beforeCellAlignment: EventEmitter<any[]> = new EventEmitter();
@@ -231,19 +213,18 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy
   @Output() beforeCreateCol: EventEmitter<any[]> = new EventEmitter();
   @Output() beforeCreateRow: EventEmitter<any[]> = new EventEmitter();
   @Output() beforeCut: EventEmitter<any[]> = new EventEmitter();
-  @Output() beforeDetachChild: EventEmitter<any[]> = new EventEmitter();
   @Output() beforeDrawBorders: EventEmitter<any[]> = new EventEmitter();
-  @Output() beforeDropdownMenuSetItems: EventEmitter<any[]> = new EventEmitter();
-  @Output() beforeFilter: EventEmitter<any[]> = new EventEmitter();
   @Output() beforeGetCellMeta: EventEmitter<any[]> = new EventEmitter();
   @Output() beforeInit: EventEmitter<any[]> = new EventEmitter();
   @Output() beforeInitWalkontable: EventEmitter<any[]> = new EventEmitter();
   @Output() beforeKeyDown: EventEmitter<any[]> = new EventEmitter();
+  @Output() beforeLanguageChange: EventEmitter<any[]> = new EventEmitter();
   @Output() beforeOnCellMouseDown: EventEmitter<any[]> = new EventEmitter();
   @Output() beforeOnCellMouseOut: EventEmitter<any[]> = new EventEmitter();
   @Output() beforeOnCellMouseOver: EventEmitter<any[]> = new EventEmitter();
   @Output() beforePaste: EventEmitter<any[]> = new EventEmitter();
   @Output() beforeRedo: EventEmitter<any[]> = new EventEmitter();
+  @Output() beforeRemoveCellMeta: EventEmitter<any[]> = new EventEmitter();
   @Output() beforeRemoveCol: EventEmitter<any[]> = new EventEmitter();
   @Output() beforeRemoveRow: EventEmitter<any[]> = new EventEmitter();
   @Output() beforeRender: EventEmitter<any[]> = new EventEmitter();
@@ -258,8 +239,6 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy
   @Output() beforeValidate: EventEmitter<any[]> = new EventEmitter();
   @Output() beforeValueRender: EventEmitter<any[]> = new EventEmitter();
   @Output() construct: EventEmitter<any[]> = new EventEmitter();
-  @Output() hiddenColumn: EventEmitter<any[]> = new EventEmitter();
-  @Output() hiddenRow: EventEmitter<any[]> = new EventEmitter();
   @Output() init: EventEmitter<any[]> = new EventEmitter();
   @Output() manualRowHeights: EventEmitter<any[]> = new EventEmitter();
   @Output() modifyAutofillRange: EventEmitter<any[]> = new EventEmitter();
@@ -270,10 +249,10 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy
   @Output() modifyCopyableRange: EventEmitter<any[]> = new EventEmitter();
   @Output() modifyData: EventEmitter<any[]> = new EventEmitter();
   @Output() modifyRow: EventEmitter<any[]> = new EventEmitter();
+  @Output() modifyRowData: EventEmitter<any[]> = new EventEmitter();
   @Output() modifyRowHeader: EventEmitter<any[]> = new EventEmitter();
   @Output() modifyRowHeaderWidth: EventEmitter<any[]> = new EventEmitter();
   @Output() modifyRowHeight: EventEmitter<any[]> = new EventEmitter();
-  @Output() modifyRowData: EventEmitter<any[]> = new EventEmitter();
   @Output() modifyTransformEnd: EventEmitter<any[]> = new EventEmitter();
   @Output() modifyTransformStart: EventEmitter<any[]> = new EventEmitter();
   @Output() persistentStateLoad: EventEmitter<any[]> = new EventEmitter();

@@ -1,25 +1,35 @@
-# dependencies
-/node_modules
+# Node
+node_modules/*
+npm-debug.log
 
-# IDEs and editors
-/.idea
+# TypeScript
+src/*.js
+src/*.map
+src/*.d.ts
+
+# JetBrains
+.idea
 .project
-.classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
+.settings
+.idea/*
+*.iml
 
-# IDE - VSCode
-.vscode/
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
+# VS Code
+.vscode/*
 
-# System Files
-.DS_Store
+# Windows
 Thumbs.db
+Desktop.ini
 
-dist
-build
+# Mac
+.DS_Store
+**/.DS_Store
+
+# Ngc generated files
+**/*.ngfactory.ts
+
+# Build files
+dist/*
+
+# Playground tmp files
+.playground
