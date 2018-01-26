@@ -8,24 +8,21 @@ import {
   OnInit,
   SimpleChanges,
   ViewEncapsulation,
-  EventEmitter,
-  Input,
-  Output,
 } from '@angular/core';
 
 import * as Handsontable from 'handsontable';
 
 import { BaseTableComponent } from './base/base-table.component';
 
-import { HotRegisterer } from './hot-registerer.service';
-import { HotHelper } from './hot-settings.utils';
+import { HotTableRegisterer } from './hot-table-registerer.service';
+import { HotSettingsResolver } from './hot-settings-resolver.service';
 import { HotColumnComponent } from './hot-column.component';
 
 @Component({
   selector: 'hot-table',
   template: '',
   encapsulation: ViewEncapsulation.None,
-  providers: [ HotRegisterer, HotHelper ],
+  providers: [ HotTableRegisterer, HotSettingsResolver ],
 })
 
 export class HotTableComponent extends BaseTableComponent implements AfterContentInit, OnChanges, OnDestroy, OnInit {
@@ -36,10 +33,11 @@ export class HotTableComponent extends BaseTableComponent implements AfterConten
   constructor(
     private el: ElementRef,
     private _ngZone: NgZone,
-    private _hotRegisterer: HotRegisterer,
-    private _hotHelper: HotHelper) {
-      super();
-    }
+    private _hotTableRegisterer: HotTableRegisterer,
+    private _hotSettingsResolver: HotSettingsResolver
+  ) {
+    super();
+  }
 
   ngOnInit() {
     this.container = document.createElement('div');
@@ -52,13 +50,13 @@ export class HotTableComponent extends BaseTableComponent implements AfterConten
   }
 
   ngAfterContentInit() {
-    let options = this._hotHelper.mergeSettings(this);
+    let options = this._hotSettingsResolver.mergeSettings(this);
 
     if (this.columnsComponents.length > 0) {
       let columns = [];
 
       this.columnsComponents.forEach((column) => {
-        columns.push(this._hotHelper.mergeSettings(column));
+        columns.push(this._hotSettingsResolver.mergeSettings(column));
       });
 
       options['columns'] = columns;
@@ -69,7 +67,7 @@ export class HotTableComponent extends BaseTableComponent implements AfterConten
     });
 
     if (this.hotId) {
-      this._hotRegisterer.registerInstance(this.hotId, this.hotInstance);
+      this._hotTableRegisterer.registerInstance(this.hotId, this.hotInstance);
     }
   }
 
@@ -78,7 +76,7 @@ export class HotTableComponent extends BaseTableComponent implements AfterConten
       return;
     }
 
-    let newOptions = this._hotHelper.prepareChanges(changes);
+    let newOptions = this._hotSettingsResolver.prepareChanges(changes);
 
     this.updateHotTable(newOptions);
   }
@@ -87,7 +85,7 @@ export class HotTableComponent extends BaseTableComponent implements AfterConten
     this.hotInstance.destroy();
 
     if (this.hotId) {
-      this._hotRegisterer.removeInstance(this.hotId);
+      this._hotTableRegisterer.removeInstance(this.hotId);
     }
   }
 
@@ -107,7 +105,7 @@ export class HotTableComponent extends BaseTableComponent implements AfterConten
       let columns = [];
 
       this.columnsComponents.forEach((column) => {
-        columns.push(this._hotHelper.mergeSettings(column));
+        columns.push(this._hotSettingsResolver.mergeSettings(column));
       });
 
       let newOptions = {
@@ -123,7 +121,7 @@ export class HotTableComponent extends BaseTableComponent implements AfterConten
 
     if (this.columnsComponents.length > 0) {
       this.columnsComponents.forEach((column) => {
-        columns.push(this._hotHelper.mergeSettings(column));
+        columns.push(this._hotSettingsResolver.mergeSettings(column));
       });
     }
 

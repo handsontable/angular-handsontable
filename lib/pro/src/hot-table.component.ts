@@ -16,15 +16,15 @@ import * as Handsontable from 'handsontable-pro';
 
 import { BaseTableComponent } from './base/base-table.component';
 
-import { HotRegisterer } from './hot-registerer.service';
-import { HotHelper } from './hot-settings.utils';
+import { HotTableRegisterer } from './hot-table-registerer.service';
+import { HotSettingsResolver } from './hot-settings-resolver.service';
 import { HotColumnComponent } from './hot-column.component';
 
 @Component({
   selector: 'hot-table',
   template: '',
   encapsulation: ViewEncapsulation.None,
-  providers: [ HotRegisterer, HotHelper ],
+  providers: [ HotTableRegisterer, HotSettingsResolver ],
 })
 
 export class HotTableComponent extends BaseTableComponent implements AfterContentInit, OnChanges, OnDestroy, OnInit {
@@ -32,13 +32,43 @@ export class HotTableComponent extends BaseTableComponent implements AfterConten
   private container: HTMLElement;
   private columnsComponents: HotColumnComponent[] = [];
 
+  @Input() bindRowsWithHeaders: boolean | string;
+  @Input() collapsibleColumns: boolean | object[];
+  @Input() columnSummary: object;
+  @Input() dropdownMenu: boolean | object | object[];
+  @Input() filters: boolean;
+  @Input() fixedRowsBottom: number;
+  @Input() formulas: boolean;
+  @Input() ganttChart: object;
+  @Input() headerTooltips: boolean | object;
+  @Input() hiddenColumns: boolean | object;
+  @Input() hiddenRows: boolean | object;
+  @Input() licenseKey: string;
+  @Input() trimRows: boolean | number[];
+
+  @Output() afterAddChild: EventEmitter<any[]> = new EventEmitter();
+  @Output() afterDetachChild: EventEmitter<any[]> = new EventEmitter();
+  @Output() afterDropdownMenuDefaultOptions: EventEmitter<any[]> = new EventEmitter();
+  @Output() afterDropdownMenuHide: EventEmitter<any[]> = new EventEmitter();
+  @Output() afterDropdownMenuShow: EventEmitter<any[]> = new EventEmitter();
+  @Output() afterFilter: EventEmitter<any[]> = new EventEmitter();
+  @Output() afterTrimRow: EventEmitter<any[]> = new EventEmitter();
+  @Output() afterUntrimRow: EventEmitter<any[]> = new EventEmitter();
+  @Output() beforeAddChild: EventEmitter<any[]> = new EventEmitter();
+  @Output() beforeDetachChild: EventEmitter<any[]> = new EventEmitter();
+  @Output() beforeDropdownMenuSetItems: EventEmitter<any[]> = new EventEmitter();
+  @Output() beforeFilter: EventEmitter<any[]> = new EventEmitter();
+  @Output() hiddenColumn: EventEmitter<any[]> = new EventEmitter();
+  @Output() hiddenRow: EventEmitter<any[]> = new EventEmitter();
+
   constructor(
     private el: ElementRef,
     private _ngZone: NgZone,
-    private _hotRegisterer: HotRegisterer,
-    private _hotHelper: HotHelper) {
-      super();
-    }
+    private _hotTableRegisterer: HotTableRegisterer,
+    private _hotSettingResolver: HotSettingsResolver
+  ) {
+    super();
+  }
 
   ngOnInit() {
     this.container = document.createElement('div');
@@ -51,13 +81,13 @@ export class HotTableComponent extends BaseTableComponent implements AfterConten
   }
 
   ngAfterContentInit() {
-    let options = this._hotHelper.mergeSettings(this);
+    let options = this._hotSettingResolver.mergeSettings(this);
 
     if (this.columnsComponents.length > 0) {
       let columns = [];
 
       this.columnsComponents.forEach((column) => {
-        columns.push(this._hotHelper.mergeSettings(column));
+        columns.push(this._hotSettingResolver.mergeSettings(column));
       });
 
       options['columns'] = columns;
@@ -68,7 +98,7 @@ export class HotTableComponent extends BaseTableComponent implements AfterConten
     });
 
     if (this.hotId) {
-      this._hotRegisterer.registerInstance(this.hotId, this.hotInstance);
+      this._hotTableRegisterer.registerInstance(this.hotId, this.hotInstance);
     }
   }
 
@@ -77,7 +107,7 @@ export class HotTableComponent extends BaseTableComponent implements AfterConten
       return;
     }
 
-    let newOptions = this._hotHelper.prepareChanges(changes);
+    let newOptions = this._hotSettingResolver.prepareChanges(changes);
 
     this.updateHotTable(newOptions);
   }
@@ -86,7 +116,7 @@ export class HotTableComponent extends BaseTableComponent implements AfterConten
     this.hotInstance.destroy();
 
     if (this.hotId) {
-      this._hotRegisterer.removeInstance(this.hotId);
+      this._hotTableRegisterer.removeInstance(this.hotId);
     }
   }
 
@@ -106,7 +136,7 @@ export class HotTableComponent extends BaseTableComponent implements AfterConten
       let columns = [];
 
       this.columnsComponents.forEach((column) => {
-        columns.push(this._hotHelper.mergeSettings(column));
+        columns.push(this._hotSettingResolver.mergeSettings(column));
       });
 
       let newOptions = {
@@ -122,7 +152,7 @@ export class HotTableComponent extends BaseTableComponent implements AfterConten
 
     if (this.columnsComponents.length > 0) {
       this.columnsComponents.forEach((column) => {
-        columns.push(this._hotHelper.mergeSettings(column));
+        columns.push(this._hotSettingResolver.mergeSettings(column));
       });
     }
 

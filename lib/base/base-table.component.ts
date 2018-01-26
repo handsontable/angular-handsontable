@@ -47,6 +47,7 @@ export class BaseTableComponent {
   @Input() debug: boolean;
   @Input() defaultDate: string;
   @Input() disableVisualSelection: boolean | string | string[];
+  @Input() dragToScroll: boolean;
   @Input() editor: boolean | string | (() => void);
   @Input() enterBeginsEditing: boolean;
   @Input() enterMoves: object | (() => void);

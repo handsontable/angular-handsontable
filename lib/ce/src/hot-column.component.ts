@@ -4,8 +4,7 @@ import {
   OnInit,
   OnChanges,
   OnDestroy,
-  SimpleChanges,
-  Input,
+  SimpleChanges
 } from '@angular/core';
 
 import { BaseColumnComponent } from './base/base-column.component'

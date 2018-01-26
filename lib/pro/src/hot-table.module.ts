@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { HotTableComponent } from './hot-table.component';
 import { HotColumnComponent } from './hot-column.component';
-import { HotRegisterer } from './hot-registerer.service';
+import { HotTableRegisterer } from './hot-table-registerer.service';
 
 @NgModule({
   imports: [
@@ -21,11 +21,10 @@ import { HotRegisterer } from './hot-registerer.service';
 export class HotTableModule {
 
   public static forRoot(): ModuleWithProviders {
-
     return {
       ngModule: HotTableModule,
       providers: [
-        HotRegisterer
+        HotTableRegisterer
       ]
     };
   }

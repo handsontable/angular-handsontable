@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { HotRegisterer } from '../../dist/ce';
+import { HotTableRegisterer } from '../../dist/pro';
 
 @Component({
   selector: 'app-root',
   template: `
-<hot-table [colHeaders]="true"></hot-table>
-`,
+    <hot-table></hot-table>
+  `,
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
@@ -14,9 +14,13 @@ export class AppComponent {
   value$: Observable<string>;
 
   constructor (
-    registerer: HotRegisterer
+    private registerer: HotTableRegisterer
   ) {
 
+  }
+
+  ngAfterViewInit() {
+    console.log(this.registerer);
   }
 
 }

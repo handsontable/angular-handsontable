@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 
-import * as Handsontable from 'handsontable';
+import * as Handsontable from 'handsontable-pro';
 
 const instances = new Map<string, Handsontable>();
 
 @Injectable()
-export class HotRegisterer {
+export class HotTableRegisterer {
   public getInstance(id: string): Handsontable {
     return instances.get(id);
   }

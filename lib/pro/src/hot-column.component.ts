@@ -21,6 +21,20 @@ export class HotColumnComponent extends BaseColumnComponent implements OnInit, O
   private parentComponent: HotTableComponent;
   private firstRun = true;
 
+  @Input() bindRowsWithHeaders: boolean | string;
+  @Input() collapsibleColumns: boolean | object[];
+  @Input() columnSummary: object;
+  @Input() dropdownMenu: boolean | object | object[];
+  @Input() filters: boolean;
+  @Input() fixedRowsBottom: number;
+  @Input() formulas: boolean;
+  @Input() ganttChart: object;
+  @Input() headerTooltips: boolean | object;
+  @Input() hiddenColumns: boolean | object;
+  @Input() hiddenRows: boolean | object;
+  @Input() licenseKey: string;
+  @Input() trimRows: boolean | number[];
+
   constructor(private inj: Injector) {
     super();
 

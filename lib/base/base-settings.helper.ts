@@ -5,7 +5,7 @@ export const AVAILABLE_OPTIONS: string[] = ['allowEmpty', 'allowHtml', 'allowIns
 'columns', 'columnSorting', 'colWidths', 'commentedCellClassName', 'comments', 'contextMenu', 'copyable',
 'copyPaste', 'correctFormat', 'currentColClassName', 'currentHeaderClassName', 'currentRowClassName',
 'customBorders', 'data', 'dataSchema', 'dateFormat', 'debug', 'defaultDate', 'disableVisualSelection',
-'editor', 'enterBeginsEditing', 'enterMoves', 'fillHandle', 'filter', 'filteringCaseSensitive',
+'dragToScroll', 'editor', 'enterBeginsEditing', 'enterMoves', 'fillHandle', 'filter', 'filteringCaseSensitive',
 'fixedColumnsLeft', 'fixedRowsTop', 'fragmentSelection', 'height', 'invalidCellClassName', 'label',
 'language', 'manualColumnFreeze', 'manualColumnMove', 'manualColumnResize', 'manualRowMove', 'manualRowResize',
 'maxCols', 'maxRows', 'mergeCells', 'minCols', 'minRows', 'minSpareCols', 'minSpareRows', 'multiSelect',
