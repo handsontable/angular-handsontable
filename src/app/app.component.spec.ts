@@ -1,4 +1,5 @@
 import { TestBed, async } from '@angular/core/testing';
+
 import { HotTableModule } from '../../dist';
 import { AppComponent } from './app.component';
 

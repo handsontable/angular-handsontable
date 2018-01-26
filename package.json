@@ -1,30 +1,51 @@
 {
   "name": "angular-handsontable",
   "version": "1.0.0-beta3",
-  "description": "Official Angular 2 directive for Handsontable",
+  "description": "Official Angular.io directive for Handsontable",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/handsontable/angular-handsontable.git"
+    "url": "https://github.com/handsontable/angular-handsontable.git"
+  },
+  "author": {
+    "name": "Handsoncode",
+    "email": "hello@handsontable.com"
   },
   "keywords": [
     "angular",
     "angular2",
     "angular4",
+    "angular5",
+    "ngx",
     "handsontable",
+    "data",
+    "grid",
     "table",
+    "editor",
+    "grid-editor",
+    "data-grid",
+    "data-table",
     "spreadsheet",
-    "datatable",
-    "data"
+    "excel",
+    "tabular-data",
+    "edit-cell",
+    "editable-table",
+    "data-spreadsheet"
   ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/handsontable/angular-handsontable/issues"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "build:app": "rimraf src/lib && rimraf dist && npm run build:lib && cpr dist src/lib && ng build --app packages && rimraf src/lib",
-    "build:lib": "rimraf dist && npm run build:lib:ce && npm run build:lib:pro",
+    "build:lib": "rimraf dist && rimraf lib/ce/src/base && rimraf lib/pro/src/base && npm run build:lib:ce && npm run build:lib:pro && npm run copy:utils",
     "build:lib:ce": "cpr lib/base lib/ce/src/base && ng-packagr -p lib/ce/package.json && rimraf lib/ce/src/base",
     "build:lib:pro": "cpr lib/base lib/pro/src/base && ng-packagr -p lib/pro/package.json && rimraf lib/pro/src/base",
-    "test": "ng test",
+    "clean:base": "rimraf lib/ce/src/base && rimraf lib/pro/src/base",
+    "copy:utils": "cpr LICENSE dist/LICENSE && cpr CONTRIBUTING.md dist/CONTRIBUTING.md && cpr README.md dist/README.md && cpr lib/package.json dist/package.json",
+    "test": "npm run lint && npm run build:lib && ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
@@ -41,11 +62,11 @@
     "handsontable": "^0.35.1",
     "handsontable-pro": "^1.15.1",
     "rxjs": "^5.4.2",
-    "zone.js": "^0.8.14"
+    "zone.js": "^0.8.19"
   },
   "devDependencies": {
     "@angular-devkit/schematics": "^0.0.52",
-    "@angular/cli": "~1.6.0",
+    "@angular/cli": "^1.6.5",
     "@angular/compiler-cli": "~5.2.0",
     "@angular/language-service": "~5.2.0",
     "@types/jasmine": "~2.8.0",
@@ -64,8 +85,8 @@
     "protractor": "~5.2.0",
     "rimraf": "^2.6.1",
     "ts-node": "~4.1.0",
-    "tslint": "~5.9.0",
     "tsickle": "^0.26.0",
+    "tslint": "~5.9.0",
     "typescript": "~2.6.1"
   }
 }
