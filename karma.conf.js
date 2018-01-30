@@ -22,6 +22,7 @@ module.exports = function (config) {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
     files: [
+      "node_modules/handsontable-pro/dist/handsontable.full.min.css",
       { pattern: './src/test.ts', watched: false }
     ],
     preprocessors: {
@@ -42,7 +43,7 @@ module.exports = function (config) {
               : ['progress', 'kjhtml'],
     port: 9876,
     colors: true,
-    logLevel: config.LOG_INFO,
+    logLevel: config.LOG_WARN,
     autoWatch: false,
     browsers: ['Chrome'],
     singleRun: true

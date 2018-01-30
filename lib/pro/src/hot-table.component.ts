@@ -44,6 +44,7 @@ export class HotTableComponent extends BaseTableComponent implements AfterConten
   @Input() hiddenColumns: boolean | object;
   @Input() hiddenRows: boolean | object;
   @Input() licenseKey: string;
+  @Input() nestedHeaders: boolean | any[];
   @Input() trimRows: boolean | number[];
 
   @Output() afterAddChild: EventEmitter<any[]> = new EventEmitter();
@@ -95,11 +96,12 @@ export class HotTableComponent extends BaseTableComponent implements AfterConten
 
     this._ngZone.runOutsideAngular(() => {
       this.hotInstance = new Handsontable(this.container, options);
+
+      if (this.hotId) {
+        this._hotTableRegisterer.registerInstance(this.hotId, this.hotInstance);
+      }
     });
 
-    if (this.hotId) {
-      this._hotTableRegisterer.registerInstance(this.hotId, this.hotInstance);
-    }
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -118,12 +120,16 @@ export class HotTableComponent extends BaseTableComponent implements AfterConten
     if (this.hotId) {
       this._hotTableRegisterer.removeInstance(this.hotId);
     }
+
+    this.el.nativeElement.removeChild(this.container);
+    this.container = void 0;
   }
 
   updateHotTable(newSettings: object) {
     if (!this.hotInstance) {
       return;
     }
+
     this.hotInstance.updateSettings(newSettings, false);
   }
 

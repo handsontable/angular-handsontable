@@ -87,6 +87,9 @@ export class HotTableComponent extends BaseTableComponent implements AfterConten
     if (this.hotId) {
       this._hotTableRegisterer.removeInstance(this.hotId);
     }
+
+    this.el.nativeElement.removeChild(this.container);
+    this.container = void 0;
   }
 
   updateHotTable(newSettings: object) {

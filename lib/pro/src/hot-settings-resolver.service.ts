@@ -36,6 +36,7 @@ export class HotSettingsResolver extends BaseSettingsResolver {
         'hiddenColumns',
         'hiddenRows',
         'licenseKey',
+        'nestedHeaders',
         'trimRows',
       ]),
     );

@@ -1,26 +1,21 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import * as Handsontable from 'handsontable-pro';
+
 import { HotTableRegisterer } from '../../dist/pro';
 
 @Component({
   selector: 'app-root',
-  template: `
-    <hot-table></hot-table>
-  `,
-  styleUrls: ['./app.component.css']
+  template: `<hot-table></hot-table>`
 })
 export class AppComponent {
-
-  value$: Observable<string>;
+  id: string = 'hot';
+  public prop: object = {};
 
   constructor (
-    private registerer: HotTableRegisterer
-  ) {
+    private _registerer: HotTableRegisterer
+  ) { }
 
-  }
-
-  ngAfterViewInit() {
-    console.log(this.registerer);
-  }
-
+  getHotInstance(instance: string): Handsontable {
+    return this._registerer.getInstance(instance);
+  };
 }
