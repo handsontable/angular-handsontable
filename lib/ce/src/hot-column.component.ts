@@ -11,6 +11,7 @@ import {
 import { HotTableComponent } from './hot-table.component';
 
 @Component({
+  // tslint:disable-next-line
   selector: 'hot-column',
   template: '',
 })

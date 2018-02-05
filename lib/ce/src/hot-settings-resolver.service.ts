@@ -50,8 +50,8 @@ export class HotSettingsResolver {
   private hooks = AVAILABLE_HOOKS;
   private options = AVAILABLE_OPTIONS;
 
-  public mergeSettings(component): object {
-    let mergedSettings: object = {};
+  mergeSettings(component): object {
+    const mergedSettings: object = {};
 
     if (component['settings'] !== void 0) {
       Object.keys(component['settings']).forEach((key) => {
@@ -68,7 +68,7 @@ export class HotSettingsResolver {
     }
 
     this.options.forEach((key) => {
-      let option = component[key];
+      const option = component[key];
 
       if (option !== void 0) {
         mergedSettings[key] = option;
@@ -76,7 +76,7 @@ export class HotSettingsResolver {
     });
 
     this.hooks.forEach((key) => {
-      let hook = component[key];
+      const hook = component[key];
 
       if (hook && hook.observers.length > 0) {
         mergedSettings[key] = (p1,  p2,  p3,  p4,  p5,  p6) => {
@@ -91,7 +91,7 @@ export class HotSettingsResolver {
   }
 
   prepareChanges(changes: SimpleChanges): object {
-    let result: object = {};
+    const result: object = {};
     const parameters: string[] = Object.keys(changes);
 
     parameters.forEach((param) => {
