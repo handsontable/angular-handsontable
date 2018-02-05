@@ -46,7 +46,8 @@ module.exports = function (config) {
     logLevel: config.LOG_WARN,
     autoWatch: false,
     browsers: ['Chrome'],
-    singleRun: true
+    singleRun: true,
+    browserNoActivityTimeout: 60000
   };
 
   if (process.env.TRAVIS) {
