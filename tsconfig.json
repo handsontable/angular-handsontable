@@ -15,7 +15,10 @@
     "lib": [
       "es2016",
       "dom"
-    ]
+    ],
+    "paths": {
+      "angular-handsontable": ["dist"]
+    }
   },
   "exclude": [
     ".ng_build"

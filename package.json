@@ -1,6 +1,6 @@
 {
   "name": "angular-handsontable",
-  "version": "1.0.0-beta3",
+  "version": "1.0.0-beta4",
   "description": "Official Angular.io directive for Handsontable",
   "repository": {
     "type": "git",
@@ -41,9 +41,8 @@
     "build": "ng build",
     "build:app": "rimraf src/lib && rimraf dist && npm run build:lib && cpr dist src/lib && ng build --app packages && rimraf src/lib",
     "build:lib": "rimraf dist && rimraf lib/ce/src/base && rimraf lib/pro/src/base && npm run build:lib:ce && npm run build:lib:pro && npm run copy:utils",
-    "build:lib:ce": "cpr lib/base lib/ce/src/base && ng-packagr -p lib/ce/package.json && rimraf lib/ce/src/base",
-    "build:lib:pro": "cpr lib/base lib/pro/src/base && ng-packagr -p lib/pro/package.json && rimraf lib/pro/src/base",
-    "clean:base": "rimraf lib/ce/src/base && rimraf lib/pro/src/base",
+    "build:lib:ce": "ng-packagr -p lib/ce/package.json",
+    "build:lib:pro": "ng-packagr -p lib/pro/package.json",
     "copy:utils": "cpr LICENSE dist/LICENSE && cpr CONTRIBUTING.md dist/CONTRIBUTING.md && cpr README.md dist/README.md && cpr lib/package.json dist/package.json",
     "test": "npm run lint && npm run build:lib && ng test",
     "lint": "ng lint",

@@ -9,7 +9,9 @@
       "jasmine",
       "node"
     ],
-    "paths": { }
+    "paths": {
+      "angular-handsontable": ["../dist"]
+    }
   },
   "files": [
     "test.ts"

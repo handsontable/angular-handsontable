@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { HotTableModule } from '../../dist/pro';
+import { HotTableModule } from 'angular-handsontable';
 
 @NgModule({
   declarations: [
@@ -10,7 +10,7 @@ import { HotTableModule } from '../../dist/pro';
   ],
   imports: [
     BrowserModule,
-    HotTableModule.forRoot()
+    HotTableModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]
