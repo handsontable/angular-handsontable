@@ -19,6 +19,7 @@ import { HotSettingsResolver } from './hot-settings-resolver.service';
 import { HotColumnComponent } from './hot-column.component';
 
 @Component({
+  // tslint:disable-next-line
   selector: 'hot-table',
   template: '',
   encapsulation: ViewEncapsulation.None,
@@ -311,10 +312,10 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy
   }
 
   ngAfterContentInit() {
-    let options = this._hotSettingResolver.mergeSettings(this);
+    const options = this._hotSettingResolver.mergeSettings(this);
 
     if (this.columnsComponents.length > 0) {
-      let columns = [];
+      const columns = [];
 
       this.columnsComponents.forEach((column) => {
         columns.push(this._hotSettingResolver.mergeSettings(column));
@@ -338,7 +339,7 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy
       return;
     }
 
-    let newOptions = this._hotSettingResolver.prepareChanges(changes);
+    const newOptions = this._hotSettingResolver.prepareChanges(changes);
 
     this.updateHotTable(newOptions);
   }
@@ -368,13 +369,13 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy
     }
 
     if (this.columnsComponents.length > 0) {
-      let columns = [];
+      const columns = [];
 
       this.columnsComponents.forEach((column) => {
         columns.push(this._hotSettingResolver.mergeSettings(column));
       });
 
-      let newOptions = {
+      const newOptions = {
         columns: columns
       };
 
@@ -383,7 +384,7 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy
   }
 
   onAfterColumnsNumberChange() {
-    let columns = [];
+    const columns = [];
 
     if (this.columnsComponents.length > 0) {
       this.columnsComponents.forEach((column) => {
