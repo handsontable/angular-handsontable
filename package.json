@@ -43,7 +43,9 @@
     "build:lib": "rimraf dist && rimraf lib/ce/src/base && rimraf lib/pro/src/base && npm run build:lib:ce && npm run build:lib:pro && npm run copy:utils",
     "build:lib:ce": "ng-packagr -p lib/ce/package.json",
     "build:lib:pro": "ng-packagr -p lib/pro/package.json",
-    "copy:utils": "cpr LICENSE dist/LICENSE && cpr CONTRIBUTING.md dist/CONTRIBUTING.md && cpr README.md dist/README.md && cpr lib/package.json dist/package.json",
+    "copy:utils": "npm run copy:utils:ce && npm run copy:utils:pro",
+    "copy:utils:ce": "cpr LICENSE dist/ce/LICENSE && cpr CONTRIBUTING.md dist/ce/CONTRIBUTING.md && cpr README.md dist/ce/README.md",
+    "copy:utils:pro": "cpr LICENSE dist/pro/LICENSE && cpr CONTRIBUTING.md dist/pro/CONTRIBUTING.md && cpr README.md dist/pro/README.md",
     "test": "npm run lint && npm run build:lib && ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

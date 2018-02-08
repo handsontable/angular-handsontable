@@ -1,5 +1,44 @@
 {
-  "name": "angular-handsontable",
+  "name": "@angular-handsontable/pro",
+  "version": "1.0.0",
+  "description": "Official Angular.io directive for Handsontable",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/handsontable/angular-handsontable.git"
+  },
+  "author": {
+    "name": "Handsoncode",
+    "email": "hello@handsontable.com"
+  },
+  "keywords": [
+    "angular",
+    "angular2",
+    "angular4",
+    "angular5",
+    "ngx",
+    "handsontable",
+    "data",
+    "grid",
+    "table",
+    "editor",
+    "grid-editor",
+    "data-grid",
+    "data-table",
+    "spreadsheet",
+    "excel",
+    "tabular-data",
+    "edit-cell",
+    "editable-table",
+    "data-spreadsheet"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/handsontable/angular-handsontable/issues"
+  },
+  "peerDependencies": {
+    "handsontable-pro": "1.15.0",
+    "zone.js": "^0.8.19"
+  },
   "ngPackage": {
     "$schema": "./node_modules/ng-packagr/ng-package.schema.json",
     "dest": "../../dist/pro",

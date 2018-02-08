@@ -1,5 +1,5 @@
 import { TestBed, async } from '@angular/core/testing';
-import { HotTableModule } from '../../dist';
+import { HotTableModule } from '../../dist/pro';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
