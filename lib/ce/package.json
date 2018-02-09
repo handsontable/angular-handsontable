@@ -1,6 +1,6 @@
 {
-  "name": "@angular-handsontable/ce",
-  "version": "1.0.0",
+  "name": "@handsontable/angular",
+  "version": "1.0.0-beta4",
   "description": "Official Angular.io directive for Handsontable",
   "repository": {
     "type": "git",
@@ -36,7 +36,7 @@
     "url": "https://github.com/handsontable/angular-handsontable/issues"
   },
   "peerDependencies": {
-    "handsontable": "0.35.0",
+    "handsontable": "0.35.1",
     "zone.js": "^0.8.19"
   },
   "ngPackage": {
