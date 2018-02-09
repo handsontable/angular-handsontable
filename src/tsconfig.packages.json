@@ -1,0 +1,24 @@
+{
+  "extends": "../tsconfig.json",
+  "angularCompilerOptions": {
+    "paths": {
+      "angular-handsontable": ["../dist/ce"],
+      "angular-handsontable/pro": ["../dist/pro"]
+    }
+  },
+  "compilerOptions": {
+    "outDir": "../out-tsc/app",
+    "module": "es2015",
+    "baseUrl": "",
+    "types": [],
+    "paths": {
+      "angular-handsontable": ["../dist/ce"],
+      "angular-handsontable/pro": ["../dist/pro"]
+    }
+  },
+  "exclude": [
+    "test.ts",
+    "**/*.spec.ts",
+    "app/test.component.ts"
+  ]
+}

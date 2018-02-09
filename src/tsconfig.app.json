@@ -1,0 +1,24 @@
+{
+  "extends": "../tsconfig.json",
+  "angularCompilerOptions": {
+    "paths": {
+      "angular-handsontable": ["../lib/ce/src/public_api.ts"],
+      "angular-handsontable/pro": ["../lib/pro/src/public_api.ts"]
+    }
+  },
+  "compilerOptions": {
+    "outDir": "../out-tsc/app",
+    "module": "es2015",
+    "baseUrl": "",
+    "types": [],
+    "paths": {
+      "angular-handsontable": ["../lib/ce/src/public_api.ts"],
+      "angular-handsontable/pro": ["../lib/pro/src/public_api.ts"]
+    }
+  },
+  "exclude": [
+    "test.ts",
+    "**/*.spec.ts",
+    "app/test.component.ts"
+  ]
+}
