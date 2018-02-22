@@ -18,7 +18,6 @@ import { HotTableComponent } from './hot-table.component';
 })
 
 export class HotColumnComponent implements OnInit, OnChanges, OnDestroy {
-  private parentComponent: HotTableComponent;
   private firstRun = true;
 
   @Input() allowEmpty: boolean;
@@ -141,8 +140,7 @@ export class HotColumnComponent implements OnInit, OnChanges, OnDestroy {
   @Input() licenseKey: string;
   @Input() trimRows: boolean | number[];
 
-  constructor(private inj: Injector) {
-    this.parentComponent = this.inj.get(HotTableComponent);
+  constructor(private parentComponent: HotTableComponent) {
   }
 
   ngOnInit() {
