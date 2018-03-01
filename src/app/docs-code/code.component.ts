@@ -1,12 +1,12 @@
 import { Component,
-          Input,
-          ViewChild,
-          ViewEncapsulation,
-          ElementRef,
-          AfterViewInit,
-          OnInit } from '@angular/core';
-import Prism from 'prismjs';
-import {MdSnackBar, MdButton} from '@angular/material';
+  Input,
+  ViewChild,
+  ViewEncapsulation,
+  ElementRef,
+  AfterViewInit,
+  OnInit } from '@angular/core';
+import * as Prism from 'prismjs';
+import { MatSnackBar, MatButton } from '@angular/material';
 
 import * as octicons from 'octicons';
 
@@ -14,28 +14,28 @@ import 'prismjs/plugins/line-numbers/prism-line-numbers.js';
 import 'prismjs/components/prism-typescript.js';
 
 @Component({
-  encapsulation: ViewEncapsulation.None,
-  selector: 'docs-code',
-  template: `
-    <div *ngIf="title" class="title">{{title}}</div>
-    <button md-button #button (click)='copyInput()' class="btn-copy">${octicons['clippy'].toSVG()}${octicons['check'].toSVG()}</button>
-    <pre #pre><code #code></code></pre>
-  `,
-  styleUrls: ['./code.component.scss'],
+encapsulation: ViewEncapsulation.None,
+selector: 'app-docs-code',
+template: `
+  <div *ngIf="title" class="title">{{title}}</div>
+  <button mat-button #button (click)='copyInput()' class="btn-copy">${octicons['clippy'].toSVG()}${octicons['check'].toSVG()}</button>
+  <pre #pre><code #code></code></pre>
+`,
+styleUrls: ['./code.component.scss'],
 })
 export class CodeComponent implements AfterViewInit, OnInit {
   @ViewChild('code') code: ElementRef;
   @ViewChild('pre') pre: ElementRef;
-  @ViewChild('button') button: MdButton;
+  @ViewChild('button') button: MatButton;
   @Input() input: string;
   @Input() title: string;
   @Input() start: number;
-  @Input() lang: string = 'javascript';
+  @Input() lang = 'javascript';
 
-  constructor(private _el: ElementRef, public snackBar: MdSnackBar) { }
+  constructor(private _el: ElementRef, public snackBar: MatSnackBar) { }
 
   copyInput() {
-    let textarea = document.createElement('textarea');
+    const textarea = document.createElement('textarea');
     textarea.value = this.input;
 
     this._el.nativeElement.appendChild(textarea);
@@ -47,7 +47,7 @@ export class CodeComponent implements AfterViewInit, OnInit {
       return document.execCommand('copy');
 
     } catch (ex) {
-      console.warn("Copy to clipboard failed.", ex);
+      console.warn('Copy to clipboard failed.', ex);
       return false;
 
     } finally {
@@ -58,12 +58,12 @@ export class CodeComponent implements AfterViewInit, OnInit {
       });
 
       setTimeout(() => {
-        let className = this.button._elementRef.nativeElement.className;
+          const className = this.button._elementRef.nativeElement.className;
 
-        if ((/success/).test(className)) {
-          this.button._elementRef.nativeElement.className = className.replace(/\ssuccess/, '');
-        }
-      }, 1000);
+          if ((/success/).test(className)) {
+            this.button._elementRef.nativeElement.className = className.replace(/\ssuccess/, '');
+          }
+        }, 1000);
     }
   }
 
