@@ -7,7 +7,7 @@
     "start": "ng serve",
     "build": "ng build",
     "build:prod": "ng build --base-href \"/angular-handsontable/\" --prod --aot",
-    "test": "ng test",
+    "test": "npm run lint && ng test --single-run",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "deploy": "npm run build:prod && angular-cli-ghpages --message \"Deploy\""
