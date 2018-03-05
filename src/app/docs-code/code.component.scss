@@ -1,7 +1,7 @@
 @import '~prismjs/themes/prism.css';
 @import '~prismjs/plugins/line-numbers/prism-line-numbers.css';
 
-docs-code {
+app-docs-code {
   position: relative;
   display: block;
   margin-bottom: 2rem;
@@ -37,7 +37,7 @@ docs-code {
       text-shadow: none;
     }
   }
-  
+
 
   textarea {
     position: absolute;
@@ -89,5 +89,4 @@ docs-code {
       }
     }
   }
-    
 }

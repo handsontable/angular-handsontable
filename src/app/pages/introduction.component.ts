@@ -5,14 +5,16 @@ import * as octicons from 'octicons';
   template: `
     <div class="docs-content">
       <div class="infobox infobox-info">
-        <h2>Latest version <strong>1.0.0-beta3</strong>, released on <strong>September 26th, 2017</strong></h2>
-        <p>Compatible with Handsontable Community Edition v0.34.4 and Pro v1.14.2</p>
-        <p>Requirements:</p>
+        <h2>Latest version <strong>1.0.0-beta4</strong>, released on <strong>February 9th, 2018</strong></h2>
+        <p><code>@handsontable-pro/angular</code> compatible with Handsontable Pro v1.15.1</p>
+        <p><code>@handsontable/angular</code> compatible with Handsontable Community Edition v0.35.1</p>
+        <h3>Requirements:</h3>
         <ul>
           <li><code>node</code> v6.9.0+</li>
           <li><code>npm</code> v3.0.0+</li>
-          <li><code>typescript</code> v2.2.0+</li>
-          <li><code>@angular/cli</code> v1.1.0+</li>
+          <li><code>typescript</code> v2.5.0+</li>
+          <li><code>@angular/cli</code> v1.6.0+</li>
+          <li><code>zone.js</code> v0.8.0+</li>
         </ul>
       </div>
       <h2>Getting started</h2>
@@ -48,22 +50,29 @@ import * as octicons from 'octicons';
       </ul>
 
       <h2>Contributing</h2>
-      <p>Everyone is welcome to contribute to this open source project. If you feel that something needs to be tweaked or fixed, let us know.</p>
+      <p>Everyone is welcome to contribute to this open source project.
+        If you feel that something needs to be tweaked or fixed, let us know.</p>
       <ul>
         <li><a routerLink="/support">Become a contributor</a></li>
-        <li><a href="https://github.com/handsontable/angular-handsontable/issues/new" target="_blank">Report an issue ${octicons['link-external'].toSVG()}</a></li>
+        <li><a href="https://github.com/handsontable/angular-handsontable/issues/new" target="_blank">Report an issue
+        ${octicons['link-external'].toSVG()}</a></li>
       </ul>
 
       <h2>Copyright and license</h2>
       <ul>
-        <li>Handsontable Community Edition is released under the <a routerLink="/license">MIT license</a>. Copyrights belong to Handsoncode sp. z o.o.</li>
-        <li>angular-handsontable is released under the <a routerLink="/license">MIT license</a>. Copyrights belong to Handsoncode sp. z o.o.</li>
-        <li>Documentation licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0 ${octicons['link-external'].toSVG()}</a>.</li>
+        <li>Handsontable Community Edition is released under the <a routerLink="/license">MIT license</a>.
+        Copyrights belong to Handsoncode sp. z o.o.</li>
+        <li>@handsontable/angular is released under the <a routerLink="/license">MIT license</a>.
+        Copyrights belong to Handsoncode sp. z o.o.</li>
+        <li>@handsontable-pro/angular is released under the <a routerLink="/license">MIT license</a>.
+        Copyrights belong to Handsoncode sp. z o.o.</li>
+        <li>Documentation licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0
+        ${octicons['link-external'].toSVG()}</a>.</li>
       </ul>
 
       <h2>Next step</h2>
       <ul>
-        <li><a routerLink="/quick-start">Install angular-handsontable</a></li>
+        <li><a routerLink="/quick-start">Install @handsontable/angular</a></li>
       </ul>
     </div>
   `

@@ -7,7 +7,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { CodeModule } from './docs-code/code.module';
 import { DocsMaterialModule } from './docs-material.module';
-import { HotTableModule } from 'angular-handsontable/index';
+import { HotTableModule } from '@handsontable-pro/angular';
 
 import { AppComponent } from './app.component';
 
@@ -20,8 +20,7 @@ import { MoreWrappersComponent } from './pages/more-wrappers.component';
 
 import { ExSettingsObjectComponent } from './pages/examples/settings-object.component';
 import { ExDeclarativeWayComponent } from './pages/examples/declarative-way.component';
-import { ExStaticColumnsComponent } from './pages/examples/static-columns.component';
-import { ExDynamicColumnsComponent } from './pages/examples/dynamic-columns.component';
+import { ExColumnsComponent } from './pages/examples/columns.component';
 import { ExAccessToHandsontableComponent } from './pages/examples/access-to-handsontable.component';
 import { ExHooksComponent } from './pages/examples/hooks.component';
 import { ExRemoteDataComponent } from './pages/examples/remote-data.component';
@@ -36,9 +35,12 @@ const appRoutes: Routes = [
   { path: 'examples',   redirectTo: '/examples/settings-object', pathMatch: 'full' },
   { path: 'examples/settings-object', component: ExSettingsObjectComponent, data: {title: ' - Examples - Settings object'} },
   { path: 'examples/declarative-way', component: ExDeclarativeWayComponent, data: {title: ' - Examples - Declarative way'} },
-  { path: 'examples/static-columns', component: ExStaticColumnsComponent, data: {title: ' - Examples - Static columns'} },
-  { path: 'examples/dynamic-columns', component: ExDynamicColumnsComponent, data: {title: ' - Examples - Dynamic columns'} },
-  { path: 'examples/access-to-handsontable', component: ExAccessToHandsontableComponent, data: {title: ' - Examples - Access to Handsontable'} },
+  { path: 'examples/column-component', component: ExColumnsComponent, data: {title: ' - Examples - Column component'} },
+  {
+    path: 'examples/access-to-handsontable',
+    component: ExAccessToHandsontableComponent,
+    data: {title: ' - Examples - Access to Handsontable'},
+  },
   { path: 'examples/hooks', component: ExHooksComponent, data: {title: ' - Examples - Hooks'} },
   { path: 'examples/remote-data', component: ExRemoteDataComponent, data: {title: ' - Examples - Remote data'} },
 
@@ -61,8 +63,7 @@ const appRoutes: Routes = [
 
     ExSettingsObjectComponent,
     ExDeclarativeWayComponent,
-    ExStaticColumnsComponent,
-    ExDynamicColumnsComponent,
+    ExColumnsComponent,
     ExAccessToHandsontableComponent,
     ExHooksComponent,
     ExRemoteDataComponent,
@@ -75,11 +76,11 @@ const appRoutes: Routes = [
     HttpClientModule,
     FormsModule,
     DocsMaterialModule,
-    HotTableModule,
+    HotTableModule.forRoot(),
     CodeModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [ Title ],
-  bootstrap: [ AppComponent ]
+  providers: [Title],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
