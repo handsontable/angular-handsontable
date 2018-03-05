@@ -1,5 +1,5 @@
 # angular-handsontable  [![Build Status](https://travis-ci.org/handsontable/angular-handsontable.png?branch=master)](https://travis-ci.org/handsontable/angular-handsontable)
-Official Angular module for Handsontable [Handsontable](https://github.com/handsontable/handsontable).
+Official Angular module for [Handsontable](https://github.com/handsontable/handsontable).
 
 ## Table of contents
 1. [Installation](#installation)
@@ -10,7 +10,7 @@ Official Angular module for Handsontable [Handsontable](https://github.com/hands
 6. [Other wrappers](#other-wrappers)
 
 ## Installation
-To install a wrapper for Handsontable CE:
+To install a wrapper for Handsontable Community Edition (CE):
 
 ```
 npm install @handsontable/angular handsontable
@@ -54,7 +54,7 @@ app/app.component.html
 <hot-table></hot-table>
 ```
 ## Examples
-- [Simple implementation for Handsontable CE](https://stackblitz.com/edit/angular-handsontable-ce)
+- [A basic implementation for Handsontable CE](https://stackblitz.com/edit/angular-handsontable-ce)
 
 ## License
 @handsontable/angular is released under the [MIT license](https://github.com/handsontable/angular-handsontable/blob/master/LICENSE).
@@ -62,10 +62,10 @@ app/app.component.html
 Copyrights belong to Handsoncode sp. z o.o.
 
 ## Contact
-Feel free to give us feedback on this wrapper using this [contact form](https://handsontable.com/contact.html) or write directly at hello@handsontable.com.
+Feel free to give us feedback on this wrapper using this [contact form](https://handsontable.com/contact.html).
 
 ## Other Wrappers
-Handsontable comes with more wrappers and directives for popular frameworks:
+Handsontable is available for other popular frameworks:
 
 - [hot-table](https://github.com/handsontable/hot-table) (Polymer - WebComponents)
 - [ngHandsontable](https://github.com/handsontable/ngHandsontable) (Angular 1)
