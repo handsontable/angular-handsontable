@@ -14,11 +14,11 @@ import * as octicons from 'octicons';
         src="https://stackblitz.com/edit/handsontable-angular-hooks?embed=1
         &file=app/app.component.ts&hideExplorer=1&hideNavigation=1&view=editor"></iframe>
 
-      <h2>Setup a template</h2>
+      <h2>Set up a template</h2>
       <p>When you use hook callback as binding, the context of the method is your component. If you
         expect to get hook params, they all are in <code>$event</code> variable. EventEmitter could
         return only one variable and because of this, we decided to return <code>$event</code>
-        as a object with reference to the Handsontable instance and an array of params <code>[p1, p2, p3, p4, p5, p6]</code>.</p>
+        as an object with reference to the Handsontable instance and an array of parameters <code>[p1, p2, p3, p4, p5, p6]</code>.</p>
       <div class="infobox infobox-info">
         <p>Please note that only hooks defined inside the settings object can return <code>false</code>.</p>
       </div>

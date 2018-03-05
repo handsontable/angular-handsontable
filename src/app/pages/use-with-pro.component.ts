@@ -11,7 +11,7 @@ import * as octicons from 'octicons';
       which is a part of official documentation of Angular. When your app is properly configured,
       move forward to step 2.</p>
 
-      <h2 id="install-wrapper">Step 2. Add wrapper to the project</h2>
+      <h2 id="install-wrapper">Step 2. Add the wrapper to your project</h2>
       <p>Although there are many ways to install this wrapper, we recommend using the most popular,
       which is npm/yarn:</p>
       <p><strong>npm</strong></p>
@@ -20,7 +20,7 @@ import * as octicons from 'octicons';
       <app-docs-code lang='bash' input='yarn add @handsontable-pro/angular handsontable-pro'></app-docs-code>
 
       <h2 id="add-wrapper-in-module">Step 3. Import a wrapper</h2>
-      <p>Import wrapper module to your application by importing it into your main module.</p>
+      <p>Import the wrapper module to your application by importing it into your main module.</p>
       <iframe class="stackblitz" style="min-height: 300px;" src="https://stackblitz.com/edit/handsontable-pro-angular?embed=1
         &file=app/app.module.ts&hideExplorer=1&hideNavigation=1&view=editor"></iframe>
 

@@ -7,20 +7,20 @@ import * as octicons from 'octicons';
     <div class="docs-content">
       <h1>Bind Handsontable to a remote data source</h1>
 
-      <h2>Setup a module</h2>
+      <h2>Set up a module</h2>
       <p>Add an <code>HttpClientModule</code> module to the main module to handle the asynchronous requests.</p>
       <iframe class="stackblitz" style="min-height: 500px;"
         src="https://stackblitz.com/edit/handsontable-angular-remote-data?embed=1
         &file=app/app.module.ts&hideExplorer=1&hideNavigation=1&view=editor"></iframe>
 
-      <h2>Setup a service</h2>
+      <h2>Set up a service</h2>
       <p>Except for the code responsible for all the logic behind your app, you need to import
         an <code>HttpClient</code> class to be able to handle asynchronous requests from/to the server.</p>
       <iframe class="stackblitz" style="min-height: 350px;"
         src="https://stackblitz.com/edit/handsontable-angular-remote-data?embed=1
         &file=app/app.service.ts&hideExplorer=1&hideNavigation=1&view=editor"></iframe>
 
-      <h2>Setup a component</h2>
+      <h2>Set up a component</h2>
       <p>Add properties what do you need and load data using service.</p>
       <iframe class="stackblitz" style="min-height: 1100px;"
         src="https://stackblitz.com/edit/handsontable-angular-remote-data?embed=1

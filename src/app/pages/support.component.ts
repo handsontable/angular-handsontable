@@ -33,7 +33,7 @@ import * as octicons from 'octicons';
         <li>Always make the target of your pull request the <code>develop</code> branch, not
           <code>master</code>.</li>
         <li><strong>Important: For any change you make, please add at least one test case</strong>
-          in proper <code>src/app/*.spec.ts</code> file. That will help us to better understand the issue and make sure
+          in the proper <code>src/app/*.spec.ts</code> file. That will help us to understand the issue better and make sure
           that it stays fixed forever.</li>
         <li>Please review our <a href="https://github.com/airbnb/javascript" target="_blank">coding style
           ${octicons['link-external'].toSVG()}</a> for

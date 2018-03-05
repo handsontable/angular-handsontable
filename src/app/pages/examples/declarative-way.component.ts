@@ -6,7 +6,7 @@ import * as octicons from 'octicons';
     <div class="docs-content">
       <h1>Initialize Handsontable by using bindings.</h1>
 
-      <h2>Setup a component</h2>
+      <h2>Set up a component</h2>
       <p>Control Handsontable by binding properties in the template in a declarative way.
       <a href="https://docs.handsontable.com/Options.html" target="_blank">Explore the list of
       available options ${octicons['link-external'].toSVG()}</a> and move forward to configuring
@@ -18,7 +18,7 @@ import * as octicons from 'octicons';
         src="https://stackblitz.com/edit/handsontable-angular-bindings?embed=1
         &file=app/app.component.ts&hideExplorer=1&hideNavigation=1&view=editor"></iframe>
 
-      <h2>Setup a template</h2>
+      <h2>Set up a template</h2>
       <p>To display Handsontable, you need to place each attribute separately inside a particular tag.</p>
       <iframe class="stackblitz" style="min-height: 250px;"
         src="https://stackblitz.com/edit/handsontable-angular-bindings?embed=1
