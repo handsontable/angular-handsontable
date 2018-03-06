@@ -11,7 +11,7 @@ import * as octicons from 'octicons';
       <p>You can control the spreadsheet by passing various options defining its style, behavior,
       plugins in use etc. To do that, create an object, in which you can place all the chosen options.</p>
       <p><a href="https://docs.handsontable.com/Options.html" target="_blank">See the complete list
-      of options ${octicons['link-external'].toSVG()}</a>.</p>
+      of options <app-octicon icon="link-external"></app-octicon></a>.</p>
       <iframe class="stackblitz" style="min-height: 400px;"
         src="https://stackblitz.com/edit/handsontable-angular-settings-object?embed=1
         &file=app/app.component.ts&hideExplorer=1&hideNavigation=1&view=editor"></iframe>

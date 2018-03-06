@@ -7,7 +7,7 @@ import * as octicons from 'octicons';
       <h1>Quick start</h1>
       <h2 id="prepare-project">Step 1. Set up the development environment</h2>
       <p>If you are new to Angular, then the easiest way to set up your project is to read
-      <a href="https://angular.io/guide/quickstart" rel="nofollow">this guide ${octicons['link-external'].toSVG()}</a>,
+      <a href="https://angular.io/guide/quickstart" rel="nofollow">this guide <app-octicon icon="link-external"></app-octicon></a>,
       which is a part of official documentation of Angular. When your app is properly configured,
       move forward to step 2.</p>
 
@@ -42,7 +42,7 @@ import * as octicons from 'octicons';
       <h2>Learn more</h2>
       <ul>
         <li><a href="https://docs.handsontable.com/Options.html" target="_blank">Settings in Handsontable
-          ${octicons['link-external'].toSVG()}</a></li>
+          <app-octicon icon="link-external"></app-octicon></a></li>
       </ul>
     </div>
   `

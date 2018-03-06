@@ -14,12 +14,12 @@ import * as octicons from 'octicons';
           <li><code>npm</code> v3.0.0+</li>
           <li><code>typescript</code> v2.5.0+</li>
           <li><code>@angular/cli</code> v1.6.0+</li>
-          <li><code>zone.js</code> v0.8.0+</li>
+          <li><code>zone.js</code> v0.8.19+</li>
         </ul>
       </div>
       <h2>Getting started</h2>
       <p><a href="https://handsontable.com/" target="_blank" title="JavaScript Spreadsheet Library">
-      Handsontable ${octicons['link-external'].toSVG()}</a> is a spreadsheet component for web apps.
+      Handsontable <app-octicon icon="link-external"></app-octicon></a> is a spreadsheet component for web apps.
       This wrapper for Angular offers the same scope of features as a pure version of Handsontable,
       so it’s a perfect match for all of your Angular-based apps in which a spreadsheet component
       is required.</p>
@@ -33,9 +33,9 @@ import * as octicons from 'octicons';
       <p>First and foremost, it will cut the development time of your app. By using this wrapper,
       you don’t have to worry about the compatibility issues, and if you stumble across one, you
       can easily make a <a href="https://github.com/handsontable/angular-handsontable/compare" target="_blank">pull
-      request ${octicons['link-external'].toSVG()}</a> with a solution or
+      request <app-octicon icon="link-external"></app-octicon></a> with a solution or
       <a href="https://github.com/handsontable/angular-handsontable/issues/new" target="_blank">
-      report it on GitHub ${octicons['link-external'].toSVG()}</a>. For less experienced developers,
+      report it on GitHub <app-octicon icon="link-external"></app-octicon></a>. For less experienced developers,
       we prepared a series of examples - from basic implementations to much more advanced setups.</p>
 
       <h2>Examples</h2>
@@ -55,7 +55,7 @@ import * as octicons from 'octicons';
       <ul>
         <li><a routerLink="/support">Become a contributor</a></li>
         <li><a href="https://github.com/handsontable/angular-handsontable/issues/new" target="_blank">Report an issue
-        ${octicons['link-external'].toSVG()}</a></li>
+          <app-octicon icon="link-external"></app-octicon></a></li>
       </ul>
 
       <h2>Copyright and license</h2>
@@ -67,7 +67,7 @@ import * as octicons from 'octicons';
         <li>@handsontable-pro/angular is released under the <a routerLink="/license">MIT license</a>.
         Copyrights belong to Handsoncode sp. z o.o.</li>
         <li>Documentation licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0
-        ${octicons['link-external'].toSVG()}</a>.</li>
+          <app-octicon icon="link-external"></app-octicon></a>.</li>
       </ul>
 
       <h2>Next step</h2>
@@ -77,4 +77,5 @@ import * as octicons from 'octicons';
     </div>
   `
 })
-export class IntroductionComponent {}
+export class IntroductionComponent {
+}

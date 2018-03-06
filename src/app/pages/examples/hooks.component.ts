@@ -34,7 +34,7 @@ import * as octicons from 'octicons';
       <h2>Learn more:</h2>
       <ul>
         <li><a href="https://docs.handsontable.com/Hooks.html#events" target="_blank">Handsontable Hooks
-          ${octicons['link-external'].toSVG()}</a></li>
+          <app-octicon icon="link-external"></app-octicon></a></li>
       </ul>
 
     </div>

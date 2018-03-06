@@ -8,8 +8,6 @@ import { Component,
 import * as Prism from 'prismjs';
 import { MatSnackBar, MatButton } from '@angular/material';
 
-import * as octicons from 'octicons';
-
 import 'prismjs/plugins/line-numbers/prism-line-numbers.js';
 import 'prismjs/components/prism-typescript.js';
 
@@ -18,7 +16,8 @@ encapsulation: ViewEncapsulation.None,
 selector: 'app-docs-code',
 template: `
   <div *ngIf="title" class="title">{{title}}</div>
-  <button mat-button #button (click)='copyInput()' class="btn-copy">${octicons['clippy'].toSVG()}${octicons['check'].toSVG()}</button>
+  <button mat-button #button (click)='copyInput()' class="btn-copy">
+    <app-octicon icon="clippy"></app-octicon><app-octicon icon="check"></app-octicon></button>
   <pre #pre><code #code></code></pre>
 `,
 styleUrls: ['./code.component.scss'],

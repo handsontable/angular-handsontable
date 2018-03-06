@@ -9,15 +9,14 @@ import * as octicons from 'octicons';
       <h2 id="report-bug">Report an issue</h2>
       <p>The sooner we know about the potential problem, the sooner we can take care of it. If you
         found a bug or a drawback, <a href="https://github.com/handsontable/angular-handsontable/issues/new" target="_blank"
-        title="Add new issue to the angular-handsontable issue board.">create a new issue ${octicons['link-external'].toSVG()}</a>
-        in the official repository on GitHub. Even better if you want to help us by fixing the
-        issue yourself. In such case take a look at the guides for contributors (further below).</p>
+        title="Add new issue to the angular-handsontable issue board.">create a new issue
+        <app-octicon icon="link-external"></app-octicon></a> in the official repository on GitHub. Even better if you want to help us by
+        fixing the issue yourself. In such case take a look at the guides for contributors (further below).</p>
 
       <h2 id="feature-request">Suggest an improvement</h2>
       <p>Any thoughts on how we can improve this wrapper are greatly appreciated.
-      <a href="https://github.com/handsontable/angular-handsontable/issues/new?
-        &title=${encodeURIComponent('Feature request:')}&body=${encodeURIComponent('<!-- description -->')}"
-        target="_blank">Share your ideas on GitHub ${octicons['link-external'].toSVG()}</a>
+      <a [href]="featureUrl"
+        target="_blank">Share your ideas on GitHub <app-octicon icon="link-external"></app-octicon></a>
         or contact us directly at support@hansontable.com. Thank you!.</p>
 
       <h2 id="contributors">Contribute</h2>
@@ -27,8 +26,7 @@ import * as octicons from 'octicons';
       <h3>Wrapper</h3>
       <ol>
         <li>Sign this <a href="https://goo.gl/forms/yuutGuN0RjsikVpM2" target="_blank">Contributor License Agreement
-          ${octicons['link-external'].toSVG()}</a>
-          to allow us to add your changes to the code.</li>
+          <app-octicon icon="link-external"></app-octicon></a> to allow us to add your changes to the code.</li>
         <li>Make your changes on a separate branch. This will speed up the merging process.</li>
         <li>Always make the target of your pull request the <code>develop</code> branch, not
           <code>master</code>.</li>
@@ -36,25 +34,24 @@ import * as octicons from 'octicons';
           in the proper <code>src/app/*.spec.ts</code> file. That will help us to understand the issue better and make sure
           that it stays fixed forever.</li>
         <li>Please review our <a href="https://github.com/airbnb/javascript" target="_blank">coding style
-          ${octicons['link-external'].toSVG()}</a> for
-          instructions on how to properly style the code.</li>
+          <app-octicon icon="link-external"></app-octicon></a> for instructions on how to properly style the code.</li>
         <li>Add a thorough description of all the changes.</li>
       </ol>
       <h3>Documentation</h3>
       <ol>
         <li>Sign this <a href="https://goo.gl/forms/yuutGuN0RjsikVpM2" target="_blank">Contributor License Agreement
-          ${octicons['link-external'].toSVG()}</a>
-          to allow us to add your changes to the code.</li>
+          <app-octicon icon="link-external"></app-octicon></a> to allow us to add your changes to the code.</li>
         <li>Make your changes on a separate branch. This will speed up the merging process.</li>
-        <li>Always make the target of your pull request the <code>gh-pages-src</code> branch, not
-          <code>gh-pages</code>.</li>
+        <li>Always make the target of your pull request the <code>gh-pages-src</code> branch, not <code>gh-pages</code>.</li>
         <li>Please review our <a href="https://github.com/airbnb/javascript" target="_blank">coding style
-          ${octicons['link-external'].toSVG()}</a> for
-          instructions on how to properly style the code.</li>
+          <app-octicon icon="link-external"></app-octicon></a> for instructions on how to properly style the code.</li>
         <li>Add a thorough description of all the changes.</li>
       </ol>
       <p>Thank you for your commitment!</p>
     </div>
   `
 })
-export class SupportComponent {}
+export class SupportComponent {
+  featureUrl = `https://github.com/handsontable/angular-handsontable/issues/new?
+    &title=${encodeURIComponent('Feature request:')}&body=${encodeURIComponent('<!-- description -->')}`;
+}

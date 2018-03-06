@@ -9,7 +9,7 @@ import * as octicons from 'octicons';
       <h2>Set up a component</h2>
       <p>Control Handsontable by binding properties in the template in a declarative way.
       <a href="https://docs.handsontable.com/Options.html" target="_blank">Explore the list of
-      available options ${octicons['link-external'].toSVG()}</a> and move forward to configuring
+      available options <app-octicon icon="link-external"></app-octicon></a> and move forward to configuring
       Handsontable.</p>
       <div class="infobox infobox-info">
         <p>Please note that the changes in the bindings are being observed and automatically propagated to the spreadsheet.</p>

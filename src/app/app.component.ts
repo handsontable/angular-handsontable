@@ -7,7 +7,6 @@ import { Title } from '@angular/platform-browser';
 import { HttpClient } from '@angular/common/http';
 import { Router, NavigationStart, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { MatSidenav } from '@angular/material';
-import * as octicons from 'octicons';
 
 @Component({
   selector: 'app-root',
@@ -15,11 +14,10 @@ import * as octicons from 'octicons';
   template: `
     <nav class="docs-topbar mat-elevation-z6">
       <a mat-button class="logo" routerLink="/" routerLinkActive="" title="Handsontable for Angular">Handsontable for Angular</a>
-      <button mat-button class="three-bars" (click)="sidenav.toggle()">${octicons['three-bars'].toSVG()}</button>
+      <button mat-button class="three-bars" (click)="sidenav.toggle()"><app-octicon icon="three-bars"></app-octicon></button>
       <div class="flex-spacer"></div>
       <a mat-button class="icon-gh" href="https://github.com/handsontable/angular-handsontable" title="Find us on GitHub" target="_blank">
-      ${octicons['mark-github'].toSVG({width: 21, height: 21, style: 'vertical-align: -6px; margin-right: 5px;'})} <span>Github
-      ${octicons['link-external'].toSVG()}</span></a>
+      <app-octicon icon="mark-github"></app-octicon> <span>Github <app-octicon icon="link-external"></app-octicon></span></a>
     </nav>
     <mat-sidenav-container (window:resize)="onResize($event)">
       <mat-sidenav #sidenav [mode]="mode" [opened]="openNav">
@@ -30,7 +28,7 @@ import * as octicons from 'octicons';
             <li><a mat-button routerLink="/use-with-pro" routerLinkActive="active">Use with Pro version</a></li>
             <li>
               <button mat-button class="btn-block" [ngClass]="{'open': menuExamples}" (click)=toggleMenuExample()>
-              Examples <span class="label label-inverted">${octicons['kebab-vertical'].toSVG()}</span></button>
+              Examples <span class="label label-inverted"><app-octicon icon="kebab-vertical"></app-octicon></span></button>
               <ul class="docs-nav--sub">
                 <li><a mat-button routerLink="/examples/settings-object" routerLinkActive="active">By settings object</a></li>
                 <li><a mat-button routerLink="/examples/declarative-way" routerLinkActive="active">By using bindings</a></li>
@@ -41,9 +39,9 @@ import * as octicons from 'octicons';
               </ul>
             </li>
             <li><a mat-button href="https://docs.handsontable.com/Core.html" target="_blank">
-              API Reference <span class="label label-inverted">${octicons['link-external'].toSVG()}</span></a></li>
+              API Reference <span class="label label-inverted"><app-octicon icon="link-external"></app-octicon></span></a></li>
             <li><a mat-button href="https://github.com/handsontable/angular-handsontable/releases" target="_blank">
-              Release notes <span class="label label-inverted">${octicons['link-external'].toSVG()}</span></a></li>
+              Release notes <span class="label label-inverted"><app-octicon icon="link-external"></app-octicon></span></a></li>
             <li><a mat-button routerLink="/license" routerLinkActive="active">License</a></li>
             <li><a mat-button routerLink="/support" routerLinkActive="active">Support</a></li>
             <li><a mat-button routerLink="/more-wrappers" routerLinkActive="active">More wrappers</a></li>
@@ -70,9 +68,9 @@ export class AppComponent implements OnInit {
 
   private isUrlInitialized = false;
   private hash = location.hash;
-  private menuExamples = false;
-  private openNav = true;
-  private mode = 'side';
+  menuExamples = false;
+  openNav = true;
+  mode = 'side';
 
   constructor(
     private http: HttpClient,

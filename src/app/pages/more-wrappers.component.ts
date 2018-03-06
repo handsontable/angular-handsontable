@@ -13,8 +13,8 @@ import * as octicons from 'octicons';
           </mat-card-header>
           <img mat-card-image [src]="wrapper.img">
           <mat-card-actions>
-            <a [href]="wrapper.url.download" target="_blank" mat-button>Download  ${octicons['link-external'].toSVG()}</a>
-            <a [href]="wrapper.url.github" target="_blank" mat-button>View on GitHub  ${octicons['link-external'].toSVG()}</a>
+            <a [href]="wrapper.url.download" target="_blank" mat-button>Download <app-octicon icon="link-external"></app-octicon></a>
+            <a [href]="wrapper.url.github" target="_blank" mat-button>View on GitHub <app-octicon icon="link-external"></app-octicon></a>
           </mat-card-actions>
         </mat-card>
       </div>
