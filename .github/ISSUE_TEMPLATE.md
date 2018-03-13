@@ -11,6 +11,7 @@
 <!--- Provide a link to a live example on JSFiddle or Codepen -->
 
 ### Your environment
+* Angular/angular-cli version:
 * Wrapper version:
 * Browser Name and version:
 * Operating System:
