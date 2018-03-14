@@ -1,0 +1,23 @@
+<nav class="docs-topbar mat-elevation-z6">
+  <a mat-button class="logo" routerLink="/" routerLinkActive="" title="Handsontable for Angular">Handsontable for Angular</a>
+  <button mat-button class="three-bars" (click)="toggle()"><app-octicon icon="three-bars"></app-octicon></button>
+  <div class="flex-spacer"></div>
+  <a mat-button class="icon-gh" href="https://github.com/handsontable/angular-handsontable" title="Find us on GitHub" target="_blank">
+  <app-octicon icon="mark-github"></app-octicon> <span>Github <app-octicon icon="link-external"></app-octicon></span></a>
+</nav>
+<mat-sidenav-container (window:resize)="onResize($event)">
+  <mat-sidenav #sidenav [mode]="mode" [opened]="openNav">
+    <app-menu #menu [(examples)]="menuExamples"></app-menu>
+  </mat-sidenav>
+  <div #content id="content">
+    <router-outlet></router-outlet>
+    <footer class="docs-footer">
+      <div class="flex-spacer"></div>
+      <div class="docs-footer-copyright">
+        <p>Handsoncode &copy; {{getYear()}}. Code licensed under an <a routerLink="/license">MIT-style License</a>.
+        Documentation licensed under
+        <a href="http://creativecommons.org/licenses/by/4.0/" rel="nofollow" target="_blank">CC BY 4.0</a>.</p>
+      </div>
+    </footer>
+  </div>
+</mat-sidenav-container>
