@@ -25,6 +25,7 @@ import { ExColumnsComponent } from './pages/examples/columns.component';
 import { ExAccessToHandsontableComponent } from './pages/examples/access-to-handsontable.component';
 import { ExHooksComponent } from './pages/examples/hooks.component';
 import { ExRemoteDataComponent } from './pages/examples/remote-data.component';
+import { MenuComponent } from './shared/components/menu/menu.component';
 
 import { PageNotFoundComponent } from './pages/not-found.component';
 
@@ -61,6 +62,7 @@ const appRoutes: Routes = [
     LicenseComponent,
     SupportComponent,
     MoreWrappersComponent,
+    MenuComponent,
 
     ExSettingsObjectComponent,
     ExDeclarativeWayComponent,
