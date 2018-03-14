@@ -11,7 +11,6 @@ import { MenuComponent } from './shared/components/menu/menu.component';
 
 @Component({
   selector: 'app-root',
-  encapsulation: ViewEncapsulation.None,
   entryComponents: [MenuComponent],
   templateUrl: './app.component.html',
 })
@@ -32,6 +31,11 @@ export class AppComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private titleService: Title) {
+      this.router.events
+      .filter((event) => event instanceof NavigationStart)
+      .subscribe((event: NavigationStart) => {
+        this.menuExamples = event.url.includes('examples');
+      });
   }
 
   ngOnInit() {
@@ -57,11 +61,6 @@ export class AppComponent implements OnInit {
         if (window.innerWidth <= 767) {
           this.close();
         }
-      });
-      this.router.events
-        .filter((event) => event instanceof NavigationStart)
-        .subscribe((event: NavigationStart) => {
-          this.menuExamples = event.url.includes('examples');
       });
       this.setMode(window.innerWidth);
   }
