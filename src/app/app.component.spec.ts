@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { DocsMaterialModule } from './docs-material.module';
+import { OcticonsModule } from './octicons/octicons.module';
 
 const appRoutes: Routes = [];
 
@@ -18,7 +19,8 @@ describe('AppComponent', () => {
         BrowserAnimationsModule,
         DocsMaterialModule,
         HttpClientModule,
-        RouterModule.forRoot(appRoutes)
+        RouterModule.forRoot(appRoutes),
+        OcticonsModule
       ],
       providers: [{provide: APP_BASE_HREF, useValue: '/'}]
     }).compileComponents();
