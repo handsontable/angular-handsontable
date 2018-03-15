@@ -8,10 +8,12 @@
 3.
 
 ### Demo
-<!--- Provide a link to a live example on JSFiddle or Codepen -->
+<!--- Provide a link to a live example on Stackblitz -->
+https://stackblitz.com/edit/handsontable-angular
 
 ### Your environment
-* Angular/angular-cli version:
+* Angular version:
+* Handsontable version:
 * Wrapper version:
 * Browser Name and version:
 * Operating System:
