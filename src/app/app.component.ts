@@ -34,7 +34,7 @@ import { MatSidenav } from '@angular/material';
                 <li><a mat-button routerLink="/examples/declarative-way" routerLinkActive="active">By using bindings</a></li>
                 <li><a mat-button routerLink="/examples/column-component" routerLinkActive="active">Column component</a></li>
                 <li><a mat-button routerLink="/examples/access-to-handsontable" routerLinkActive="active">Access to Handsontable</a></li>
-                <li><a mat-button routerLink="/examples/hooks" routerLinkActive="active">Hook support</a></li>
+                <li><a mat-button routerLink="/examples/hooks" routerLinkActive="active">Events support</a></li>
                 <li><a mat-button routerLink="/examples/remote-data" routerLinkActive="active">Remote data</a></li>
               </ul>
             </li>

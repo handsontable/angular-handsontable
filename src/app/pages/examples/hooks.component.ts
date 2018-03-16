@@ -4,7 +4,7 @@ import * as octicons from 'octicons';
 @Component({
   template: `
     <div class="docs-content">
-      <h1>Use hooks to bind Handsontable to an outside component</h1>
+      <h1>Use events to bind Handsontable to an outside component</h1>
 
       <h2>Set up a component</h2>
       <p>Except for the code responsible for all the logic behind your app, you need to add
@@ -15,12 +15,12 @@ import * as octicons from 'octicons';
         &file=app/app.component.ts&hideExplorer=1&hideNavigation=1&view=editor"></iframe>
 
       <h2>Set up a template</h2>
-      <p>When you use hook callback as binding, the context of the method is your component. If you
-        expect to get hook params, they all are in <code>$event</code> variable. EventEmitter could
+      <p>When you use event callback as binding, the context of the method is your component. If you
+        expect to get event params, they all are in <code>$event</code> variable. EventEmitter could
         return only one variable and because of this, we decided to return <code>$event</code>
         as an object with reference to the Handsontable instance and an array of parameters <code>[p1, p2, p3, p4, p5, p6]</code>.</p>
       <div class="infobox infobox-info">
-        <p>Please note that only hooks defined inside the settings object can return <code>false</code>.</p>
+        <p>Please note that only events defined inside the settings object can return <code>false</code>.</p>
       </div>
       <iframe class="stackblitz" style="min-height: 300px;"
         src="https://stackblitz.com/edit/handsontable-angular-hooks?embed=1
@@ -33,7 +33,7 @@ import * as octicons from 'octicons';
 
       <h2>Learn more:</h2>
       <ul>
-        <li><a href="https://docs.handsontable.com/Hooks.html#events" target="_blank">Handsontable Hooks
+        <li><a href="https://docs.handsontable.com/Hooks.html#events" target="_blank">Handsontable Hooks (Events)
           <app-octicon icon="link-external"></app-octicon></a></li>
       </ul>
 
