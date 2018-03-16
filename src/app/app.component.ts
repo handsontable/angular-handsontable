@@ -23,8 +23,8 @@ export class AppComponent implements OnInit {
   private hash = location.hash;
 
   menuExamples = false;
-  openNav: boolean = true;
-  mode: string = 'side';
+  openNav = true;
+  mode = 'side';
 
   constructor(
     private http: HttpClient,
