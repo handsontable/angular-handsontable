@@ -6,14 +6,15 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { DocsMaterialModule } from './docs-material.module';
 import { OcticonsModule } from './octicons/octicons.module';
-
+import { MenuComponent } from './shared/components/menu/menu.component';
 const appRoutes: Routes = [];
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent,
+        MenuComponent
       ],
       imports: [
         BrowserAnimationsModule,
