@@ -1,0 +1,43 @@
+.docs-nav { }
+  .docs-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .docs-nav li {
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .docs-nav .nav-cat {
+    font-size: 0.75rem;
+    color: #fff;
+    background: #adadad;
+    padding: 0.5rem 1rem;
+    margin: 0;
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+  .docs-nav .mat-button {
+    display: block;
+    text-align: left;
+    line-height: 3rem;
+    border-radius: 0;
+    font-weight: 400;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  .docs-nav .mat-button.active {
+    color: #1976d2;
+  }
+  .docs-nav--sub {
+    display: none;
+  }
+    .open + .docs-nav--sub {
+      display: block;
+    }
+    .docs-nav--sub li {
+      border: 0 none;
+    }
+    .docs-nav--sub .mat-button {
+      text-transform: none;
+      padding-left: 2rem;
+    }
