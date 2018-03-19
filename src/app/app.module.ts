@@ -25,6 +25,7 @@ import { ExColumnsComponent } from './pages/examples/columns.component';
 import { ExAccessToHandsontableComponent } from './pages/examples/access-to-handsontable.component';
 import { ExHooksComponent } from './pages/examples/hooks.component';
 import { ExRemoteDataComponent } from './pages/examples/remote-data.component';
+import { ExObserveChangesComponent } from './pages/examples/observe-changes.component';
 
 import { PageNotFoundComponent } from './pages/not-found.component';
 
@@ -44,6 +45,7 @@ const appRoutes: Routes = [
   },
   { path: 'examples/hooks', component: ExHooksComponent, data: {title: ' - Examples - Hooks'} },
   { path: 'examples/remote-data', component: ExRemoteDataComponent, data: {title: ' - Examples - Remote data'} },
+  { path: 'examples/observe-data-changes', component: ExObserveChangesComponent, data: {title: ' - Examples - Remote data'} },
 
   { path: 'license', component: LicenseComponent, data: {title: ' - License'} },
   { path: 'support', component: SupportComponent, data: {title: ' - Support'} },
@@ -68,6 +70,7 @@ const appRoutes: Routes = [
     ExAccessToHandsontableComponent,
     ExHooksComponent,
     ExRemoteDataComponent,
+    ExObserveChangesComponent,
 
     PageNotFoundComponent,
   ],
