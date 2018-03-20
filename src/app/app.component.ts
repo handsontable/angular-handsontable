@@ -36,6 +36,10 @@ import { MatSidenav } from '@angular/material';
                 <li><a mat-button routerLink="/examples/access-to-handsontable" routerLinkActive="active">Access to Handsontable</a></li>
                 <li><a mat-button routerLink="/examples/hooks" routerLinkActive="active">Events support</a></li>
                 <li><a mat-button routerLink="/examples/remote-data" routerLinkActive="active">Remote data</a></li>
+                <li><a mat-button routerLink="/examples/observe-data-changes" routerLinkActive="active">Observe data changes</a></li>
+                <li><a mat-button routerLink="/examples/custom-editor" routerLinkActive="active">Custom Editor</a></li>
+                <li><a mat-button routerLink="/examples/context-menu" routerLinkActive="active">Context Menu</a></li>
+                <li><a mat-button routerLink="/examples/custom-renderer" routerLinkActive="active">Custom Renderer</a></li>
               </ul>
             </li>
             <li><a mat-button href="https://docs.handsontable.com/Core.html" target="_blank">
