@@ -26,6 +26,9 @@ import { ExAccessToHandsontableComponent } from './pages/examples/access-to-hand
 import { ExHooksComponent } from './pages/examples/hooks.component';
 import { ExRemoteDataComponent } from './pages/examples/remote-data.component';
 import { ExObserveChangesComponent } from './pages/examples/observe-changes.component';
+import { ExCustomEditorComponent } from './pages/examples/custom-editor.component';
+import { ExCustomRendererComponent } from './pages/examples/custom-renderer.component';
+import { ExContextMenuComponent } from './pages/examples/context-menu.component';
 
 import { PageNotFoundComponent } from './pages/not-found.component';
 
@@ -45,7 +48,10 @@ const appRoutes: Routes = [
   },
   { path: 'examples/hooks', component: ExHooksComponent, data: {title: ' - Examples - Hooks'} },
   { path: 'examples/remote-data', component: ExRemoteDataComponent, data: {title: ' - Examples - Remote data'} },
-  { path: 'examples/observe-data-changes', component: ExObserveChangesComponent, data: {title: ' - Examples - Remote data'} },
+  { path: 'examples/observe-data-changes', component: ExObserveChangesComponent, data: {title: ' Observe Data Changes'} },
+  { path: 'examples/custom-editor', component: ExCustomEditorComponent, data: {title: ' Custom Editor'} },
+  { path: 'examples/custom-renderer', component: ExCustomRendererComponent, data: {title: 'Custom Renderer'} },
+  { path: 'examples/context-menu', component: ExContextMenuComponent, data: {title: ' Context menu'} },
 
   { path: 'license', component: LicenseComponent, data: {title: ' - License'} },
   { path: 'support', component: SupportComponent, data: {title: ' - Support'} },
@@ -71,6 +77,9 @@ const appRoutes: Routes = [
     ExHooksComponent,
     ExRemoteDataComponent,
     ExObserveChangesComponent,
+    ExCustomEditorComponent,
+    ExCustomRendererComponent,
+    ExContextMenuComponent,
 
     PageNotFoundComponent,
   ],
