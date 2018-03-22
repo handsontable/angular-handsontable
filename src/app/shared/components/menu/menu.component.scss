@@ -1,13 +1,13 @@
-.docs-nav { }
-  .docs-nav ul {
+.docs-nav {
+  ul {
     list-style: none;
     margin: 0;
     padding: 0;
   }
-  .docs-nav li {
+  li {
     border-bottom: 1px solid #f0f0f0;
   }
-  .docs-nav .nav-cat {
+  .nav-cat {
     font-size: 0.75rem;
     color: #fff;
     background: #adadad;
@@ -16,7 +16,7 @@
     text-transform: uppercase;
     font-weight: 400;
   }
-  .docs-nav .mat-button {
+  .mat-button {
     display: block;
     text-align: left;
     line-height: 3rem;
@@ -24,20 +24,26 @@
     font-weight: 400;
     text-overflow: ellipsis;
     overflow: hidden;
-  }
-  .docs-nav .mat-button.active {
-    color: #1976d2;
-  }
-  .docs-nav--sub {
-    display: none;
-  }
-    .open + .docs-nav--sub {
-      display: block;
+    &.active {
+      color: #1976d2;
     }
-    .docs-nav--sub li {
-      border: 0 none;
-    }
-    .docs-nav--sub .mat-button {
-      text-transform: none;
-      padding-left: 2rem;
-    }
+  }
+}
+
+.docs-nav--sub {
+  display: none;
+}
+
+.open + .docs-nav--sub {
+  display: block;
+}
+
+.docs-nav--sub {
+  li {
+    border: 0 none;
+  }
+  .mat-button {
+    text-transform: none;
+    padding-left: 2rem;
+  }
+}
