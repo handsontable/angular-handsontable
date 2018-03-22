@@ -1,5 +1,4 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import * as Handsontable from 'handsontable-pro';
 import * as octicons from 'octicons';
 
 @Component({

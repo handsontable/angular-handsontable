@@ -8,7 +8,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { CodeModule } from './docs-code/code.module';
 import { OcticonsModule } from './octicons/octicons.module';
 import { DocsMaterialModule } from './docs-material.module';
-import { HotTableModule } from '@handsontable-pro/angular';
 
 import { AppComponent } from './app.component';
 
@@ -25,6 +24,7 @@ import { ExColumnsComponent } from './pages/examples/columns.component';
 import { ExAccessToHandsontableComponent } from './pages/examples/access-to-handsontable.component';
 import { ExHooksComponent } from './pages/examples/hooks.component';
 import { ExRemoteDataComponent } from './pages/examples/remote-data.component';
+import { MenuComponent } from './shared/components/menu/menu.component';
 
 import { PageNotFoundComponent } from './pages/not-found.component';
 
@@ -61,6 +61,7 @@ const appRoutes: Routes = [
     LicenseComponent,
     SupportComponent,
     MoreWrappersComponent,
+    MenuComponent,
 
     ExSettingsObjectComponent,
     ExDeclarativeWayComponent,
@@ -77,7 +78,6 @@ const appRoutes: Routes = [
     HttpClientModule,
     FormsModule,
     DocsMaterialModule,
-    HotTableModule.forRoot(),
     CodeModule,
     OcticonsModule,
     RouterModule.forRoot(appRoutes)
