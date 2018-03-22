@@ -28,22 +28,19 @@
       color: #1976d2;
     }
   }
-}
 
-.docs-nav--sub {
-  display: none;
-}
-
-.open + .docs-nav--sub {
-  display: block;
-}
-
-.docs-nav--sub {
-  li {
-    border: 0 none;
+  &--sub {
+    display: none;
+    li {
+      border: 0 none;
+    }
+    .mat-button {
+      text-transform: none;
+      padding-left: 2rem;
+    }
   }
-  .mat-button {
-    text-transform: none;
-    padding-left: 2rem;
+
+  .open + &--sub {
+    display: block;
   }
 }

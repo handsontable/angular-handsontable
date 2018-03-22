@@ -65,11 +65,38 @@ export class AppComponent implements OnInit {
       this.setMode(window.innerWidth);
   }
 
+  /**
+  * Show sidebar when hidden or hide menu when visible.
+  */
+  toggle() {
+    this.sidenav.toggle();
+  }
+
+  /**
+  * On window resize change view mode/layout
+  */
+  onResize(event) {
+    this.setMode(event.target.innerWidth);
+  }
+
+  /**
+  * Show sidebar when hidden or hide menu when visible.
+  */
+  close() {
+    this.sidenav.close();
+  }
+
+  /**
+   * Get curret year.
+   */
   getYear() {
     const date = new Date();
     return date.getFullYear();
   }
 
+  /**
+   * Set one of two modes for provided size.
+   */
   setMode(size) {
     this.mode = size <= 767 ? 'over' : 'side';
 
@@ -81,15 +108,4 @@ export class AppComponent implements OnInit {
     }
   }
 
-  toggle() {
-    this.sidenav.toggle();
-  }
-
-  onResize(event) {
-    this.setMode(event.target.innerWidth);
-  }
-
-  close() {
-    this.sidenav.close();
-  }
 }
