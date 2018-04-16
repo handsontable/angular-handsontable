@@ -117,6 +117,7 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy
   @Input() rowHeaderWidth: number | number[];
   @Input() rowHeights: number | number[] | string | ((row: number) => number);
   @Input() search: boolean;
+  @Input() selectionMode: string;
   @Input() selectOptions: string[] | number[];
   @Input() skipColumnOnPaste: boolean;
   @Input() sortByRelevance: boolean;
