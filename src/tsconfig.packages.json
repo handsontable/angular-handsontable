@@ -2,8 +2,8 @@
   "extends": "../tsconfig.json",
   "angularCompilerOptions": {
     "paths": {
-      "angular-handsontable": ["../dist/ce"],
-      "angular-handsontable/pro": ["../dist/pro"]
+      "@handsontable/angular": ["../dist/ce"],
+      "@handsontable-pro/angular": ["../dist/pro"]
     }
   },
   "compilerOptions": {
@@ -12,8 +12,8 @@
     "baseUrl": "",
     "types": [],
     "paths": {
-      "angular-handsontable": ["../dist/ce"],
-      "angular-handsontable/pro": ["../dist/pro"]
+      "@handsontable/angular": ["../dist/ce"],
+      "@handsontable-pro/angular": ["../dist/pro"]
     }
   },
   "exclude": [
