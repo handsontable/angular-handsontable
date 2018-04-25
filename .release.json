@@ -10,8 +10,7 @@
     "npm run pre-release"
   ],
   "post_commit_commands": [],
-  "post_complete_commands": [],
-  "xpost_complete_commands": [
+  "post_complete_commands": [
     "npm publish dist/ce",
     "npm publish dist/pro"
   ],

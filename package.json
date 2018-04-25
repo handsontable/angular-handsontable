@@ -49,7 +49,7 @@
     "test": "npm run lint && npm run build:lib && ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "pre-release": "node scripts/pre-release.js",
+    "pre-release": "node scripts/pre-release.js && npm run copy:utils",
     "release": "generate-release"
   },
   "dependencies": {
