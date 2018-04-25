@@ -40,7 +40,7 @@
     "start": "ng serve",
     "build": "ng build",
     "build:app": "rimraf src/lib && rimraf dist && npm run build:lib && cpr dist src/lib && ng build --app packages && rimraf src/lib",
-    "build:lib": "rimraf dist && rimraf lib/ce/src/base && rimraf lib/pro/src/base && npm run build:lib:ce && npm run build:lib:pro && npm run copy:utils",
+    "build:lib": "rimraf dist && rimraf lib/ce/src/base && rimraf lib/pro/src/base && npm run build:lib:ce && npm run build:lib:pro",
     "build:lib:ce": "ng-packagr -p lib/ce/package.json",
     "build:lib:pro": "ng-packagr -p lib/pro/package.json",
     "copy:utils": "npm run copy:utils:ce && npm run copy:utils:pro",
