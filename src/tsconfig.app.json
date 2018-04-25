@@ -2,8 +2,8 @@
   "extends": "../tsconfig.json",
   "angularCompilerOptions": {
     "paths": {
-      "angular-handsontable": ["../lib/ce/src/public_api.ts"],
-      "angular-handsontable/pro": ["../lib/pro/src/public_api.ts"]
+      "@handsontable/angular": ["../lib/ce/src/public_api.ts"],
+      "@handsontable-pro/angular": ["../lib/pro/src/public_api.ts"]
     }
   },
   "compilerOptions": {
@@ -12,8 +12,8 @@
     "baseUrl": "",
     "types": [],
     "paths": {
-      "angular-handsontable": ["../lib/ce/src/public_api.ts"],
-      "angular-handsontable/pro": ["../lib/pro/src/public_api.ts"]
+      "@handsontable/angular": ["../lib/ce/src/public_api.ts"],
+      "@handsontable-pro/angular": ["../lib/pro/src/public_api.ts"]
     }
   },
   "exclude": [

@@ -10,8 +10,8 @@
       "node"
     ],
     "paths": {
-      "angular-handsontable": ["../dist"],
-      "angular-handsontable/pro": ["../dist/pro"]
+      "@handsontable/angular": ["../dist"],
+      "@handsontable-pro/angular": ["../dist/pro"]
     }
   },
   "files": [

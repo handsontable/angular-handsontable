@@ -1,22 +1,31 @@
-import { TestBed, async } from '@angular/core/testing';
-import { HotTableModule } from '../../dist/pro';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { HotTableModule } from '@handsontable-pro/angular';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
-  beforeEach(async(() => {
+  let fixture: ComponentFixture<AppComponent>;
+
+  beforeEach((() => {
     TestBed.configureTestingModule({
-      imports: [
-        HotTableModule.forRoot()
-      ],
-      declarations: [
-        AppComponent
-      ],
+      imports: [ HotTableModule.forRoot() ],
+      declarations: [ AppComponent ],
     }).compileComponents();
   }));
 
-  it('should create the app', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
+  afterEach(() => {
+    if (fixture) {
+      fixture.destroy();
+    }
+  });
+
+  it('should create the app', (() => {
+    TestBed.compileComponents().then(() => {
+      fixture = TestBed.createComponent(AppComponent);
+      const app = fixture.debugElement.componentInstance;
+
+      fixture.detectChanges();
+
+      expect(app).toBeTruthy();
+    });
   }));
 });
