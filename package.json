@@ -48,7 +48,9 @@
     "copy:utils:pro": "cpr LICENSE dist/pro/LICENSE && cpr CONTRIBUTING.md dist/pro/CONTRIBUTING.md && cpr README.md dist/pro/README.md",
     "test": "npm run lint && npm run build:lib && ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "pre-release": "node scripts/pre-release.js",
+    "release": "generate-release"
   },
   "dependencies": {
     "@angular/common": "^5.2.10",
@@ -74,6 +76,7 @@
     "@types/node": "~9.3.0",
     "codelyzer": "~4.1.0",
     "cpr": "^3.0.0",
+    "generate-release": "^0.14.0",
     "jasmine-core": "~2.9.0",
     "jasmine-spec-reporter": "~4.2.0",
     "karma": "~2.0.0",
