@@ -5,7 +5,7 @@ import * as octicons from 'octicons';
   template: `
     <div class="docs-content">
       <div class="infobox infobox-info">
-        <h2>Latest version <strong>1.0.0-beta4</strong>, released on <strong>February 9th, 2018</strong></h2>
+        <h2>Latest version <strong>1.0.0-beta5</strong>, released on <strong>April 30th, 2018</strong></h2>
         <p><code>@handsontable-pro/angular</code> compatible with Handsontable Pro v1.15.1</p>
         <p><code>@handsontable/angular</code> compatible with Handsontable Community Edition v0.35.1</p>
         <h3>Requirements:</h3>
@@ -13,6 +13,7 @@ import * as octicons from 'octicons';
           <li><code>node</code> v6.9.0+</li>
           <li><code>npm</code> v3.0.0+</li>
           <li><code>typescript</code> v2.5.0+</li>
+          <li><code>@angular/core</code> v5.0.0+</li>
           <li><code>@angular/cli</code> v1.6.0+</li>
           <li><code>zone.js</code> v0.8.19+</li>
         </ul>

@@ -8,7 +8,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { CodeModule } from './docs-code/code.module';
 import { OcticonsModule } from './octicons/octicons.module';
 import { DocsMaterialModule } from './docs-material.module';
-import { HotTableModule } from '@handsontable-pro/angular';
 
 import { AppComponent } from './app.component';
 
@@ -77,7 +76,6 @@ const appRoutes: Routes = [
     HttpClientModule,
     FormsModule,
     DocsMaterialModule,
-    HotTableModule.forRoot(),
     CodeModule,
     OcticonsModule,
     RouterModule.forRoot(appRoutes)
