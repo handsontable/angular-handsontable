@@ -17,8 +17,8 @@
       "dom"
     ],
     "paths": {
-      "angular-handsontable": ["dist/ce"],
-      "angular-handsontable/pro": ["dist/pro"],
+      "@handsontable/angular": ["dist/ce"],
+      "@handsontable-pro/angular": ["dist/pro"],
     }
   },
   "exclude": [

@@ -88,9 +88,10 @@ export class HotSettingsResolver {
         if (this.hooks.indexOf(key) > -1) {
           mergedSettings[key] = (p1, p2, p3, p4, p5, p6) => {
             return component._ngZone.run(() => {
-              return component['settings'][key](p1, p2, p3, p4, p5, p6);
+              return component['settings'][key].call(component.hotInstance, p1, p2, p3, p4, p5, p6);
             })
           };
+
         } else {
           mergedSettings[key] = component['settings'][key];
         }
@@ -109,9 +110,9 @@ export class HotSettingsResolver {
       const hook = component[key];
 
       if (hook && hook.observers.length > 0) {
-        mergedSettings[key] = (p1,  p2,  p3,  p4,  p5,  p6) => {
+        mergedSettings[key] = (p1, p2, p3, p4, p5, p6) => {
           component._ngZone.run(() => {
-            component[key].emit({ hotInstance: component.hotInstance, params: [p1,  p2,  p3,  p4,  p5,  p6] });
+            component[key].emit({ hotInstance: component.hotInstance, params: [p1, p2, p3, p4, p5, p6] });
           });
         };
       }

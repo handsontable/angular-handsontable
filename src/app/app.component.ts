@@ -4,6 +4,4 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   template: `<hot-table></hot-table>`
 })
-export class AppComponent {
-
-}
+export class AppComponent { }

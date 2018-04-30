@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import * as Handsontable from 'handsontable-pro';
 
-import { HotTableRegisterer } from '../../dist/pro';
+import { HotTableRegisterer } from '@handsontable-pro/angular';
 
 @Component({
   selector: 'app-root',

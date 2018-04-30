@@ -1,8 +1,7 @@
-import { TestBed, async, ComponentFixture } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import * as Handsontable from 'handsontable-pro';
-import { element } from 'protractor';
 
-import { HotTableModule } from '../../dist/pro';
+import { HotTableModule } from '@handsontable-pro/angular';
 import { TestComponent } from './test.component';
 
 describe('HotTableComponent', () => {
@@ -1155,8 +1154,7 @@ describe('HotTableComponent', () => {
       });
     });
 
-    // TODO: change with
-    xit(`should set language defined as bindings`, () => {
+    it(`should set language defined as bindings`, () => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [language]="prop.language"></hot-table>`
@@ -1166,9 +1164,9 @@ describe('HotTableComponent', () => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
-        app.prop['language'] = 'en';
+        app.prop['language'] = 'en-US';
         fixture.detectChanges();
-        expect(app.getHotInstance(app.id).getSettings()['language']).toBe('en');
+        expect(app.getHotInstance(app.id).getSettings()['language']).toBe('en-US');
       });
     });
 
@@ -1414,7 +1412,7 @@ describe('HotTableComponent', () => {
     });
 
     xit(`should set observeChanges defined as bindings`, () => {
-      // Error during cleanup of component
+      // `observeChanges` plugin is unstable
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [observeChanges]="prop.observeChanges"></hot-table>`
@@ -1440,9 +1438,9 @@ describe('HotTableComponent', () => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
-        app.prop['observeDOMVisibility'] = true;
+        app.prop['observeDOMVisibility'] = false;
         fixture.detectChanges();
-        expect(app.getHotInstance(app.id).getSettings()['observeDOMVisibility']).toBe(true);
+        expect(app.getHotInstance(app.id).getSettings()['observeDOMVisibility']).toBe(false);
       });
     });
 
@@ -2062,6 +2060,29 @@ describe('HotTableComponent', () => {
   });
 
   describe('outputs', () => {
+    it(`should use Handsontable instance as a context, if is defined as a property in settings object`, () => {
+      TestBed.overrideComponent(TestComponent, {
+        set: {
+          template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
+        }
+      });
+      TestBed.compileComponents().then(() => {
+        fixture = TestBed.createComponent(TestComponent);
+        const app = fixture.componentInstance;
+
+        app.prop['settings'] = {
+          afterInit: function() {
+            return this;
+          }
+        }
+
+        fixture.detectChanges();
+
+        const constructorName = app.getHotInstance(app.id).constructor.name;
+        expect(app.getHotInstance(app.id).runHooks('afterInit').constructor.name).toBe(constructorName);
+      });
+    });
+
     it(`should run afterAddChild hook defined in settings`, () => {
       TestBed.overrideComponent(TestComponent, {
         set: {

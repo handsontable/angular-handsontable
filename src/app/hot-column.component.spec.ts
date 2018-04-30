@@ -1,8 +1,7 @@
-import { TestBed, async, ComponentFixture } from '@angular/core/testing';
-import { element } from 'protractor';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import * as Handsontable from 'handsontable-pro';
 
-import { HotTableModule } from '../../dist/pro';
+import { HotTableModule } from '@handsontable-pro/angular';
 import { TestComponent } from './test.component';
 
 describe('HotColumnComponent', () => {
@@ -1776,35 +1775,6 @@ describe('HotColumnComponent', () => {
       fixture.detectChanges();
       expect(app.getHotInstance(app.id).getCellMeta(0, 0)['label']).toBe(false);
       expect(app.getHotInstance(app.id).getCellMeta(0, 1)['label']).toBe(true);
-    });
-  });
-
-  xit(`should set language defined as bindings`, () => {
-    TestBed.overrideComponent(TestComponent, {
-      set: {
-        template: `
-          <hot-table hotId="hot" [settings]="prop.settings">
-            <hot-column *ngFor="let column of prop.columns; let i = index"
-                        [language]="column.language"></hot-column>
-          </hot-table>
-        `
-      }
-    });
-    TestBed.compileComponents().then(() => {
-      fixture = TestBed.createComponent(TestComponent);
-      const app = fixture.componentInstance;
-      app.prop['settings'] = {
-        language: false
-      };
-      app.prop['columns'] = [
-        {},
-        {
-          language: true
-        }
-      ];
-      fixture.detectChanges();
-      expect(app.getHotInstance(app.id).getCellMeta(0, 0)['language']).toBe(false);
-      expect(app.getHotInstance(app.id).getCellMeta(0, 1)['language']).toBe(true);
     });
   });
 
