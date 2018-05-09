@@ -13,7 +13,7 @@ const AVAILABLE_OPTIONS: string[] = ['allowEmpty', 'allowHtml', 'allowInsertColu
 'noWordWrapClassName', 'numericFormat', 'observeChanges', 'observeDOMVisibility', 'outsideClickDeselects',
 'persistentState', 'placeholder', 'placeholderCellClassName', 'preventOverflow', 'readOnly',
 'readOnlyCellClassName', 'renderAllRows', 'renderer', 'rowHeaders', 'rowHeaderWidth', 'rowHeights',
-'search', 'selectOptions', 'skipColumnOnPaste', 'sortByRelevance', 'sortFunction', 'sortIndicator',
+'search', 'selectionMode', 'selectOptions', 'skipColumnOnPaste', 'sortByRelevance', 'sortFunction', 'sortIndicator',
 'source', 'startCols', 'startRows', 'stretchH', 'strict', 'tableClassName', 'tabMoves', 'title',
 'trimDropdown', 'trimWhitespace', 'type', 'uncheckedTemplate', 'undo', 'validator',
 'viewportColumnRenderingOffset', 'viewportRowRenderingOffset', 'visibleRows', 'width', 'wordWrap'];
