@@ -1,6 +1,5 @@
 import {
   Component,
-  Injector,
   OnInit,
   OnChanges,
   OnDestroy,
@@ -100,7 +99,6 @@ export class HotColumnComponent implements OnInit, OnChanges, OnDestroy {
   @Input() rowHeaderWidth: number | number[];
   @Input() rowHeights: number | number[] | string | ((row: number) => number);
   @Input() search: boolean;
-  @Input() selectionMode: string;
   @Input() selectOptions: string[] | number[];
   @Input() skipColumnOnPaste: boolean;
   @Input() sortByRelevance: boolean;
