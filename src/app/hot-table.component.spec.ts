@@ -1656,6 +1656,29 @@ describe('HotTableComponent', () => {
       });
     });
 
+    it(`should set selectionMode defined as bindings`, () => {
+      TestBed.overrideComponent(TestComponent, {
+        set: {
+          template: `<hot-table [hotId]="id" [selectionMode]="prop.selectionMode"></hot-table>`
+        }
+      });
+      TestBed.compileComponents().then(() => {
+        fixture = TestBed.createComponent(TestComponent);
+        const app = fixture.componentInstance;
+
+        fixture.detectChanges();
+        expect(app.getHotInstance(app.id).getSettings()['selectionMode']).toBe('multiple');
+
+        app.prop['selectionMode'] = 'single';
+        fixture.detectChanges();
+        expect(app.getHotInstance(app.id).getSettings()['selectionMode']).toBe('single');
+
+        app.prop['selectionMode'] = 'range';
+        fixture.detectChanges();
+        expect(app.getHotInstance(app.id).getSettings()['selectionMode']).toBe('range');
+      });
+    });
+
     it(`should set selectOptions defined as bindings`, () => {
       TestBed.overrideComponent(TestComponent, {
         set: {

@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import * as Handsontable from 'handsontable-pro';
 
 import { HotTableModule } from '@handsontable-pro/angular';
 import { TestComponent } from './test.component';
