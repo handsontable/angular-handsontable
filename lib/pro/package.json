@@ -1,6 +1,9 @@
 {
   "name": "@handsontable-pro/angular",
   "version": "1.0.0-beta4",
+  "keywords": [
+    "pro", "enterprise", "sort", "formulas", "filter", "search", "conditional formatting", "csv"
+  ],
   "peerDependencies": {
     "handsontable-pro": "1.15.1",
     "zone.js": "^0.8.19"
