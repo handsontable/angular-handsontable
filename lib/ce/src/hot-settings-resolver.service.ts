@@ -1,6 +1,6 @@
 import { Injectable, SimpleChanges } from '@angular/core';
 
-const AVAILABLE_OPTIONS: string[] = ['allowEmpty', 'allowHtml', 'allowInsertColumn', 'allowInsertRow',
+const AVAILABLE_OPTIONS: string[] = ['activeHeaderClassName', 'allowEmpty', 'allowHtml', 'allowInsertColumn', 'allowInsertRow',
 'allowInvalid', 'allowRemoveColumn', 'allowRemoveRow', 'autoColumnSize', 'autoComplete', 'autoRowSize',
 'autoWrapCol', 'autoWrapRow', 'cell', 'cells', 'checkedTemplate', 'className', 'colHeaders', 'columnHeaderHeight',
 'columns', 'columnSorting', 'colWidths', 'commentedCellClassName', 'comments', 'contextMenu', 'copyable',
@@ -38,7 +38,7 @@ const AVAILABLE_HOOKS: string[] = ['afterBeginEditing', 'afterCellMetaReset', 'a
 'beforeInitWalkontable', 'beforeKeyDown', 'beforeLanguageChange', 'beforeOnCellMouseDown', 'beforeOnCellMouseOut',
 'beforeOnCellMouseOver', 'beforePaste', 'beforeRedo', 'beforeRemoveCellMeta', 'beforeRemoveCol',
 'beforeRemoveRow', 'beforeRender', 'beforeRenderer', 'beforeRowMove', 'beforeRowResize', 'beforeSetRangeEnd',
-'beforeSetRangeEnd', 'beforeStretchingColumnWidth', 'beforeTouchScroll', 'beforeUndo', 'beforeValidate',
+'beforeSetRangeStart', 'beforeStretchingColumnWidth', 'beforeTouchScroll', 'beforeUndo', 'beforeValidate',
 'beforeValueRender', 'construct', 'init', 'manualRowHeights', 'modifyAutofillRange', 'modifyCol',
 'modifyColHeader', 'modifyColumnHeaderHeight', 'modifyColWidth', 'modifyCopyableRange', 'modifyData',
 'modifyRow', 'modifyRowData', 'modifyRowHeader', 'modifyRowHeaderWidth', 'modifyRowHeight', 'modifyTransformEnd',
@@ -47,44 +47,32 @@ const AVAILABLE_HOOKS: string[] = ['afterBeginEditing', 'afterCellMetaReset', 'a
 
 @Injectable()
 export class HotSettingsResolver {
-  private hooks = AVAILABLE_HOOKS;
-  private options = AVAILABLE_OPTIONS;
 
   mergeSettings(component): object {
     const mergedSettings: object = {};
+    const options = AVAILABLE_HOOKS.concat(AVAILABLE_OPTIONS);
 
-    if (component['settings'] !== void 0) {
-      Object.keys(component['settings']).forEach((key) => {
-        if (this.hooks.indexOf(key) > -1) {
-          mergedSettings[key] = (p1, p2, p3, p4, p5, p6) => {
-            return component._ngZone.run(() => {
-              return component['settings'][key].call(component.hotInstance, p1, p2, p3, p4, p5, p6);
-            })
-          };
+    options.forEach((key) => {
+      let option = component['settings'] && component['settings'][key];
 
-        } else {
-          mergedSettings[key] = component['settings'][key];
-        }
-      });
-    }
-
-    this.options.forEach((key) => {
-      const option = component[key];
-
-      if (option !== void 0) {
-        mergedSettings[key] = option;
+      if (component[key] !== void 0) {
+        option = component[key];
       }
-    });
 
-    this.hooks.forEach((key) => {
-      const hook = component[key];
+      if (option === void 0) {
+        return;
 
-      if (hook && hook.observers.length > 0) {
-        mergedSettings[key] = (p1, p2, p3, p4, p5, p6) => {
-          component._ngZone.run(() => {
-            component[key].emit({ hotInstance: component.hotInstance, params: [p1, p2, p3, p4, p5, p6] });
+      } else if (typeof option === 'function' && AVAILABLE_HOOKS.indexOf(key) > -1) {
+        mergedSettings[key] = function(...args) {
+          const hotInstance = this;
+
+          return component._ngZone.run(() => {
+            return option(hotInstance, ...args);
           });
         };
+
+      } else {
+        mergedSettings[key] = option;
       }
     });
 
