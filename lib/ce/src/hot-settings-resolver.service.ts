@@ -64,10 +64,8 @@ export class HotSettingsResolver {
 
       } else if (typeof option === 'function' && AVAILABLE_HOOKS.indexOf(key) > -1) {
         mergedSettings[key] = function(...args) {
-          const hotInstance = this;
-
           return component._ngZone.run(() => {
-            return option(hotInstance, ...args);
+            return option(this, ...args);
           });
         };
 
