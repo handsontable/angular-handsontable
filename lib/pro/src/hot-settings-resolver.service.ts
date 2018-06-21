@@ -2,7 +2,7 @@ import { Injectable, SimpleChanges } from '@angular/core';
 import * as Handsontable from 'handsontable-pro';
 
 const AVAILABLE_OPTIONS: string[] = Object.keys(Handsontable.DefaultSettings.prototype);
-const AVAILABLE_HOOKS: string[] = Object.keys(Handsontable.hooks.globalBucket);
+const AVAILABLE_HOOKS: string[] = Handsontable.hooks.getRegistered();
 
 @Injectable()
 export class HotSettingsResolver {
@@ -11,7 +11,11 @@ export class HotSettingsResolver {
     const options = AVAILABLE_HOOKS.concat(AVAILABLE_OPTIONS);
 
     options.forEach((key) => {
-      let option = component['settings'] && component['settings'][key];
+      let option;
+
+      if (typeof component['settings'] === 'object') {
+        option = component['settings'][key];
+      }
 
       if (component[key] !== void 0) {
         option = component[key];

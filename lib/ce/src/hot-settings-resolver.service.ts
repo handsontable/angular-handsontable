@@ -53,7 +53,11 @@ export class HotSettingsResolver {
     const options = AVAILABLE_HOOKS.concat(AVAILABLE_OPTIONS);
 
     options.forEach((key) => {
-      let option = component['settings'] && component['settings'][key];
+      let option;
+
+      if (typeof component['settings'] === 'object') {
+        option = component['settings'][key];
+      }
 
       if (component[key] !== void 0) {
         option = component[key];

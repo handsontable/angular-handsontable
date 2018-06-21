@@ -2,7 +2,7 @@
   "name": "@handsontable-pro/angular",
   "version": "1.0.0-beta4",
   "peerDependencies": {
-    "handsontable-pro": "1.15.1",
+    "handsontable-pro": "^4.0.0",
     "zone.js": "^0.8.19"
   },
   "ngPackage": {
