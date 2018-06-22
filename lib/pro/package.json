@@ -5,7 +5,7 @@
     "pro", "enterprise", "sort", "formulas", "filter", "search", "conditional formatting", "csv"
   ],
   "peerDependencies": {
-    "handsontable-pro": "1.15.1",
+    "handsontable-pro": "^4.0.0",
     "zone.js": "^0.8.19"
   },
   "ngPackage": {

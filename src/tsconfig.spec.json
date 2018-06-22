@@ -10,7 +10,7 @@
       "node"
     ],
     "paths": {
-      "@handsontable/angular": ["../dist"],
+      "@handsontable/angular": ["../dist/ce"],
       "@handsontable-pro/angular": ["../dist/pro"]
     }
   },
