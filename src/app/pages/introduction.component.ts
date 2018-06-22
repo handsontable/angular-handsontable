@@ -1,23 +1,25 @@
 import { Component } from '@angular/core';
-import * as octicons from 'octicons';
 
 @Component({
   template: `
     <div class="docs-content">
-      <div class="infobox infobox-info">
-        <h2>Latest version <strong>1.0.0-beta5</strong>, released on <strong>April 30th, 2018</strong></h2>
-        <p><code>@handsontable-pro/angular</code> compatible with Handsontable Pro v1.15.1</p>
-        <p><code>@handsontable/angular</code> compatible with Handsontable Community Edition v0.35.1</p>
-        <h3>Requirements:</h3>
-        <ul>
-          <li><code>node</code> v6.9.0+</li>
-          <li><code>npm</code> v3.0.0+</li>
-          <li><code>typescript</code> v2.5.0+</li>
-          <li><code>@angular/core</code> v5.0.0+</li>
-          <li><code>@angular/cli</code> v1.6.0+</li>
-          <li><code>zone.js</code> v0.8.19+</li>
-        </ul>
+      <div class="infobox infobox-error">
+        <h2>Deprecated documentation</h2>
+        <p>This documentation will be no longer maintained. Please visit
+        <a href="https://docs.handsontable.com/angular">docs.handsontable.com</a> to see current documentation.</p>
       </div>
+      <h2>Latest version <strong>2.0.0</strong>, released on <strong>June 22th, 2018</strong></h2>
+      <p><code>@handsontable-pro/angular</code> compatible with Handsontable Pro v4.0.0</p>
+      <p><code>@handsontable/angular</code> compatible with Handsontable Community Edition v4.0.0</p>
+      <h3>Requirements:</h3>
+      <ul>
+        <li><code>node</code> v6.9.0+</li>
+        <li><code>npm</code> v3.0.0+</li>
+        <li><code>typescript</code> v2.5.0+</li>
+        <li><code>@angular/core</code> v5.0.0+</li>
+        <li><code>@angular/cli</code> v1.6.0+</li>
+        <li><code>zone.js</code> v0.8.19+</li>
+      </ul>
       <h2>Getting started</h2>
       <p><a href="https://handsontable.com/" target="_blank" title="JavaScript Spreadsheet Library">
       Handsontable <app-octicon icon="link-external"></app-octicon></a> is a spreadsheet component for web apps.

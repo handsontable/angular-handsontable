@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
       <h1>License</h1>
       <p>(The MIT License)</p>
 
-      <p>Copyright (c) 2015 - Handsoncode sp. z o.o. &lt;hello@handsoncode.net&gt;</p>
+      <p>Copyright (c) Handsoncode sp. z o.o. <a href="mailto:hello@handsoncode.net">hello@handsoncode.net</a></p>
 
       <p>Permission is hereby granted, free of charge, to any person obtaining
       a copy of this software and associated documentation files (the
