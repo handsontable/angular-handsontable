@@ -1,8 +1,9 @@
 {
   "name": "@handsontable/angular",
   "version": "1.0.0-beta4",
+  "keywords": [],
   "peerDependencies": {
-    "handsontable": "0.35.1",
+    "handsontable": "^4.0.0",
     "zone.js": "^0.8.19"
   },
   "ngPackage": {

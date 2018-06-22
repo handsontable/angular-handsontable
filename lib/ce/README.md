@@ -1,8 +1,8 @@
-<img src="https://raw.githubusercontent.com/handsontable/static-files/master/Images/Logo/Handsontable/handsontable-angular.png" alt="Handsontable for Angular" />
+<img src="https://raw.githubusercontent.com/handsontable/static-files/master/Images/Logo/Handsontable/handsontable-angular.png" alt="Handsontable Community Edition for Angular" />
 
 <br/>
 
-**Handsontable for Angular** is the official wrapper for [**Handsontable**](//github.com/handsontable/handsontable), a JavaScript data grid component with a spreadsheet look & feel. It easily integrates with any data source and comes with lots of useful features like data binding, validation, sorting or powerful context menu.
+**Handsontable Community Edition for Angular** is the official wrapper for [**Handsontable Community Edition**](//github.com/handsontable/handsontable), an open source data grid component with a spreadsheet look & feel. It easily integrates with any data source and comes with lots of useful features like data binding, validation, sorting or powerful context menu.
 
 [![Build status](https://travis-ci.org/handsontable/angular-handsontable.png?branch=master)](//travis-ci.org/handsontable/angular-handsontable)
 
@@ -12,14 +12,14 @@
 
 1. [Installation](#installation)
 2. [Getting Started](#getting-started)
-3. [Documentation](#documentation)
-4. [What to use it for?](#what-to-use-it-for)
-5. [Features](#features)
-6. [Screenshot](#screenshot)
-7. [Resources](#resources)
-8. [Support](#support)
-9. [Contributing](#contributing)
-10. [Licensing](#licensing)
+4. [Documentation](#documentation)
+5. [What to use it for?](#what-to-use-it-for)
+6. [Features](#features)
+7. [Screenshot](#screenshot)
+8. [Resources](#resources)
+9. [Support](#support)
+10. [Contributing](#contributing)
+11. [Licensing](#licensing)
 
 <br/>
 
@@ -28,54 +28,15 @@ Use npm to download the project.
 ```bash
 npm install handsontable @handsontable/angular
 ```
-A package scope for Handsontable Pro users:
-```bash
-npm install handsontable-pro @handsontable-pro/angular
-```
 
 <br/>
 
 ## Getting Started
 Assuming that you have installed the wrapper with npm, now you just need to include Handsontable styles into your build system and use `<hot-table>` just like any other Angular component.
 
-### Handsontable Community Edition:
-
 **Styles**
 ```js
 @import '~handsontable/dist/handsontable.full.css';
-```
-
-**Component**
-```js
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { AppComponent } from './app.component';
-import { HotTableModule } from '@handsontable/angular';
- 
-@NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    HotTableModule.forRoot()
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-})
-export class AppModule { }
-```
-
-**Template**
-```html
-<hot-table></hot-table>
-```
-
-### Handsontable Pro:
-
-**Styles**
-```js
-@import '~handsontable-pro/dist/handsontable.full.css';
 ```
 
 **Angular Component**
@@ -83,7 +44,7 @@ export class AppModule { }
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import { HotTableModule } from '@handsontable-pro/angular';
+import { HotTableModule } from '@handsontable/angular';
  
 @NgModule({
   declarations: [
@@ -146,7 +107,7 @@ Some of the most popular features include:
 ## Screenshot
 <div align="center">
 <a href="//handsontable.com/examples">
-<img src="https://raw.githubusercontent.com/handsontable/static-files/master/Images/Screenshots/handsontable-ce-showcase.png" align="center" alt="Handsontable for Angular" />
+<img src="https://raw.githubusercontent.com/handsontable/static-files/master/Images/Screenshots/handsontable-ce-showcase.png" align="center" alt="Handsontable Community Edition for Angular" />
 </a>
 </div>
 

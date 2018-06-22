@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import * as Handsontable from 'handsontable-pro';
 
 import { HotTableModule } from '@handsontable-pro/angular';
-import { TestComponent } from './test.component';
+import { TestComponent } from './test-pro.component';
 
 describe('HotTableComponent', () => {
   let fixture: ComponentFixture<TestComponent>;
@@ -93,6 +93,26 @@ describe('HotTableComponent', () => {
 
         fixture.detectChanges();
         expect(app.getHotInstance(app.id).getDataAtCell(0, 0)).toBe('A1');
+      });
+    });
+
+    it(`should set activeHeaderClassName defined as bindings`, () => {
+      TestBed.overrideComponent(TestComponent, {
+        set: {
+          template: `<hot-table [hotId]="id" [activeHeaderClassName]="prop.activeHeaderClassName"></hot-table>`
+        }
+      });
+      TestBed.compileComponents().then(() => {
+        fixture = TestBed.createComponent(TestComponent);
+        const app = fixture.componentInstance;
+
+        app.prop['activeHeaderClassName'] = 'active';
+        fixture.detectChanges();
+        expect(app.getHotInstance(app.id).getSettings()['activeHeaderClassName']).toBe('active');
+
+        app.prop['activeHeaderClassName'] = 'active_header';
+        fixture.detectChanges();
+        expect(app.getHotInstance(app.id).getSettings()['activeHeaderClassName']).toBe('active_header');
       });
     });
 
@@ -260,25 +280,6 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set autoComplete defined as bindings`, () => {
-      TestBed.overrideComponent(TestComponent, {
-        set: {
-          template: `<hot-table [hotId]="id" [autoComplete]="prop.autoComplete"></hot-table>`
-        }
-      });
-      TestBed.compileComponents().then(() => {
-        fixture = TestBed.createComponent(TestComponent);
-        const app = fixture.componentInstance;
-
-        fixture.detectChanges();
-        expect(app.getHotInstance(app.id).getSettings()['autoComplete']).toBeUndefined();
-
-        app.prop['autoComplete'] = ['A'];
-        fixture.detectChanges();
-        expect(app.getHotInstance(app.id).getSettings()['autoComplete'][0]).toBe('A');
-      });
-    });
-
     it(`should set autoRowSize defined as bindings`, () => {
       TestBed.overrideComponent(TestComponent, {
         set: {
@@ -355,7 +356,7 @@ describe('HotTableComponent', () => {
 
         app.prop['bindRowsWithHeaders'] = false;
         fixture.detectChanges();
-        expect(app.getHotInstance(app.id).getSettings()['autoWrapRow']).toBe(false);
+        expect(app.getHotInstance(app.id).getSettings()['bindRowsWithHeaders']).toBe(false);
 
         app.prop['bindRowsWithHeaders'] = 'loose';
         fixture.detectChanges();
@@ -450,9 +451,9 @@ describe('HotTableComponent', () => {
         fixture.detectChanges();
         expect(app.getHotInstance(app.id).getSettings()['colHeaders']).toBe(false);
 
-        app.prop['headers'] = 'Header';
+        app.prop['headers'] = ['Header'];
         fixture.detectChanges();
-        expect(app.getHotInstance(app.id).getSettings()['colHeaders']).toBe('Header');
+        expect(app.getHotInstance(app.id).getSettings()['colHeaders'][0]).toBe('Header');
       });
     });
 
@@ -1362,22 +1363,6 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set multiSelect defined as bindings`, () => {
-      TestBed.overrideComponent(TestComponent, {
-        set: {
-          template: `<hot-table [hotId]="id" [multiSelect]="prop.multiSelect"></hot-table>`
-        }
-      });
-      TestBed.compileComponents().then(() => {
-        fixture = TestBed.createComponent(TestComponent);
-        const app = fixture.componentInstance;
-
-        app.prop['multiSelect'] = true;
-        fixture.detectChanges();
-        expect(app.getHotInstance(app.id).getSettings()['multiSelect']).toBe(true);
-      });
-    });
-
     it(`should set nestedHeaders defined as bindings`, () => {
       TestBed.overrideComponent(TestComponent, {
         set: {
@@ -1656,6 +1641,29 @@ describe('HotTableComponent', () => {
       });
     });
 
+    it(`should set selectionMode defined as bindings`, () => {
+      TestBed.overrideComponent(TestComponent, {
+        set: {
+          template: `<hot-table [hotId]="id" [selectionMode]="prop.selectionMode"></hot-table>`
+        }
+      });
+      TestBed.compileComponents().then(() => {
+        fixture = TestBed.createComponent(TestComponent);
+        const app = fixture.componentInstance;
+
+        fixture.detectChanges();
+        expect(app.getHotInstance(app.id).getSettings()['selectionMode']).toBe('multiple');
+
+        app.prop['selectionMode'] = 'single';
+        fixture.detectChanges();
+        expect(app.getHotInstance(app.id).getSettings()['selectionMode']).toBe('single');
+
+        app.prop['selectionMode'] = 'range';
+        fixture.detectChanges();
+        expect(app.getHotInstance(app.id).getSettings()['selectionMode']).toBe('range');
+      });
+    });
+
     it(`should set selectOptions defined as bindings`, () => {
       TestBed.overrideComponent(TestComponent, {
         set: {
@@ -1715,10 +1723,10 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['sortFunction'] = function() {
-          return 'test'
+          return function() { }
         };
         fixture.detectChanges();
-        expect(app.getHotInstance(app.id).getSettings()['sortFunction']()).toBe('test');
+        expect(typeof app.getHotInstance(app.id).getSettings()['sortFunction']).toBe('function');
       });
     });
 
@@ -2059,8 +2067,8 @@ describe('HotTableComponent', () => {
     });
   });
 
-  describe('outputs', () => {
-    it(`should use Handsontable instance as a context, if is defined as a property in settings object`, () => {
+  describe('hooks', () => {
+    it(`should use Handsontable instance as a first argument, if is defined as a property in settings object`, () => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
@@ -2071,8 +2079,8 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          afterInit: function() {
-            return this;
+          afterInit: (hot) => {
+            return hot;
           }
         }
 
@@ -2094,7 +2102,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          afterAddChild: function() {
+          afterAddChild: () => {
             return 'test';
           }
         }
@@ -2115,7 +2123,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          afterBeginEditing: function() {
+          afterBeginEditing: () => {
             return 'test';
           }
         }
@@ -2136,7 +2144,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          afterCellMetaReset: function() {
+          afterCellMetaReset: () => {
             return 'test';
           }
         }
@@ -2157,7 +2165,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          afterChange: function() {
+          afterChange: () => {
             return 'test';
           }
         }
@@ -2178,7 +2186,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          afterChangesObserved: function() {
+          afterChangesObserved: () => {
             return 'test';
           }
         }
@@ -2199,7 +2207,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          afterColumnMove: function() {
+          afterColumnMove: () => {
             return 'test';
           }
         }
@@ -2220,7 +2228,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          afterColumnResize: function() {
+          afterColumnResize: () => {
             return 'test';
           }
         }
@@ -2241,7 +2249,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          afterColumnSort: function() {
+          afterColumnSort: () => {
             return 'test';
           }
         }
@@ -2284,7 +2292,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          afterContextMenuHide: function() {
+          afterContextMenuHide: () => {
             return 'test';
           }
         }
@@ -2305,7 +2313,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          afterContextMenuShow: function() {
+          afterContextMenuShow: () => {
             return 'test';
           }
         }
@@ -2326,7 +2334,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          afterCopy: function() {
+          afterCopy: () => {
             return 'test';
           }
         }
@@ -2347,7 +2355,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          afterCopyLimit: function() {
+          afterCopyLimit: () => {
             return 'test';
           }
         }
@@ -2368,7 +2376,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          afterCreateCol: function() {
+          afterCreateCol: () => {
             return 'test';
           }
         }
@@ -2389,7 +2397,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          afterCreateRow: function() {
+          afterCreateRow: () => {
             return 'test';
           }
         }
@@ -2410,7 +2418,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          afterCut: function() {
+          afterCut: () => {
             return 'test';
           }
         }
@@ -2431,7 +2439,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          afterDeselect: function() {
+          afterDeselect: () => {
             return 'test';
           }
         }
@@ -2452,7 +2460,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          afterDestroy: function() {
+          afterDestroy: () => {
             return 'test';
           }
         }
@@ -2473,7 +2481,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          afterDetachChild: function() {
+          afterDetachChild: () => {
             return 'test';
           }
         }
@@ -2494,7 +2502,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          afterDocumentKeyDown: function() {
+          afterDocumentKeyDown: () => {
             return 'test';
           }
         }
@@ -2515,7 +2523,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          afterDropdownMenuDefaultOptions: function() {
+          afterDropdownMenuDefaultOptions: () => {
             return 'test';
           }
         }
@@ -2536,7 +2544,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          afterDropdownMenuHide: function() {
+          afterDropdownMenuHide: () => {
             return 'test';
           }
         }
@@ -2557,7 +2565,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          afterDropdownMenuShow: function() {
+          afterDropdownMenuShow: () => {
             return 'test';
           }
         }
@@ -2578,7 +2586,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          afterFilter: function() {
+          afterFilter: () => {
             return 'test';
           }
         }
@@ -2599,7 +2607,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          afterGetCellMeta: function() {
+          afterGetCellMeta: () => {
             return 'test';
           }
         }
@@ -2621,7 +2629,7 @@ describe('HotTableComponent', () => {
 
         app.prop['settings'] = {
           colHeaders: true,
-          afterGetColHeader: function() {
+          afterGetColHeader: () => {
             return 'test';
           }
         }
@@ -2647,7 +2655,7 @@ describe('HotTableComponent', () => {
         let afterGetColumnHeaderRenderersCount = 0;
 
         app.prop['settings'] = {
-          afterGetColumnHeaderRenderers: function() {
+          afterGetColumnHeaderRenderers: () => {
             afterGetColumnHeaderRenderersCount++;
           }
         }
@@ -2668,7 +2676,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          afterGetRowHeader: function() {
+          afterGetRowHeader: () => {
             return 'test';
           }
         }
@@ -2689,7 +2697,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          afterGetRowHeaderRenderers: function() {
+          afterGetRowHeaderRenderers: () => {
             return 'test';
           }
         }
@@ -2710,7 +2718,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          afterInit: function() {
+          afterInit: () => {
             return 'test';
           }
         }
@@ -2731,7 +2739,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          afterLoadData: function() {
+          afterLoadData: () => {
             return 'test';
           }
         }
@@ -2752,7 +2760,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          afterModifyTransformEnd: function() {
+          afterModifyTransformEnd: () => {
             return 'test';
           }
         }
@@ -2773,7 +2781,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          afterModifyTransformStart: function() {
+          afterModifyTransformStart: () => {
             return 'test';
           }
         }
@@ -2794,7 +2802,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          afterMomentumScroll: function() {
+          afterMomentumScroll: () => {
             return 'test';
           }
         }
@@ -2815,7 +2823,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          afterOnCellCornerDblClick: function() {
+          afterOnCellCornerDblClick: () => {
             return 'test';
           }
         }
@@ -2836,7 +2844,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          afterOnCellCornerMouseDown: function() {
+          afterOnCellCornerMouseDown: () => {
             return 'test';
           }
         }
@@ -2857,7 +2865,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          afterOnCellMouseDown: function() {
+          afterOnCellMouseDown: () => {
             return 'test';
           }
         }
@@ -2878,7 +2886,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          afterOnCellMouseOver: function() {
+          afterOnCellMouseOver: () => {
             return 'test';
           }
         }
@@ -2899,7 +2907,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          afterOnCellMouseOut: function() {
+          afterOnCellMouseOut: () => {
             return 'test';
           }
         }
@@ -2920,7 +2928,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          afterPluginsInitialized: function() {
+          afterPluginsInitialized: () => {
             return 'test';
           }
         }
@@ -2941,7 +2949,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          afterRedo: function() {
+          afterRedo: () => {
             return 'test';
           }
         }
@@ -2962,7 +2970,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          afterRemoveCol: function() {
+          afterRemoveCol: () => {
             return 'test';
           }
         }
@@ -2983,7 +2991,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          afterRemoveRow: function() {
+          afterRemoveRow: () => {
             return 'test';
           }
         }
@@ -3004,7 +3012,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          afterRender: function() {
+          afterRender: () => {
             return 'test';
           }
         }
@@ -3025,7 +3033,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          afterRenderer: function() {
+          afterRenderer: () => {
             return 'test';
           }
         }
@@ -3046,7 +3054,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          afterRowMove: function() {
+          afterRowMove: () => {
             return 'test';
           }
         }
@@ -3067,7 +3075,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          afterRowResize: function() {
+          afterRowResize: () => {
             return 'test';
           }
         }
@@ -3088,7 +3096,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          afterScrollHorizontally: function() {
+          afterScrollHorizontally: () => {
             return 'test';
           }
         }
@@ -3109,7 +3117,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          afterScrollVertically: function() {
+          afterScrollVertically: () => {
             return 'test';
           }
         }
@@ -3130,7 +3138,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          afterSelection: function() {
+          afterSelection: () => {
             return 'test';
           }
         }
@@ -3151,7 +3159,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          afterSelectionByProp: function() {
+          afterSelectionByProp: () => {
             return 'test';
           }
         }
@@ -3172,7 +3180,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          afterSelectionEnd: function() {
+          afterSelectionEnd: () => {
             return 'test';
           }
         }
@@ -3193,7 +3201,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          afterSelectionEndByProp: function() {
+          afterSelectionEndByProp: () => {
             return 'test';
           }
         }
@@ -3214,7 +3222,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          afterSetCellMeta: function() {
+          afterSetCellMeta: () => {
             return 'test';
           }
         }
@@ -3235,7 +3243,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          afterSetDataAtCell: function() {
+          afterSetDataAtCell: () => {
             return 'test';
           }
         }
@@ -3256,7 +3264,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          afterSetDataAtRowProp: function() {
+          afterSetDataAtRowProp: () => {
             return 'test';
           }
         }
@@ -3277,7 +3285,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          afterTrimRow: function() {
+          afterTrimRow: () => {
             return 'test';
           }
         }
@@ -3298,7 +3306,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          afterUndo: function() {
+          afterUndo: () => {
             return 'test';
           }
         }
@@ -3319,7 +3327,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          afterUntrimRow: function() {
+          afterUntrimRow: () => {
             return 'test';
           }
         }
@@ -3340,7 +3348,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          afterUpdateSettings: function() {
+          afterUpdateSettings: () => {
             return 'test';
           }
         }
@@ -3361,7 +3369,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          afterValidate: function() {
+          afterValidate: () => {
             return 'test';
           }
         }
@@ -3382,7 +3390,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          afterViewportColumnCalculatorOverride: function() {
+          afterViewportColumnCalculatorOverride: () => {
             return 'test';
           }
         }
@@ -3403,7 +3411,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          afterViewportRowCalculatorOverride: function() {
+          afterViewportRowCalculatorOverride: () => {
             return 'test';
           }
         }
@@ -3424,7 +3432,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          beforeAddChild: function() {
+          beforeAddChild: () => {
             return 'test';
           }
         }
@@ -3445,7 +3453,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          beforeAutofill: function() {
+          beforeAutofill: () => {
             return 'test';
           }
         }
@@ -3466,7 +3474,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          beforeAutofillInsidePopulate: function() {
+          beforeAutofillInsidePopulate: () => {
             return 'test';
           }
         }
@@ -3487,7 +3495,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          beforeCellAlignment: function() {
+          beforeCellAlignment: () => {
             return 'test';
           }
         }
@@ -3508,7 +3516,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          beforeChange: function() {
+          beforeChange: () => {
             return 'test';
           }
         }
@@ -3529,7 +3537,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          beforeChangeRender: function() {
+          beforeChangeRender: () => {
             return 'test';
           }
         }
@@ -3550,7 +3558,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          beforeColumnMove: function() {
+          beforeColumnMove: () => {
             return 'test';
           }
         }
@@ -3571,7 +3579,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          beforeColumnResize: function() {
+          beforeColumnResize: () => {
             return 'test';
           }
         }
@@ -3592,7 +3600,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          beforeColumnSort: function() {
+          beforeColumnSort: () => {
             return 'test';
           }
         }
@@ -3613,7 +3621,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          beforeContextMenuSetItems: function() {
+          beforeContextMenuSetItems: () => {
             return 'test';
           }
         }
@@ -3634,7 +3642,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          beforeCopy: function() {
+          beforeCopy: () => {
             return 'test';
           }
         }
@@ -3655,7 +3663,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          beforeCreateCol: function() {
+          beforeCreateCol: () => {
             return 'test';
           }
         }
@@ -3676,7 +3684,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          beforeCreateRow: function() {
+          beforeCreateRow: () => {
             return 'test';
           }
         }
@@ -3697,7 +3705,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          beforeCut: function() {
+          beforeCut: () => {
             return 'test';
           }
         }
@@ -3718,7 +3726,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          beforeDetachChild: function() {
+          beforeDetachChild: () => {
             return 'test';
           }
         }
@@ -3739,7 +3747,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          beforeDrawBorders: function() {
+          beforeDrawBorders: () => {
             return 'test';
           }
         }
@@ -3760,7 +3768,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          beforeDropdownMenuSetItems: function() {
+          beforeDropdownMenuSetItems: () => {
             return 'test';
           }
         }
@@ -3781,7 +3789,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          beforeFilter: function() {
+          beforeFilter: () => {
             return 'test';
           }
         }
@@ -3802,7 +3810,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          beforeGetCellMeta: function() {
+          beforeGetCellMeta: () => {
             return 'test';
           }
         }
@@ -3823,7 +3831,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          beforeInit: function() {
+          beforeInit: () => {
             return 'test';
           }
         }
@@ -3844,7 +3852,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          beforeInitWalkontable: function() {
+          beforeInitWalkontable: () => {
             return 'test';
           }
         }
@@ -3865,7 +3873,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          beforeKeyDown: function() {
+          beforeKeyDown: () => {
             return 'test';
           }
         }
@@ -3886,7 +3894,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          beforeOnCellMouseDown: function() {
+          beforeOnCellMouseDown: () => {
             return 'test';
           }
         }
@@ -3907,7 +3915,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          beforeOnCellMouseOut: function() {
+          beforeOnCellMouseOut: () => {
             return 'test';
           }
         }
@@ -3928,7 +3936,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          beforeOnCellMouseOver: function() {
+          beforeOnCellMouseOver: () => {
             return 'test';
           }
         }
@@ -3949,7 +3957,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          beforePaste: function() {
+          beforePaste: () => {
             return 'test';
           }
         }
@@ -3970,7 +3978,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          beforeRedo: function() {
+          beforeRedo: () => {
             return 'test';
           }
         }
@@ -3991,7 +3999,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          beforeRemoveCol: function() {
+          beforeRemoveCol: () => {
             return 'test';
           }
         }
@@ -4012,7 +4020,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          beforeRemoveRow: function() {
+          beforeRemoveRow: () => {
             return 'test';
           }
         }
@@ -4033,7 +4041,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          beforeRender: function() {
+          beforeRender: () => {
             return 'test';
           }
         }
@@ -4054,7 +4062,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          beforeRenderer: function() {
+          beforeRenderer: () => {
             return 'test';
           }
         }
@@ -4075,7 +4083,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          beforeRowMove: function() {
+          beforeRowMove: () => {
             return 'test';
           }
         }
@@ -4096,7 +4104,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          beforeRowResize: function() {
+          beforeRowResize: () => {
             return 'test';
           }
         }
@@ -4117,7 +4125,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          beforeSetRangeEnd: function() {
+          beforeSetRangeEnd: () => {
             return 'test';
           }
         }
@@ -4138,7 +4146,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          beforeSetRangeStart: function() {
+          beforeSetRangeStart: () => {
             return 'test';
           }
         }
@@ -4159,7 +4167,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          beforeStretchingColumnWidth: function() {
+          beforeStretchingColumnWidth: () => {
             return 'test';
           }
         }
@@ -4180,7 +4188,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          beforeTouchScroll: function() {
+          beforeTouchScroll: () => {
             return 'test';
           }
         }
@@ -4201,7 +4209,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          beforeUndo: function() {
+          beforeUndo: () => {
             return 'test';
           }
         }
@@ -4222,7 +4230,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          beforeValidate: function() {
+          beforeValidate: () => {
             return 'test';
           }
         }
@@ -4243,7 +4251,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          beforeValueRender: function() {
+          beforeValueRender: () => {
             return 'test';
           }
         }
@@ -4264,7 +4272,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          construct: function() {
+          construct: () => {
             return 'test';
           }
         }
@@ -4285,7 +4293,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          hiddenColumn: function() {
+          hiddenColumn: () => {
             return 'test';
           }
         }
@@ -4306,7 +4314,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          hiddenRow: function() {
+          hiddenRow: () => {
             return 'test';
           }
         }
@@ -4327,7 +4335,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          init: function() {
+          init: () => {
             return 'test';
           }
         }
@@ -4348,7 +4356,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          manualRowHeights: function() {
+          manualRowHeights: () => {
             return 'test';
           }
         }
@@ -4369,7 +4377,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          modifyAutofillRange: function() {
+          modifyAutofillRange: () => {
             return 'test';
           }
         }
@@ -4390,7 +4398,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          modifyCol: function() {
+          modifyCol: () => {
             return 'test';
           }
         }
@@ -4411,7 +4419,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          modifyColHeader: function() {
+          modifyColHeader: () => {
             return 'test';
           }
         }
@@ -4432,7 +4440,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          modifyColumnHeaderHeight: function() {
+          modifyColumnHeaderHeight: () => {
             return 'test';
           }
         }
@@ -4453,7 +4461,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          modifyColWidth: function() {
+          modifyColWidth: () => {
             return 'test';
           }
         }
@@ -4474,7 +4482,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          modifyCopyableRange: function() {
+          modifyCopyableRange: () => {
             return 'test';
           }
         }
@@ -4495,7 +4503,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          modifyData: function() {
+          modifyData: () => {
             return 'test';
           }
         }
@@ -4516,7 +4524,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          modifyRow: function() {
+          modifyRow: () => {
             return 'test';
           }
         }
@@ -4537,7 +4545,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          modifyRowHeader: function() {
+          modifyRowHeader: () => {
             return 'test';
           }
         }
@@ -4558,7 +4566,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          modifyRowHeaderWidth: function() {
+          modifyRowHeaderWidth: () => {
             return 'test';
           }
         }
@@ -4579,7 +4587,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          modifyRowHeight: function() {
+          modifyRowHeight: () => {
             return 'test';
           }
         }
@@ -4600,7 +4608,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          modifyRowData: function() {
+          modifyRowData: () => {
             return 'test';
           }
         }
@@ -4621,7 +4629,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          modifyTransformEnd: function() {
+          modifyTransformEnd: () => {
             return 'test';
           }
         }
@@ -4642,7 +4650,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          modifyTransformStart: function() {
+          modifyTransformStart: () => {
             return 'test';
           }
         }
@@ -4663,7 +4671,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          persistentStateLoad: function() {
+          persistentStateLoad: () => {
             return 'test';
           }
         }
@@ -4684,7 +4692,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          persistentStateReset: function() {
+          persistentStateReset: () => {
             return 'test';
           }
         }
@@ -4705,7 +4713,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          persistentStateSave: function() {
+          persistentStateSave: () => {
             return 'test';
           }
         }
@@ -4726,7 +4734,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          skipLengthCache: function() {
+          skipLengthCache: () => {
             return 'test';
           }
         }
@@ -4747,7 +4755,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          unmodifyCol: function() {
+          unmodifyCol: () => {
             return 'test';
           }
         }
@@ -4768,7 +4776,7 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          unmodifyRow: function() {
+          unmodifyRow: () => {
             return 'test';
           }
         }
