@@ -1,53 +1,12 @@
 import { Injectable, SimpleChanges } from '@angular/core';
-
-const AVAILABLE_OPTIONS: string[] = ['activeHeaderClassName', 'allowEmpty', 'allowHtml', 'allowInsertColumn', 'allowInsertRow',
-'allowInvalid', 'allowRemoveColumn', 'allowRemoveRow', 'autoColumnSize', 'autoComplete', 'autoRowSize',
-'autoWrapCol', 'autoWrapRow', 'cell', 'cells', 'checkedTemplate', 'className', 'colHeaders', 'columnHeaderHeight',
-'columns', 'columnSorting', 'colWidths', 'commentedCellClassName', 'comments', 'contextMenu', 'copyable',
-'copyPaste', 'correctFormat', 'currentColClassName', 'currentHeaderClassName', 'currentRowClassName',
-'customBorders', 'data', 'dataSchema', 'dateFormat', 'debug', 'defaultDate', 'disableVisualSelection',
-'dragToScroll', 'editor', 'enterBeginsEditing', 'enterMoves', 'fillHandle', 'filter', 'filteringCaseSensitive',
-'fixedColumnsLeft', 'fixedRowsTop', 'fragmentSelection', 'height', 'invalidCellClassName', 'label',
-'language', 'manualColumnFreeze', 'manualColumnMove', 'manualColumnResize', 'manualRowMove', 'manualRowResize',
-'maxCols', 'maxRows', 'mergeCells', 'minCols', 'minRows', 'minSpareCols', 'minSpareRows', 'multiSelect',
-'noWordWrapClassName', 'numericFormat', 'observeChanges', 'observeDOMVisibility', 'outsideClickDeselects',
-'persistentState', 'placeholder', 'placeholderCellClassName', 'preventOverflow', 'readOnly',
-'readOnlyCellClassName', 'renderAllRows', 'renderer', 'rowHeaders', 'rowHeaderWidth', 'rowHeights',
-'search', 'selectionMode', 'selectOptions', 'skipColumnOnPaste', 'sortByRelevance', 'sortFunction', 'sortIndicator',
-'source', 'startCols', 'startRows', 'stretchH', 'strict', 'tableClassName', 'tabMoves', 'title',
-'trimDropdown', 'trimWhitespace', 'type', 'uncheckedTemplate', 'undo', 'validator',
-'viewportColumnRenderingOffset', 'viewportRowRenderingOffset', 'visibleRows', 'width', 'wordWrap'];
-
-const AVAILABLE_HOOKS: string[] = ['afterBeginEditing', 'afterCellMetaReset', 'afterChange',
-'afterChangesObserved', 'afterColumnMove', 'afterColumnResize', 'afterColumnSort',
-'afterContextMenuDefaultOptions', 'afterContextMenuHide', 'afterContextMenuShow', 'afterCopy',
-'afterCopyLimit', 'afterCreateCol', 'afterCreateRow', 'afterCut', 'afterDeselect', 'afterDestroy',
-'afterDocumentKeyDown', 'afterGetCellMeta', 'afterGetColHeader', 'afterGetColumnHeaderRenderers',
-'afterGetRowHeader', 'afterGetRowHeaderRenderers', 'afterInit', 'afterLanguageChange', 'afterListen',
-'afterLoadData', 'afterModifyTransformEnd', 'afterModifyTransformStart', 'afterMomentumScroll',
-'afterOnCellCornerDblClick', 'afterOnCellCornerMouseDown', 'afterOnCellMouseDown',
-'afterOnCellMouseOut', 'afterOnCellMouseOver', 'afterPaste', 'afterPluginsInitialized', 'afterRedo',
-'afterRemoveCellMeta', 'afterRemoveCol', 'afterRemoveRow', 'afterRender', 'afterRenderer',
-'afterRowMove', 'afterRowResize', 'afterScrollHorizontally', 'afterScrollVertically', 'afterSelection',
-'afterSelectionByProp', 'afterSelectionEnd', 'afterSelectionEndByProp', 'afterSetCellMeta',
-'afterSetDataAtCell', 'afterSetDataAtRowProp', 'afterUndo', 'afterUnlisten', 'afterUpdateSettings',
-'afterValidate', 'afterViewportColumnCalculatorOverride', 'afterViewportRowCalculatorOverride',
-'beforeAutofill', 'beforeAutofillInsidePopulate', 'beforeCellAlignment', 'beforeChange', 'beforeChangeRender',
-'beforeColumnMove', 'beforeColumnResize', 'beforeColumnSort', 'beforeContextMenuSetItems', 'beforeCopy',
-'beforeCreateCol', 'beforeCreateRow', 'beforeCut', 'beforeDrawBorders', 'beforeGetCellMeta', 'beforeInit',
-'beforeInitWalkontable', 'beforeKeyDown', 'beforeLanguageChange', 'beforeOnCellMouseDown', 'beforeOnCellMouseOut',
-'beforeOnCellMouseOver', 'beforePaste', 'beforeRedo', 'beforeRemoveCellMeta', 'beforeRemoveCol',
-'beforeRemoveRow', 'beforeRender', 'beforeRenderer', 'beforeRowMove', 'beforeRowResize', 'beforeSetRangeEnd',
-'beforeSetRangeStart', 'beforeStretchingColumnWidth', 'beforeTouchScroll', 'beforeUndo', 'beforeValidate',
-'beforeValueRender', 'construct', 'init', 'manualRowHeights', 'modifyAutofillRange', 'modifyCol',
-'modifyColHeader', 'modifyColumnHeaderHeight', 'modifyColWidth', 'modifyCopyableRange', 'modifyData',
-'modifyRow', 'modifyRowData', 'modifyRowHeader', 'modifyRowHeaderWidth', 'modifyRowHeight', 'modifyTransformEnd',
-'modifyTransformStart', 'persistentStateLoad', 'persistentStateReset', 'persistentStateSave',
-'skipLengthCache', 'unmodifyCol', 'unmodifyRow'];
+import * as Handsontable from 'handsontable';
+// @ts-ignore
+const AVAILABLE_OPTIONS: string[] = Object.keys(Handsontable.DefaultSettings.prototype);
+// @ts-ignore
+const AVAILABLE_HOOKS: string[] = Handsontable.hooks.getRegistered();
 
 @Injectable()
 export class HotSettingsResolver {
-
   mergeSettings(component): object {
     const mergedSettings: object = {};
     const options = AVAILABLE_HOOKS.concat(AVAILABLE_OPTIONS);

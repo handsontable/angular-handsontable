@@ -4345,27 +4345,6 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run manualRowHeights hook defined in settings`, () => {
-      TestBed.overrideComponent(TestComponent, {
-        set: {
-          template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
-        }
-      });
-      TestBed.compileComponents().then(() => {
-        fixture = TestBed.createComponent(TestComponent);
-        const app = fixture.componentInstance;
-
-        app.prop['settings'] = {
-          manualRowHeights: () => {
-            return 'test';
-          }
-        }
-
-        fixture.detectChanges();
-        expect(app.getHotInstance(app.id).runHooks('manualRowHeights')).toBe('test');
-      });
-    });
-
     it(`should run modifyAutofillRange hook defined in settings`, () => {
       TestBed.overrideComponent(TestComponent, {
         set: {
