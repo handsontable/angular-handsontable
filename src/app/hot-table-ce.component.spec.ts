@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import * as Handsontable from 'handsontable';
-
+// @ts-ignore
 import { HotTableModule } from '@handsontable/angular';
 import { TestComponent } from './test-ce.component';
 
