@@ -10,9 +10,7 @@ import {
   ViewEncapsulation,
   Input,
 } from '@angular/core';
-
 import * as Handsontable from 'handsontable-pro';
-
 import { HotTableRegisterer } from './hot-table-registerer.service';
 import { HotSettingsResolver } from './hot-settings-resolver.service';
 import { HotColumnComponent } from './hot-column.component';
@@ -27,12 +25,12 @@ import { HotColumnComponent } from './hot-column.component';
 
 export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy, OnInit {
   private hotInstance: Handsontable;
-  private container: HTMLElement;
+  private container: HTMLDivElement;
   private columnsComponents: HotColumnComponent[] = [];
-
+  // component inputs
   @Input() settings: Handsontable.GridSettings;
   @Input() hotId: string;
-
+  // handsontable options
   @Input() activeHeaderClassName: string;
   @Input() allowEmpty: boolean;
   @Input() allowHtml: boolean;
@@ -139,7 +137,7 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy
   @Input() visibleRows: number;
   @Input() width: number| (() => number);
   @Input() wordWrap: boolean;
-
+  // handsontable hooks
   @Input() afterBeginEditing: (row: number, column: number) => void;
   @Input() afterCellMetaReset: () => void;
   @Input() afterChange: (changes: [number, string | number, any, any][], source: string) => void;
@@ -177,8 +175,8 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy
   @Input() afterOnCellCornerDblClick: (event: Event) => void;
   @Input() afterOnCellCornerMouseDown: (event: Event) => void;
   @Input() afterOnCellMouseDown: (event: Event, coords: Handsontable.wot.CellCoords, TD: HTMLTableCellElement) => void;
-  @Input() afterOnCellMouseOver: (event: Event, coords: Handsontable.wot.CellCoords, TD: HTMLTableCellElement) => void;
   @Input() afterOnCellMouseOut: (event: Event, coords: Handsontable.wot.CellCoords, TD: HTMLTableCellElement) => void;
+  @Input() afterOnCellMouseOver: (event: Event, coords: Handsontable.wot.CellCoords, TD: HTMLTableCellElement) => void;
   @Input() afterPaste: (data: any[][], coords: {startRow: number, startCol: number, endRow: number, endCol: number}[]) => void;
   @Input() afterPluginsInitialized: () => void;
   @Input() afterRedo: (action: object) => void;
@@ -276,7 +274,7 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy
   @Input() skipLengthCache: (delay: number) => void;
   @Input() unmodifyCol: (col: number) => void;
   @Input() unmodifyRow: (row: number) => void;
-
+  // handsontable-pro options
   @Input() bindRowsWithHeaders: boolean | string;
   @Input() collapsibleColumns: boolean | object[];
   @Input() columnSummary: object;
@@ -292,7 +290,7 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy
   @Input() nestedHeaders: any[][];
   @Input() nestedRows: boolean;
   @Input() trimRows: boolean | number[];
-
+  // handsontable-pro hooks
   @Input() afterAddChild: (parent: object, element: object | void, index: number | void) => void;
   @Input() afterDetachChild: (parent: object, element: object) => void;
   @Input() afterDropdownMenuDefaultOptions: (predefinedItems: object[]) => void;
@@ -314,9 +312,9 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy
     private _ngZone: NgZone,
     private _hotTableRegisterer: HotTableRegisterer,
     private _hotSettingResolver: HotSettingsResolver
-  ) { }
+  ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.container = document.createElement('div');
 
     if (this.hotId) {
@@ -326,8 +324,8 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy
     this.el.nativeElement.appendChild(this.container);
   }
 
-  ngAfterContentInit() {
-    const options = this._hotSettingResolver.mergeSettings(this);
+  ngAfterContentInit(): void {
+    const options: Handsontable.GridSettings = this._hotSettingResolver.mergeSettings(this);
 
     if (this.columnsComponents.length > 0) {
       const columns = [];
@@ -349,17 +347,17 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy
 
   }
 
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnChanges(changes: SimpleChanges): void {
     if (this.hotInstance === void 0) {
       return;
     }
 
-    const newOptions = this._hotSettingResolver.prepareChanges(changes);
+    const newOptions: Handsontable.GridSettings = this._hotSettingResolver.prepareChanges(changes);
 
     this.updateHotTable(newOptions);
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.hotInstance.destroy();
 
     if (this.hotId) {
@@ -370,7 +368,7 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy
     this.container = void 0;
   }
 
-  updateHotTable(newSettings: object) {
+  updateHotTable(newSettings: Handsontable.GridSettings): void {
     if (!this.hotInstance) {
       return;
     }
@@ -378,13 +376,13 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy
     this.hotInstance.updateSettings(newSettings, false);
   }
 
-  onAfterColumnsChange() {
+  onAfterColumnsChange(): void {
     if (this.columnsComponents === void 0) {
       return;
     }
 
     if (this.columnsComponents.length > 0) {
-      const columns = [];
+      const columns: Handsontable.GridSettings[] = [];
 
       this.columnsComponents.forEach((column) => {
         columns.push(this._hotSettingResolver.mergeSettings(column));
@@ -398,8 +396,8 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy
     }
   }
 
-  onAfterColumnsNumberChange() {
-    const columns = [];
+  onAfterColumnsNumberChange(): void {
+    const columns: Handsontable.GridSettings[] = [];
 
     if (this.columnsComponents.length > 0) {
       this.columnsComponents.forEach((column) => {
@@ -410,13 +408,13 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy
     this.updateHotTable({columns: columns});
   }
 
-  addColumn(column: HotColumnComponent) {
+  addColumn(column: HotColumnComponent): void {
     this.columnsComponents.push(column);
     this.onAfterColumnsNumberChange();
   }
 
-  removeColumn(column: HotColumnComponent) {
-    const index = this.columnsComponents.indexOf(column);
+  removeColumn(column: HotColumnComponent): void {
+    const index: number = this.columnsComponents.indexOf(column);
 
     this.columnsComponents.splice(index, 1);
     this.onAfterColumnsNumberChange();

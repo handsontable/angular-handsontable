@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import * as Handsontable from 'handsontable-pro';
-
 // @ts-ignore
 import { HotTableModule } from '@handsontable-pro/angular';
 import { TestComponent } from './test-pro.component';
@@ -2597,6 +2596,27 @@ describe('HotTableComponent', () => {
       });
     });
 
+    it(`should run afterDrawSelection hook defined in settings`, () => {
+      TestBed.overrideComponent(TestComponent, {
+        set: {
+          template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
+        }
+      });
+      TestBed.compileComponents().then(() => {
+        fixture = TestBed.createComponent(TestComponent);
+        const app = fixture.componentInstance;
+
+        app.prop['settings'] = {
+          afterDrawSelection: () => {
+            return 'test';
+          }
+        }
+
+        fixture.detectChanges();
+        expect(app.getHotInstance(app.id).runHooks('afterDrawSelection')).toBe('test');
+      });
+    });
+
     it(`should run afterGetCellMeta hook defined in settings`, () => {
       TestBed.overrideComponent(TestComponent, {
         set: {
@@ -2729,6 +2749,48 @@ describe('HotTableComponent', () => {
       });
     });
 
+    it(`should run afterLanguageChange hook defined in settings`, () => {
+      TestBed.overrideComponent(TestComponent, {
+        set: {
+          template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
+        }
+      });
+      TestBed.compileComponents().then(() => {
+        fixture = TestBed.createComponent(TestComponent);
+        const app = fixture.componentInstance;
+
+        app.prop['settings'] = {
+          afterLanguageChange: () => {
+            return 'test';
+          }
+        }
+
+        fixture.detectChanges();
+        expect(app.getHotInstance(app.id).runHooks('afterLanguageChange')).toBe('test');
+      });
+    });
+
+    it(`should run afterListen hook defined in settings`, () => {
+      TestBed.overrideComponent(TestComponent, {
+        set: {
+          template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
+        }
+      });
+      TestBed.compileComponents().then(() => {
+        fixture = TestBed.createComponent(TestComponent);
+        const app = fixture.componentInstance;
+
+        app.prop['settings'] = {
+          afterListen: () => {
+            return 'test';
+          }
+        }
+
+        fixture.detectChanges();
+        expect(app.getHotInstance(app.id).runHooks('afterListen')).toBe('test');
+      });
+    });
+
     it(`should run afterLoadData hook defined in settings`, () => {
       TestBed.overrideComponent(TestComponent, {
         set: {
@@ -2810,6 +2872,27 @@ describe('HotTableComponent', () => {
 
         fixture.detectChanges();
         expect(app.getHotInstance(app.id).runHooks('afterMomentumScroll')).toBe('test');
+      });
+    });
+
+    it(`should run afterOnCellContextMenu hook defined in settings`, () => {
+      TestBed.overrideComponent(TestComponent, {
+        set: {
+          template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
+        }
+      });
+      TestBed.compileComponents().then(() => {
+        fixture = TestBed.createComponent(TestComponent);
+        const app = fixture.componentInstance;
+
+        app.prop['settings'] = {
+          afterOnCellContextMenu: () => {
+            return 'test';
+          }
+        }
+
+        fixture.detectChanges();
+        expect(app.getHotInstance(app.id).runHooks('afterOnCellContextMenu')).toBe('test');
       });
     });
 
@@ -2918,6 +3001,27 @@ describe('HotTableComponent', () => {
       });
     });
 
+    it(`should run afterPaste hook defined in settings`, () => {
+      TestBed.overrideComponent(TestComponent, {
+        set: {
+          template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
+        }
+      });
+      TestBed.compileComponents().then(() => {
+        fixture = TestBed.createComponent(TestComponent);
+        const app = fixture.componentInstance;
+
+        app.prop['settings'] = {
+          afterPaste: () => {
+            return 'test';
+          }
+        }
+
+        fixture.detectChanges();
+        expect(app.getHotInstance(app.id).runHooks('afterPaste')).toBe('test');
+      });
+    });
+
     it(`should run afterPluginsInitialized hook defined in settings`, () => {
       TestBed.overrideComponent(TestComponent, {
         set: {
@@ -2957,6 +3061,27 @@ describe('HotTableComponent', () => {
 
         fixture.detectChanges();
         expect(app.getHotInstance(app.id).runHooks('afterRedo')).toBe('test');
+      });
+    });
+
+    it(`should run afterRemoveCellMeta hook defined in settings`, () => {
+      TestBed.overrideComponent(TestComponent, {
+        set: {
+          template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
+        }
+      });
+      TestBed.compileComponents().then(() => {
+        fixture = TestBed.createComponent(TestComponent);
+        const app = fixture.componentInstance;
+
+        app.prop['settings'] = {
+          afterRemoveCellMeta: () => {
+            return 'test';
+          }
+        }
+
+        fixture.detectChanges();
+        expect(app.getHotInstance(app.id).runHooks('afterRemoveCellMeta')).toBe('test');
       });
     });
 
@@ -3317,6 +3442,48 @@ describe('HotTableComponent', () => {
       });
     });
 
+    it(`should run afterUnlisten hook defined in settings`, () => {
+      TestBed.overrideComponent(TestComponent, {
+        set: {
+          template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
+        }
+      });
+      TestBed.compileComponents().then(() => {
+        fixture = TestBed.createComponent(TestComponent);
+        const app = fixture.componentInstance;
+
+        app.prop['settings'] = {
+          afterUnlisten: () => {
+            return 'test';
+          }
+        }
+
+        fixture.detectChanges();
+        expect(app.getHotInstance(app.id).runHooks('afterUnlisten')).toBe('test');
+      });
+    });
+
+    it(`should run afterUnmergeCells hook defined in settings`, () => {
+      TestBed.overrideComponent(TestComponent, {
+        set: {
+          template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
+        }
+      });
+      TestBed.compileComponents().then(() => {
+        fixture = TestBed.createComponent(TestComponent);
+        const app = fixture.componentInstance;
+
+        app.prop['settings'] = {
+          afterUnmergeCells: () => {
+            return 'test';
+          }
+        }
+
+        fixture.detectChanges();
+        expect(app.getHotInstance(app.id).runHooks('afterUnmergeCells')).toBe('test');
+      });
+    });
+
     it(`should run afterUntrimRow hook defined in settings`, () => {
       TestBed.overrideComponent(TestComponent, {
         set: {
@@ -3632,6 +3799,27 @@ describe('HotTableComponent', () => {
       });
     });
 
+    it(`should run beforeContextMenuShow hook defined in settings`, () => {
+      TestBed.overrideComponent(TestComponent, {
+        set: {
+          template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
+        }
+      });
+      TestBed.compileComponents().then(() => {
+        fixture = TestBed.createComponent(TestComponent);
+        const app = fixture.componentInstance;
+
+        app.prop['settings'] = {
+          beforeContextMenuShow: () => {
+            return 'test';
+          }
+        }
+
+        fixture.detectChanges();
+        expect(app.getHotInstance(app.id).runHooks('beforeContextMenuShow')).toBe('test');
+      });
+    });
+
     it(`should run beforeCopy hook defined in settings`, () => {
       TestBed.overrideComponent(TestComponent, {
         set: {
@@ -3779,6 +3967,27 @@ describe('HotTableComponent', () => {
       });
     });
 
+    it(`should run beforeDropdownMenuShow hook defined in settings`, () => {
+      TestBed.overrideComponent(TestComponent, {
+        set: {
+          template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
+        }
+      });
+      TestBed.compileComponents().then(() => {
+        fixture = TestBed.createComponent(TestComponent);
+        const app = fixture.componentInstance;
+
+        app.prop['settings'] = {
+          beforeDropdownMenuSetItems: () => {
+            return 'test';
+          }
+        }
+
+        fixture.detectChanges();
+        expect(app.getHotInstance(app.id).runHooks('beforeDropdownMenuSetItems')).toBe('test');
+      });
+    });
+
     it(`should run beforeFilter hook defined in settings`, () => {
       TestBed.overrideComponent(TestComponent, {
         set: {
@@ -3884,6 +4093,69 @@ describe('HotTableComponent', () => {
       });
     });
 
+    it(`should run beforeLanguageChange hook defined in settings`, () => {
+      TestBed.overrideComponent(TestComponent, {
+        set: {
+          template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
+        }
+      });
+      TestBed.compileComponents().then(() => {
+        fixture = TestBed.createComponent(TestComponent);
+        const app = fixture.componentInstance;
+
+        app.prop['settings'] = {
+          beforeLanguageChange: () => {
+            return 'test';
+          }
+        }
+
+        fixture.detectChanges();
+        expect(app.getHotInstance(app.id).runHooks('beforeLanguageChange')).toBe('test');
+      });
+    });
+
+    it(`should run beforeMergeCells hook defined in settings`, () => {
+      TestBed.overrideComponent(TestComponent, {
+        set: {
+          template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
+        }
+      });
+      TestBed.compileComponents().then(() => {
+        fixture = TestBed.createComponent(TestComponent);
+        const app = fixture.componentInstance;
+
+        app.prop['settings'] = {
+          beforeMergeCells: () => {
+            return 'test';
+          }
+        }
+
+        fixture.detectChanges();
+        expect(app.getHotInstance(app.id).runHooks('beforeMergeCells', void 0, true)).toBe('test');
+      });
+    });
+
+    it(`should run beforeOnCellContextMenu hook defined in settings`, () => {
+      TestBed.overrideComponent(TestComponent, {
+        set: {
+          template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
+        }
+      });
+      TestBed.compileComponents().then(() => {
+        fixture = TestBed.createComponent(TestComponent);
+        const app = fixture.componentInstance;
+
+        app.prop['settings'] = {
+          beforeOnCellContextMenu: () => {
+            return 'test';
+          }
+        }
+
+        fixture.detectChanges();
+        expect(app.getHotInstance(app.id).runHooks('beforeOnCellContextMenu')).toBe('test');
+      });
+    });
+
     it(`should run beforeOnCellMouseDown hook defined in settings`, () => {
       TestBed.overrideComponent(TestComponent, {
         set: {
@@ -3986,6 +4258,48 @@ describe('HotTableComponent', () => {
 
         fixture.detectChanges();
         expect(app.getHotInstance(app.id).runHooks('beforeRedo')).toBe('test');
+      });
+    });
+
+    it(`should run beforeRemoveCellClassNames hook defined in settings`, () => {
+      TestBed.overrideComponent(TestComponent, {
+        set: {
+          template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
+        }
+      });
+      TestBed.compileComponents().then(() => {
+        fixture = TestBed.createComponent(TestComponent);
+        const app = fixture.componentInstance;
+
+        app.prop['settings'] = {
+          beforeRemoveCellClassNames: () => {
+            return 'test';
+          }
+        }
+
+        fixture.detectChanges();
+        expect(app.getHotInstance(app.id).runHooks('beforeRemoveCellClassNames')).toBe('test');
+      });
+    });
+
+    it(`should run beforeRemoveCellMeta hook defined in settings`, () => {
+      TestBed.overrideComponent(TestComponent, {
+        set: {
+          template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
+        }
+      });
+      TestBed.compileComponents().then(() => {
+        fixture = TestBed.createComponent(TestComponent);
+        const app = fixture.componentInstance;
+
+        app.prop['settings'] = {
+          beforeRemoveCellMeta: () => {
+            return 'test';
+          }
+        }
+
+        fixture.detectChanges();
+        expect(app.getHotInstance(app.id).runHooks('beforeRemoveCellMeta')).toBe('test');
       });
     });
 
@@ -4157,6 +4471,27 @@ describe('HotTableComponent', () => {
       });
     });
 
+    it(`should run beforeSetRangeStartOnly hook defined in settings`, () => {
+      TestBed.overrideComponent(TestComponent, {
+        set: {
+          template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
+        }
+      });
+      TestBed.compileComponents().then(() => {
+        fixture = TestBed.createComponent(TestComponent);
+        const app = fixture.componentInstance;
+
+        app.prop['settings'] = {
+          beforeSetRangeStartOnly: () => {
+            return 'test';
+          }
+        }
+
+        fixture.detectChanges();
+        expect(app.getHotInstance(app.id).runHooks('beforeSetRangeStartOnly')).toBe('test');
+      });
+    });
+
     it(`should run beforeStretchingColumnWidth hook defined in settings`, () => {
       TestBed.overrideComponent(TestComponent, {
         set: {
@@ -4217,6 +4552,27 @@ describe('HotTableComponent', () => {
 
         fixture.detectChanges();
         expect(app.getHotInstance(app.id).runHooks('beforeUndo')).toBe('test');
+      });
+    });
+
+    it(`should run beforeUnmergeCells hook defined in settings`, () => {
+      TestBed.overrideComponent(TestComponent, {
+        set: {
+          template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
+        }
+      });
+      TestBed.compileComponents().then(() => {
+        fixture = TestBed.createComponent(TestComponent);
+        const app = fixture.componentInstance;
+
+        app.prop['settings'] = {
+          beforeUnmergeCells: () => {
+            return 'test';
+          }
+        }
+
+        fixture.detectChanges();
+        expect(app.getHotInstance(app.id).runHooks('beforeUnmergeCells')).toBe('test');
       });
     });
 
@@ -4490,6 +4846,27 @@ describe('HotTableComponent', () => {
 
         fixture.detectChanges();
         expect(app.getHotInstance(app.id).runHooks('modifyData')).toBe('test');
+      });
+    });
+
+    it(`should run modifyGetCellCoords hook defined in settings`, () => {
+      TestBed.overrideComponent(TestComponent, {
+        set: {
+          template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
+        }
+      });
+      TestBed.compileComponents().then(() => {
+        fixture = TestBed.createComponent(TestComponent);
+        const app = fixture.componentInstance;
+
+        app.prop['settings'] = {
+          modifyGetCellCoords: () => {
+            return 'test';
+          }
+        }
+
+        fixture.detectChanges();
+        expect(app.getHotInstance(app.id).runHooks('modifyGetCellCoords')).toBe('test');
       });
     });
 

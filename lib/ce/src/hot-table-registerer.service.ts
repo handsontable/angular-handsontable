@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-
 import * as Handsontable from 'handsontable';
 
 const instances = new Map<string, Handsontable>();
@@ -10,11 +9,11 @@ export class HotTableRegisterer {
     return instances.get(id);
   }
 
-  public registerInstance(id: string, instance: Handsontable): void {
-    instances.set(id, instance);
+  public registerInstance(id: string, instance: Handsontable): Map<string, Handsontable> {
+    return instances.set(id, instance);
   }
 
-  public removeInstance(id: string): void {
-    instances.delete(id);
+  public removeInstance(id: string): boolean {
+    return instances.delete(id);
   }
 }

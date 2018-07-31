@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+// @ts-ignore
 import { HotTableModule } from '@handsontable/angular';
 import { TestComponent } from './test-ce.component';
 

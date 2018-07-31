@@ -7,11 +7,11 @@ const AVAILABLE_HOOKS: string[] = Handsontable.hooks.getRegistered();
 
 @Injectable()
 export class HotSettingsResolver {
-  mergeSettings(component): object {
-    const mergedSettings: object = {};
+  mergeSettings(component): Handsontable.GridSettings {
+    const mergedSettings: Handsontable.GridSettings = {};
     const options = AVAILABLE_HOOKS.concat(AVAILABLE_OPTIONS);
 
-    options.forEach((key) => {
+    options.forEach(key => {
       let option;
 
       if (typeof component['settings'] === 'object') {
@@ -40,8 +40,8 @@ export class HotSettingsResolver {
     return mergedSettings;
   }
 
-  prepareChanges(changes: SimpleChanges): object {
-    const result: object = {};
+  prepareChanges(changes: SimpleChanges): Handsontable.GridSettings {
+    const result: Handsontable.GridSettings = {};
     const parameters: string[] = Object.keys(changes);
 
     parameters.forEach((param) => {

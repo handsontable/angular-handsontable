@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import * as Handsontable from 'handsontable-pro';
-
+// @ts-ignore
 import { HotTableRegisterer } from '@handsontable-pro/angular';
 
 @Component({
