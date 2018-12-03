@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppComponent } from './app.component';
-import { HotTableModule } from '@handsontable-pro/angular';
+// @ts-ignore
+import { HotTableModule } from '@handsontable/angular';
 
 @NgModule({
   declarations: [

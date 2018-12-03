@@ -10,9 +10,7 @@ import {
   ViewEncapsulation,
   Input,
 } from '@angular/core';
-
 import * as Handsontable from 'handsontable';
-
 import { HotTableRegisterer } from './hot-table-registerer.service';
 import { HotSettingsResolver } from './hot-settings-resolver.service';
 import { HotColumnComponent } from './hot-column.component';
@@ -24,15 +22,14 @@ import { HotColumnComponent } from './hot-column.component';
   encapsulation: ViewEncapsulation.None,
   providers: [ HotTableRegisterer, HotSettingsResolver ],
 })
-
 export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy, OnInit {
   private hotInstance: Handsontable;
-  private container: HTMLElement;
+  private container: HTMLDivElement;
   private columnsComponents: HotColumnComponent[] = [];
-
+  // component inputs
   @Input() settings: Handsontable.GridSettings;
   @Input() hotId: string;
-
+  // handsontable options
   @Input() activeHeaderClassName: string;
   @Input() allowEmpty: boolean;
   @Input() allowHtml: boolean;
@@ -42,22 +39,21 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy
   @Input() allowRemoveColumn: boolean;
   @Input() allowRemoveRow: boolean;
   @Input() autoColumnSize: boolean | object;
-  @Input() autoComplete: any[];
   @Input() autoRowSize: boolean | object;
   @Input() autoWrapCol: boolean;
   @Input() autoWrapRow: boolean;
-  @Input() cell: any[];
+  @Input() cell: object[];
   @Input() cells: (row: number, column: number, prop: object) => object;
-  @Input() checkedTemplate: boolean | string;
+  @Input() checkedTemplate: boolean | string | number;
   @Input() className: string | string[];
   @Input() colHeaders: boolean | string[] | ((column: number) => string);
   @Input() columnHeaderHeight: number | number[];
   @Input() columns: object[] | ((column: number) => object);
   @Input() columnSorting: boolean | object;
-  @Input() colWidths: number | number[] | string | ((column: number) => number);
+  @Input() colWidths: number | number[] | string | string[] | ((column: number) => number);
   @Input() commentedCellClassName: string;
   @Input() comments: boolean | object[];
-  @Input() contextMenu: boolean | object | object[];
+  @Input() contextMenu: boolean | string[] | object;
   @Input() copyable: boolean;
   @Input() copyPaste: boolean | object;
   @Input() correctFormat: boolean;
@@ -65,7 +61,7 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy
   @Input() currentHeaderClassName: string;
   @Input() currentRowClassName: string;
   @Input() customBorders: boolean | object[];
-  @Input() data: any[];
+  @Input() data: any[][] | object[];
   @Input() dataSchema: object;
   @Input() dateFormat: string;
   @Input() debug: boolean;
@@ -80,7 +76,6 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy
   @Input() filteringCaseSensitive: boolean;
   @Input() fixedColumnsLeft: number;
   @Input() fixedRowsTop: number;
-  @Input() format: string;
   @Input() fragmentSelection: boolean | string;
   @Input() height: number | (() => number);
   @Input() invalidCellClassName: string;
@@ -99,28 +94,28 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy
   @Input() minSpareCols: number;
   @Input() minSpareRows: number;
   @Input() noWordWrapClassName: string;
-  @Input() numericFormat: any;
+  @Input() numericFormat: object;
   @Input() observeChanges: boolean;
   @Input() observeDOMVisibility: boolean;
   @Input() outsideClickDeselects: boolean | ((event: Event) => boolean);
-  @Input() pasteMode: string;
   @Input() persistentState: boolean;
-  @Input() placeholder: any;
+  @Input() placeholder: string;
   @Input() placeholderCellClassName: string;
   @Input() preventOverflow: boolean | string;
   @Input() readOnly: boolean;
   @Input() readOnlyCellClassName: string;
   @Input() renderAllRows: boolean;
-  @Input() renderer: string | (() => void);
-  @Input() rowHeaders: boolean | string[] | (() => string);
+  @Input() renderer: string | ((instance: Handsontable, TD: HTMLTableCellElement, row: number, col: number, prop: number | string,
+    value: any, cellProperties: Handsontable.GridSettings) => void);
+  @Input() rowHeaders: boolean | string[] | ((row: number) => string);
   @Input() rowHeaderWidth: number | number[];
-  @Input() rowHeights: number | number[] | string | ((row: number) => number);
+  @Input() rowHeights: number | number[] | string | string[] | ((row: number) => number);
   @Input() search: boolean;
   @Input() selectionMode: string;
   @Input() selectOptions: string[] | number[];
   @Input() skipColumnOnPaste: boolean;
   @Input() sortByRelevance: boolean;
-  @Input() sortFunction: (sortOrder: boolean) => void;
+  @Input() sortFunction: (sortOrder: boolean) => (a: [number, any], b: [number, any]) => boolean;
   @Input() sortIndicator: boolean;
   @Input() source: any[] | (() => void);
   @Input() startCols: number;
@@ -128,126 +123,144 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy
   @Input() stretchH: string;
   @Input() strict: boolean;
   @Input() tableClassName: string | string[];
-  @Input() tabMoves: object;
+  @Input() tabMoves: object | ((event: Event) => object);
   @Input() title: string;
   @Input() trimDropdown: boolean;
   @Input() trimWhitespace: boolean;
   @Input() type: string;
-  @Input() uncheckedTemplate: boolean | string;
+  @Input() uncheckedTemplate: boolean | string | number;
   @Input() undo: boolean;
-  @Input() validator: string | RegExp | (() => void);
+  @Input() validator: string | RegExp | ((value: any, callback: (result: boolean) => void) => void);
   @Input() viewportColumnRenderingOffset: number | string;
   @Input() viewportRowRenderingOffset: number | string;
   @Input() visibleRows: number;
   @Input() width: number| (() => number);
   @Input() wordWrap: boolean;
-
-  @Input() afterBeginEdting: (row: number, column: number) => void;
+  // handsontable hooks
+  @Input() afterBeginEditing: (row: number, column: number) => void;
   @Input() afterCellMetaReset: () => void;
-  @Input() afterChange: (changes: any[], source: string) => void;
+  @Input() afterChange: (changes: [number, string | number, any, any][], source: string) => void;
   @Input() afterChangesObserved: () => void;
-  @Input() afterColumnMove: (startColumn: number, endColumn: number) => void;
+  @Input() afterColumnMove: (columns: number[], target: number) => void;
   @Input() afterColumnResize: (currentColumn: number, newSize: number, isDoubleClick: boolean) => void;
-  @Input() afterColumnSort: (column: number, order: boolean) => void;
+  @Input() afterColumnSort: (column: number, order: string) => void;
   @Input() afterContextMenuDefaultOptions: (predefinedItems: any[]) => void;
-  @Input() afterContextMenuHide: (context: object) => void;
-  @Input() beforeContextMenuShow: (context: object) => void;
-  @Input() afterContextMenuShow: (context: object) => void;
-  @Input() afterCopy: (data: any[], coords: any[]) => void;
+  @Input() afterContextMenuHide: (context: Handsontable.plugins.ContextMenu) => void;
+  @Input() afterContextMenuShow: (context: Handsontable.plugins.ContextMenu) => void;
+  @Input() afterCopy: (data: any[][], coords: {startRow: number, startCol: number, endRow: number, endCol: number}[]) => void;
   @Input() afterCopyLimit: (selectedRows: number, selectedColumnds: number, copyRowsLimit: number, copyColumnsLimit: number) => void;
-  @Input() afterCreateCol: (index: number, amount: number) => void;
-  @Input() afterCreateRow: (index: number, amount: number) => void;
-  @Input() afterCut: (data: any[], coords: any[]) => void;
+  @Input() afterCreateCol: (index: number, amount: number, source: string) => void;
+  @Input() afterCreateRow: (index: number, amount: number, source: string) => void;
+  @Input() afterCut: (data: any[][], coords: {startRow: number, startCol: number, endRow: number, endCol: number}[]) => void;
   @Input() afterDeselect: () => void;
   @Input() afterDestroy: () => void;
   @Input() afterDocumentKeyDown: (event: Event) => void;
-  @Input() afterGetCellMeta: (row: number, col: number, cellProperties: Handsontable.GridSettings) => void;
-  @Input() afterGetColHeader: (col: number, TH: Element) => void;
-  @Input() afterGetColumnHeaderRenderers: (array: any[]) => void;
-  @Input() afterGetRowHeader: (row: number, TH: Element) => void;
-  @Input() afterGetRowHeaderRenderers: (array: any[]) => void;
+  @Input() afterDrawSelection: (currentRow: number, curren13tColumn: number,
+    cornersOfSelection: number[], layerLevel: number | void) => string | void;
+  @Input() afterGetCellMeta: (row: number, column: number, cellProperties: Handsontable.GridSettings) => void;
+  @Input() afterGetColHeader: (column: number, TH: HTMLTableCellElement) => void;
+  @Input() afterGetColumnHeaderRenderers: (renderers: (() => void)[]) => void;
+  @Input() afterGetRowHeader: (row: number, TH: HTMLTableCellElement) => void;
+  @Input() afterGetRowHeaderRenderers: (renderers: (() => void)[]) => void;
   @Input() afterInit: () => void;
-  @Input() afterLoadData: (firstTime: boolean) => void;
+  @Input() afterLanguageChange: (languageCode: string) => void;
+  @Input() afterListen: () => void;
+  @Input() afterLoadData: (initialLoad: boolean) => void;
+  @Input() afterMergeCells: (cellRange: Handsontable.wot.CellRange, mergeParent: object, auto: boolean) => void;
   @Input() afterModifyTransformEnd: (coords: Handsontable.wot.CellCoords, rowTransformDir: number, colTransformDir: number) => void;
   @Input() afterModifyTransformStart: (coords: Handsontable.wot.CellCoords, rowTransformDir: number, colTransformDir: number) => void;
   @Input() afterMomentumScroll: () => void;
-  @Input() afterOnCellCornerDblClick: (event: object) => void;
-  @Input() afterOnCellCornerMouseDown: (event: object) => void;
-  @Input() afterOnCellMouseDown: (event: object, coords: object, TD: Element) => void;
-  @Input() afterOnCellMouseOver: (event: object, coords: object, TD: Element) => void;
-  @Input() afterOnCellMouseOut: (event: object, coords: object, TD: Element) => void;
-  @Input() afterPaste: (data: any[], coords: any[]) => void;
+  @Input() afterOnCellContextMenu: (event: Event, coords: Handsontable.wot.CellCoords, TD: HTMLTableCellElement) => void;
+  @Input() afterOnCellCornerDblClick: (event: Event) => void;
+  @Input() afterOnCellCornerMouseDown: (event: Event) => void;
+  @Input() afterOnCellMouseDown: (event: Event, coords: Handsontable.wot.CellCoords, TD: HTMLTableCellElement) => void;
+  @Input() afterOnCellMouseOut: (event: Event, coords: Handsontable.wot.CellCoords, TD: HTMLTableCellElement) => void;
+  @Input() afterOnCellMouseOver: (event: Event, coords: Handsontable.wot.CellCoords, TD: HTMLTableCellElement) => void;
+  @Input() afterPaste: (data: any[][], coords: {startRow: number, startCol: number, endRow: number, endCol: number}[]) => void;
   @Input() afterPluginsInitialized: () => void;
   @Input() afterRedo: (action: object) => void;
-  @Input() afterRemoveCol: (index: number, amount: number) => void;
-  @Input() afterRemoveRow: (index: number, amount: number) => void;
+  @Input() afterRemoveCellMeta: (row: number, column: number, key: string, value: any) => void;
+  @Input() afterRemoveCol: (index: number, amount: number, physicalColumns: number[], source: string) => void;
+  @Input() afterRemoveRow: (index: number, amount: number, physicalRows: number[], source: string) => void;
   @Input() afterRender: (isForced: boolean) => void;
-  @Input() afterRenderer: (TD: Element, row: number, col: number,
+  @Input() afterRenderer: (TD: HTMLTableCellElement, row: number, col: number,
     prop: string | number, value: string, cellProperties: Handsontable.GridSettings) => void;
-  @Input() afterRowMove: (startRow: number, endRow: number) => void;
+  @Input() afterRowMove: (rows: number[], target: number) => void;
   @Input() afterRowResize: (currentRow: number, newSize: number, isDoubleClick: boolean) => void;
   @Input() afterScrollHorizontally: () => void;
   @Input() afterScrollVertically: () => void;
-  @Input() afterSelection: (r: number, c: number, r2: number, c2: number, preventScrolling: object, selectionLayerLevel: number) => void;
-  @Input() afterSelectionByProp: (r: number, p: string, r2: number, p2: string,
+  @Input() afterSelection: (row: number, column: number, row2: number, column2: number,
     preventScrolling: object, selectionLayerLevel: number) => void;
-  @Input() afterSelectionEnd: (r: number, c: number, r2: number, c2: number, selectionLayerLevel: number) => void;
-  @Input() afterSelectionEndByProp: (r: number, p: string, r2: number, p2: string, selectionLayerLevel: number) => void;
-  @Input() afterSetCellMeta: (row: number, col: number, key: string, value: any) => void;
-  @Input() afterSetDataAtCell: (changes: any[], source: string) => void;
-  @Input() afterSetDataAtRowProp: (changes: any[], source: string) => void;
+  @Input() afterSelectionByProp: (row: number, prop: string, row2: number, prop2: string,
+    preventScrolling: object, selectionLayerLevel: number) => void;
+  @Input() afterSelectionEnd: (row: number, column: number, row2: number, column2: number, selectionLayerLevel: number) => void;
+  @Input() afterSelectionEndByProp: (row: number, prop: string, row2: number, prop2: string, selectionLayerLevel: number) => void;
+  @Input() afterSetCellMeta: (row: number, column: number, key: string, value: any) => void;
+  @Input() afterSetDataAtCell: (changes: [number, string | number, any, any][], source: string) => void;
+  @Input() afterSetDataAtRowProp: (changes: [number, string | number, any, any][], source: string) => void;
   @Input() afterUndo: (action: object) => void;
-  @Input() afterUpdateSettings: () => void;
+  @Input() afterUnlisten: () => void;
+  @Input() afterUnmergeCells: (cellRange: Handsontable.wot.CellRange, auto: boolean) => void;
+  @Input() afterUpdateSettings: (settings: object) => void;
   @Input() afterValidate: (isValid: boolean, value: any, row: number, prop: string | number, source: string) => void | boolean;
   @Input() afterViewportColumnCalculatorOverride: (calc: object) => void;
   @Input() afterViewportRowCalculatorOverride: (calc: object) => void;
-  @Input() beforeAutofill: (start: object, end: object, data: any[]) => void;
-  @Input() beforeAutofillInsidePopulate: (index: object, direction: string, input: any[], deltas: any[]) => void;
-  @Input() beforeCellAlignment: (stateBefore: any, range: any, type: string, alignmentClass: string) => void;
-  @Input() beforeChange: (changes: any[], source: string) => void;
-  @Input() beforeChangeRender: (changes: any[], source: string) => void;
-  @Input() beforeColumnMove: (startColumn: number, endColumn: number) => void;
-  @Input() beforeColumnResize: (currentColumn: number, newSize: number, isDoubleClick: boolean) => void;
+  @Input() beforeAutofill: (start: object, end: object, data: any[][]) => void;
+  @Input() beforeAutofillInsidePopulate: (index: object, direction: string, input: any[][], deltas: any[]) => void;
+  @Input() beforeCellAlignment: (stateBefore: object, range: Handsontable.wot.CellRange[], type: string, alignmentClass: string) => void;
+  @Input() beforeChange: (changes: [number, string | number, any, any][], source: string) => void;
+  @Input() beforeChangeRender: (changes: [number, string | number, any, any][], source: string) => void;
+  @Input() beforeColumnMove: (columns: number[], target: number) => boolean | void;
+  @Input() beforeColumnResize: (currentColumn: number, newSize: number, isDoubleClick: boolean) => number | void;
   @Input() beforeColumnSort: (column: number, order: boolean) => void;
-  @Input() beforeContextMenuSetItems: (menuItems: any[]) => void;
-  @Input() beforeCopy: (data: any[], coords: any[]) => any;
+  @Input() beforeContextMenuSetItems: (menuItems: object[]) => void;
+  @Input() beforeContextMenuShow: (context: Handsontable.plugins.ContextMenu) => void;
+  @Input() beforeCopy: (data: any[][], coords: {startRow: number, startCol: number, endRow: number, endCol: number}[]) => boolean | void;
   @Input() beforeCreateCol: (index: number, amount: number, source: string) => void;
   @Input() beforeCreateRow: (index: number, amount: number, source: string) => void;
-  @Input() beforeCut: (data: any[], coords: any[]) => any;
+  @Input() beforeCut: (data: any[][], coords: {startRow: number, startCol: number, endRow: number, endCol: number}[]) => boolean | void;
   @Input() beforeDrawBorders: (corners: any[], borderClassName: string) => void;
-  @Input() beforeGetCellMeta: (row: number, col: number, cellProperties: Handsontable.GridSettings) => void;
+  @Input() beforeGetCellMeta: (row: number, column: number, cellProperties: Handsontable.GridSettings) => void;
   @Input() beforeInit: () => void;
   @Input() beforeInitWalkontable: (walkontableConfig: object) => void;
   @Input() beforeKeyDown: (event: Event) => void;
-  @Input() beforeOnCellMouseDown: (event: Event, coords: object, TD: Element) => void;
-  @Input() beforeOnCellMouseOut: (event: Event, coords: Handsontable.wot.CellCoords, TD: Element) => void;
-  @Input() beforeOnCellMouseOver: (event: Event, coords: Handsontable.wot.CellCoords, TD: Element, blockCalculations: object) => void;
-  @Input() beforePaste: (data: any[], coords: any[]) => any;
+  @Input() beforeLanguageChange: (languageCode: string) => void;
+  @Input() beforeMergeCells: (cellRange: Handsontable.wot.CellRange, auto: boolean) => void;
+  @Input() beforeOnCellContextMenu: (event: Event, coords: Handsontable.wot.CellCoords, TD: HTMLTableCellElement) => void;
+  @Input() beforeOnCellMouseDown: (event: Event, coords: Handsontable.wot.CellCoords, TD: HTMLTableCellElement, controller: object) => void;
+  @Input() beforeOnCellMouseOut: (event: Event, coords: Handsontable.wot.CellCoords, TD: HTMLTableCellElement) => void;
+  @Input() beforeOnCellMouseOver: (event: Event, coords: Handsontable.wot.CellCoords, TD: HTMLTableCellElement, controller: object) => void;
+  @Input() beforePaste: (data: any[][], coords: {startRow: number, startCol: number, endRow: number, endCol: number}[]) => any;
   @Input() beforeRedo: (action: object) => void;
-  @Input() beforeRemoveCol: (index: number, amount: number, logicalCols: any[]) => void;
-  @Input() beforeRemoveRow: (index: number, amount: number, logicalRows: any[]) => void;
-  @Input() beforeRender: (isForced: boolean, skipRender: object) => void;
-  @Input() beforeRenderer: (TD: Element, row: number, col: number,
-    prop: string | number, value: string, cellProperties: Handsontable.GridSettings) => void;
-  @Input() beforeRowMove: (startRow: number, endRow: number) => void;
-  @Input() beforeRowResize: (currentRow: number, newSize: number, isDoubleClick: boolean) => any;
+  @Input() beforeRemoveCellClassNames: (action: object) => string[] | void;
+  @Input() beforeRemoveCellMeta: (row: number, column: number, key: string, value: any) => void;
+  @Input() beforeRemoveCol: (index: number, amount: number, physicalColumns: number[], source: string) => void;
+  @Input() beforeRemoveRow: (index: number, amount: number, physicalRows: number[], source: string) => void;
+  @Input() beforeRender: (isForced: boolean) => void;
+  @Input() beforeRenderer: (TD: HTMLTableCellElement, row: number, column: number, prop: string | number,
+    value: any, cellProperties: Handsontable.GridSettings) => void;
+  @Input() beforeRowMove: (rows: number[], target: number) => boolean | void;
+  @Input() beforeRowResize: (currentRow: number, newSize: number, isDoubleClick: boolean) => number | void;
   @Input() beforeSetRangeEnd: (coords: Handsontable.wot.CellCoords) => void;
   @Input() beforeSetRangeStart: (coords: Handsontable.wot.CellCoords) => void;
-  @Input() beforeStretchingColumnWidth: (stretchedWidth: number, column: number) => void;
+  @Input() beforeSetRangeStartOnly: (coords: Handsontable.wot.CellCoords) => void;
+  @Input() beforeStretchingColumnWidth: (stretchedWidth: number, column: number) => number;
   @Input() beforeTouchScroll: () => void;
   @Input() beforeUndo: (action: object) => void;
+  @Input() beforeUnmergeCells: (cellRange: Handsontable.wot.CellRange, auto: boolean) => void;
   @Input() beforeValidate: (value: any, row: number, prop: string | number, source: string) => void;
   @Input() beforeValueRender: (value: any, cellProperties: object) => void;
   @Input() construct: () => void;
   @Input() init: () => void;
-  @Input() manualRowHeights: (state: any[]) => void;
-  @Input() modifyAutofillRange: (startArea: any[], entireArea: any[]) => void;
-  @Input() modifyCol: (col: number) => void;
+  @Input() modifyAutofillRange: (startArea: number[], entireArea: number[]) => void;
+  @Input() modifyCol: (column: number) => void;
   @Input() modifyColHeader: (column: number) => void;
-  @Input() modifyColWidth: (width: number, col: number) => void;
-  @Input() modifyCopyableRange: (copyableRanges: any[]) => void;
+  @Input() modifyColWidth: (width: number, column: number) => void;
+  @Input() modifyCopyableRange: (copyableRanges: {startRow: number, startCol: number, endRow: number, endCol: number}[]) => void;
   @Input() modifyData: (row: number, column: number, valueHolder: object, ioMode: string) => void;
+  @Input() modifyGetCellCoords: (row: number, column: number, topmost: boolean) => void;
   @Input() modifyRow: (row: number) => void;
+  @Input() modifyRowData: (row: number) => void;
   @Input() modifyRowHeader: (row: number) => void;
   @Input() modifyRowHeaderWidth: (rowHeaderWidth: number) => void;
   @Input() modifyRowHeight: (height: number, row: number) => void;
@@ -255,7 +268,7 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy
   @Input() modifyTransformEnd: (delta: Handsontable.wot.CellCoords) => void;
   @Input() modifyTransformStart: (delta: Handsontable.wot.CellCoords) => void;
   @Input() persistentStateLoad: (key: string, valuePlaceholder: object) => void;
-  @Input() persistentStateReset: (key: string) => void;
+  @Input() persistentStateReset: (key?: string) => void;
   @Input() persistentStateSave: (key: string, value: any) => void;
   @Input() skipLengthCache: (delay: number) => void;
   @Input() unmodifyCol: (col: number) => void;
@@ -266,9 +279,9 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy
     private _ngZone: NgZone,
     private _hotTableRegisterer: HotTableRegisterer,
     private _hotSettingsResolver: HotSettingsResolver
-  ) { }
+  ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.container = document.createElement('div');
 
     if (this.hotId) {
@@ -278,8 +291,8 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy
     this.el.nativeElement.appendChild(this.container);
   }
 
-  ngAfterContentInit() {
-    const options = this._hotSettingsResolver.mergeSettings(this);
+  ngAfterContentInit(): void {
+    const options: Handsontable.GridSettings = this._hotSettingsResolver.mergeSettings(this);
 
     if (this.columnsComponents.length > 0) {
       const columns = [];
@@ -300,41 +313,42 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy
     }
   }
 
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnChanges(changes: SimpleChanges): void {
     if (this.hotInstance === void 0) {
       return;
     }
 
-    const newOptions = this._hotSettingsResolver.prepareChanges(changes);
+    const newOptions: Handsontable.GridSettings = this._hotSettingsResolver.prepareChanges(changes);
 
     this.updateHotTable(newOptions);
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.hotInstance.destroy();
 
     if (this.hotId) {
       this._hotTableRegisterer.removeInstance(this.hotId);
     }
 
-    this.el.nativeElement.removeChild(this.container);
+    this.container.parentElement.removeChild(this.container);
     this.container = void 0;
   }
 
-  updateHotTable(newSettings: object) {
+  updateHotTable(newSettings: Handsontable.GridSettings): void {
     if (!this.hotInstance) {
       return;
     }
+
     this.hotInstance.updateSettings(newSettings, false);
   }
 
-  onAfterColumnsChange() {
+  onAfterColumnsChange(): void {
     if (this.columnsComponents === void 0) {
       return;
     }
 
     if (this.columnsComponents.length > 0) {
-      const columns = [];
+      const columns: Handsontable.GridSettings[] = [];
 
       this.columnsComponents.forEach((column) => {
         columns.push(this._hotSettingsResolver.mergeSettings(column));
@@ -348,8 +362,8 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy
     }
   }
 
-  onAfterColumnsNumberChange() {
-    const columns = [];
+  onAfterColumnsNumberChange(): void {
+    const columns: Handsontable.GridSettings[] = [];
 
     if (this.columnsComponents.length > 0) {
       this.columnsComponents.forEach((column) => {
@@ -360,13 +374,13 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy
     this.updateHotTable({columns: columns});
   }
 
-  addColumn(column: HotColumnComponent) {
+  addColumn(column: HotColumnComponent): void {
     this.columnsComponents.push(column);
     this.onAfterColumnsNumberChange();
   }
 
-  removeColumn(column: HotColumnComponent) {
-    const index = this.columnsComponents.indexOf(column);
+  removeColumn(column: HotColumnComponent): void {
+    const index: number = this.columnsComponents.indexOf(column);
 
     this.columnsComponents.splice(index, 1);
     this.onAfterColumnsNumberChange();

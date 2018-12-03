@@ -1,13 +1,14 @@
 import { Injectable, SimpleChanges } from '@angular/core';
 import * as Handsontable from 'handsontable-pro';
-
+// @ts-ignore
 const AVAILABLE_OPTIONS: string[] = Object.keys(Handsontable.DefaultSettings.prototype);
+// @ts-ignore
 const AVAILABLE_HOOKS: string[] = Handsontable.hooks.getRegistered();
 
 @Injectable()
 export class HotSettingsResolver {
-  mergeSettings(component): object {
-    const mergedSettings: object = {};
+  mergeSettings(component): Handsontable.GridSettings {
+    const mergedSettings: Handsontable.GridSettings = {};
     const options = AVAILABLE_HOOKS.concat(AVAILABLE_OPTIONS);
 
     options.forEach((key) => {
@@ -39,8 +40,8 @@ export class HotSettingsResolver {
     return mergedSettings;
   }
 
-  prepareChanges(changes: SimpleChanges): object {
-    const result: object = {};
+  prepareChanges(changes: SimpleChanges): Handsontable.GridSettings {
+    const result: Handsontable.GridSettings = {};
     const parameters: string[] = Object.keys(changes);
 
     parameters.forEach((param) => {

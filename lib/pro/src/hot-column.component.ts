@@ -5,7 +5,6 @@ import {
   OnDestroy,
   Input,
 } from '@angular/core';
-
 import { HotTableComponent } from './hot-table.component';
 
 @Component({
@@ -13,10 +12,9 @@ import { HotTableComponent } from './hot-table.component';
   selector: 'hot-column',
   template: '',
 })
-
 export class HotColumnComponent implements OnInit, OnChanges, OnDestroy {
   private firstRun = true;
-
+  // handsontable column options
   @Input() allowEmpty: boolean;
   @Input() allowHtml: boolean;
   @Input() allowInvalid: boolean;
@@ -59,12 +57,12 @@ export class HotColumnComponent implements OnInit, OnChanges, OnDestroy {
 
   constructor(private parentComponent: HotTableComponent) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.firstRun = false;
     this.parentComponent.addColumn(this);
   }
 
-  ngOnChanges() {
+  ngOnChanges(): void {
     if (this.firstRun) {
       return;
     }
@@ -72,7 +70,7 @@ export class HotColumnComponent implements OnInit, OnChanges, OnDestroy {
     this.parentComponent.onAfterColumnsChange();
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.parentComponent.removeColumn(this);
   }
 }
