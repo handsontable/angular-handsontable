@@ -339,7 +339,9 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy
       return;
     }
 
-    this.hotInstance.updateSettings(newSettings, false);
+    this._ngZone.runOutsideAngular(() => {
+      this.hotInstance.updateSettings(newSettings, false);
+    });
   }
 
   onAfterColumnsChange(): void {
