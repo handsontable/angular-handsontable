@@ -1,5 +1,5 @@
 {
-  "name": "angular-handsontable",
+  "name": "@handsontable/angular",
   "version": "2.0.0",
   "description": "Best Data Grid for Angular with Spreadsheet Look and Feel.",
   "author": "Handsoncode <hello@handsoncode.net> (https://handsoncode.net)",
