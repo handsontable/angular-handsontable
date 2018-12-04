@@ -1,14 +1,13 @@
 import {
-  Component,
-  ElementRef,
-  NgZone,
   AfterContentInit,
+  Component,
+  Input,
+  NgZone,
   OnChanges,
   OnDestroy,
-  OnInit,
   SimpleChanges,
+  ViewChild,
   ViewEncapsulation,
-  Input,
 } from '@angular/core';
 import * as Handsontable from 'handsontable';
 import { HotTableRegisterer } from './hot-table-registerer.service';
@@ -18,13 +17,14 @@ import { HotColumnComponent } from './hot-column.component';
 @Component({
   // tslint:disable-next-line
   selector: 'hot-table',
-  template: '',
+  template: '<div #container [id]="hotId"></div>',
   encapsulation: ViewEncapsulation.None,
   providers: [ HotTableRegisterer, HotSettingsResolver ],
 })
-export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy, OnInit {
+export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy {
+  @ViewChild('container') public container;
+
   private hotInstance: Handsontable;
-  private container: HTMLDivElement;
   private columnsComponents: HotColumnComponent[] = [];
   // component inputs
   @Input() settings: Handsontable.GridSettings;
@@ -275,21 +275,10 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy
   @Input() unmodifyRow: (row: number) => void;
 
   constructor(
-    private el: ElementRef,
     private _ngZone: NgZone,
     private _hotTableRegisterer: HotTableRegisterer,
-    private _hotSettingsResolver: HotSettingsResolver
+    private _hotSettingsResolver: HotSettingsResolver,
   ) {}
-
-  ngOnInit(): void {
-    this.container = document.createElement('div');
-
-    if (this.hotId) {
-      this.container.id = this.hotId;
-    }
-
-    this.el.nativeElement.appendChild(this.container);
-  }
 
   ngAfterContentInit(): void {
     const options: Handsontable.GridSettings = this._hotSettingsResolver.mergeSettings(this);
@@ -305,7 +294,7 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy
     }
 
     this._ngZone.runOutsideAngular(() => {
-      this.hotInstance = new Handsontable(this.container, options);
+      this.hotInstance = new Handsontable(this.container.nativeElement, options);
     });
 
     if (this.hotId) {
@@ -324,14 +313,13 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy
   }
 
   ngOnDestroy(): void {
-    this.hotInstance.destroy();
+    this._ngZone.runOutsideAngular(() => {
+      this.hotInstance.destroy();
+    });
 
     if (this.hotId) {
       this._hotTableRegisterer.removeInstance(this.hotId);
     }
-
-    this.container.parentElement.removeChild(this.container);
-    this.container = void 0;
   }
 
   updateHotTable(newSettings: Handsontable.GridSettings): void {
