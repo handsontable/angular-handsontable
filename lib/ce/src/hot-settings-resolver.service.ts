@@ -7,14 +7,16 @@ const AVAILABLE_HOOKS: string[] = Handsontable.hooks.getRegistered();
 
 @Injectable()
 export class HotSettingsResolver {
-  mergeSettings(component): Handsontable.GridSettings {
-    const mergedSettings: Handsontable.GridSettings = {};
+  mergeSettings(component): Handsontable.GridSettings | object {
+    const isSettingsObject = typeof component['settings'] === 'object';
+    const mergedSettings: Handsontable.GridSettings = isSettingsObject ? component['settings'] : {};
     const options = AVAILABLE_HOOKS.concat(AVAILABLE_OPTIONS);
 
     options.forEach(key => {
+      const isHook = AVAILABLE_HOOKS.indexOf(key) > -1;
       let option;
 
-      if (typeof component['settings'] === 'object') {
+      if (isSettingsObject && isHook) {
         option = component['settings'][key];
       }
 
@@ -25,7 +27,7 @@ export class HotSettingsResolver {
       if (option === void 0) {
         return;
 
-      } else if (typeof option === 'function' && AVAILABLE_HOOKS.indexOf(key) > -1) {
+      } else if (typeof option === 'function' && isHook) {
         mergedSettings[key] = function(...args) {
           return component._ngZone.run(() => {
             return option(this, ...args);
