@@ -1505,40 +1505,6 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set sortFunction defined as bindings`, () => {
-      TestBed.overrideComponent(TestComponent, {
-        set: {
-          template: `<hot-table [hotId]="id" [sortFunction]="prop.sortFunction"></hot-table>`
-        }
-      });
-      TestBed.compileComponents().then(() => {
-        fixture = TestBed.createComponent(TestComponent);
-        const app = fixture.componentInstance;
-
-        app.prop['sortFunction'] = function() {
-          return function() { }
-        };
-        fixture.detectChanges();
-        expect(typeof app.getHotInstance(app.id).getSettings()['sortFunction']).toBe('function');
-      });
-    });
-
-    it(`should set sortIndicator defined as bindings`, () => {
-      TestBed.overrideComponent(TestComponent, {
-        set: {
-          template: `<hot-table [hotId]="id" [sortIndicator]="prop.sortIndicator"></hot-table>`
-        }
-      });
-      TestBed.compileComponents().then(() => {
-        fixture = TestBed.createComponent(TestComponent);
-        const app = fixture.componentInstance;
-
-        app.prop['sortIndicator'] = true;
-        fixture.detectChanges();
-        expect(app.getHotInstance(app.id).getSettings()['sortIndicator']).toBe(true);
-      });
-    });
-
     it(`should set source defined as bindings`, () => {
       TestBed.overrideComponent(TestComponent, {
         set: {

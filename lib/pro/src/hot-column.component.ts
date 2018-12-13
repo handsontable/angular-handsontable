@@ -6,6 +6,7 @@ import {
   Input,
 } from '@angular/core';
 import { HotTableComponent } from './hot-table.component';
+import * as Handsontable from 'handsontable-pro';
 
 @Component({
   // tslint:disable-next-line
@@ -15,45 +16,43 @@ import { HotTableComponent } from './hot-table.component';
 export class HotColumnComponent implements OnInit, OnChanges, OnDestroy {
   private firstRun = true;
   // handsontable column options
-  @Input() allowEmpty: boolean;
-  @Input() allowHtml: boolean;
-  @Input() allowInvalid: boolean;
-  @Input() checkedTemplate: boolean | string;
-  @Input() className: string | string[];
-  @Input() columnSorting: boolean | object;
-  @Input() colWidths: number | number[] | string | ((column: number) => number);
-  @Input() commentedCellClassName: string;
-  @Input() copyable: boolean;
-  @Input() correctFormat: boolean;
-  @Input() data: string | (() => void);
-  @Input() dateFormat: string;
-  @Input() defaultDate: string;
-  @Input() editor: boolean | string | (() => void);
-  @Input() filteringCaseSensitive: boolean;
-  @Input() invalidCellClassName: string;
-  @Input() label: object;
-  @Input() noWordWrapClassName: string;
-  @Input() numericFormat: any;
-  @Input() placeholder: any;
-  @Input() placeholderCellClassName: string;
-  @Input() readOnly: boolean;
-  @Input() readOnlyCellClassName: string;
-  @Input() renderer: string | (() => void);
-  @Input() selectOptions: string[] | number[];
-  @Input() skipColumnOnPaste: boolean;
-  @Input() sortByRelevance: boolean;
-  @Input() sortFunction: (sortOrder: boolean) => void;
-  @Input() sortIndicator: boolean;
-  @Input() source: any[] | (() => void);
-  @Input() strict: boolean;
-  @Input() title: string;
-  @Input() trimDropdown: boolean;
-  @Input() type: string;
-  @Input() uncheckedTemplate: boolean | string;
-  @Input() validator: string | RegExp | (() => void);
-  @Input() visibleRows: number;
-  @Input() width: number| (() => number);
-  @Input() wordWrap: boolean;
+  @Input() allowEmpty: Handsontable.GridSettings['allowEmpty'];
+  @Input() allowHtml: Handsontable.GridSettings['allowHtml'];
+  @Input() allowInvalid: Handsontable.GridSettings['allowInvalid'];
+  @Input() checkedTemplate: Handsontable.GridSettings['checkedTemplate'];
+  @Input() className: Handsontable.GridSettings['className'];
+  @Input() columnSorting: Handsontable.GridSettings['columnSorting'];
+  @Input() colWidths: Handsontable.GridSettings['colWidths'];
+  @Input() commentedCellClassName: Handsontable.GridSettings['commentedCellClassName'];
+  @Input() copyable: Handsontable.GridSettings['copyable'];
+  @Input() correctFormat: Handsontable.GridSettings['correctFormat'];
+  @Input() data: Handsontable.GridSettings['data'];
+  @Input() dateFormat: Handsontable.GridSettings['dateFormat'];
+  @Input() defaultDate: Handsontable.GridSettings['defaultDate'];
+  @Input() editor: Handsontable.GridSettings['editor'];
+  @Input() filteringCaseSensitive: Handsontable.GridSettings['filteringCaseSensitive'];
+  @Input() invalidCellClassName: Handsontable.GridSettings['invalidCellClassName'];
+  @Input() label: Handsontable.GridSettings['label'];
+  @Input() noWordWrapClassName: Handsontable.GridSettings['noWordWrapClassName'];
+  @Input() numericFormat: Handsontable.GridSettings['numericFormat'];
+  @Input() placeholder: Handsontable.GridSettings['placeholder'];
+  @Input() placeholderCellClassName: Handsontable.GridSettings['placeholderCellClassName'];
+  @Input() readOnly: Handsontable.GridSettings['readOnly'];
+  @Input() readOnlyCellClassName: Handsontable.GridSettings['readOnlyCellClassName'];
+  @Input() renderer: Handsontable.GridSettings['renderer'];
+  @Input() selectOptions: Handsontable.GridSettings['selectOptions'];
+  @Input() skipColumnOnPaste: Handsontable.GridSettings['skipColumnOnPaste'];
+  @Input() sortByRelevance: Handsontable.GridSettings['sortByRelevance'];
+  @Input() source: Handsontable.GridSettings['source'];
+  @Input() strict: Handsontable.GridSettings['strict'];
+  @Input() title: Handsontable.GridSettings['title'];
+  @Input() trimDropdown: Handsontable.GridSettings['trimDropdown'];
+  @Input() type: Handsontable.GridSettings['type'];
+  @Input() uncheckedTemplate: Handsontable.GridSettings['uncheckedTemplate'];
+  @Input() validator: Handsontable.GridSettings['validator'];
+  @Input() visibleRows: Handsontable.GridSettings['visibleRows'];
+  @Input() width: Handsontable.GridSettings['width'];
+  @Input() wordWrap: Handsontable.GridSettings['wordWrap'];
 
   constructor(private parentComponent: HotTableComponent) {}
 

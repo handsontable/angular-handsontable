@@ -819,64 +819,6 @@ describe('HotColumnComponent', () => {
     });
   });
 
-  it(`should set sortFunction defined as bindings`, () => {
-    TestBed.overrideComponent(TestComponent, {
-      set: {
-        template: `
-          <hot-table hotId="hot" [settings]="prop.settings">
-            <hot-column *ngFor="let column of prop.columns; let i = index"
-                        [sortFunction]="column.sortFunction"></hot-column>
-          </hot-table>
-        `
-      }
-    });
-    TestBed.compileComponents().then(() => {
-      fixture = TestBed.createComponent(TestComponent);
-      const app = fixture.componentInstance;
-      app.prop['settings'] = {
-        sortFunction: false
-      };
-      app.prop['columns'] = [
-        {},
-        {
-          sortFunction: true
-        }
-      ];
-      fixture.detectChanges();
-      expect(app.getHotInstance(app.id).getCellMeta(0, 0)['sortFunction']).toBe(false);
-      expect(app.getHotInstance(app.id).getCellMeta(0, 1)['sortFunction']).toBe(true);
-    });
-  });
-
-  it(`should set sortIndicator defined as bindings`, () => {
-    TestBed.overrideComponent(TestComponent, {
-      set: {
-        template: `
-          <hot-table hotId="hot" [settings]="prop.settings">
-            <hot-column *ngFor="let column of prop.columns; let i = index"
-                        [sortIndicator]="column.sortIndicator"></hot-column>
-          </hot-table>
-        `
-      }
-    });
-    TestBed.compileComponents().then(() => {
-      fixture = TestBed.createComponent(TestComponent);
-      const app = fixture.componentInstance;
-      app.prop['settings'] = {
-        sortIndicator: false
-      };
-      app.prop['columns'] = [
-        {},
-        {
-          sortIndicator: true
-        }
-      ];
-      fixture.detectChanges();
-      expect(app.getHotInstance(app.id).getCellMeta(0, 0)['sortIndicator']).toBe(false);
-      expect(app.getHotInstance(app.id).getCellMeta(0, 1)['sortIndicator']).toBe(true);
-    });
-  });
-
   it(`should set source defined as bindings`, () => {
     TestBed.overrideComponent(TestComponent, {
       set: {
