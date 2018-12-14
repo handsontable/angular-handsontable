@@ -1,0 +1,8 @@
+{
+  "name": "@handsontable/angular",
+  "keywords": [],
+  "peerDependencies": {
+    "handsontable": "^6.0.0",
+    "zone.js": "^0.8.19"
+  }
+}
