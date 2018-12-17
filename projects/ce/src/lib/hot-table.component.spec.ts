@@ -105,6 +105,25 @@ describe('HotTableComponent', () => {
       });
     });
 
+    it(`should be possible to get custom option over to 'settings' defined as bindings`, () => {
+      TestBed.overrideComponent(TestComponent, {
+        set: {
+          template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
+        }
+      });
+      TestBed.compileComponents().then(() => {
+        fixture = TestBed.createComponent(TestComponent);
+        const app = fixture.componentInstance;
+
+        app.prop['settings'] = {
+          customOption: 'test',
+        };
+
+        fixture.detectChanges();
+        expect(app.getHotInstance(app.id).getSettings()['customOption']).toBe('test');
+      });
+    });
+
     it(`should set activeHeaderClassName defined as bindings`, () => {
       TestBed.overrideComponent(TestComponent, {
         set: {
