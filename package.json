@@ -31,15 +31,18 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
-    "build:packages": "rimraf dist && npm run build:ce && npm run build:pro",
+    "build": "rimraf dist && npm run build:ce && npm run build:pro",
     "build:ce": "ng build ce",
     "build:pro": "ng build pro",
-    "test": "npm run lint && npm run build:packages && ng test ce && ng test pro",
+    "test": "npm run lint && npm run build && ng test ce && ng test pro",
+    "test:ce": "npm run build:ce && ng test ce",
+    "test:pro": "npm run build:pro && ng test pro",
     "lint": "ng lint ce && ng lint pro",
     "e2e": "ng e2e",
     "pre-release": "node scripts/copy-utils.js && node scripts/pre-release.js",
-    "release": "generate-release"
+    "release": "npm run test && npm run pre-release && npm run release:ce && npm run release:pro",
+    "release:ce": "npm publish dist/ce --access public",
+    "release:pro": "npm publish dist/pro --access public"
   },
   "dependencies": {
     "@angular/animations": "~7.1.0",
