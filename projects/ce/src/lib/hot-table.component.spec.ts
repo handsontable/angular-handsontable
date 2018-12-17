@@ -24,8 +24,8 @@ describe('HotTableComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ HotTableModule.forRoot() ],
       declarations: [ TestComponent ],
+      imports: [ HotTableModule.forRoot() ],
     });
   }));
 
