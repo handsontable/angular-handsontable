@@ -107,7 +107,7 @@ export class AppModule { }
 <br/>
 
 ## Documentation
-Visit [docs.handsontable.com](https://docs.handsontable.com/angular) to get more Handsontable for Angular examples and guides.
+Visit [handsontable.com/docs](https://handsontable.com/docs/angular) to get more Handsontable for Angular examples and guides.
 
 <br/>
 
@@ -153,8 +153,8 @@ Some of the most popular features include:
 <br/>
 
 ## Resources
-- [Guides](//docs.handsontable.com/angular)
-- [API Reference](//docs.handsontable.com/Core.html)
+- [Guides](//handsontable.com/docs/angular)
+- [API Reference](//handsontable.com/docs/Core.html)
 - [Release notes](//github.com/handsontable/angular-handsontable/releases)
 - [Roadmap](//trello.com/b/PztR4hpj)
 - [Twitter](//twitter.com/handsontable)
