@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HotTableModule, HotTableRegisterer } from '@handsontable-pro/angular';
-import * as Handsontable from 'handsontable-pro';
+import { HotTableModule, HotTableRegisterer } from '@handsontable/angular';
+import Handsontable from 'handsontable';
 
 @Component({
   selector: 'hot-test-component',
@@ -22,20 +22,24 @@ export class TestComponent {
 describe('HotTableComponent', () => {
   let fixture: ComponentFixture<TestComponent>;
 
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       declarations: [ TestComponent ],
       imports: [ HotTableModule.forRoot() ],
     });
   }));
 
-  it(`should render 'hot-table'`, () => {
+  afterEach(() => {
+    TestBed.resetTestingModule();
+  });
+
+  it(`should render 'hot-table'`, async() => {
     TestBed.overrideComponent(TestComponent, {
       set: {
         template: `<hot-table></hot-table>`
       }
     });
-    TestBed.compileComponents().then(() => {
+    await TestBed.compileComponents().then(() => {
       fixture = TestBed.createComponent(TestComponent);
       const elem = fixture.nativeElement;
 
@@ -46,13 +50,13 @@ describe('HotTableComponent', () => {
   });
 
   describe('inputs', () => {
-    it(`should add reference to 'hotRegisterer' by attribute`, () => {
+    it(`should add reference to 'hotRegisterer' by attribute`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -62,7 +66,7 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should register every hot-table component with added ID attribute`, () => {
+    it(`should register every hot-table component with added ID attribute`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `
@@ -72,7 +76,7 @@ describe('HotTableComponent', () => {
           `
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -86,13 +90,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set 'settings' defined as bindings`, () => {
+    it(`should set 'settings' defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -105,13 +109,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should be possible to get custom option over to 'settings' defined as bindings`, () => {
+    it(`should be possible to get custom option over to 'settings' defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -124,13 +128,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set activeHeaderClassName defined as bindings`, () => {
+    it(`should set activeHeaderClassName defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [activeHeaderClassName]="prop.activeHeaderClassName"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -144,13 +148,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set allowEmpty defined as bindings`, () => {
+    it(`should set allowEmpty defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [allowEmpty]="prop.allowEmpty"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -164,13 +168,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set allowHtml defined as bindings`, () => {
+    it(`should set allowHtml defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [allowHtml]="prop.allowHtml"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -184,13 +188,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set allowInsertColumn defined as bindings`, () => {
+    it(`should set allowInsertColumn defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [allowInsertColumn]="prop.allowInsertColumn"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -204,13 +208,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set allowInsertRow defined as bindings`, () => {
+    it(`should set allowInsertRow defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [allowInsertRow]="prop.allowInsertRow"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -224,13 +228,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set allowInvalid defined as bindings`, () => {
+    it(`should set allowInvalid defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [allowInvalid]="prop.allowInvalid"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -244,13 +248,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set allowRemoveColumn defined as bindings`, () => {
+    it(`should set allowRemoveColumn defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [allowRemoveColumn]="prop.allowRemoveColumn"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -264,13 +268,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set allowRemoveRow defined as bindings`, () => {
+    it(`should set allowRemoveRow defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [allowRemoveRow]="prop.allowRemoveRow"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -284,13 +288,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set autoColumnSize defined as bindings`, () => {
+    it(`should set autoColumnSize defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [autoColumnSize]="prop.autoColumnSize"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -308,13 +312,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set autoRowSize defined as bindings`, () => {
+    it(`should set autoRowSize defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [autoRowSize]="prop.autoRowSize"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -332,13 +336,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set autoWrapCol defined as bindings`, () => {
+    it(`should set autoWrapCol defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [autoWrapCol]="prop.autoWrapCol"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -352,13 +356,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set autoWrapRow defined as bindings`, () => {
+    it(`should set autoWrapRow defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [autoWrapRow]="prop.autoWrapRow"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -372,13 +376,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set bindRowsWithHeaders defined as bindings`, () => {
+    it(`should set bindRowsWithHeaders defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [bindRowsWithHeaders]="prop.bindRowsWithHeaders"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -392,13 +396,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set cell defined as bindings`, () => {
+    it(`should set cell defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [cell]="prop.cell"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -410,13 +414,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set cells defined as bindings`, () => {
+    it(`should set cells defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [cells]="prop.cells"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -431,13 +435,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set checkedTemplate defined as bindings`, () => {
+    it(`should set checkedTemplate defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [checkedTemplate]="prop.checkedTemplate"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -448,13 +452,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set className defined as bindings`, () => {
+    it(`should set className defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [className]="prop.className"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -465,13 +469,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set colHeaders defined as bindings`, () => {
+    it(`should set colHeaders defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [colHeaders]="prop.headers"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -485,14 +489,14 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set collapsibleColumns defined as bindings`, () => {
+    it(`should set collapsibleColumns defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [hiddenColumns]="true" [nestedHeaders]="prop.nestedHeaders"
           [collapsibleColumns]="prop.collapsibleColumns" [colHeaders]="true"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -511,13 +515,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set columnHeaderHeight defined as bindings`, () => {
+    it(`should set columnHeaderHeight defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [columnHeaderHeight]="prop.columnHeaderHeight"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -531,13 +535,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set columns defined as bindings`, () => {
+    it(`should set columns defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [columns]="prop.columns"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -550,13 +554,13 @@ describe('HotTableComponent', () => {
         expect(app.getHotInstance(app.id).getSettings()['columns'].length).toBe(1);
       });
     });
-    it(`should set columnSorting defined as bindings`, () => {
+    it(`should set columnSorting defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [colHeaders]="true" [columnSorting]="prop.columnSorting"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -571,13 +575,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set columnSummary defined as bindings`, () => {
+    it(`should set columnSummary defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [columnSummary]="prop.columnSummary"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -587,13 +591,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set colWidths defined as bindings`, () => {
+    it(`should set colWidths defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [colWidths]="prop.colWidths"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -607,13 +611,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set commentedCellClassName defined as bindings`, () => {
+    it(`should set commentedCellClassName defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [commentedCellClassName]="prop.commentedCellClassName"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -623,13 +627,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set comments defined as bindings`, () => {
+    it(`should set comments defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [comments]="prop.comments"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -639,13 +643,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set contextMenu defined as bindings`, () => {
+    it(`should set contextMenu defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [contextMenu]="prop.contextMenu"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -655,13 +659,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set copyable defined as bindings`, () => {
+    it(`should set copyable defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [copyable]="prop.copyable"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -671,13 +675,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set copyPaste defined as bindings`, () => {
+    it(`should set copyPaste defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [copyPaste]="prop.copyPaste"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -687,13 +691,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set correctFormat defined as bindings`, () => {
+    it(`should set correctFormat defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [correctFormat]="prop.correctFormat"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -703,13 +707,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set currentColClassName defined as bindings`, () => {
+    it(`should set currentColClassName defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [currentColClassName]="prop.currentColClassName"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -719,13 +723,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set currentHeaderClassName defined as bindings`, () => {
+    it(`should set currentHeaderClassName defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [currentHeaderClassName]="prop.currentHeaderClassName"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -735,13 +739,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set currentRowClassName defined as bindings`, () => {
+    it(`should set currentRowClassName defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [currentRowClassName]="prop.currentRowClassName"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -751,13 +755,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set customBorders defined as bindings`, () => {
+    it(`should set customBorders defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [customBorders]="prop.customBorders"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -767,13 +771,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set data defined as bindings`, () => {
+    it(`should set data defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [data]="prop.data"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -783,13 +787,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set dataSchema defined as bindings`, () => {
+    it(`should set dataSchema defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [dataSchema]="prop.dataSchema"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -799,13 +803,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set dateFormat defined as bindings`, () => {
+    it(`should set dateFormat defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [dateFormat]="prop.dateFormat"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -815,13 +819,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set debug defined as bindings`, () => {
+    it(`should set debug defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [debug]="prop.debug"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -831,13 +835,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set defaultDate defined as bindings`, () => {
+    it(`should set defaultDate defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [defaultDate]="prop.defaultDate"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -847,13 +851,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set disableVisualSelection defined as bindings`, () => {
+    it(`should set disableVisualSelection defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [disableVisualSelection]="prop.disableVisualSelection"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -863,13 +867,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set dropdownMenu defined as bindings`, () => {
+    it(`should set dropdownMenu defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [dropdownMenu]="prop.dropdownMenu"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -879,13 +883,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set editor defined as bindings`, () => {
+    it(`should set editor defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [editor]="prop.editor"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -895,13 +899,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set enterBeginsEditing defined as bindings`, () => {
+    it(`should set enterBeginsEditing defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [enterBeginsEditing]="prop.enterBeginsEditing"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -911,13 +915,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set enterMoves defined as bindings`, () => {
+    it(`should set enterMoves defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [enterMoves]="prop.enterMoves"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -927,13 +931,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set fillHandle defined as bindings`, () => {
+    it(`should set fillHandle defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [fillHandle]="prop.fillHandle"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -943,13 +947,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set filter defined as bindings`, () => {
+    it(`should set filter defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [filter]="prop.filter"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -959,13 +963,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set filteringCaseSensitive defined as bindings`, () => {
+    it(`should set filteringCaseSensitive defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [filteringCaseSensitive]="prop.filteringCaseSensitive"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -975,13 +979,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set filters defined as bindings`, () => {
+    it(`should set filters defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [filters]="prop.filters"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -991,13 +995,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set fixedColumnsLeft defined as bindings`, () => {
+    it(`should set fixedColumnsLeft defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [fixedColumnsLeft]="prop.fixedColumnsLeft"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -1007,13 +1011,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set fixedRowsBottom defined as bindings`, () => {
+    it(`should set fixedRowsBottom defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [fixedRowsBottom]="prop.fixedRowsBottom"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -1023,13 +1027,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set fixedRowsTop defined as bindings`, () => {
+    it(`should set fixedRowsTop defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [fixedRowsTop]="prop.fixedRowsTop"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -1039,13 +1043,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set formulas defined as bindings`, () => {
+    it(`should set formulas defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [formulas]="prop.formulas"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -1055,13 +1059,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set fragmentSelection defined as bindings`, () => {
+    it(`should set fragmentSelection defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [fragmentSelection]="prop.fragmentSelection"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -1071,13 +1075,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set ganttChart defined as bindings`, () => {
+    it(`should set ganttChart defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [colHeaders]="true" [nestedHeaders]="true" [ganttChart]="prop.ganttChart"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -1087,13 +1091,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set headerTooltips defined as bindings`, () => {
+    it(`should set headerTooltips defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [headerTooltips]="prop.headerTooltips"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -1103,13 +1107,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set height defined as bindings`, () => {
+    it(`should set height defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [height]="prop.height"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -1119,13 +1123,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set hiddenColumns defined as bindings`, () => {
+    it(`should set hiddenColumns defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [hiddenColumns]="prop.hiddenColumns"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -1135,13 +1139,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set hiddenRows defined as bindings`, () => {
+    it(`should set hiddenRows defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [hiddenRows]="prop.hiddenRows"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -1151,13 +1155,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set invalidCellClassName defined as bindings`, () => {
+    it(`should set invalidCellClassName defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [invalidCellClassName]="prop.invalidCellClassName"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -1167,13 +1171,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set label defined as bindings`, () => {
+    it(`should set label defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [label]="prop.label"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -1183,13 +1187,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set language defined as bindings`, () => {
+    it(`should set language defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [language]="prop.language"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -1199,13 +1203,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set manualColumnFreeze defined as bindings`, () => {
+    it(`should set manualColumnFreeze defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [manualColumnFreeze]="prop.manualColumnFreeze"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -1215,13 +1219,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set manualColumnMove defined as bindings`, () => {
+    it(`should set manualColumnMove defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [manualColumnMove]="prop.manualColumnMove"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -1231,13 +1235,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set manualColumnResize defined as bindings`, () => {
+    it(`should set manualColumnResize defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [manualColumnResize]="prop.manualColumnResize"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -1247,13 +1251,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set manualRowMove defined as bindings`, () => {
+    it(`should set manualRowMove defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [manualRowMove]="prop.manualRowMove"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -1263,13 +1267,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set manualRowResize defined as bindings`, () => {
+    it(`should set manualRowResize defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [manualRowResize]="prop.manualRowResize"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -1279,13 +1283,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set maxCols defined as bindings`, () => {
+    it(`should set maxCols defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [maxCols]="prop.maxCols"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -1295,13 +1299,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set maxRows defined as bindings`, () => {
+    it(`should set maxRows defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [maxRows]="prop.maxRows"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -1311,13 +1315,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set mergeCells defined as bindings`, () => {
+    it(`should set mergeCells defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [mergeCells]="prop.mergeCells"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -1327,13 +1331,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set minCols defined as bindings`, () => {
+    it(`should set minCols defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [minCols]="prop.minCols"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -1343,13 +1347,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set minRows defined as bindings`, () => {
+    it(`should set minRows defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [minRows]="prop.minRows"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -1359,13 +1363,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set minSpareCols defined as bindings`, () => {
+    it(`should set minSpareCols defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [minSpareCols]="prop.minSpareCols"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -1375,13 +1379,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set minSpareRows defined as bindings`, () => {
+    it(`should set minSpareRows defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [minSpareRows]="prop.minSpareRows"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -1391,13 +1395,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set nestedHeaders defined as bindings`, () => {
+    it(`should set nestedHeaders defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [colHeaders]="true" [nestedHeaders]="prop.nestedHeaders"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -1408,13 +1412,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set noWordWrapClassName defined as bindings`, () => {
+    it(`should set noWordWrapClassName defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [noWordWrapClassName]="prop.noWordWrapClassName"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -1424,14 +1428,14 @@ describe('HotTableComponent', () => {
       });
     });
 
-    xit(`should set observeChanges defined as bindings`, () => {
+    xit(`should set observeChanges defined as bindings`, async() => {
       // `observeChanges` plugin is unstable
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [observeChanges]="prop.observeChanges"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -1441,13 +1445,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set observeDOMVisibility defined as bindings`, () => {
+    it(`should set observeDOMVisibility defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [observeDOMVisibility]="prop.observeDOMVisibility"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -1457,13 +1461,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set outsideClickDeselects defined as bindings`, () => {
+    it(`should set outsideClickDeselects defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [outsideClickDeselects]="prop.outsideClickDeselects"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -1473,13 +1477,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set persistentState defined as bindings`, () => {
+    it(`should set persistentState defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [persistentState]="prop.persistentState"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -1489,29 +1493,29 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set placeholder defined as bindings`, () => {
+    it(`should set placeholder defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [placeholder]="prop.placeholder"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
-        app.prop['placeholder'] = true;
+        app.prop['placeholder'] = 'cell placeholder';
         fixture.detectChanges();
-        expect(app.getHotInstance(app.id).getSettings()['placeholder']).toBe(true);
+        expect(app.getHotInstance(app.id).getSettings()['placeholder']).toBe('cell placeholder');
       });
     });
 
-    it(`should set placeholderCellClassName defined as bindings`, () => {
+    it(`should set placeholderCellClassName defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [placeholderCellClassName]="prop.placeholderCellClassName"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -1521,13 +1525,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set preventOverflow defined as bindings`, () => {
+    it(`should set preventOverflow defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [preventOverflow]="prop.preventOverflow"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -1541,13 +1545,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set readOnly defined as bindings`, () => {
+    it(`should set readOnly defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [readOnly]="prop.readOnly"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -1557,13 +1561,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set readOnlyCellClassName defined as bindings`, () => {
+    it(`should set readOnlyCellClassName defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [readOnlyCellClassName]="prop.readOnlyCellClassName"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -1573,13 +1577,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set renderAllRows defined as bindings`, () => {
+    it(`should set renderAllRows defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [renderAllRows]="prop.renderAllRows"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -1589,13 +1593,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set renderer defined as bindings`, () => {
+    it(`should set renderer defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [renderer]="prop.renderer"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -1605,13 +1609,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set rowHeaders defined as bindings`, () => {
+    it(`should set rowHeaders defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [rowHeaders]="prop.rowHeaders"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -1621,13 +1625,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set rowHeaderWidth defined as bindings`, () => {
+    it(`should set rowHeaderWidth defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [rowHeaderWidth]="prop.rowHeaderWidth"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -1637,13 +1641,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set rowHeights defined as bindings`, () => {
+    it(`should set rowHeights defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [rowHeights]="prop.rowHeights"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -1653,13 +1657,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set search defined as bindings`, () => {
+    it(`should set search defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [search]="prop.search"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -1669,13 +1673,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set selectionMode defined as bindings`, () => {
+    it(`should set selectionMode defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [selectionMode]="prop.selectionMode"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -1692,13 +1696,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set selectOptions defined as bindings`, () => {
+    it(`should set selectOptions defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [selectOptions]="prop.selectOptions"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -1708,13 +1712,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set skipColumnOnPaste defined as bindings`, () => {
+    it(`should set skipColumnOnPaste defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [skipColumnOnPaste]="prop.skipColumnOnPaste"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -1724,13 +1728,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set sortByRelevance defined as bindings`, () => {
+    it(`should set sortByRelevance defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [sortByRelevance]="prop.sortByRelevance"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -1740,13 +1744,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set source defined as bindings`, () => {
+    it(`should set source defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [source]="prop.source"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -1756,13 +1760,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set startCols defined as bindings`, () => {
+    it(`should set startCols defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [startCols]="prop.startCols"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -1772,13 +1776,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set startRows defined as bindings`, () => {
+    it(`should set startRows defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [startRows]="prop.startRows"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -1788,13 +1792,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set stretchH defined as bindings`, () => {
+    it(`should set stretchH defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [stretchH]="prop.stretchH"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -1804,13 +1808,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set strict defined as bindings`, () => {
+    it(`should set strict defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [strict]="prop.strict"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -1820,13 +1824,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set tableClassName defined as bindings`, () => {
+    it(`should set tableClassName defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [tableClassName]="prop.tableClassName"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -1836,13 +1840,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set tabMoves defined as bindings`, () => {
+    it(`should set tabMoves defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [tabMoves]="prop.tabMoves"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -1852,13 +1856,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set title defined as bindings`, () => {
+    it(`should set title defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [title]="prop.title"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -1868,13 +1872,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set trimDropdown defined as bindings`, () => {
+    it(`should set trimDropdown defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [trimDropdown]="prop.trimDropdown"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -1884,13 +1888,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set trimRows defined as bindings`, () => {
+    it(`should set trimRows defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [trimRows]="prop.trimRows"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -1900,13 +1904,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set trimWhitespace defined as bindings`, () => {
+    it(`should set trimWhitespace defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [trimWhitespace]="prop.trimWhitespace"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -1916,13 +1920,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set type defined as bindings`, () => {
+    it(`should set type defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [type]="prop.type"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -1932,13 +1936,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set uncheckedTemplate defined as bindings`, () => {
+    it(`should set uncheckedTemplate defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [uncheckedTemplate]="prop.uncheckedTemplate"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -1948,13 +1952,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set undo defined as bindings`, () => {
+    it(`should set undo defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [undo]="prop.undo"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -1964,13 +1968,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set validator defined as bindings`, () => {
+    it(`should set validator defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [validator]="prop.validator"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -1980,13 +1984,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set viewportColumnRenderingOffset defined as bindings`, () => {
+    it(`should set viewportColumnRenderingOffset defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [viewportColumnRenderingOffset]="prop.viewportColumnRenderingOffset"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -1996,13 +2000,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set viewportRowRenderingOffset defined as bindings`, () => {
+    it(`should set viewportRowRenderingOffset defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [viewportRowRenderingOffset]="prop.viewportRowRenderingOffset"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -2012,13 +2016,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set visibleRows defined as bindings`, () => {
+    it(`should set visibleRows defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [visibleRows]="prop.visibleRows"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -2028,13 +2032,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set width defined as bindings`, () => {
+    it(`should set width defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [width]="prop.width"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -2044,13 +2048,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should set wordWrap defined as bindings`, () => {
+    it(`should set wordWrap defined as bindings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [wordWrap]="prop.wordWrap"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -2062,13 +2066,13 @@ describe('HotTableComponent', () => {
   });
 
   describe('hooks', () => {
-    it(`should use Handsontable instance as a first argument, if is defined as a property in settings object`, () => {
+    it(`should use Handsontable instance as a first argument, if is defined as a property in settings object`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -2085,13 +2089,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run afterAddChild hook defined in settings`, () => {
+    it(`should run afterAddChild hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -2106,13 +2110,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run afterBeginEditing hook defined in settings`, () => {
+    it(`should run afterBeginEditing hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -2127,13 +2131,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run afterCellMetaReset hook defined in settings`, () => {
+    it(`should run afterCellMetaReset hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -2148,13 +2152,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run afterChange hook defined in settings`, () => {
+    it(`should run afterChange hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -2169,13 +2173,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run afterChangesObserved hook defined in settings`, () => {
+    it(`should run afterChangesObserved hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -2190,13 +2194,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run afterColumnMove hook defined in settings`, () => {
+    it(`should run afterColumnMove hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -2211,13 +2215,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run afterColumnResize hook defined in settings`, () => {
+    it(`should run afterColumnResize hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -2232,13 +2236,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run afterColumnSort hook defined in settings`, () => {
+    it(`should run afterColumnSort hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -2253,13 +2257,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run afterContextMenuDefaultOptions hook defined in settings`, () => {
+    it(`should run afterContextMenuDefaultOptions hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -2275,13 +2279,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run afterContextMenuHide hook defined in settings`, () => {
+    it(`should run afterContextMenuHide hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -2296,13 +2300,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run afterContextMenuShow hook defined in settings`, () => {
+    it(`should run afterContextMenuShow hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -2317,13 +2321,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run afterCopy hook defined in settings`, () => {
+    it(`should run afterCopy hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -2338,13 +2342,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run afterCopyLimit hook defined in settings`, () => {
+    it(`should run afterCopyLimit hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -2359,13 +2363,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run afterCreateCol hook defined in settings`, () => {
+    it(`should run afterCreateCol hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -2380,13 +2384,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run afterCreateRow hook defined in settings`, () => {
+    it(`should run afterCreateRow hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -2401,13 +2405,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run afterCut hook defined in settings`, () => {
+    it(`should run afterCut hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -2422,13 +2426,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run afterDeselect hook defined in settings`, () => {
+    it(`should run afterDeselect hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -2443,13 +2447,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run afterDestroy hook defined in settings`, () => {
+    it(`should run afterDestroy hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -2464,13 +2468,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run afterDetachChild hook defined in settings`, () => {
+    it(`should run afterDetachChild hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -2485,13 +2489,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run afterDocumentKeyDown hook defined in settings`, () => {
+    it(`should run afterDocumentKeyDown hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -2506,13 +2510,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run afterDropdownMenuDefaultOptions hook defined in settings`, () => {
+    it(`should run afterDropdownMenuDefaultOptions hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -2527,13 +2531,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run afterDropdownMenuHide hook defined in settings`, () => {
+    it(`should run afterDropdownMenuHide hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -2548,13 +2552,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run afterDropdownMenuShow hook defined in settings`, () => {
+    it(`should run afterDropdownMenuShow hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -2569,13 +2573,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run afterFilter hook defined in settings`, () => {
+    it(`should run afterFilter hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -2590,13 +2594,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run afterGetCellMeta hook defined in settings`, () => {
+    it(`should run afterGetCellMeta hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -2611,13 +2615,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run afterGetColHeader hook defined in settings`, () => {
+    it(`should run afterGetColHeader hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -2637,13 +2641,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run afterGetColumnHeaderRenderers hook defined in settings`, () => {
+    it(`should run afterGetColumnHeaderRenderers hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
         let afterGetColumnHeaderRenderersCount = 0;
@@ -2659,13 +2663,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run afterGetRowHeader hook defined in settings`, () => {
+    it(`should run afterGetRowHeader hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -2680,13 +2684,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run afterGetRowHeaderRenderers hook defined in settings`, () => {
+    it(`should run afterGetRowHeaderRenderers hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -2701,13 +2705,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run afterInit hook defined in settings`, () => {
+    it(`should run afterInit hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -2722,13 +2726,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run afterLoadData hook defined in settings`, () => {
+    it(`should run afterLoadData hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -2743,13 +2747,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run afterModifyTransformEnd hook defined in settings`, () => {
+    it(`should run afterModifyTransformEnd hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -2764,13 +2768,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run afterModifyTransformStart hook defined in settings`, () => {
+    it(`should run afterModifyTransformStart hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -2785,13 +2789,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run afterMomentumScroll hook defined in settings`, () => {
+    it(`should run afterMomentumScroll hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -2806,13 +2810,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run afterOnCellCornerDblClick hook defined in settings`, () => {
+    it(`should run afterOnCellCornerDblClick hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -2828,13 +2832,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run afterOnCellCornerMouseDown hook defined in settings`, () => {
+    it(`should run afterOnCellCornerMouseDown hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -2849,13 +2853,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run afterOnCellMouseDown hook defined in settings`, () => {
+    it(`should run afterOnCellMouseDown hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -2870,13 +2874,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run afterOnCellMouseOver hook defined in settings`, () => {
+    it(`should run afterOnCellMouseOver hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -2891,13 +2895,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run afterOnCellMouseOut hook defined in settings`, () => {
+    it(`should run afterOnCellMouseOut hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -2912,13 +2916,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run afterPluginsInitialized hook defined in settings`, () => {
+    it(`should run afterPluginsInitialized hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -2933,13 +2937,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run afterRedo hook defined in settings`, () => {
+    it(`should run afterRedo hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -2954,13 +2958,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run afterRemoveCol hook defined in settings`, () => {
+    it(`should run afterRemoveCol hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -2975,13 +2979,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run afterRemoveRow hook defined in settings`, () => {
+    it(`should run afterRemoveRow hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -2996,13 +3000,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run afterRender hook defined in settings`, () => {
+    it(`should run afterRender hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -3017,13 +3021,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run afterRenderer hook defined in settings`, () => {
+    it(`should run afterRenderer hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -3038,13 +3042,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run afterRowMove hook defined in settings`, () => {
+    it(`should run afterRowMove hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -3059,13 +3063,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run afterRowResize hook defined in settings`, () => {
+    it(`should run afterRowResize hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -3080,13 +3084,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run afterScrollHorizontally hook defined in settings`, () => {
+    it(`should run afterScrollHorizontally hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -3101,13 +3105,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run afterScrollVertically hook defined in settings`, () => {
+    it(`should run afterScrollVertically hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -3122,13 +3126,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run afterSelection hook defined in settings`, () => {
+    it(`should run afterSelection hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -3143,13 +3147,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run afterSelectionByProp hook defined in settings`, () => {
+    it(`should run afterSelectionByProp hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -3164,13 +3168,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run afterSelectionEnd hook defined in settings`, () => {
+    it(`should run afterSelectionEnd hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -3185,13 +3189,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run afterSelectionEndByProp hook defined in settings`, () => {
+    it(`should run afterSelectionEndByProp hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -3206,13 +3210,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run afterSetCellMeta hook defined in settings`, () => {
+    it(`should run afterSetCellMeta hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -3227,13 +3231,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run afterSetDataAtCell hook defined in settings`, () => {
+    it(`should run afterSetDataAtCell hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -3248,13 +3252,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run afterSetDataAtRowProp hook defined in settings`, () => {
+    it(`should run afterSetDataAtRowProp hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -3269,13 +3273,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run afterTrimRow hook defined in settings`, () => {
+    it(`should run afterTrimRow hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -3290,13 +3294,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run afterUndo hook defined in settings`, () => {
+    it(`should run afterUndo hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -3311,13 +3315,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run afterUntrimRow hook defined in settings`, () => {
+    it(`should run afterUntrimRow hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -3332,13 +3336,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run afterUpdateSettings hook defined in settings`, () => {
+    it(`should run afterUpdateSettings hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -3353,13 +3357,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run afterValidate hook defined in settings`, () => {
+    it(`should run afterValidate hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -3374,13 +3378,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run afterViewportColumnCalculatorOverride hook defined in settings`, () => {
+    it(`should run afterViewportColumnCalculatorOverride hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -3395,13 +3399,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run afterViewportRowCalculatorOverride hook defined in settings`, () => {
+    it(`should run afterViewportRowCalculatorOverride hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -3416,13 +3420,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run beforeAddChild hook defined in settings`, () => {
+    it(`should run beforeAddChild hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -3437,13 +3441,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run beforeAutofill hook defined in settings`, () => {
+    it(`should run beforeAutofill hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -3458,13 +3462,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run beforeAutofillInsidePopulate hook defined in settings`, () => {
+    it(`should run beforeAutofillInsidePopulate hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -3479,13 +3483,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run beforeCellAlignment hook defined in settings`, () => {
+    it(`should run beforeCellAlignment hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -3500,13 +3504,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run beforeChange hook defined in settings`, () => {
+    it(`should run beforeChange hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -3521,13 +3525,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run beforeChangeRender hook defined in settings`, () => {
+    it(`should run beforeChangeRender hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -3542,13 +3546,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run beforeColumnMove hook defined in settings`, () => {
+    it(`should run beforeColumnMove hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -3563,13 +3567,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run beforeColumnResize hook defined in settings`, () => {
+    it(`should run beforeColumnResize hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -3584,13 +3588,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run beforeColumnSort hook defined in settings`, () => {
+    it(`should run beforeColumnSort hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -3605,13 +3609,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run beforeContextMenuSetItems hook defined in settings`, () => {
+    it(`should run beforeContextMenuSetItems hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -3626,13 +3630,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run beforeCopy hook defined in settings`, () => {
+    it(`should run beforeCopy hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -3647,13 +3651,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run beforeCreateCol hook defined in settings`, () => {
+    it(`should run beforeCreateCol hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -3668,13 +3672,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run beforeCreateRow hook defined in settings`, () => {
+    it(`should run beforeCreateRow hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -3689,13 +3693,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run beforeCut hook defined in settings`, () => {
+    it(`should run beforeCut hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -3710,13 +3714,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run beforeDetachChild hook defined in settings`, () => {
+    it(`should run beforeDetachChild hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -3731,13 +3735,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run beforeDrawBorders hook defined in settings`, () => {
+    it(`should run beforeDrawBorders hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -3752,13 +3756,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run beforeDropdownMenuSetItems hook defined in settings`, () => {
+    it(`should run beforeDropdownMenuSetItems hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -3773,13 +3777,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run beforeFilter hook defined in settings`, () => {
+    it(`should run beforeFilter hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -3794,13 +3798,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run beforeGetCellMeta hook defined in settings`, () => {
+    it(`should run beforeGetCellMeta hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -3815,13 +3819,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run beforeInit hook defined in settings`, () => {
+    it(`should run beforeInit hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -3836,13 +3840,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run beforeInitWalkontable hook defined in settings`, () => {
+    it(`should run beforeInitWalkontable hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -3857,13 +3861,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run beforeKeyDown hook defined in settings`, () => {
+    it(`should run beforeKeyDown hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -3878,13 +3882,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run beforeOnCellMouseDown hook defined in settings`, () => {
+    it(`should run beforeOnCellMouseDown hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -3899,13 +3903,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run beforeOnCellMouseOut hook defined in settings`, () => {
+    it(`should run beforeOnCellMouseOut hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -3920,13 +3924,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run beforeOnCellMouseOver hook defined in settings`, () => {
+    it(`should run beforeOnCellMouseOver hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -3941,13 +3945,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run beforePaste hook defined in settings`, () => {
+    it(`should run beforePaste hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -3962,13 +3966,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run beforeRedo hook defined in settings`, () => {
+    it(`should run beforeRedo hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -3983,13 +3987,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run beforeRemoveCol hook defined in settings`, () => {
+    it(`should run beforeRemoveCol hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -4004,13 +4008,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run beforeRemoveRow hook defined in settings`, () => {
+    it(`should run beforeRemoveRow hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -4025,13 +4029,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run beforeRender hook defined in settings`, () => {
+    it(`should run beforeRender hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -4046,13 +4050,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run beforeRenderer hook defined in settings`, () => {
+    it(`should run beforeRenderer hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -4067,13 +4071,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run beforeRowMove hook defined in settings`, () => {
+    it(`should run beforeRowMove hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -4088,13 +4092,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run beforeRowResize hook defined in settings`, () => {
+    it(`should run beforeRowResize hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -4109,13 +4113,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run beforeSetRangeEnd hook defined in settings`, () => {
+    it(`should run beforeSetRangeEnd hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -4130,13 +4134,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run beforeSetRangeStart hook defined in settings`, () => {
+    it(`should run beforeSetRangeStart hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -4151,13 +4155,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run beforeStretchingColumnWidth hook defined in settings`, () => {
+    it(`should run beforeStretchingColumnWidth hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -4172,13 +4176,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run beforeTouchScroll hook defined in settings`, () => {
+    it(`should run beforeTouchScroll hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -4193,13 +4197,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run beforeUndo hook defined in settings`, () => {
+    it(`should run beforeUndo hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -4214,13 +4218,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run beforeValidate hook defined in settings`, () => {
+    it(`should run beforeValidate hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -4235,13 +4239,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run beforeValueRender hook defined in settings`, () => {
+    it(`should run beforeValueRender hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -4256,13 +4260,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run construct hook defined in settings`, () => {
+    it(`should run construct hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -4277,13 +4281,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run hiddenColumn hook defined in settings`, () => {
+    it(`should run hiddenColumn hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -4298,13 +4302,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run hiddenRow hook defined in settings`, () => {
+    it(`should run hiddenRow hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -4319,13 +4323,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run init hook defined in settings`, () => {
+    it(`should run init hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -4340,13 +4344,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run modifyAutofillRange hook defined in settings`, () => {
+    it(`should run modifyAutofillRange hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -4361,13 +4365,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run modifyCol hook defined in settings`, () => {
+    it(`should run modifyCol hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -4382,13 +4386,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run modifyColHeader hook defined in settings`, () => {
+    it(`should run modifyColHeader hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -4403,13 +4407,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run modifyColumnHeaderHeight hook defined in settings`, () => {
+    it(`should run modifyColumnHeaderHeight hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -4424,13 +4428,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run modifyColWidth hook defined in settings`, () => {
+    it(`should run modifyColWidth hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -4445,13 +4449,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run modifyCopyableRange hook defined in settings`, () => {
+    it(`should run modifyCopyableRange hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -4466,13 +4470,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run modifyData hook defined in settings`, () => {
+    it(`should run modifyData hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -4487,13 +4491,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run modifyRow hook defined in settings`, () => {
+    it(`should run modifyRow hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -4508,13 +4512,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run modifyRowHeader hook defined in settings`, () => {
+    it(`should run modifyRowHeader hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -4529,13 +4533,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run modifyRowHeaderWidth hook defined in settings`, () => {
+    it(`should run modifyRowHeaderWidth hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -4550,13 +4554,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run modifyRowHeight hook defined in settings`, () => {
+    it(`should run modifyRowHeight hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -4571,13 +4575,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run modifyRowData hook defined in settings`, () => {
+    it(`should run modifyRowData hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -4592,13 +4596,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run modifyTransformEnd hook defined in settings`, () => {
+    it(`should run modifyTransformEnd hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -4613,13 +4617,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run modifyTransformStart hook defined in settings`, () => {
+    it(`should run modifyTransformStart hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -4634,13 +4638,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run persistentStateLoad hook defined in settings`, () => {
+    it(`should run persistentStateLoad hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -4655,13 +4659,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run persistentStateReset hook defined in settings`, () => {
+    it(`should run persistentStateReset hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -4676,13 +4680,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run persistentStateSave hook defined in settings`, () => {
+    it(`should run persistentStateSave hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -4697,13 +4701,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run skipLengthCache hook defined in settings`, () => {
+    it(`should run skipLengthCache hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -4718,13 +4722,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run unmodifyCol hook defined in settings`, () => {
+    it(`should run unmodifyCol hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 
@@ -4739,13 +4743,13 @@ describe('HotTableComponent', () => {
       });
     });
 
-    it(`should run unmodifyRow hook defined in settings`, () => {
+    it(`should run unmodifyRow hook defined in settings`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
         }
       });
-      TestBed.compileComponents().then(() => {
+      await TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(TestComponent);
         const app = fixture.componentInstance;
 

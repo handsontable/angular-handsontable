@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HotTableModule, HotTableRegisterer } from '@handsontable-pro/angular';
-import * as Handsontable from 'handsontable-pro';
+import { HotTableModule, HotTableRegisterer } from '@handsontable/angular';
+import Handsontable from 'handsontable';
 
 @Component({
   selector: 'hot-test-component',
@@ -14,7 +14,7 @@ export class TestComponent {
 
   constructor (private _registerer: HotTableRegisterer) { }
 
-  getHotInstance(instance: string): Handsontable {
+  getHotInstance(instance: string) {
     return this._registerer.getInstance(instance);
   }
 }
@@ -22,14 +22,18 @@ export class TestComponent {
 describe('HotColumnComponent', () => {
   let fixture: ComponentFixture<TestComponent>;
 
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       imports: [ HotTableModule.forRoot() ],
       declarations: [ TestComponent ],
     });
   }));
 
-  it(`should be possible to render static hot-column element inside hot-table`, () => {
+  afterEach(() => {
+    TestBed.resetTestingModule();
+  });
+
+  it(`should be possible to render static hot-column element inside hot-table`, async() => {
     TestBed.overrideComponent(TestComponent, {
       set: {
         template: `
@@ -41,7 +45,7 @@ describe('HotColumnComponent', () => {
         `
       }
     });
-    TestBed.compileComponents().then(() => {
+    await TestBed.compileComponents().then(() => {
       fixture = TestBed.createComponent(TestComponent);
       const app = fixture.componentInstance;
 
@@ -50,7 +54,7 @@ describe('HotColumnComponent', () => {
     });
   });
 
-  it(`should be possible to change dynamically the number of columns`, () => {
+  it(`should be possible to change dynamically the number of columns`, async() => {
     TestBed.overrideComponent(TestComponent, {
       set: {
         template: `
@@ -60,7 +64,7 @@ describe('HotColumnComponent', () => {
         `
       }
     });
-    TestBed.compileComponents().then(() => {
+    await await TestBed.compileComponents().then(() => {
       fixture = TestBed.createComponent(TestComponent);
       const app = fixture.componentInstance;
 
@@ -74,7 +78,7 @@ describe('HotColumnComponent', () => {
     });
   });
 
-  it(`should set allowEmpty defined as bindings`, () => {
+  it(`should set allowEmpty defined as bindings`, async() => {
     TestBed.overrideComponent(TestComponent, {
       set: {
         template: `
@@ -85,7 +89,7 @@ describe('HotColumnComponent', () => {
         `
       }
     });
-    TestBed.compileComponents().then(() => {
+    await TestBed.compileComponents().then(() => {
       fixture = TestBed.createComponent(TestComponent);
       const app = fixture.componentInstance;
       app.prop['settings'] = {
@@ -103,7 +107,7 @@ describe('HotColumnComponent', () => {
     });
   });
 
-  it(`should set allowHtml defined as bindings`, () => {
+  it(`should set allowHtml defined as bindings`, async() => {
     TestBed.overrideComponent(TestComponent, {
       set: {
         template: `
@@ -114,7 +118,7 @@ describe('HotColumnComponent', () => {
         `
       }
     });
-    TestBed.compileComponents().then(() => {
+    await TestBed.compileComponents().then(() => {
       fixture = TestBed.createComponent(TestComponent);
       const app = fixture.componentInstance;
       app.prop['settings'] = {
@@ -132,7 +136,7 @@ describe('HotColumnComponent', () => {
     });
   });
 
-  it(`should set allowInvalid defined as bindings`, () => {
+  it(`should set allowInvalid defined as bindings`, async() => {
     TestBed.overrideComponent(TestComponent, {
       set: {
         template: `
@@ -143,7 +147,7 @@ describe('HotColumnComponent', () => {
         `
       }
     });
-    TestBed.compileComponents().then(() => {
+    await TestBed.compileComponents().then(() => {
       fixture = TestBed.createComponent(TestComponent);
       const app = fixture.componentInstance;
       app.prop['settings'] = {
@@ -162,7 +166,7 @@ describe('HotColumnComponent', () => {
     });
   });
 
-  it(`should set checkedTemplate defined as bindings`, () => {
+  it(`should set checkedTemplate defined as bindings`, async() => {
     TestBed.overrideComponent(TestComponent, {
       set: {
         template: `
@@ -173,7 +177,7 @@ describe('HotColumnComponent', () => {
         `
       }
     });
-    TestBed.compileComponents().then(() => {
+    await TestBed.compileComponents().then(() => {
       fixture = TestBed.createComponent(TestComponent);
       const app = fixture.componentInstance;
       app.prop['settings'] = {
@@ -191,7 +195,7 @@ describe('HotColumnComponent', () => {
     });
   });
 
-  it(`should set className defined as bindings`, () => {
+  it(`should set className defined as bindings`, async() => {
     TestBed.overrideComponent(TestComponent, {
       set: {
         template: `
@@ -202,7 +206,7 @@ describe('HotColumnComponent', () => {
         `
       }
     });
-    TestBed.compileComponents().then(() => {
+    await TestBed.compileComponents().then(() => {
       fixture = TestBed.createComponent(TestComponent);
       const app = fixture.componentInstance;
       app.prop['settings'] = {
@@ -220,7 +224,7 @@ describe('HotColumnComponent', () => {
     });
   });
 
-  it(`should set columnSorting defined as bindings`, () => {
+  it(`should set columnSorting defined as bindings`, async() => {
     TestBed.overrideComponent(TestComponent, {
       set: {
         template: `
@@ -231,7 +235,7 @@ describe('HotColumnComponent', () => {
         `
       }
     });
-    TestBed.compileComponents().then(() => {
+    await TestBed.compileComponents().then(() => {
       fixture = TestBed.createComponent(TestComponent);
       const app = fixture.componentInstance;
       app.prop['settings'] = {
@@ -249,7 +253,7 @@ describe('HotColumnComponent', () => {
     });
   });
 
-  it(`should set colWidths defined as bindings`, () => {
+  it(`should set colWidths defined as bindings`, async() => {
     TestBed.overrideComponent(TestComponent, {
       set: {
         template: `
@@ -260,7 +264,7 @@ describe('HotColumnComponent', () => {
         `
       }
     });
-    TestBed.compileComponents().then(() => {
+    await TestBed.compileComponents().then(() => {
       fixture = TestBed.createComponent(TestComponent);
       const app = fixture.componentInstance;
       app.prop['settings'] = {
@@ -278,7 +282,7 @@ describe('HotColumnComponent', () => {
     });
   });
 
-  it(`should set commentedCellClassName defined as bindings`, () => {
+  it(`should set commentedCellClassName defined as bindings`, async() => {
     TestBed.overrideComponent(TestComponent, {
       set: {
         template: `
@@ -289,7 +293,7 @@ describe('HotColumnComponent', () => {
         `
       }
     });
-    TestBed.compileComponents().then(() => {
+    await TestBed.compileComponents().then(() => {
       fixture = TestBed.createComponent(TestComponent);
       const app = fixture.componentInstance;
       app.prop['settings'] = {
@@ -307,7 +311,7 @@ describe('HotColumnComponent', () => {
     });
   });
 
-  it(`should set copyable defined as bindings`, () => {
+  it(`should set copyable defined as bindings`, async() => {
     TestBed.overrideComponent(TestComponent, {
       set: {
         template: `
@@ -318,7 +322,7 @@ describe('HotColumnComponent', () => {
         `
       }
     });
-    TestBed.compileComponents().then(() => {
+    await TestBed.compileComponents().then(() => {
       fixture = TestBed.createComponent(TestComponent);
       const app = fixture.componentInstance;
       app.prop['settings'] = {
@@ -336,7 +340,7 @@ describe('HotColumnComponent', () => {
     });
   });
 
-  it(`should set correctFormat defined as bindings`, () => {
+  it(`should set correctFormat defined as bindings`, async() => {
     TestBed.overrideComponent(TestComponent, {
       set: {
         template: `
@@ -347,7 +351,7 @@ describe('HotColumnComponent', () => {
         `
       }
     });
-    TestBed.compileComponents().then(() => {
+    await TestBed.compileComponents().then(() => {
       fixture = TestBed.createComponent(TestComponent);
       const app = fixture.componentInstance;
       app.prop['settings'] = {
@@ -365,7 +369,7 @@ describe('HotColumnComponent', () => {
     });
   });
 
-  it(`should set data defined as bindings`, () => {
+  it(`should set data defined as bindings`, async() => {
     TestBed.overrideComponent(TestComponent, {
       set: {
         template: `
@@ -376,7 +380,7 @@ describe('HotColumnComponent', () => {
         `
       }
     });
-    TestBed.compileComponents().then(() => {
+    await TestBed.compileComponents().then(() => {
       fixture = TestBed.createComponent(TestComponent);
       const app = fixture.componentInstance;
       app.prop['settings'] = {
@@ -394,7 +398,7 @@ describe('HotColumnComponent', () => {
     });
   });
 
-  it(`should set dateFormat defined as bindings`, () => {
+  it(`should set dateFormat defined as bindings`, async() => {
     TestBed.overrideComponent(TestComponent, {
       set: {
         template: `
@@ -405,7 +409,7 @@ describe('HotColumnComponent', () => {
         `
       }
     });
-    TestBed.compileComponents().then(() => {
+    await TestBed.compileComponents().then(() => {
       fixture = TestBed.createComponent(TestComponent);
       const app = fixture.componentInstance;
       app.prop['settings'] = {
@@ -423,7 +427,7 @@ describe('HotColumnComponent', () => {
     });
   });
 
-  it(`should set defaultDate defined as bindings`, () => {
+  it(`should set defaultDate defined as bindings`, async() => {
     TestBed.overrideComponent(TestComponent, {
       set: {
         template: `
@@ -434,7 +438,7 @@ describe('HotColumnComponent', () => {
         `
       }
     });
-    TestBed.compileComponents().then(() => {
+    await TestBed.compileComponents().then(() => {
       fixture = TestBed.createComponent(TestComponent);
       const app = fixture.componentInstance;
       app.prop['settings'] = {
@@ -452,7 +456,7 @@ describe('HotColumnComponent', () => {
     });
   });
 
-  it(`should set editor defined as bindings`, () => {
+  it(`should set editor defined as bindings`, async() => {
     TestBed.overrideComponent(TestComponent, {
       set: {
         template: `
@@ -463,7 +467,7 @@ describe('HotColumnComponent', () => {
         `
       }
     });
-    TestBed.compileComponents().then(() => {
+    await TestBed.compileComponents().then(() => {
       fixture = TestBed.createComponent(TestComponent);
       const app = fixture.componentInstance;
       app.prop['settings'] = {
@@ -481,7 +485,7 @@ describe('HotColumnComponent', () => {
     });
   });
 
-  it(`should set filteringCaseSensitive defined as bindings`, () => {
+  it(`should set filteringCaseSensitive defined as bindings`, async() => {
     TestBed.overrideComponent(TestComponent, {
       set: {
         template: `
@@ -492,7 +496,7 @@ describe('HotColumnComponent', () => {
         `
       }
     });
-    TestBed.compileComponents().then(() => {
+    await TestBed.compileComponents().then(() => {
       fixture = TestBed.createComponent(TestComponent);
       const app = fixture.componentInstance;
       app.prop['settings'] = {
@@ -510,7 +514,7 @@ describe('HotColumnComponent', () => {
     });
   });
 
-  it(`should set invalidCellClassName defined as bindings`, () => {
+  it(`should set invalidCellClassName defined as bindings`, async() => {
     TestBed.overrideComponent(TestComponent, {
       set: {
         template: `
@@ -521,7 +525,7 @@ describe('HotColumnComponent', () => {
         `
       }
     });
-    TestBed.compileComponents().then(() => {
+    await TestBed.compileComponents().then(() => {
       fixture = TestBed.createComponent(TestComponent);
       const app = fixture.componentInstance;
       app.prop['settings'] = {
@@ -539,7 +543,7 @@ describe('HotColumnComponent', () => {
     });
   });
 
-  it(`should set label defined as bindings`, () => {
+  it(`should set label defined as bindings`, async() => {
     TestBed.overrideComponent(TestComponent, {
       set: {
         template: `
@@ -550,7 +554,7 @@ describe('HotColumnComponent', () => {
         `
       }
     });
-    TestBed.compileComponents().then(() => {
+    await TestBed.compileComponents().then(() => {
       fixture = TestBed.createComponent(TestComponent);
       const app = fixture.componentInstance;
       app.prop['settings'] = {
@@ -568,7 +572,7 @@ describe('HotColumnComponent', () => {
     });
   });
 
-  it(`should set noWordWrapClassName defined as bindings`, () => {
+  it(`should set noWordWrapClassName defined as bindings`, async() => {
     TestBed.overrideComponent(TestComponent, {
       set: {
         template: `
@@ -579,7 +583,7 @@ describe('HotColumnComponent', () => {
         `
       }
     });
-    TestBed.compileComponents().then(() => {
+    await TestBed.compileComponents().then(() => {
       fixture = TestBed.createComponent(TestComponent);
       const app = fixture.componentInstance;
       app.prop['settings'] = {
@@ -597,7 +601,7 @@ describe('HotColumnComponent', () => {
     });
   });
 
-  it(`should set placeholder defined as bindings`, () => {
+  it(`should set placeholder defined as bindings`, async() => {
     TestBed.overrideComponent(TestComponent, {
       set: {
         template: `
@@ -608,25 +612,25 @@ describe('HotColumnComponent', () => {
         `
       }
     });
-    TestBed.compileComponents().then(() => {
+    await TestBed.compileComponents().then(() => {
       fixture = TestBed.createComponent(TestComponent);
       const app = fixture.componentInstance;
       app.prop['settings'] = {
-        placeholder: false
+        placeholder: 'from GridSettings'
       };
       app.prop['columns'] = [
         {},
         {
-          placeholder: true
+          placeholder: 'from ColumnSettings'
         }
       ];
       fixture.detectChanges();
-      expect(app.getHotInstance(app.id).getCellMeta(0, 0)['placeholder']).toBe(false);
-      expect(app.getHotInstance(app.id).getCellMeta(0, 1)['placeholder']).toBe(true);
+      expect(app.getHotInstance(app.id).getCellMeta(0, 0)['placeholder']).toBe('from GridSettings');
+      expect(app.getHotInstance(app.id).getCellMeta(0, 1)['placeholder']).toBe('from ColumnSettings');
     });
   });
 
-  it(`should set placeholderCellClassName defined as bindings`, () => {
+  it(`should set placeholderCellClassName defined as bindings`, async() => {
     TestBed.overrideComponent(TestComponent, {
       set: {
         template: `
@@ -637,7 +641,7 @@ describe('HotColumnComponent', () => {
         `
       }
     });
-    TestBed.compileComponents().then(() => {
+    await TestBed.compileComponents().then(() => {
       fixture = TestBed.createComponent(TestComponent);
       const app = fixture.componentInstance;
       app.prop['settings'] = {
@@ -655,7 +659,7 @@ describe('HotColumnComponent', () => {
     });
   });
 
-  it(`should set readOnly defined as bindings`, () => {
+  it(`should set readOnly defined as bindings`, async() => {
     TestBed.overrideComponent(TestComponent, {
       set: {
         template: `
@@ -666,7 +670,7 @@ describe('HotColumnComponent', () => {
         `
       }
     });
-    TestBed.compileComponents().then(() => {
+    await TestBed.compileComponents().then(() => {
       fixture = TestBed.createComponent(TestComponent);
       const app = fixture.componentInstance;
       app.prop['settings'] = {
@@ -684,7 +688,7 @@ describe('HotColumnComponent', () => {
     });
   });
 
-  it(`should set readOnlyCellClassName defined as bindings`, () => {
+  it(`should set readOnlyCellClassName defined as bindings`, async() => {
     TestBed.overrideComponent(TestComponent, {
       set: {
         template: `
@@ -695,7 +699,7 @@ describe('HotColumnComponent', () => {
         `
       }
     });
-    TestBed.compileComponents().then(() => {
+    await TestBed.compileComponents().then(() => {
       fixture = TestBed.createComponent(TestComponent);
       const app = fixture.componentInstance;
       app.prop['settings'] = {
@@ -713,7 +717,7 @@ describe('HotColumnComponent', () => {
     });
   });
 
-  it(`should set renderer defined as bindings`, () => {
+  it(`should set renderer defined as bindings`, async() => {
     TestBed.overrideComponent(TestComponent, {
       set: {
         template: `
@@ -724,7 +728,7 @@ describe('HotColumnComponent', () => {
         `
       }
     });
-    TestBed.compileComponents().then(() => {
+    await TestBed.compileComponents().then(() => {
       fixture = TestBed.createComponent(TestComponent);
       const app = fixture.componentInstance;
       app.prop['settings'] = {
@@ -742,7 +746,7 @@ describe('HotColumnComponent', () => {
     });
   });
 
-  it(`should set selectOptions defined as bindings`, () => {
+  it(`should set selectOptions defined as bindings`, async() => {
     TestBed.overrideComponent(TestComponent, {
       set: {
         template: `
@@ -753,7 +757,7 @@ describe('HotColumnComponent', () => {
         `
       }
     });
-    TestBed.compileComponents().then(() => {
+    await TestBed.compileComponents().then(() => {
       fixture = TestBed.createComponent(TestComponent);
       const app = fixture.componentInstance;
       app.prop['settings'] = {
@@ -771,7 +775,7 @@ describe('HotColumnComponent', () => {
     });
   });
 
-  it(`should set skipColumnOnPaste defined as bindings`, () => {
+  it(`should set skipColumnOnPaste defined as bindings`, async() => {
     TestBed.overrideComponent(TestComponent, {
       set: {
         template: `
@@ -782,7 +786,7 @@ describe('HotColumnComponent', () => {
         `
       }
     });
-    TestBed.compileComponents().then(() => {
+    await TestBed.compileComponents().then(() => {
       fixture = TestBed.createComponent(TestComponent);
       const app = fixture.componentInstance;
       app.prop['settings'] = {
@@ -800,7 +804,7 @@ describe('HotColumnComponent', () => {
     });
   });
 
-  it(`should set sortByRelevance defined as bindings`, () => {
+  it(`should set sortByRelevance defined as bindings`, async() => {
     TestBed.overrideComponent(TestComponent, {
       set: {
         template: `
@@ -811,7 +815,7 @@ describe('HotColumnComponent', () => {
         `
       }
     });
-    TestBed.compileComponents().then(() => {
+    await TestBed.compileComponents().then(() => {
       fixture = TestBed.createComponent(TestComponent);
       const app = fixture.componentInstance;
       app.prop['settings'] = {
@@ -829,7 +833,7 @@ describe('HotColumnComponent', () => {
     });
   });
 
-  it(`should set source defined as bindings`, () => {
+  it(`should set source defined as bindings`, async() => {
     TestBed.overrideComponent(TestComponent, {
       set: {
         template: `
@@ -840,7 +844,7 @@ describe('HotColumnComponent', () => {
         `
       }
     });
-    TestBed.compileComponents().then(() => {
+    await TestBed.compileComponents().then(() => {
       fixture = TestBed.createComponent(TestComponent);
       const app = fixture.componentInstance;
       app.prop['settings'] = {
@@ -858,7 +862,7 @@ describe('HotColumnComponent', () => {
     });
   });
 
-  it(`should set strict defined as bindings`, () => {
+  it(`should set strict defined as bindings`, async() => {
     TestBed.overrideComponent(TestComponent, {
       set: {
         template: `
@@ -869,7 +873,7 @@ describe('HotColumnComponent', () => {
         `
       }
     });
-    TestBed.compileComponents().then(() => {
+    await TestBed.compileComponents().then(() => {
       fixture = TestBed.createComponent(TestComponent);
       const app = fixture.componentInstance;
       app.prop['settings'] = {
@@ -887,7 +891,7 @@ describe('HotColumnComponent', () => {
     });
   });
 
-  it(`should set title defined as bindings`, () => {
+  it(`should set title defined as bindings`, async() => {
     TestBed.overrideComponent(TestComponent, {
       set: {
         template: `
@@ -898,7 +902,7 @@ describe('HotColumnComponent', () => {
         `
       }
     });
-    TestBed.compileComponents().then(() => {
+    await TestBed.compileComponents().then(() => {
       fixture = TestBed.createComponent(TestComponent);
       const app = fixture.componentInstance;
       app.prop['settings'] = {
@@ -916,7 +920,7 @@ describe('HotColumnComponent', () => {
     });
   });
 
-  it(`should set trimDropdown defined as bindings`, () => {
+  it(`should set trimDropdown defined as bindings`, async() => {
     TestBed.overrideComponent(TestComponent, {
       set: {
         template: `
@@ -927,7 +931,7 @@ describe('HotColumnComponent', () => {
         `
       }
     });
-    TestBed.compileComponents().then(() => {
+    await TestBed.compileComponents().then(() => {
       fixture = TestBed.createComponent(TestComponent);
       const app = fixture.componentInstance;
       app.prop['settings'] = {
@@ -945,7 +949,7 @@ describe('HotColumnComponent', () => {
     });
   });
 
-  it(`should set type defined as bindings`, () => {
+  it(`should set type defined as bindings`, async() => {
     TestBed.overrideComponent(TestComponent, {
       set: {
         template: `
@@ -956,7 +960,7 @@ describe('HotColumnComponent', () => {
         `
       }
     });
-    TestBed.compileComponents().then(() => {
+    await TestBed.compileComponents().then(() => {
       fixture = TestBed.createComponent(TestComponent);
       const app = fixture.componentInstance;
       app.prop['settings'] = {
@@ -974,7 +978,7 @@ describe('HotColumnComponent', () => {
     });
   });
 
-  it(`should set uncheckedTemplate defined as bindings`, () => {
+  it(`should set uncheckedTemplate defined as bindings`, async() => {
     TestBed.overrideComponent(TestComponent, {
       set: {
         template: `
@@ -985,7 +989,7 @@ describe('HotColumnComponent', () => {
         `
       }
     });
-    TestBed.compileComponents().then(() => {
+    await TestBed.compileComponents().then(() => {
       fixture = TestBed.createComponent(TestComponent);
       const app = fixture.componentInstance;
       app.prop['settings'] = {
@@ -1003,7 +1007,7 @@ describe('HotColumnComponent', () => {
     });
   });
 
-  it(`should set validator defined as bindings`, () => {
+  it(`should set validator defined as bindings`, async() => {
     TestBed.overrideComponent(TestComponent, {
       set: {
         template: `
@@ -1014,25 +1018,27 @@ describe('HotColumnComponent', () => {
         `
       }
     });
-    TestBed.compileComponents().then(() => {
+    await TestBed.compileComponents().then(() => {
       fixture = TestBed.createComponent(TestComponent);
       const app = fixture.componentInstance;
+      const newValidator = function() {};
       app.prop['settings'] = {
-        validator: false
+        validator: 'numeric'
       };
       app.prop['columns'] = [
         {},
-        {
-          validator: true
-        }
+        { validator: /^[0-9]$/ },
+        { validator: newValidator },
+        { validator: void 0 },
       ];
       fixture.detectChanges();
-      expect(app.getHotInstance(app.id).getCellMeta(0, 0)['validator']).toBe(false);
-      expect(app.getHotInstance(app.id).getCellMeta(0, 1)['validator']).toBe(true);
+      expect(app.getHotInstance(app.id).getCellMeta(0, 0)['validator']).toBe('numeric');
+      expect(app.getHotInstance(app.id).getCellMeta(0, 1)['validator'].toString()).toBe('/^[0-9]$/');
+      expect(app.getHotInstance(app.id).getCellMeta(0, 2)['validator']).toBe(newValidator);
     });
   });
 
-  it(`should set visibleRows defined as bindings`, () => {
+  it(`should set visibleRows defined as bindings`, async() => {
     TestBed.overrideComponent(TestComponent, {
       set: {
         template: `
@@ -1043,7 +1049,7 @@ describe('HotColumnComponent', () => {
         `
       }
     });
-    TestBed.compileComponents().then(() => {
+    await TestBed.compileComponents().then(() => {
       fixture = TestBed.createComponent(TestComponent);
       const app = fixture.componentInstance;
       app.prop['settings'] = {
@@ -1061,7 +1067,7 @@ describe('HotColumnComponent', () => {
     });
   });
 
-  it(`should set width defined as bindings`, () => {
+  it(`should set width defined as bindings`, async() => {
     TestBed.overrideComponent(TestComponent, {
       set: {
         template: `
@@ -1072,7 +1078,7 @@ describe('HotColumnComponent', () => {
         `
       }
     });
-    TestBed.compileComponents().then(() => {
+    await TestBed.compileComponents().then(() => {
       fixture = TestBed.createComponent(TestComponent);
       const app = fixture.componentInstance;
       app.prop['settings'] = {
@@ -1090,7 +1096,7 @@ describe('HotColumnComponent', () => {
     });
   });
 
-  it(`should set wordWrap defined as bindings`, () => {
+  it(`should set wordWrap defined as bindings`, async() => {
     TestBed.overrideComponent(TestComponent, {
       set: {
         template: `
@@ -1101,7 +1107,7 @@ describe('HotColumnComponent', () => {
         `
       }
     });
-    TestBed.compileComponents().then(() => {
+    await TestBed.compileComponents().then(() => {
       fixture = TestBed.createComponent(TestComponent);
       const app = fixture.componentInstance;
       app.prop['settings'] = {

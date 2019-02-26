@@ -6,7 +6,7 @@ import {
   Input,
 } from '@angular/core';
 import { HotTableComponent } from './hot-table.component';
-import * as Handsontable from 'handsontable-pro';
+import Handsontable from 'handsontable';
 
 @Component({
   selector: 'hot-column',

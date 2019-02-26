@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import * as Handsontable from 'handsontable-pro';
+import Handsontable from 'handsontable';
 
 const instances = new Map<string, Handsontable>();
 

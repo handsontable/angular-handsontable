@@ -9,7 +9,7 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import * as Handsontable from 'handsontable-pro';
+import Handsontable from 'handsontable';
 import { HotTableRegisterer } from './hot-table-registerer.service';
 import { HotSettingsResolver } from './hot-settings-resolver.service';
 import { HotColumnComponent } from './hot-column.component';
@@ -349,7 +349,7 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy
     }
   }
 
-  updateHotTable(newSettings: Handsontable.GridSettings): void {
+  updateHotTable(newSettings: Handsontable.GridSettings ): void {
     if (!this.hotInstance) {
       return;
     }
@@ -365,7 +365,7 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy
     }
 
     if (this.columnsComponents.length > 0) {
-      const columns: Handsontable.GridSettings[] = [];
+      const columns: Handsontable.ColumnSettings[] = [];
 
       this.columnsComponents.forEach((column) => {
         columns.push(this._hotSettingsResolver.mergeSettings(column));
@@ -380,7 +380,7 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy
   }
 
   onAfterColumnsNumberChange(): void {
-    const columns: Handsontable.GridSettings[] = [];
+    const columns: Handsontable.ColumnSettings[] = [];
 
     if (this.columnsComponents.length > 0) {
       this.columnsComponents.forEach((column) => {
@@ -388,7 +388,7 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy
       });
     }
 
-    this.updateHotTable({columns: columns});
+    this.updateHotTable({ columns });
   }
 
   addColumn(column: HotColumnComponent): void {
