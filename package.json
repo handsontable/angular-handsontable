@@ -40,12 +40,12 @@
     "ng": "ng",
     "start": "ng serve",
     "clean": "rimraf dist",
-    "build": "ng build pro",
-    "test": "npm run clean && npm run lint && npm run build && ng test pro",
-    "lint": "ng lint pro",
+    "build": "ng build hot-table",
+    "test": "npm run clean && npm run lint && npm run build && ng test hot-table",
+    "lint": "ng lint hot-table",
     "e2e": "ng e2e",
     "pre-release": "node scripts/copy-utils.js && node scripts/pre-release.js",
-    "release": "npm run test && npm run pre-release && npm publish dist/pro --access public"
+    "release": "npm run test && npm run pre-release && npm publish dist/hot-table --access public"
   },
   "peerDependencies": {
     "handsontable": "^7.0.0",
@@ -61,7 +61,7 @@
     "@angular/platform-browser-dynamic": "~7.2.6",
     "@angular/router": "~7.2.6",
     "core-js": "^2.5.4",
-    "handsontable": "^7.0.0",
+    "handsontable": "file:../handsontable/handsontable-7.0.0.tgz",
     "rxjs": "~6.4.0",
     "zone.js": "~0.8.26"
   },

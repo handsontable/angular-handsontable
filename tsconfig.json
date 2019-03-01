@@ -20,7 +20,7 @@
     ],
     "paths": {
       "@handsontable/angular": [
-        "dist/pro"
+        "dist/hot-table"
       ]
     }
   }
