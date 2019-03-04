@@ -1,9 +1,9 @@
 const fse = require('fs-extra')
 const path = require('path');
 
-const TARGET_PACKAGE_PATH = path.resolve('./dist/pro/package.json');
-const TARGET_UMD_MIN_JS_PATH = path.resolve('./dist/pro/bundles/handsontable-angular.umd.min.js');
-const TARGET_UMD_JS_PATH = path.resolve('./dist/pro/bundles/handsontable-angular.umd.js');
+const TARGET_PACKAGE_PATH = path.resolve('./dist/hot-table/package.json');
+const TARGET_UMD_MIN_JS_PATH = path.resolve('./dist/hot-table/bundles/handsontable-angular.umd.min.js');
+const TARGET_UMD_JS_PATH = path.resolve('./dist/hot-table/bundles/handsontable-angular.umd.js');
 
 const SOURCE_PACKAGE = require(path.resolve('./package.json'));
 const TARGET_PACKAGE = fse.readJsonSync(TARGET_PACKAGE_PATH, { encoding: 'utf-8' });
