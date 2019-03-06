@@ -9,7 +9,7 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import * as Handsontable from 'handsontable';
+import Handsontable from 'handsontable';
 import { HotTableRegisterer } from './hot-table-registerer.service';
 import { HotSettingsResolver } from './hot-settings-resolver.service';
 import { HotColumnComponent } from './hot-column.component';
@@ -268,6 +268,38 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy
   @Input() skipLengthCache: Handsontable.GridSettings['skipLengthCache'];
   @Input() unmodifyCol: Handsontable.GridSettings['unmodifyCol'];
   @Input() unmodifyRow: Handsontable.GridSettings['unmodifyRow'];
+  // handsontable-pro options
+  @Input() bindRowsWithHeaders: Handsontable.GridSettings['bindRowsWithHeaders'];
+  @Input() collapsibleColumns: Handsontable.GridSettings['collapsibleColumns'];
+  @Input() columnSummary: Handsontable.GridSettings['columnSummary'];
+  @Input() dropdownMenu: Handsontable.GridSettings['dropdownMenu'];
+  @Input() filters: Handsontable.GridSettings['filters'];
+  @Input() formulas: Handsontable.GridSettings['formulas'];
+  @Input() ganttChart: Handsontable.GridSettings['ganttChart'];
+  @Input() headerTooltips: Handsontable.GridSettings['headerTooltips'];
+  @Input() hiddenColumns: Handsontable.GridSettings['hiddenColumns'];
+  @Input() hiddenRows: Handsontable.GridSettings['hiddenRows'];
+  @Input() licenseKey: Handsontable.GridSettings['licenseKey'];
+  @Input() multiColumnSorting: Handsontable.GridSettings['multiColumnSorting'];
+  @Input() nestedHeaders: Handsontable.GridSettings['nestedHeaders'];
+  @Input() nestedRows: Handsontable.GridSettings['nestedRows'];
+  @Input() trimRows: Handsontable.GridSettings['nestedRows'];
+  // handsontable-pro hooks
+  @Input() afterAddChild: Handsontable.GridSettings['afterAddChild'];
+  @Input() afterDetachChild: Handsontable.GridSettings['afterDetachChild'];
+  @Input() afterDropdownMenuDefaultOptions: Handsontable.GridSettings['afterDropdownMenuDefaultOptions'];
+  @Input() afterDropdownMenuHide: Handsontable.GridSettings['afterDropdownMenuHide'];
+  @Input() afterDropdownMenuShow: Handsontable.GridSettings['afterDropdownMenuShow'];
+  @Input() afterFilter: Handsontable.GridSettings['afterFilter'];
+  @Input() afterTrimRow: Handsontable.GridSettings['afterTrimRow'];
+  @Input() afterUntrimRow: Handsontable.GridSettings['afterUntrimRow'];
+  @Input() beforeAddChild: Handsontable.GridSettings['beforeAddChild'];
+  @Input() beforeDetachChild: Handsontable.GridSettings['beforeDetachChild'];
+  @Input() beforeDropdownMenuSetItems: Handsontable.GridSettings['beforeDropdownMenuSetItems'];
+  @Input() beforeDropdownMenuShow: Handsontable.GridSettings['beforeDropdownMenuShow'];
+  @Input() beforeFilter: Handsontable.GridSettings['beforeFilter'];
+  @Input() hiddenColumn: Handsontable.GridSettings['hiddenColumn'];
+  @Input() hiddenRow: Handsontable.GridSettings['hiddenRow'];
 
   constructor(
     private _ngZone: NgZone,
@@ -317,7 +349,7 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy
     }
   }
 
-  updateHotTable(newSettings: Handsontable.GridSettings): void {
+  updateHotTable(newSettings: Handsontable.GridSettings ): void {
     if (!this.hotInstance) {
       return;
     }
@@ -333,7 +365,7 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy
     }
 
     if (this.columnsComponents.length > 0) {
-      const columns: Handsontable.GridSettings[] = [];
+      const columns: Handsontable.ColumnSettings[] = [];
 
       this.columnsComponents.forEach((column) => {
         columns.push(this._hotSettingsResolver.mergeSettings(column));
@@ -348,7 +380,7 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy
   }
 
   onAfterColumnsNumberChange(): void {
-    const columns: Handsontable.GridSettings[] = [];
+    const columns: Handsontable.ColumnSettings[] = [];
 
     if (this.columnsComponents.length > 0) {
       this.columnsComponents.forEach((column) => {
@@ -356,7 +388,7 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy
       });
     }
 
-    this.updateHotTable({columns: columns});
+    this.updateHotTable({ columns });
   }
 
   addColumn(column: HotColumnComponent): void {

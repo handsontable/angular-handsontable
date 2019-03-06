@@ -1,6 +1,6 @@
 {
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
-  "dest": "../../dist/ce",
+  "dest": "../../dist/hot-table",
   "lib": {
     "entryFile": "src/public_api.ts",
     "umdModuleIds": {
