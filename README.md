@@ -30,7 +30,7 @@ npm install handsontable @handsontable/angular
 You can load it directly from [jsDelivr](//jsdelivr.com/package/npm/@handsontable/angular) as well.
 ```html
 <script src="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@handsontable/angular/dist/bundles/handsontable-pro.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@handsontable/angular/dist/bundles/handsontable-angular.umd.min.js"></script>
 
 <link href="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.css" rel="stylesheet">
 ```
