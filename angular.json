@@ -3,25 +3,25 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ce": {
-      "root": "projects/ce",
-      "sourceRoot": "projects/ce/src",
+    "hot-table": {
+      "root": "projects/hot-table",
+      "sourceRoot": "projects/hot-table/src",
       "projectType": "library",
       "prefix": "hot",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "projects/ce/tsconfig.lib.json",
-            "project": "projects/ce/ng-package.json"
+            "tsConfig": "projects/hot-table/tsconfig.lib.json",
+            "project": "projects/hot-table/ng-package.json"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/ce/src/test.ts",
-            "tsConfig": "projects/ce/tsconfig.spec.json",
-            "karmaConfig": "projects/ce/karma.conf.js",
+            "main": "projects/hot-table/src/test.ts",
+            "tsConfig": "projects/hot-table/tsconfig.spec.json",
+            "karmaConfig": "projects/hot-table/karma.conf.js",
             "styles": [
               "node_modules/handsontable/dist/handsontable.full.css"
             ]
@@ -31,46 +31,8 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/ce/tsconfig.lib.json",
-              "projects/ce/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
-    },
-    "pro": {
-      "root": "projects/pro",
-      "sourceRoot": "projects/pro/src",
-      "projectType": "library",
-      "prefix": "hot",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
-          "options": {
-            "tsConfig": "projects/pro/tsconfig.lib.json",
-            "project": "projects/pro/ng-package.json"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/pro/src/test.ts",
-            "tsConfig": "projects/pro/tsconfig.spec.json",
-            "karmaConfig": "projects/pro/karma.conf.js",
-            "styles": [
-              "node_modules/handsontable/dist/handsontable.full.css"
-            ]
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/pro/tsconfig.lib.json",
-              "projects/pro/tsconfig.spec.json"
+              "projects/hot-table/tsconfig.lib.json",
+              "projects/hot-table/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"

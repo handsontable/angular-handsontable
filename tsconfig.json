@@ -20,10 +20,7 @@
     ],
     "paths": {
       "@handsontable/angular": [
-        "dist/ce"
-      ],
-      "@handsontable-pro/angular": [
-        "dist/pro"
+        "dist/hot-table"
       ]
     }
   }

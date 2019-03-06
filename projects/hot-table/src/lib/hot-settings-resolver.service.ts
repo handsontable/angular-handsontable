@@ -1,13 +1,12 @@
 import { Injectable, SimpleChanges } from '@angular/core';
-import * as Handsontable from 'handsontable-pro';
-// @ts-ignore
+import Handsontable from 'handsontable';
+
 const AVAILABLE_OPTIONS: string[] = Object.keys(Handsontable.DefaultSettings.prototype);
-// @ts-ignore
 const AVAILABLE_HOOKS: string[] = Handsontable.hooks.getRegistered();
 
 @Injectable()
 export class HotSettingsResolver {
-  mergeSettings(component): Handsontable.GridSettings | object {
+  mergeSettings(component): object {
     const isSettingsObject = typeof component['settings'] === 'object';
     const mergedSettings: Handsontable.GridSettings = isSettingsObject ? component['settings'] : {};
     const options = AVAILABLE_HOOKS.concat(AVAILABLE_OPTIONS);
