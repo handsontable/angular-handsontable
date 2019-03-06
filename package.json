@@ -61,7 +61,7 @@
     "@angular/platform-browser-dynamic": "~7.2.6",
     "@angular/router": "~7.2.6",
     "core-js": "^2.5.4",
-    "handsontable": "file:../handsontable/handsontable-7.0.0.tgz",
+    "handsontable": "^7.0.0",
     "rxjs": "~6.4.0",
     "zone.js": "~0.8.26"
   },
