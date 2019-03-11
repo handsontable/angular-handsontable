@@ -14,6 +14,10 @@ import { HotTableRegisterer } from './hot-table-registerer.service';
   ]
 })
 export class HotTableModule {
+  public static version(): string {
+    return '0.0.0-VERSION';
+  }
+
   public static forRoot(): ModuleWithProviders {
     return {
       ngModule: HotTableModule,

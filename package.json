@@ -40,12 +40,14 @@
     "ng": "ng",
     "start": "ng serve",
     "clean": "rimraf dist",
+    "prebuild": "npm run clean && node scripts/pre-build.js",
     "build": "ng build hot-table",
-    "test": "npm run clean && npm run lint && npm run build && ng test hot-table",
+    "postbuild": "node scripts/post-build.js",
+    "pretest": "npm run lint && npm run build",
+    "test": "ng test hot-table",
     "lint": "ng lint hot-table",
     "e2e": "ng e2e",
-    "pre-release": "node scripts/copy-utils.js && node scripts/pre-release.js",
-    "release": "npm run test && npm run pre-release && npm publish dist/hot-table --access public"
+    "release": "npm run test && npm publish dist/hot-table --access public"
   },
   "peerDependencies": {
     "handsontable": "^7.0.0",
@@ -73,7 +75,7 @@
     "@angular/language-service": "~7.2.6",
     "@types/jasmine": "~3.3.9",
     "@types/jasminewd2": "~2.0.3",
-    "@types/node": "~11.9.5",
+    "@types/node": "^11.9.6",
     "codelyzer": "~4.5.0",
     "jasmine-core": "~3.3.0",
     "jasmine-spec-reporter": "~4.2.1",
