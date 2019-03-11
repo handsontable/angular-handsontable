@@ -4,6 +4,7 @@
 /dist
 /tmp
 /out-tsc
+/projects/hot-table/package.json
 
 # dependencies
 /node_modules
