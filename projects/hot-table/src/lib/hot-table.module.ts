@@ -5,7 +5,7 @@ import { HotTableRegisterer } from './hot-table-registerer.service';
 
 /**
  * Angular prevents use static public getters under NgModule decorator.
- * Moreover, ngc doesn't allow import `Version` from external 
+ * Moreover, ngc doesn't allow importing `Version` from external file.
  */
 class Version {
   public static get version(): string {
