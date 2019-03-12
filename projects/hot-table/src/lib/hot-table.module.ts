@@ -2,7 +2,16 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { HotTableComponent } from './hot-table.component';
 import { HotColumnComponent } from './hot-column.component';
 import { HotTableRegisterer } from './hot-table-registerer.service';
-import { version } from 'moment';
+
+/**
+ * Angular prevents use static public getters under NgModule decorator.
+ * Moreover, ngc doesn't allow import `Version` from external 
+ */
+class Version {
+  public static get version(): string {
+    return '0.0.0-VERSION';
+  }
+}
 
 @NgModule({
   declarations: [
@@ -14,9 +23,7 @@ import { version } from 'moment';
     HotColumnComponent,
   ]
 })
-export class HotTableModule {
-  public static version: string = '0.0.0-VERSION';
-
+export class HotTableModule extends Version {
   public static forRoot(): ModuleWithProviders {
     return {
       ngModule: HotTableModule,
