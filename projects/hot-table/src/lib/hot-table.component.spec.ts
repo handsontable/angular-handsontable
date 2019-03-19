@@ -2066,7 +2066,51 @@ describe('HotTableComponent', () => {
   });
 
   describe('hooks', () => {
-    it(`should use Handsontable instance as a first argument, if is defined as a property in settings object`, async() => {
+    it(`should use Handsontable as a hook's context, if is defined as a component's method`, async() => {
+      TestBed.overrideComponent(TestComponent, {
+        set: {
+          template: `<hot-table [hotId]="id" [afterInit]="prop.afterInit"></hot-table>`
+        }
+      });
+      await TestBed.compileComponents().then(() => {
+        fixture = TestBed.createComponent(TestComponent);
+        const app = fixture.componentInstance;
+
+        app.prop['afterInit'] = function() {
+          return this;
+        };
+
+        fixture.detectChanges();
+        const instance: Handsontable = app.getHotInstance(app.id).runHooks('afterInit');
+
+        expect(instance.getPlugin).toBeDefined();
+        expect(instance.getPlugin('copyPaste')).toBeTruthy();
+      });
+    });
+
+    it(`should allow overwrite Handsontable in a hook's context by bind`, async() => {
+      TestBed.overrideComponent(TestComponent, {
+        set: {
+          template: `<hot-table [hotId]="id" [afterInit]="prop.afterInit.bind(this)"></hot-table>`
+        }
+      });
+      await TestBed.compileComponents().then(() => {
+        fixture = TestBed.createComponent(TestComponent);
+        const app = fixture.componentInstance;
+
+        app.prop['specKey'] = 'testKey';
+        app.prop['afterInit'] = function() {
+          return this;
+        };
+
+        fixture.detectChanges();
+        const instance: TestComponent = app.getHotInstance(app.id).runHooks('afterInit');
+
+        expect(instance.prop['specKey']).toBe('testKey');
+      });
+    });
+
+    it(`should use Handsontable as a hook's context, if is defined as a function in settings object`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
@@ -2077,15 +2121,42 @@ describe('HotTableComponent', () => {
         const app = fixture.componentInstance;
 
         app.prop['settings'] = {
-          afterInit: (hot) => {
-            return hot;
+          afterInit() {
+            return this;
           }
         };
 
         fixture.detectChanges();
+        const instance: Handsontable = app.getHotInstance(app.id).runHooks('afterInit');
 
-        const constructorName = app.getHotInstance(app.id).constructor.name;
-        expect(app.getHotInstance(app.id).runHooks('afterInit').constructor.name).toBe(constructorName);
+        expect(instance.getPlugin).toBeDefined();
+        expect(instance.getPlugin('copyPaste')).toBeTruthy();
+      });
+    });
+
+    it(`should use TestComponent as a hook's context, if is defined as a arrow-function in settings object`, async() => {
+      TestBed.overrideComponent(TestComponent, {
+        set: {
+          template: `<hot-table [hotId]="id" [settings]="prop.settings"></hot-table>`
+        }
+      });
+      await TestBed.compileComponents().then(() => {
+        fixture = TestBed.createComponent(TestComponent);
+        const app = fixture.componentInstance;
+
+        app.prop['specKey'] = 'testKey';
+        app.prop['settings'] = {
+          afterInit: (function() {
+            return () => {
+              return this;
+            };
+          }).call(app),
+        };
+
+        fixture.detectChanges();
+        const instance: TestComponent = app.getHotInstance(app.id).runHooks('afterInit');
+
+        expect(instance.prop['specKey']).toBe('testKey');
       });
     });
 
