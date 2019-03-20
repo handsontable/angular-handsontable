@@ -3,7 +3,7 @@ import { version } from '../../package.json';
 
 
 describe('HotTableModule', () => {
-  it(`should expose information about its version`, async() => {
+  it(`should expose information about its version`, () => {
     expect(HotTableModule.version).toBeDefined();
     expect(HotTableModule.version).toBe(version);
   });
