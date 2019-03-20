@@ -271,5 +271,32 @@ describe('HotTableComponent', () => {
         expect(app.getHotInstance(app.id).runHooks('afterAddChild')).toBe('hookFromAttribute');
       });
     });
+
+    it(`should allow to block 'before*' hooks`, async() => {
+      TestBed.overrideComponent(TestComponent, {
+        set: {
+          template: `<hot-table [hotId]="id" [beforeChange]="prop.beforeChange" [afterChange]="prop.afterChange"></hot-table>`
+        }
+      });
+      await TestBed.compileComponents().then(() => {
+        fixture = TestBed.createComponent(TestComponent);
+
+        const app = fixture.componentInstance;
+        let afterChangeResult = false;
+
+        app.prop['beforeChange'] = function() { return false; };
+        app.prop['afterChange'] = function(changes, source) {
+          // `afterChange` is called once during the initialisation
+          if (source === 'edit') {
+            afterChangeResult = true;
+          }
+        };
+        fixture.detectChanges();
+
+        app.getHotInstance(app.id).setDataAtCell(0, 0, 'test');
+
+        expect(afterChangeResult).toBe(false);
+      });
+    });
   });
 });
