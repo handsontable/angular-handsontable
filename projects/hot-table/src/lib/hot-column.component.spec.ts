@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HotTableModule, HotTableRegisterer } from '@handsontable/angular';
-import Handsontable from 'handsontable';
 
 @Component({
   selector: 'hot-test-component',

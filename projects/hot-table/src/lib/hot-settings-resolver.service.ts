@@ -29,7 +29,7 @@ export class HotSettingsResolver {
       } else if (typeof option === 'function' && isHook) {
         mergedSettings[key] = function(...args) {
           return component._ngZone.run(() => {
-            return option(this, ...args);
+              return option.apply(this, args);
           });
         };
 
