@@ -201,6 +201,30 @@ describe('HotTableComponent', () => {
       });
     });
 
+    it(`should be possible to get a reference to Handsontable instance`, async() => {
+      TestBed.overrideComponent(TestComponent, {
+        set: {
+          template: `<hot-table [hotId]="id" [init]="prop.init.bind(this)"></hot-table>`
+        }
+      });
+      await TestBed.compileComponents().then(() => {
+        fixture = TestBed.createComponent(TestComponent);
+        const app = fixture.componentInstance;
+
+        app.prop['specKey'] = 'testKey';
+        app.prop['init'] = function() {
+          return [this, this.getHotInstance(app.id)];
+        };
+
+        fixture.detectChanges();
+        const [instance, hot]: [TestComponent, Handsontable] = app.getHotInstance(app.id).runHooks('init');
+
+        expect(instance.prop['specKey']).toBe('testKey');
+        expect(hot.getPlugin).toBeDefined();
+        expect(hot.getPlugin('copyPaste')).toBeTruthy();
+      });
+    });
+
     it(`should use Handsontable as a hook's context, if is defined as a function in settings object`, async() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
