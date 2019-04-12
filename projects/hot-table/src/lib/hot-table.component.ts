@@ -331,12 +331,14 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy
     }
 
     this._ngZone.runOutsideAngular(() => {
-      this.hotInstance = new Handsontable(this.container.nativeElement, options);
-    });
+      this.hotInstance = new Handsontable.Core(this.container.nativeElement, options);
 
-    if (this.hotId) {
-      this._hotTableRegisterer.registerInstance(this.hotId, this.hotInstance);
-    }
+      if (this.hotId) {
+        this._hotTableRegisterer.registerInstance(this.hotId, this.hotInstance);
+      }
+      // @ts-ignore
+      this.hotInstance.init();
+    });
   }
 
   ngOnChanges(changes: SimpleChanges): void {
