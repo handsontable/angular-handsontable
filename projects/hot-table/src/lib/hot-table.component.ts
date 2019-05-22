@@ -127,6 +127,7 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy
   @Input() selectionMode: Handsontable.GridSettings['selectionMode'];
   @Input() selectOptions: Handsontable.GridSettings['selectOptions'];
   @Input() skipColumnOnPaste: Handsontable.GridSettings['skipColumnOnPaste'];
+  @Input() skipRowOnPaste: any;
   @Input() sortByRelevance: Handsontable.GridSettings['sortByRelevance'];
   @Input() source: Handsontable.GridSettings['source'];
   @Input() startCols: Handsontable.GridSettings['startCols'];
