@@ -1,5 +1,5 @@
 import {
-  AfterContentInit,
+  AfterViewInit,
   Component,
   Input,
   NgZone,
@@ -20,8 +20,8 @@ import { HotColumnComponent } from './hot-column.component';
   encapsulation: ViewEncapsulation.None,
   providers: [ HotTableRegisterer, HotSettingsResolver ],
 })
-export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy {
-  @ViewChild('container') public container;
+export class HotTableComponent implements AfterViewInit, OnChanges, OnDestroy {
+  @ViewChild('container', { static: false }) public container;
 
   private hotInstance: Handsontable;
   private columnsComponents: HotColumnComponent[] = [];
@@ -318,7 +318,7 @@ export class HotTableComponent implements AfterContentInit, OnChanges, OnDestroy
     private _hotSettingsResolver: HotSettingsResolver,
   ) {}
 
-  ngAfterContentInit(): void {
+  ngAfterViewInit(): void {
     const options: Handsontable.GridSettings = this._hotSettingsResolver.mergeSettings(this);
 
     if (this.columnsComponents.length > 0) {
