@@ -569,6 +569,36 @@ describe('HotColumnComponent', () => {
       expect(app.getHotInstance(app.id).getCellMeta(0, 1)['label']['position']).toBe('before');
     });
   });
+  it(`should set language defined as bindings`, async() => {
+    TestBed.overrideComponent(TestComponent, {
+      set: {
+        template: `
+          <hot-table hotId="hot" [settings]="prop.settings">
+            <hot-column *ngFor="let column of prop.columns; let i = index"
+                        [language]="column.language"></hot-column>
+          </hot-table>
+        `
+      }
+    });
+    await TestBed.compileComponents().then(() => {
+      fixture = TestBed.createComponent(TestComponent);
+      const app = fixture.componentInstance;
+      app.prop['settings'] = {
+        language: 'en-US'
+      };
+      app.prop['columns'] = [
+        {},
+        { language: 'pt-BR' },
+        { language: 'it-IT' },
+        {},
+      ];
+      fixture.detectChanges();
+      expect(app.getHotInstance(app.id).getCellMeta(0, 0)['language']).toBe(void 0);
+      expect(app.getHotInstance(app.id).getCellMeta(0, 1)['language']).toBe('pt-BR');
+      expect(app.getHotInstance(app.id).getCellMeta(0, 2)['language']).toBe('it-IT');
+      expect(app.getHotInstance(app.id).getCellMeta(0, 3)['language']).toBe(void 0);
+    });
+  });
 
   it(`should set noWordWrapClassName defined as bindings`, async() => {
     TestBed.overrideComponent(TestComponent, {
