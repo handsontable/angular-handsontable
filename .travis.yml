@@ -8,7 +8,6 @@ node_js:
   - '12'
 
 before_script:
-  - 'export CHROME_BIN=chromium-browser'
   - 'export TZ=Europe/Warsaw'
 
 services:
