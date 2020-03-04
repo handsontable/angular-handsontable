@@ -1,4 +1,7 @@
 {
+  "publishDirectory": {
+    "@handsotnable/angular": "dist/hot-table"
+  },
   "sandboxes": [
     "github/handsontable/examples/tree/master/angular/pull-request"
   ]
