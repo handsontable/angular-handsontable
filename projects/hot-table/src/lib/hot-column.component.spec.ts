@@ -593,10 +593,10 @@ describe('HotColumnComponent', () => {
         {},
       ];
       fixture.detectChanges();
-      expect(app.getHotInstance(app.id).getCellMeta(0, 0)['language']).toBe(void 0);
+      expect(app.getHotInstance(app.id).getCellMeta(0, 0)['language']).toBe('en-US');
       expect(app.getHotInstance(app.id).getCellMeta(0, 1)['language']).toBe('pt-BR');
       expect(app.getHotInstance(app.id).getCellMeta(0, 2)['language']).toBe('it-IT');
-      expect(app.getHotInstance(app.id).getCellMeta(0, 3)['language']).toBe(void 0);
+      expect(app.getHotInstance(app.id).getCellMeta(0, 3)['language']).toBe('en-US');
     });
   });
 
