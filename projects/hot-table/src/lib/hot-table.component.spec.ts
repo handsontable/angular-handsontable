@@ -88,7 +88,7 @@ describe('HotTableComponent', () => {
 
   describe('options', () => {
     it('should support all of the available options in Handsontable', async() => {
-        const options = Object.keys(Handsontable.DefaultSettings.prototype);
+        const options = Object.keys(Handsontable.DefaultSettings);
         const unsupportedSettings = ['isEmptyRow', 'isEmptyCol'];
         const template = `<hot-table [hotId]="id" ${options.map(option => unsupportedSettings.includes(option) ?
             '' :

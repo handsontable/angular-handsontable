@@ -24,7 +24,7 @@ class Version {
   ]
 })
 export class HotTableModule extends Version {
-  public static forRoot(): ModuleWithProviders {
+  public static forRoot(): ModuleWithProviders<HotTableModule> {
     return {
       ngModule: HotTableModule,
       providers: [ HotTableRegisterer ],

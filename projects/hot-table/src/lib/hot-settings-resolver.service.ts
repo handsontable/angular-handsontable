@@ -1,7 +1,7 @@
 import { Injectable, SimpleChanges } from '@angular/core';
 import Handsontable from 'handsontable';
 
-const AVAILABLE_OPTIONS: string[] = Object.keys(Handsontable.DefaultSettings.prototype);
+const AVAILABLE_OPTIONS: string[] = Object.keys(Handsontable.DefaultSettings);
 const AVAILABLE_HOOKS: string[] = Handsontable.hooks.getRegistered();
 
 @Injectable()
