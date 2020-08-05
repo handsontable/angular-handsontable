@@ -1,6 +1,6 @@
 {
   "name": "@handsontable/angular",
-  "version": "5.1.1",
+  "version": "6.0.0",
   "description": "Best Data Grid for Angular with Spreadsheet Look and Feel.",
   "author": "Handsoncode <hello@handsoncode.net> (https://handsoncode.net)",
   "license": "MIT",
@@ -50,7 +50,7 @@
     "release": "npm run test && npm publish dist/hot-table --access public"
   },
   "peerDependencies": {
-    "handsontable": "^8.0.0-beta.2"
+    "handsontable": "^8.0.0"
   },
   "dependencies": {
     "@angular/animations": "^8.0.0",
@@ -62,7 +62,7 @@
     "@angular/platform-browser-dynamic": "^8.0.0",
     "@angular/router": "^8.0.0",
     "core-js": "^2.5.4",
-    "handsontable": "^8.0.0-beta.2",
+    "handsontable": "^8.0.0",
     "rxjs": "~6.5.2",
     "zone.js": "~0.9.1"
   },
