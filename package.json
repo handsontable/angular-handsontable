@@ -50,6 +50,7 @@
     "release": "npm run test && npm publish dist/hot-table --access public"
   },
   "peerDependencies": {
+    "@angular/core": ">= 8",
     "handsontable": "^8.0.0"
   },
   "dependencies": {
