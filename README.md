@@ -1,3 +1,9 @@
+# Moved
+The code for the `@handsontable/angular` wrapper was moved to the main Handsontable repository at [handsontable/handsontable](https://github.com/handsontable/handsontable/). <br><br>
+The package is still available under the same name ([`@handsontable/angular`](https://www.npmjs.com/package/@handsontable/angular)), so there's no need to update your dependency configuration.
+
+---------
+
 <div align="center">
   
 ![Handsontable for Angular](https://raw.githubusercontent.com/handsontable/static-files/master/Images/Logo/Handsontable/handsontable-angular.png)
