@@ -1,0 +1,8 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+NOCOLOR='\e[0m'
+REDCOLOR='\e[37;41m'
+
+echo -e "$REDCOLOR Important information$NOCOLOR"
+echo -e "$REDCOLOR We permanently moved this project to the main Handsontable repository at https://github.com/handsontable/handsontable/wrappers/angular$NOCOLOR"
