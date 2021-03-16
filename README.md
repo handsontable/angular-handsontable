@@ -1,6 +1,6 @@
 # Important information
 
-## We permanently moved this project to the main Handsontable repository at [https://github.com/handsontable/handsontable/wrappers/angular](https://github.com/handsontable/handsontable/wrappers/angular)
+## We permanently moved this project to the main Handsontable repository at [https://github.com/handsontable/handsontable/tree/master/wrappers/angular](https://github.com/handsontable/handsontable/tree/master/wrappers/angular)
 
 ## It is still available under the same name in npm: [`@handsontable/angular`](https://www.npmjs.com/package/@handsontable/angular), so you don't have to update your dependency configuration.
 
